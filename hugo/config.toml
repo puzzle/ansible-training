@@ -1,0 +1,76 @@
+################################# Default configuration ###################
+# provide your domain here
+baseURL = "https://examplesite.com/"
+
+languageCode = "en-us"
+
+# site title
+title = "Puzzle Ansible Techlabs"
+
+# theme
+theme = "dot"
+
+# default content language
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = true
+
+copyright = "The Hugo Documents are copyright © [gethugothemes](https://gethugothemes.com/) 2019."
+
+############################# Default Parameters ##########################
+[params]
+# logo is for all page
+logo = "images/puzzle_classic_rgb.png"
+# logo white is for homepage logo, you can use colorful logo too...
+logoWhite = "images/puzzle_classic_bg_rgb.png"
+# when logo is empty, it will shown your site title
+
+# customize color
+primaryColor = "#02007e"
+secondaryColor = "#f9f9f9"
+textColor = "#636363"
+textColorDark = "#242738"
+whiteColor = "#ffffff"
+
+############################## social links ##############################
+[[params.social]]
+icon = "ti-github" # themify icon pack : https://themify.me/themify-icons
+link = "https://github.com/puzzle"
+
+[[params.social]]
+icon = "ti-twitter-alt" # themify icon pack : https://themify.me/themify-icons
+link = "https://twitter.com/puzzleitc"
+  
+[[params.social]]
+icon = "ti-linkedin" # themify icon pack : https://themify.me/themify-icons
+link = "https://linkedin.com/company/puzzle-itc"
+
+################################# language ################################
+[Languages]
+
+  ################################ English Language ######################
+  [Languages.en]
+  languageName = "En"
+  languageCode = "en-us"
+  weight = 1
+  home = "Home"
+  copyright = "The Techlabs are copyright © [Puzzle ITC](https://puzzle.ch) 2019."
+
+    # navigation
+    [Languages.en.menu]
+    
+      [[Languages.en.menu.main]]
+        weight = 2
+        name = "Puzzle Website"
+        url = "https://www.puzzle.ch"
+
+
+    # banner
+    [Languages.en.params.banner]
+      title = "Puzzle Ansible Techlabs"
+      description = "Learning Ansible from the ground up"
+      image = "images/pic_puzzle_man.png"
+      placeholder = "Just enter terms to query our labs content"
+
+    # Topics
+    [Languages.en.params.topics]
+      title = "Techlab Sections"
