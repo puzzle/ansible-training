@@ -1,6 +1,7 @@
 # Puzzle ITC Ansible Techlabs
 
 In the guided hands-on techlab, we show the participants the Ansible basics.
+
 For more see [Puzzle Ansible Techlabs online](https://ansible.puzzle.ch/).
 
 Changing IT for the better with Ansible!
