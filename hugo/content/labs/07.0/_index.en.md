@@ -11,19 +11,19 @@ In this lab we are going to use roles from galaxy and from other sources.
 - Install such a nginx role using `ansible-galaxy`
 - Create a tar.gz file `nginx.tar.gz` with the content of the role using an ansible ad hoc command
 
-### TASK 2
+### Task 2
 - Remove the nginx role using `ansible-galaxy`
 - Create a file `requirements.yml` in the folder `/home/ansible/techlab/roles/`. The file should contain the information to install the role packed in `nginx.tar.gz` as `mynginx`
 - Install the role by using an appropriate `ansible-galaxy` command and the `requirements.yml` file.
 - Remove the role `mynginx` using `ansible-galaxy`
 - Remove the file `nginx.tar.gz` and `roles/requirements.yml` by using an ad hoc command for each
 
-### TASK 3 (CentOS/RHEL only)
+### Task 3 (CentOS/RHEL only)
 - Search your yum-repository for packages containing the string `roles`
 - Install the package providing ansible roles for system mangement
 - See what files where installed with this package
 
-### TASK 4
+### Task 4
 - Search the installed files for an example to use the `rhel-system-roles.selinux` role
 - use the example to create a playbook `selinux.yml` to set selinux mode to disabled on all servers
 - run the playbook
@@ -33,7 +33,7 @@ You have to have a reasonable fresh version of ansible in order to get this work
 {{% /notice %}}
 
 ## Solutions
-{{% collapse solution-1 "Solution" %}}
+{{% collapse solution-1 "Solution 1" %}}
 ```bash
 $ ansible-galaxy search nginx
 $ ansible-galaxy install geerlingguy.nginx
@@ -41,7 +41,7 @@ $ ansible control -m archive -a "path=/home/ansible/techlab/roles/geerlingguy.ng
 ```
 {{% /collapse %}}
 
-{{% collapse solution-2 "Solution" %}}
+{{% collapse solution-2 "Solution 2" %}}
 ```bash
 $ ansible-galaxy remove geerlingguy.nginx
 
@@ -50,8 +50,10 @@ $ cat roles/requirements.yml
 - src: nginx.tar.gz
   name: mynginx
 ```
-
-NOTE: You can also install roles from url's and other archive-formats. Have a look at the documentation https://docs.ansible.com/ansible/latest/galaxy/user_guide.html#installing-roles. Note as well, that the order of the roles to be installed in the `requirements.yml` file could matter.
+{{% notice note %}}
+You can also install roles from url's and other archive-formats. Have a look at the documentation https://docs.ansible.com/ansible/latest/galaxy/user_guide.html#installing-roles.
+Note as well, that the order of the roles to be installed in the `requirements.yml` file could matter.
+{{% /notice %}}
 
 ```bash
 $ ansible-galaxy install -r roles/requirements.yml
@@ -65,7 +67,7 @@ $ ansible localhost -m file -a "dest=/home/ansible/techlab/roles/requirements.ym
 ```
 {{% /collapse %}}
 
-{{% collapse solution-3 "Solution" %}}
+{{% collapse solution-3 "Solution 3" %}}
 ```bash
 $ yum search roles
 $ yum install rhel-system-roles
@@ -73,7 +75,7 @@ $ repoquery -l rhel-system-roles #<-- repoquery is provided by the package `yum-
 ```
 {{% /collapse %}}
 
-{{% collapse solution-4 "Solution" %}}
+{{% collapse solution-4 "Solution 4" %}}
 ```bash
 $ repoquery -l rhel-system-roles | grep -i exa | grep selinux
 $ cp /usr/share/doc/rhel-system-roles-1.0/selinux/example-selinux-playbook.yml selinux.yml
