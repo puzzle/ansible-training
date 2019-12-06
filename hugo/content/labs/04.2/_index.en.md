@@ -1,141 +1,102 @@
 ---
-title: "4.2 - Ansible Playbooks - Variables and Loops"
+title: "4.2 - Ansible Playbooks - Templates"
 date: 2019-11-29T11:02:05+06:00
 weight: 42
 ---
 
-In this lab we’ll start to use variables and loops.
+In this lab we start to use templates!
 
 ### Task 1
 
- - In your playbook `webserver.yml` you have two tasks for starting and enabling `httpd` and `firewalld`.
-   Merge these 2 tasks into one.
-
-{{% notice tip %}}
-Remember `loop:` or `with_items:`
-{{% /notice %}}
+  - Rewrite your playbook without using the `copy` module, but rather
+    using the `template` module.
+  - Use a jinja2 template file called `motd.j2` which uses the variable
+    `motd_content`.
 
 ### Task 2
 
-- In your playbook `webserver.yml`, ensure that that the yum package `firewalld` is installed. Do the installation of `httpd` and `firewalld` in one task. Do you really need to use a loop? Have a look at the description of the ansible module yum.
+  - Improve the template `motd.j2` by adding the default IP address of
+    the server to the template.
+  - Add the installed operating system to the motd file aswell.
 
-### Task 3
 
-  - Write a new playbook `motd.yml` which sets the content of
-    `/etc/motd` on all servers to a custom text. Use the variable
-    `motd_content` and the `copy` module with the option `content`
-    containing the variable.
+### Task 3 (Advanced)
 
-### Task 4
+Create a variable users like the following:
 
-  - Using the command line, overwrite the content of `motd` by providing
-    the variable `motd_content` with a different value.
-  - Modify the content again, but use a `vars.yml` file.
+```yaml
+users:
+  - name: jim
+    food: pizza
+  - name: sabrina
+    food: burger
+  - name: hans
+    food: vegan
+  - name: eveline
+    food: burger
+  - name: santos
+    food: kebab
+```
+Put the variable in an appropiate place of your choice.
 
-### Task 5
+**Create a playbook userplay.yml doing the following on node1:**
 
-  - Set the `motd_content` from task 4 using `group_vars` for node1 and
-    `host_vars` for node 2.
-  - Make sure you remove the variable definition in `motd.yml`. Reason
-    being it will have a higher priority.
-  - Limit the run to node1 and node2.
+- Create a file /etc/dinner.txt with the content below by using the ansible module `template`:
+  ```
+  <name_of_user> <food_for_user>`
+  ```
+- There should be a entry in the file /etc/dinner.txt for each user in the variable users (use a for-loop in the template)
+- If a user has no food specified, use kebab (have a look at "playbooks_filters" in the online docs)
+- On node2 the same playbook userplay.yml should create a (linux) group for every different food specified in the variable users. If a user has no food defined, create the group kebab instead
+- Create a user on node2 for every entry in the users variable. Ensure that this user is also in the group with the same name as his food. Again, if no food defined for this user, add group kebab
 
-{{% notice tip %}}
-Think about where you have to create the folders for your host and
-group variables
+#### Bonus 1
+
+set the loginshell to /bin/zsh
+
+#### Bonus 2
+if (and only if) the user is santos, disable login (means set the shell to /usr/sbin/nologin and use a if/else statement in the template to do so)
+
+#### Bonus 3 
+Set the default password on all servers to "`N0t_5o_s3cur3!`"
+
+Once the password was set, your playbook should not set it again or set it back to the default value once changed.
+
+Hash the password using the sha512 algorithm.
+Don’t define a salt for the password.
+
+Verify that you are able to login as one of the users via ssh and providing the password.
+
+{{% notice warning %}}
+Be aware that it is NOT a good idea to set passwords in cleartext. We will learn in the lab about ansible-vault how to handle this in a better way. Never ever do this in a productive environment.
 {{% /notice %}}
+
+### Task 4 (Advanced)
+
+Create a playbook serverinfo.yml that does the following:
+
+- Place a file /root/serverinfo.txt on all nodes with a line like follows for each and every server in the inventory:
+```  
+server_hostname: OS: <operating system> IP: <IP address> Virtualization Role: <hardware type>
+``` 
+
+- Replace `operating system`, `IP address` and `hardware type` with a reasonable fact.
+
+- Run your playbook and check on all servers (by using an ansible ad hoc command) if the content of the file `/root/serverinfo.txt` is as expected.
+
 
 ## Solutions
 
 {{% collapse solution-1 "Solution 1" %}}
 
-Delete the 2 tasks "start and enable \[httpd,firewalld\]". Add a new
-task with the following content:
-
-    - name: start and enable services
-      service:
-        name: "{{ item }}"
-        state: started
-        enabled: yes
-      with_items:
-        - httpd
-        - firewalld
-
-{{% notice tip %}}
-Make sure your indentations are correct\! Older ansible-versions don’t
-know the keyword "loop" yet, use "with\_items" instead.
-{{% /notice %}}
-
-{{% /collapse %}}
-
-{{% collapse solution-2 "Solution 2" %}}
-```yaml
-tasks:
-  - name: install httpd and firewalld
-    yum:
-    name:
-      - httpd
-      - firewalld
-    state: installed
-```
-See https://docs.ansible.com/ansible/latest/modules/yum_module.html#yum-module
-
-{{% /collapse %}}
-
-
-{{% collapse solution-3 "Solution 3" %}}
-Content of modt.yml:
-
-```yaml
----
-- hosts: all
-  become: yes
-  vars:
-    motd_content: "Thi5 1s some r3ally stR4nge teXT!\n"
-  tasks:
-   - name: set content of /etc/motd
-     copy:
-       dest: /etc/motd
-       content: "{{ motd_content }}"
-```
-```bash
-$ ansible-playbook motd.yml
-```
-
-Take a look at what your playbook just did:
+Create the file `motd.j2` with the following one liner:
 
 ```bash
-$ ssh -l ansible <node1-ip>
-Last login: Fri Nov  1 14:16:08 2019 from 5-102-146-174.cust.cloudscale.ch
-Thi5 1s some r3ally stR4nge teXT! # <-- it worked!
-[ansible@node1 ~]$
-```
-{{% /collapse %}}
-
-{{% collapse solution-4 "Solution 4" %}}
-
-```bash
-$ ansible-playbook motd.yml --extra-vars motd_content="0th3r_5trang3_TExt"
-
-$ ssh -l ansible <node1-ip>
-Last login: Fri Nov  1 14:18:52 2019 from 5-102-146-174.cust.cloudscale.ch
-0th3r_5trang3_TExt # <-- it worked
-[ansible@node1 ~]$
+$ cat motd.j2
+{{ motd_content }}
 ```
 
-```bash
-$ cat vars.yml
----
-motd_content: "st1ll m0r3 str4ng3 TexT!"
-$ ansible-playbook motd.yml --extra-vars @vars.yml
-```
-
-Login via SSH again and check if the new text was set.
-{{% /collapse %}}
-
-{{% collapse solution-5 "Solution 5" %}}
-
-Your `motd.yml` should look something like this:
+Edit your `motd.yml` playbook to something like this:
 
 ```yaml
 ---
@@ -143,45 +104,172 @@ Your `motd.yml` should look something like this:
     become: yes
     tasks:
     - name: set content of /etc/motd
-        copy:
+        template:
+        src: motd.j2
         dest: /etc/motd
-        content: "{{ motd_content }}"
 ```
 
-After creating the new directories and files you should have something
-similar to this:
-
-```bash
-$ cat inventory/group_vars/web.yml
----
-motd_content: "This is a webserver\n"
-$ cat inventory/host_vars/node2.yml
----
-motd_content: "This is node2\n"
-```
-
-Run your playbook and check if the text was changed accordingly on the
-two nodes:
-
+Run the playbook again.
 ```bash
 $ ansible-playbook motd.yml -l node1,node2
-
-$ ssh -l ansible <node1-ip>
-Last login: Fri Nov  1 14:26:37 2019 from 5-102-146-174.cust.cloudscale.ch
-This is node2 # <-- worked like a charm
-[ansible@node2 ~]$
 ```
 {{% /collapse %}}
 
-{{% collapse solution-6 "Solution 6" %}}
-```yaml
----
-- hosts: all
-  become: yes
-  tasks:
-    - name: set content of /etc/motd
-      copy:
-        dest: /etc/motd
-        content: {{ motd_content }} #<-- missing quotes here
+{{% collapse solution-2 "Solution 2" %}}
+
+Add IP and OS to `motd.j2`:
+
+```bash
+$ cat motd.j2
+{{ motd_content }}
+IP ADDRESS: {{ ansible_default_ipv4.address }}
+OS:     {{ ansible_os_family }}
+```
+
+Rerun the playbook and login to a node to check if the text has been
+changed accordingly:
+
+```bash
+$ ansible-playbook motd.yml -l node1,node2
+$ ssh -l ansible <node1-ip>
+[3~Last login: Fri Nov  1 14:39:53 2019 from 5-102-146-174.cust.cloudscale.ch
+This is node2
+
+IP ADDRESS:     5.102.146.204
+OS:             RedHat
+[ansible@node2 ~]$
 ``` 
+{{% /collapse %}}
+
+{{% collapse solution-3 "Solution 3" %}}
+
+{{% notice note %}}
+Be aware that there are multiple possible solutions.
+{{% /notice %}}
+
+```bash
+$ pwd
+/home/ansible/techlab
+
+$ cat uservars.yml
+users:
+  - name: jim
+    food: pizza
+  - name: sabrina
+    food: burger
+  - name: hans
+    food: vegan
+  - name: eveline
+    food: burger
+  - name: santos
+    food: kebab
+
+$ cat userplay.yml
+---
+- hosts: node1
+  become: yes
+  vars_files:
+    - uservars.yml
+  tasks:
+    - name: put template
+      template:
+        src: user_template.j2
+        dest: /etc/dinner.txt
+
+- hosts: node2
+  become: yes
+  vars_files:
+    - uservars.yml
+  tasks:
+    - name: create groups
+      group:
+        name: "{{ item.food | default('kebab') }}"
+      with_items: "{{ users }}"
+    - name: ensure zsh is installed
+      yum:
+        name: zsh
+        state: installed
+    - name: create users
+      user:
+        name: "{{ item.name }}"
+        group: "{{ item.food | default('kebab') }}"
+        append: yes
+        shell: "{% if item.name == 'santos' %}/usr/sbin/nologin{% else %}/usr/bin/zsh{% endif %}"
+        password: "{{ 'N0t_5o_s3cur3!' | password_hash('sha512') }}"
+        update_password: on_create
+      with_items: "{{ users }}"
+
+$ cat user_template.j2
+{% for person in users %}
+{{ person.name }}               {{ person.food | default('kebab') }}
+{% endfor %}
+```
+
+{{% notice tip %}}
+See the user-module for how to set the password and search for a link to additional documentation about how to set passwords in Ansible.
+{{% /notice %}}
+
+Check on node1 (as user root) if everthing is as expected:
+
+    # cat /etc/dinner.txt
+    jim         pizza
+    sabrina     burger
+    hans        vegan
+    eveline     burger
+    santos      kebab
+
+Check as well on node2 (as user root):
+
+    # grep  'jim\|sabrina\|hans\|eveline\|santos' /etc/passwd
+    jim:x:1002:1002::/home/jim:/usr/bin/zsh
+    sabrina:x:1003:1003::/home/sabrina:/usr/bin/zsh
+    hans:x:1004:1004::/home/hans:/usr/bin/zsh
+    eveline:x:1005:1003::/home/eveline:/usr/bin/zsh
+    santos:x:1006:1005::/home/santos:/usr/sbin/nologin
+
+    # grep  'pizza\|burger\|vegan\|kebab' /etc/group
+    pizza:x:1002:
+    burger:x:1003:
+    vegan:x:1004:
+    kebab:x:1005:
+
+Login to node2 as user jim, providing the password via stdin:
+
+    $ ssh jim@node2
+
+
+{{% /collapse %}}
+
+{{% collapse solution-4 "Solution 4" %}}
+
+    $ cat serverinfo.yml
+    ---
+    - hosts: localhost
+    tasks:
+        - name: create the serverinfo file to be distributed later
+        file:
+            path: /home/ansible/techlab/serverinfo.txt
+            state: touch
+
+    - hosts: all
+    tasks:
+        - name: fill in stuff to local serverinfo.txt
+        lineinfile:
+            path: /home/ansible/techlab/serverinfo.txt
+            regexp: "^{{ ansible_hostname }}"
+            line: "{{ ansible_hostname }}: OS: {{ ansible_os_family }} IP: {{ ansible_default_ipv4.address }} Virtualization Role: {{ ansible_virtualization_role }}"
+        delegate_to: localhost
+
+    - hosts: all
+    become: yes
+    tasks:
+        - name: place the file serverinfo.txt
+        copy:
+            src: /home/ansible/techlab/serverinfo.txt
+            dest: /root/serverinfo.txt
+
+    $ ansible-playbook serverinfo.yml
+
+    $ ansible all -b -a "cat /root/serverinfo.txt"
+
 {{% /collapse %}}
