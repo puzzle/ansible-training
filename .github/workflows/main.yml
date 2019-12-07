@@ -4,7 +4,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Run a multi-line script
+    - name: call webhook
       run: |
         curl -X POST \
           -F token=${{ secrets.GITLAB_TOKEN }} \
