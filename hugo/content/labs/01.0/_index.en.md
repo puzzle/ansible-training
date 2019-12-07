@@ -6,7 +6,7 @@ weight: 10
 
 During this lab you will configure ansible. You will be able to use ansible on the controller-node and run your first commands on the ansible-nodes.
 
-You have the IPs of the controller host and managemeble nodes (given by your instructor). The controller host is where you execute Ansible from and the nodes represent the machines you like to manage. (We will do some configurations on the controller as well.)
+You have the IPs of the controller host and manageable nodes (given by your instructor). The controller host is where you execute Ansible from and the nodes represent the machines you like to manage. (We will do some configurations on the controller as well.)
 
 To make it easier for inexperienced users we installed on the controller an editor and terminal accessible with your browser. You can then connect to the nodes from there.
 
