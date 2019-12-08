@@ -35,25 +35,24 @@ Use your favourite ssh-client to connect to the ip of your control host as user 
 
 ### Task 1
 
-1. Install all packages needed to use ansible on the controller.
+- Install all packages needed to use ansible on the controller.
 
 {{% notice tip %}}
-  Use `sudo -s` to elevate your privilege to that of `root`. The `-s`
-  parameter keeps you in your current working directory.
+  Use `sudo` to elevate your privilege to that of `root`. Be sure to only use root priviledges for installing the packages, you should do the rest of the lab as user anisble.
 {{% /notice %}}
 
-2. Test if you can connect to the nodes from your controller using SSH. Use their public IPs you received from your instructor
+- Test if you can connect to the nodes from your controller using SSH. Use their public IPs.
 
-3. Make sure python is installed on your nodes before continuing with the lab.
+- Make sure python is installed on your nodes before continuing with the lab.
 
 ### Task 2
 
-1. Create a SSH-keypair for the `ansible` user on the `controller`.
+- Create a SSH-keypair for the `ansible` user on the `controller`.
 
-2. Enable SSH-key login for the `ansible` user on all nodes and the
+- Enable SSH-key login for the `ansible` user on all nodes and the
     controller by distributing the SSH-public key.
 
-3. Test the login on the nodes.
+- Test the login on the nodes.
 
 ### Task 3
 
@@ -71,12 +70,6 @@ node2 ansible_host=<your-node2-ip>
 ```
 {{% notice tip %}}
 Instead of copying the ssh-id to the controller itself you could set "ansible_connection=local" in the inventory file for host "controller". Then ansible would not use ssh to connect to the controller, but use the "local" transport mechanism.
-{{% /notice %}}
-
-{{% notice note %}}
-  You’re default working directory is at `/home/ansible/techlab`. You
-  can switch your workspace under "File/Open Workspace" and using the
-  drop down menu.
 {{% /notice %}}
 
 - Check if ansible is ready using the `ping` module to ping all hosts in your inventory
@@ -98,7 +91,7 @@ Installing ansible with root privileges:
 
 Opening a SSH connection:
 
-    $ ssh -l ansible node1
+    $ ssh -l ansible <node-ip>
 
   - Enter "yes" when prompted if your want to continue connecting
 
@@ -163,22 +156,24 @@ Test it by running the ssh command executed on that node:
 
 {{% collapse solution-4 "Solution 4" %}}
 
-Create a line in `/etc/sudoers` similar to the one for the `%wheel`
-group on all nodes.
-
-    $ ssh -l ansible <node-ip>
-    $ sudo -i
-    # grep wheel /etc/sudoers
-    ## Allows people in group wheel to run all commands
-    %wheel  ALL=(ALL)       ALL
-    # %wheel        ALL=(ALL)       NOPASSWD: ALL
-    
-    # echo 'ansible ALL=(ALL)   NOPASSWD: ALL' >> /etc/sudoers
+In the file `/etc/sudoers` (On CentOS/RHEL), theres already a config entry for the wheel group that is similar to the one we need for our ansible user.
+```
+$ ssh -l ansible <node-ip>
+$ sudo -i
+# grep wheel /etc/sudoers
+## Allows people in group wheel to run all commands
+%wheel  ALL=(ALL)       ALL
+# %wheel        ALL=(ALL)       NOPASSWD: ALL
+```
+Add a similar line for user ansible to the sudoers file: 
+``` 
+# echo 'ansible ALL=(ALL)   NOPASSWD: ALL' >> /etc/sudoers
+```
 
 Check if `ansible` user has root privileges:
-
+```
     sudo -v
-
+```
 {{% notice note %}} 
   Note that you cannot do this using ansible yet. The reason being you
   need root privileges and we are just setting this up right now.
