@@ -76,10 +76,10 @@ Instead of copying the ssh-id to the controller itself you could set "ansible_co
 
 ### Task 4
 
-1. Configure the `ansible` user to have root privilege on all hosts in your inventory file.
+- Configure the `ansible` user to have root privilege on all hosts in your inventory file.
    Also enable login without a password for this user.
 
-2. Test the functionality by running `sudo -v` as user `ansible` on all nodes.
+- Test the functionality by running `sudo -v` as user `ansible` on all nodes.
 
 
 ## Solutions
