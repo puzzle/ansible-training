@@ -1,6 +1,6 @@
 ---
 title: "1.0 - Setting up Ansible"
-date: 2019-11-29T11:02:05+06:00
+date: 2019-12-08T22:02:05+06:00
 weight: 10
 ---
 
@@ -87,7 +87,9 @@ Instead of copying the ssh-id to the controller itself you could set "ansible_co
 {{% collapse solution-1 "Solution 1" %}}
 Installing ansible with root privileges:
 
-    # yum -y install ansible
+```bash
+# yum -y install ansible
+```
 
 Opening a SSH connection:
 
@@ -157,7 +159,7 @@ Test it by running the ssh command executed on that node:
 {{% collapse solution-4 "Solution 4" %}}
 
 In the file `/etc/sudoers` (On CentOS/RHEL), theres already a config entry for the wheel group that is similar to the one we need for our ansible user.
-```
+```bash
 $ ssh -l ansible <node-ip>
 $ sudo -i
 # grep wheel /etc/sudoers
@@ -165,15 +167,18 @@ $ sudo -i
 %wheel  ALL=(ALL)       ALL
 # %wheel        ALL=(ALL)       NOPASSWD: ALL
 ```
-Add a similar line for user ansible to the sudoers file: 
-``` 
+Add a similar line for user ansible to the sudoers file:
+
+```bash
 # echo 'ansible ALL=(ALL)   NOPASSWD: ALL' >> /etc/sudoers
 ```
 
 Check if `ansible` user has root privileges:
+
+```bash
+sudo -v
 ```
-    sudo -v
-```
+
 {{% notice note %}} 
   Note that you cannot do this using ansible yet. The reason being you
   need root privileges and we are just setting this up right now.
