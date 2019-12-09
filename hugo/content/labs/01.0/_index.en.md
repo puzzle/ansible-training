@@ -184,5 +184,3 @@ sudo -v
 {{% /notice %}}
 
 {{% /collapse %}}
-
-{{% git-edit %}}
