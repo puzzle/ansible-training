@@ -14,8 +14,8 @@ weight: 20
  your terminal.
 {{% /notice %}}
 
-  - Print out information about the ansible module `file` in your
-    terminal
+- Print out information about the ansible module `file` in your
+  terminal
 
 ### Task 2
 
