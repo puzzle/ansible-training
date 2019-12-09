@@ -1,6 +1,5 @@
 ---
 title: "4.0 - Ansible Playbooks - Basics"
-date: 2019-11-29T11:02:05+06:00
 weight: 40
 ---
 

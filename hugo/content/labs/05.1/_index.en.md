@@ -1,6 +1,5 @@
 ---
 title: "5.1 - Ansible Roles - Handlers and Blocks"
-date: 2019-12-02T11:02:05+06:00
 weight: 51
 ---
 

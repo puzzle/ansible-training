@@ -1,6 +1,5 @@
 ---
 title: "About"
-date: 2019-11-19T11:02:05+06:00
 icon: "ti-info-alt"
 description: "About Ansible Techlab"
 type : "pages"

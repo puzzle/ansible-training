@@ -1,6 +1,5 @@
 ---
 title: "3.0 - Setup and AdHoc Tasks"
-date: 2019-12-02T11:02:05+06:00
 weight: 30
 ---
 

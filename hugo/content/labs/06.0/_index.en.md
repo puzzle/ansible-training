@@ -1,6 +1,5 @@
 ---
 title: "6.0 - Manging secrets with Ansible Vault"
-date: 2019-11-19T11:02:05+06:00
 weight: 60
 ---
 

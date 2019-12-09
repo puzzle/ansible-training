@@ -2,6 +2,7 @@
 # provide your domain here
 baseURL = "https://examplesite.com/"
 
+enableGitInfo = true
 languageCode = "en-us"
 
 # site title
@@ -15,6 +16,9 @@ defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = true
 
 copyright = "The Hugo Documents are copyright © [gethugothemes](https://gethugothemes.com/) 2019."
+
+[frontmatter]
+publishDate = ["publishDate", "date", ":git"]
 
 ############################# Default Parameters ##########################
 [params]
@@ -34,7 +38,7 @@ whiteColor = "#ffffff"
 ############################## social links ##############################
 [[params.social]]
 icon = "ti-github" # themify icon pack : https://themify.me/themify-icons
-link = "https://github.com/puzzle"
+link = "https://github.com/puzzle/ansible-techlab"
 
 [[params.social]]
 icon = "ti-twitter-alt" # themify icon pack : https://themify.me/themify-icons
@@ -53,7 +57,7 @@ link = "https://linkedin.com/company/puzzle-itc"
   languageCode = "en-us"
   weight = 1
   home = "Home"
-  copyright = "The Techlabs are copyright © [Puzzle ITC](https://puzzle.ch) 2019."
+  copyright = "The Techlabs are copyright &copy; [Puzzle ITC](https://puzzle.ch) 2019."
 
     # navigation
     [Languages.en.menu]
