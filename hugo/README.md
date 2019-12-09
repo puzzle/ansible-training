@@ -4,7 +4,7 @@ This page uses the [dot theme](https://github.com/themefisher/dot).
 
 Add the theme as git submodul:
 ```bash
-git submodule add git@github.com:themefisher/dot-hugo-documentation-theme.git themes/dot
+git submodule add https://github.com/themefisher/dot-hugo-documentation-theme.git themes/dot
 ```
 
 ## Docker
