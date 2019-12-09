@@ -1,6 +1,5 @@
 ---
 title: "1.0 - Setting up Ansible"
-date: 2019-12-08T22:02:05+06:00
 weight: 10
 ---
 
@@ -185,3 +184,5 @@ sudo -v
 {{% /notice %}}
 
 {{% /collapse %}}
+
+{{% git-edit %}}

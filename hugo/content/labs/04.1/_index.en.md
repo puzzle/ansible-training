@@ -1,6 +1,5 @@
 ---
 title: "4.1 - Ansible Playbooks - Variables and Loops"
-date: 2019-11-29T11:02:05+06:00
 weight: 41
 ---
 

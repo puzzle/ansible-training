@@ -1,6 +1,5 @@
 ---
 title: "7.0 - Ansible Galaxy and more"
-date: 2019-11-19T11:02:05+06:00
 weight: 70
 ---
 

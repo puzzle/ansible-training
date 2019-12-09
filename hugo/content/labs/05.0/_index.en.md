@@ -1,6 +1,5 @@
 ---
 title: "5.0 - Ansible Roles - Basics"
-date: 2019-11-19T11:02:05+06:00
 weight: 50
 ---
 

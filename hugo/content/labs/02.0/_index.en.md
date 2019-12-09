@@ -1,6 +1,5 @@
 ---
 title: "2.0 - Documentation"
-date: 2019-11-29T11:02:05+06:00
 weight: 20
 ---
 

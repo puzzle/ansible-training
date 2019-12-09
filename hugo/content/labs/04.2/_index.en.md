@@ -1,6 +1,5 @@
 ---
 title: "4.2 - Ansible Playbooks - Templates"
-date: 2019-11-29T11:02:05+06:00
 weight: 42
 ---
 
