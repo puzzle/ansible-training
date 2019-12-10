@@ -83,7 +83,7 @@ Opening a SSH connection:
 ```bash
 $ ssh -l ansible <node-ip>
 ```
-- Enter "yes" when prompted if your want to continue connecting
+- Enter "yes" when prompted if you want to continue connecting
 - Copy paste your SSH-password you received from your instructor when prompted and hit return
 
 On the nodes:
@@ -147,7 +147,7 @@ $ ansible all -i hosts -m ping
 {{% /collapse %}}
 
 {{% collapse solution-4 "Solution 4" %}}
-In the file `/etc/sudoers` (On CentOS/RHEL), theres already a config entry for the wheel group that is similar to the one we need for our ansible user.
+In the file `/etc/sudoers` (On CentOS/RHEL), there's already a config entry for the wheel group that is similar to the one we need for our ansible user.
 ```bash
 $ ssh -l ansible <node-ip>
 $ sudo -i

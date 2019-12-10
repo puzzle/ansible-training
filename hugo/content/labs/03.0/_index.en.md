@@ -122,7 +122,7 @@ $ ansible all -i hosts -b -m hostname -a "name={{ inventory_hostname }}"
 $ ssh ansible@[nodeIPhere]
 ```
 
-Did the host name change?
+Did the hostname change?
 {{% /collapse %}}
 
 {{% collapse solution-5 "Solution 5" %}}
