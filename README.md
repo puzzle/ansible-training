@@ -1,20 +1,36 @@
-# Puzzle ITC Ansible Techlabs
+# Puzzle ITC Ansible Techlab
 
 In the guided hands-on techlab, we show the participants the Ansible basics.
 
 For more see [Puzzle Ansible Techlabs online](https://ansible.puzzle.ch/).
 
-Changing IT for the better with Ansible!
+:rocket: Changing IT for the better with Ansible!
 
-## Contents
+## Content Sections
 
-* [Labs](hugo/content/labs)
+The Techlab content lives within the [content](content) directory.
 
-## How to build and deploy
+The main part are the labs, which can be found at [content/labs](content/labs).
 
-The resulting Techlab is built using Hugo and published under [ansible.puzzle.ch](https://ansible.puzzle.ch/).
+## Hugo
 
-For more information, see [Hugo README](hugo/README.md)
+Ansible Techlab is built using the static page generator [Hugo](https://gohugo.io/) and published under [ansible.puzzle.ch](https://ansible.puzzle.ch/).
+
+The page uses the [dot theme](https://github.com/themefisher/dot) which is included as a Git Submodule.
+
+## Build using Docker
+
+Build the image:
+
+```bash
+docker build --build-arg HUGO_BASE_URL=http://localhost:8080/ -t puzzle/ansible-techlab:latest .
+```
+
+Run it locally:
+
+```bash
+docker run -i -p 8080:8080 puzzle/ansible-techlab
+```
 
 ## Contributions
 
