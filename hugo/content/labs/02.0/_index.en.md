@@ -7,29 +7,22 @@ weight: 20
 ### Task 1
 
 - Print out a list of all ansible modules in your terminal
-
-
 {{% notice note %}} 
  Don’t be rattled about the massive amount of modules you’ll see in
  your terminal.
 {{% /notice %}}
-
 - Print out information about the ansible module `file` in your
   terminal
 
 ### Task 2
 
 - Find the official online documentation of ansible in your browser
-
-- Visit the module index (e.g. list of all modules) in the online
-  documentation
-
+- Visit the module index (e.g. list of all modules) in the online documentation
 - Use the search field in the upper left of the webpage and also use the search field in the lower right
 
 ### Task 3 (Advanced)
 
 - Find documentation provided by the ansible-doc yum package, but not provided by the command itself
-
 - Find documentation about jinja2 on the controller
 
 ### Solutions

@@ -12,7 +12,7 @@ Create a playbook `webserver.yml` which does the following:
 
 - Install `httpd` on the nodes in the `web` group.
 - Start `httpd` and ensure the service starts on boot. Ensure that the firewall is also started and enabled.
-- Ensure port 80 is open on the `firewall`.
+- Ensure port 80 is open on the firewall.
 
 {{% notice tip %}}
 Check what the options "immediate" and "permanent" of the service module mean and do.
@@ -22,27 +22,24 @@ Check what the options "immediate" and "permanent" of the service module mean an
 
 ### Task 2
 
-1. Create a folder `inventory` and move your inventory `hosts` there.
-
-2. Configure ansible to use `/home/ansible/techlab/hosts` as the default inventory.
-   Do this using a configuration file in the `/home/ansible/techlab/` directory.
-
-3. Run the playbook again without using the `-i` flag to see if the configuration works.
+- Create a folder `inventory` and move your inventory `hosts` there.
+- Configure ansible to use `/home/ansible/techlab/hosts` as the default inventory.
+  Do this using a configuration file in the `/home/ansible/techlab/` directory.
+- Run the playbook again without using the `-i` flag to see if the configuration works.
 
 ### Task 3
 
-1. Add intentionally errors to your plabook and have a look at the output. You should get a feeling for errormessages.
+- Add intentionally errors to your plabook and have a look at the output. You should get a feeling for errormessages.
+- add a wrong intendation. Remember that this is a common mistake!
+- add a wrong parameter name
+- remove the mistakes
 
-2. add a wrong intendation. Remember that this is a common mistake!
+### Task 4
 
-3. add a wrong parameter name
-
-4. remove the mistakes
-
-{{% notice tip %}}
-Remember `loop:` or the deprecated `with_items:`?
-{{% /notice %}}
-
+- Crete a playbook `tempfolder.yml`
+- The playbook `tempfolder.yml`  should create a temporary folder `/root/tempfolder` on all servers in the group `db`
+- The folder has to have the sticky bit set, so that only owner of the content (or root) can delete the files
+- Run the playbook and then check if the sticky bit was set using an ad hoc command
 
 ## Solutions
 
@@ -83,16 +80,10 @@ Run your playbook with:
 $ ansible-playbook -i hosts webserver.yml
 ```
 
-Check `httpd.service` on node 1:
+Check `httpd.service` on group `web`:
 
 ```bash
-$ systemctl status httpd.service
-● httpd.service - The Apache HTTP Server
-    Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled; vendor preset: disabled)
-    Active: active (running) since Fri 2019-11-01 13:44:25 CET; 2min 41s ago
-      Docs: man:httpd(8)
-...
-...
+$ ansible web -b -a "systemctl status httpd"
 ```
 {{% /collapse %}}
 
@@ -106,12 +97,11 @@ $ mv /home/ansible/techlab/hosts /home/ansible/techlab/inventory/
 $ cp /etc/ansible/ansible.cfg /home/ansible/techlab/
 ```
 
-Edit your `ansible.cfg` file. Uncomment and edit the first "inventory" entry to:
+Edit your `ansible.cfg` file. Uncomment and edit the first "inventory" entry to use your file:
 
-```
+```bash
 [defaults]
 # some basic default values...
-
 inventory      = /home/ansible/techlab/inventory/hosts # <-- edit this line
 #library        = /usr/share/my_modules/
 ```
@@ -139,7 +129,7 @@ Wrong intendation:
   tasks:
     - name: install httpd
       yum:
-      name: httpd	# <-- wrong intendation
+      name: httpd	      # <-- wrong intendation
       state: installed  # <-- wrong intendation
 ```
 
@@ -156,5 +146,28 @@ Wrong parameter name:
         state: installed
         enabled: yes     # <-- doesn't exist for yum module
 ```
+
+{{% /collapse %}}
+
+{{% collapse solution-4 "Solution 4" %}}
+```bash
+$ cat tempfolder.yml
+---
+- hosts: db
+  become: yes
+  tasks:
+    - name: create temp folder with sticky bit set
+      file:
+        dest: /root/tempfolder
+        mode: "01755"
+        state: directory
+
+$ ansible-playbook tempfolder.yml
+$ ansible db -b -a "ls -lah /root/"
+
+```
+{{% notice note %}}
+`ansible-doc file` doesn't provide any information about setting special permissions like sticky bit. Remember to use a leading 0  and then your permissions.
+{{% /notice %}}
 
 {{% /collapse %}}

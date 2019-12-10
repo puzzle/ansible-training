@@ -51,7 +51,9 @@ $ cat roles/requirements.yml
   name: mynginx
 ```
 
-NOTE: You can also install roles from url's and other archive-formats. Have a look at the documentation https://docs.ansible.com/ansible/latest/galaxy/user_guide.html#installing-roles. Note as well, that the order of the roles to be installed in the `requirements.yml` file could matter.
+{{% notice note %}}
+You can also install roles from url's and other archive-formats. Have a look at the documentation https://docs.ansible.com/ansible/latest/galaxy/user_guide.html#installing-roles. Note as well, that the order of the roles to be installed in the `requirements.yml` file could matter.
+{{% /notice %}}
 
 ```bash
 $ ansible-galaxy install -r roles/requirements.yml

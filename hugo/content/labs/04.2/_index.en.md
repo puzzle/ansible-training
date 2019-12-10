@@ -8,8 +8,7 @@ In this lab we’ll start to use variables and loops.
 
 ### Task 1
 
- - In your playbook `webserver.yml` you have two tasks for starting and enabling `httpd` and `firewalld`.
-   Merge these 2 tasks into one.
+- In your playbook `webserver.yml` you have two tasks for starting and enabling `httpd` and `firewalld`. Merge these 2 tasks into one.
 
 {{% notice tip %}}
 Remember `loop:` or `with_items:`
@@ -21,36 +20,28 @@ Remember `loop:` or `with_items:`
 
 ### Task 3
 
-  - Write a new playbook `motd.yml` which sets the content of
-    `/etc/motd` on all servers to a custom text. Use the variable
-    `motd_content` and the `copy` module with the option `content`
-    containing the variable.
+- Write a new playbook `motd.yml` which sets the content of `/etc/motd` on all servers to a custom text. Use the variable `motd_content` and the `copy` module with the option `content` containing the variable.
 
 ### Task 4
 
-  - Using the command line, overwrite the content of `motd` by providing
-    the variable `motd_content` with a different value.
-  - Modify the content again, but use a `vars.yml` file.
+- Using the command line, overwrite the content of `motd` by providing the variable `motd_content` with a different value.
+- Modify the content again, but use a `vars.yml` file.
 
 ### Task 5
 
-  - Set the `motd_content` from task 4 using `group_vars` for node1 and
-    `host_vars` for node 2.
-  - Make sure you remove the variable definition in `motd.yml`. Reason
-    being it will have a higher priority.
-  - Limit the run to node1 and node2.
+- Set the `motd_content` from task 4 using `group_vars` for node1 and `host_vars` for node 2.
+- Make sure you remove the variable definition in `motd.yml`. Reason being it will have a higher priority.
+- Limit the run to node1 and node2.
 
 {{% notice tip %}}
-Think about where you have to create the folders for your host and
-group variables
+Think about where you have to create the folders for your host and group variables
 {{% /notice %}}
 
 ## Solutions
 
 {{% collapse solution-1 "Solution 1" %}}
 
-Delete the 2 tasks "start and enable \[httpd,firewalld\]". Add a new
-task with the following content:
+Delete the 2 tasks "start and enable \[httpd,firewalld\]". Add a new task with the following content:
 
     - name: start and enable services
       service:
@@ -62,8 +53,7 @@ task with the following content:
         - firewalld
 
 {{% notice tip %}}
-Make sure your indentations are correct\! Older ansible-versions don’t
-know the keyword "loop" yet, use "with\_items" instead.
+Make sure your indentations are correct\! Older ansible-versions don’t know the keyword "loop" yet, use "with\_items" instead.
 {{% /notice %}}
 
 {{% /collapse %}}
@@ -148,8 +138,7 @@ Your `motd.yml` should look something like this:
         content: "{{ motd_content }}"
 ```
 
-After creating the new directories and files you should have something
-similar to this:
+After creating the new directories and files you should have something similar to this:
 
 ```bash
 $ cat inventory/group_vars/web.yml
@@ -160,8 +149,7 @@ $ cat inventory/host_vars/node2.yml
 motd_content: "This is node2\n"
 ```
 
-Run your playbook and check if the text was changed accordingly on the
-two nodes:
+Run your playbook and check if the text was changed accordingly on the two nodes:
 
 ```bash
 $ ansible-playbook motd.yml -l node1,node2

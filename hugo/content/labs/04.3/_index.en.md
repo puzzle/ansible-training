@@ -8,21 +8,18 @@ In this lab we start to use templates!
 
 ### Task 1
 
-  - Rewrite your playbook without using the `copy` module, but rather
-    using the `template` module.
-  - Use a jinja2 template file called `motd.j2` which uses the variable
-    `motd_content`.
+  - Rewrite your playbook without using the `copy` module, but rather using the `template` module.
+  - Use a jinja2 template file called `motd.j2` which uses the variable `motd_content`.
 
 ### Task 2
 
-  - Improve the template `motd.j2` by adding the default IP address of
-    the server to the template.
+  - Improve the template `motd.j2` by adding the default IP address of the server to the template.
   - Add the installed operating system to the motd file aswell.
 
 
 ### Task 3 (Advanced)
 
-Create a variable users like the following:
+Create a variable `users` like the following:
 
 ```yaml
 users:
@@ -52,20 +49,17 @@ Put the variable in an appropiate place of your choice.
 
 #### Bonus 1
 
-set the loginshell to /bin/zsh
+- set the loginshell to /bin/zsh
 
 #### Bonus 2
-if (and only if) the user is santos, disable login (means set the shell to /usr/sbin/nologin and use a if/else statement in the template to do so)
+- if (and only if) the user is santos, disable login (means set the shell to /usr/sbin/nologin and use a if/else statement in the template to do so)
 
 #### Bonus 3 
-Set the default password on all servers to "`N0t_5o_s3cur3!`"
-
-Once the password was set, your playbook should not set it again or set it back to the default value once changed.
-
-Hash the password using the sha512 algorithm.
-Don’t define a salt for the password.
-
-Verify that you are able to login as one of the users via ssh and providing the password.
+- Set the default password on all servers to "`N0t_5o_s3cur3!`"
+- Once the password was set, your playbook should not set it again or set it back to the default value once changed.
+- Hash the password using the sha512 algorithm.
+- Don’t define a salt for the password.
+- Verify that you are able to login as one of the users via ssh and providing the password.
 
 {{% notice warning %}}
 Be aware that it is NOT a good idea to set passwords in cleartext. We will learn in the lab about ansible-vault how to handle this in a better way. Never ever do this in a productive environment.
@@ -76,14 +70,11 @@ Be aware that it is NOT a good idea to set passwords in cleartext. We will learn
 Create a playbook serverinfo.yml that does the following:
 
 - Place a file /root/serverinfo.txt on all nodes with a line like follows for each and every server in the inventory:
-```  
-server_hostname: OS: <operating system> IP: <IP address> Virtualization Role: <hardware type>
-``` 
-
+  ```  
+  server_hostname: OS: <operating system> IP: <IP address> Virtualization Role: <hardware type>
+  ``` 
 - Replace `operating system`, `IP address` and `hardware type` with a reasonable fact.
-
 - Run your playbook and check on all servers (by using an ansible ad hoc command) if the content of the file `/root/serverinfo.txt` is as expected.
-
 
 ## Solutions
 
@@ -242,34 +233,54 @@ Login to node2 as user jim, providing the password via stdin:
 
 {{% collapse solution-4 "Solution 4" %}}
 
-    $ cat serverinfo.yml
-    ---
-    - hosts: localhost
-    tasks:
-        - name: create the serverinfo file to be distributed later
-        file:
-            path: /home/ansible/techlab/serverinfo.txt
-            state: touch
+Solution 1:
+```bash
+$ cat serverinfo.txt.j2 
+{% for host in groups['nodes'] %}
+{{ hostvars[host].ansible_hostname }}: OS: {{ hostvars[host].ansible_os_family }} IP {{ hostvars[host].ansible_default_ipv4.address }} Virtualization Role: {{ hostvars[host].ansible_virtualization_role }}
+{% endfor %}
 
-    - hosts: all
-    tasks:
-        - name: fill in stuff to local serverinfo.txt
-        lineinfile:
-            path: /home/ansible/techlab/serverinfo.txt
-            regexp: "^{{ ansible_hostname }}"
-            line: "{{ ansible_hostname }}: OS: {{ ansible_os_family }} IP: {{ ansible_default_ipv4.address }} Virtualization Role: {{ ansible_virtualization_role }}"
-        delegate_to: localhost
+$ cat serverinfo.yml
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: put serverinfo.txt
+      template:
+        src: serverinfo.txt.j2
+        dest: /root/serverinfo.txt
+```
 
-    - hosts: all
-    become: yes
-    tasks:
-        - name: place the file serverinfo.txt
-        copy:
-            src: /home/ansible/techlab/serverinfo.txt
-            dest: /root/serverinfo.txt
+Solution 2:
+```bash
+$ cat serverinfo.yml
+---
+- hosts: localhost
+  tasks:
+    - name: create the serverinfo file to be distributed later
+      file:
+        path: /home/ansible/techlab/serverinfo.txt
+        state: touch
+- hosts: all
+  tasks:
+    - name: fill in stuff to local serverinfo.txt
+      lineinfile:
+        path: /home/ansible/techlab/serverinfo.txt
+        regexp: "^{{ ansible_hostname }}"
+        line: "{{ ansible_hostname }}: OS: {{ ansible_os_family }} IP: {{ ansible_default_ipv4.address }} Virtualization Role: {{ ansible_virtualization_role }}"
+      delegate_to: localhost
 
-    $ ansible-playbook serverinfo.yml
+- hosts: all
+  become: yes
+  tasks:
+    - name: place the file serverinfo.txt
+      copy:
+        src: /home/ansible/techlab/serverinfo.txt
+        dest: /root/serverinfo.txt
 
-    $ ansible all -b -a "cat /root/serverinfo.txt"
-
+Check your solution:
+```bash
+$ ansible-playbook serverinfo.yml
+$ ansible all -b -a "cat /root/serverinfo.txt"
+```
 {{% /collapse %}}

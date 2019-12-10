@@ -4,74 +4,58 @@ date: 2019-11-19T11:02:05+06:00
 weight: 70
 ---
 
-In this lab we are going to practice encryption in ansible playbooks. It
-assumes your working directory is always `/home/ansible/techlab/`.
+In this lab we are going to practice encryption in ansible playbooks. It assumes your working directory is always `/home/ansible/techlab/`.
 
 ### Task 1
 
-  - Create a simple playbook called `secretservice.yml` which creates a
-    file `MI6` in the `/etc/` directory on node1 and node2. Use the
-    `template` module and a template named `nsa.j2`. Don’t encrypt
-    anything yet and use the inventory hosts from the earlier labs.
+- Create a simple playbook called `secretservice.yml` which creates a file `MI6` in the `/etc/` directory on node1 and node2. Use the `template` module and a template named `nsa.j2`. Don’t encrypt anything yet and use the inventory hosts from the earlier labs.
 
 The content of the file `MI6` should be:
 
-    username: jamesbond
-    password: miss_moneypenny
+```bash
+username: jamesbond
+password: miss_moneypenny
+```
 
-  - Run the playbook and check if the file `/etc/MI6` has been deployed
-    on the nodes.
+- Run the playbook and check if the file `/etc/MI6` has been deployed on the nodes.
 
 ### Task 2
 
-  - Make the playbook `secretservice.yml` use a variable file named
-    `secret_vars.yml` with the content:
+- Make the playbook `secretservice.yml` use a variable file named `secret_vars.yml` with the content:
 
-<!-- end list -->
+```bash
+var_username: jamesbond
+var_password: miss_moneypenny
+```
 
-    var_username: jamesbond
-    var_password: miss_moneypenny
-
-  - Rewrite the `nsa.j2` template to use the variables from the
-    `secret_vars.yml` file. Nothing is encrypted yet.
-
-  - Make playbook `secretservice.yml` use the variable file
-    `secret_vars.yml`.
-
-  - Rerun the playbook and remember nothing has been encrypted yet.
+- Rewrite the `nsa.j2` template to use the variables from the `secret_vars.yml` file. Nothing is encrypted yet.
+- Make playbook `secretservice.yml` use the variable file `secret_vars.yml`.
+- Rerun the playbook and remember nothing has been encrypted yet.
 
 ### Task 3
 
-  - Create a file named `vaultpassword` containing the unencrypted
-    string "goldfinger".
-
-  - Encrypt the `secret_vars.yml` file by using `ansible-vault` with the
-    password *Dr.NO\!*.
+- Create a file named `vaultpassword` containing the unencrypted string "goldfinger".
+- Encrypt the `secret_vars.yml` file by using `ansible-vault` with the password *Dr.NO\!*.
 
 {{% notice tip %}}
 You don’t have to set a label.
 {{% /notice %}}
 
-  - Rerun the playbook providing the vaultpassword file.
+- Rerun the playbook providing the vaultpassword file.
 
 ### Task 4
 
-  - Configure your environment to always use the `vaultpassword` file as
-    the vault file.
-
-  - Rerun the playbook without providing the password or the
-    passwordfile in the commandline.
+- Configure your environment to always use the `vaultpassword` file as the vault file.
+- Rerun the playbook without providing the password or the passwordfile in the commandline.
 
 ### Task 5
 
-  - Decrypt the file `secret_vars.yml`.
-
-  - Encrypt the values of `username` and `password` and put them into
-    the `secret_vars.yml` file.
+- Decrypt the file `secret_vars.yml`.
+- Encrypt the values of `username` and `password` and put them into the `secret_vars.yml` file.
 
 ### Task 6
 
-  - Remove the `/etc/MI6` file on the nodes using an ad-hoc command.
+- Remove the `/etc/MI6` file on the nodes using an ad-hoc command.
 
 ### Task 7
 
@@ -236,3 +220,4 @@ no_log: true
 
 - See https://docs.ansible.com/ansible/devel/reference_appendices/logging.html
 - and https://docs.ansible.com/ansible/devel/reference_appendices/faq.html#keep-secret-data
+{{% /collapse %}}
