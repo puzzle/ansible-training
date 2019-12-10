@@ -4,7 +4,7 @@ FROM registry.puzzle.ch/puzzle/hugo:${HUGO_VERSION} AS builder
 
 EXPOSE 8080
 
-# add git package for git-info
+# add git - required for Hugo GitInfo
 RUN apk add git && rm -rf /var/cache/apk/*
 
 RUN mkdir -p /opt/app/src/static && \
