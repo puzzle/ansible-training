@@ -8,7 +8,7 @@ For more see [Puzzle Ansible Techlabs online](https://ansible.puzzle.ch/).
 
 ## Content Sections
 
-The Techlab content lives within the [content](content) directory.
+The Techlab content resides within the [content](content) directory.
 
 The main part are the labs, which can be found at [content/labs](content/labs).
 
