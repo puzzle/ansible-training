@@ -1,10 +1,9 @@
 ---
-title: "3.0 - Setup and AdHoc Tasks"
+title: "3.0 - Setup and AdHoc Commands"
 weight: 30
 ---
 
-In this lab we’ll continue with our environment setup from [Lab 1](../lab-01) and
-learn how to run ad hoc commands.
+In this lab we’ll continue with our environment setup from [Lab 1](../lab-01) and learn how to run ad hoc commands.
 
 ### Task 1
 
@@ -17,49 +16,37 @@ You’ve used the `ping` module in a previous lab.
 ### Task 2
 
   - Gather all facts from the nodes.
-
   - Only gather the fact `ansible_default_ipv4` from all hosts.
 
 ### Task 3
 
-  - Search through the online documentation for special (magical)
-    variables.
-
-  - Which special variable you could use to set the `hostname` on all
-    the servers using the information in the `inventory` file.
+  - Search through the online documentation for special (magical) variables.
+  - Which special variable you could use to set the `hostname` on all the servers using the information in the `inventory` file?
 
 ### Task 4
 
-  - Try to find an appropriate ansible module to complete Task 3. Find
-    out what parameters the module accepts.
-
-  - This module will try make changes to the `/etc/hostname` file. What
-    options should you use with the `ansible` command for it to work?
+  - Try to find an appropriate ansible module to complete Task 3. Find out what parameters the module accepts.
+  - This module will try make changes to the `/etc/hostname` file. What options should you use with the `ansible` command for it to work?
 
 ### Task 5
 
-  - Set the hostname on all nodes using the inventory and an ad-hoc command.
-
+  - Set the hostname on all nodes using the inventory and an ansible ad-hoc command.
   - Login on one of the nodes. Has the `hostname` been changed?
 
 ### Task 6
 
-Complete the next steps using ad hoc commands:
+Complete the next steps using ansible ad hoc commands:
 
   - Install `httpd` on the nodes in group `web`
-
   - Start `httpd` on the remote server and configure it to always start on boot.
-
   - Revert the changes made by the ad hoc commands again.
 
 ### Task 7
 
-Complete the next steps using ad hoc commands:
+Complete the next steps using ansible ad hoc commands:
 
   - Create a file `/home/ansible/testfile.txt` on node2.
-
   - Paste some custom text into the file using the `copy` module.
-
   - Remove the file with an ad hoc command.
 
 ## Solutions
