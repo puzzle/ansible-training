@@ -37,7 +37,7 @@ $ cat myhandler.yml
   roles:
     - handlerrole
 
-$ ansible-galaxy init roles/andlerrole
+$ ansible-galaxy init roles/handlerrole
 
 $ cat roles/handlerrole/tasks/main.yml
 ---
