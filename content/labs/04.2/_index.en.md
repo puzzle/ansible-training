@@ -233,6 +233,25 @@ $ ssh jim@node2
 {{% /collapse %}}
 
 {{% collapse solution-4 "Solution 4" %}}
+Possible solution 1:
+```bash
+$ cat serverinfo.txt.j2 
+{% for host in groups['nodes'] %}
+{{ hostvars[host].ansible_hostname }}: OS: {{ hostvars[host].ansible_os_family }} IP {{ hostvars[host].ansible_default_ipv4.address }} Virtualization Role: {{ hostvars[host].ansible_virtualization_role }}
+{% endfor %}
+
+$ cat serverinfo.yml 
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: put serverinfo.txt
+      template:
+        src: serverinfo.txt.j2
+        dest: /root/serverinfo.txt
+```
+
+Possible solution 2:
 ```bash
 $ cat serverinfo.yml
 ---
