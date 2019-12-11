@@ -31,7 +31,7 @@ You’ve used the `ping` module in a previous lab.
 ### Task 5
 
   - Set the hostname on all nodes using the inventory and an ansible ad-hoc command.
-  - Login on one of the nodes. Has the `hostname` been changed?
+  - Check on all nodes if the `hostname` has been changed.
 
 ### Task 6
 
@@ -116,39 +116,19 @@ $ ansible-doc -s hostname
 
 {{% collapse solution-5 "Solution 5" %}}
 ```bash
-$ ansible web -i hosts -b -m yum -a "name=httpd state=installed"
-node1 | CHANGED => {
-    "ansible_facts": {
-        "discovered_interpreter_python": "/usr/bin/python"
-    },
-    "changed": true,
-    "changes": {
-        "installed": [
-            "httpd"
-        ]
-...
-...
+$ ansible all -i hosts -b -m hostname -a "name={{ inventory_hostname }}"
+$ ansible all -i hosts -b -a "cat /etc/hostname"
 ``` 
 {{% /collapse %}}
     
 
 {{% collapse solution-6 "Solution 6" %}}
 ```bash
+$ ansible web -i hosts -b -m yum -a "name=httpd state=installed"
 $ ansible web -i hosts -b -m service -a "name=httpd state=started enabled=yes"
-node1 | CHANGED => {
-    "ansible_facts": {
-        "discovered_interpreter_python": "/usr/bin/python"
-    },
-    "changed": true,
-    "enabled": true,
-    "name": "httpd",
-    "state": "started",
-    "status": {
-...
-...
 ``` 
 
-Reverting the changes made on the remote host:
+Reverting the changes made on the remote hosts:
 
 ```bash
 $ ansible web -i hosts -b -m service -a "name=httpd state=stopped enabled=no"
