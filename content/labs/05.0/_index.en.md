@@ -7,59 +7,49 @@ During this we’ll learn how to write and use ansible roles.
 
 ### Task 1
 
-  - Create a directory `roles` in your techlab folder.
-
-  - Configure your ansible environment to use the `roles` folder as you
-    did in a previous lab.
+- Create a directory `roles` in your techlab folder.
+- Configure your ansible environment to use the `roles` folder as you did in a previous lab.
 
 ### Task 2
 
 Write a `httpd` role in your new `roles` folder which does the
 following:
 
-  - Install `httpd`, start its service and enable it to run on boot.
-
-  - Install `firewalld` and allow traffic for the services `http` and
-    `https`.
+- Install `httpd`, start its service and enable it to run on boot.
+- Install `firewalld` and allow traffic for the services `http` and `https`.
 
 ### Task 3
 
-  - Modify your playbook `webserver.yml` to use your new `httpd`
-    role. It should be run on all hosts in the `web` group.
-
-  - Run your playbook and check if everything went as expected.
+- Modify your playbook `webserver.yml` to use your new `httpd` role. It should be run on all hosts in the `web` group.
+- Run your playbook and check if everything went as expected.
 
 ### Task 4
 
 Create a new role called `base`. It’s `main.yml` should import the
 following taskfiles:
 
+`motd.yml`:
 
-- `motd.yml`:
-  
-    - Use the variable `motd_content` to change the `/etc/motd`
-      content to "This is a server\\n". Remember to move the template
-      to correct location in the `roles` folder.
+- Use the variable `motd_content` to change the `/etc/motd` content to "This is a server\\n". Remember to move the template to correct location in the `roles` folder.
 
-- `packages.yml` which has to install:
-  
-    - firewalld
-    - yum-utils
-    - dos2unix
-    - emacs
-    - vim
+`packages.yml` which has to install:
 
-- Write a `prod.yml` playbook which:
+- firewalld
+- yum-utils
+- dos2unix
+- emacs
+- vim
+
+Write a `prod.yml` playbook which:
   
-    - Applies the `base` role to all servers
-    - Only applies the `webserver` role to the group `web`
+- Applies the `base` role to all servers
+- Only applies the `httpd` role to the group `web`
 
 
 ### Task 5
 
-  - Rewrite the `httpd` role to apply the `base` role each time it is used in a playbook (dependency).
-
-  - Remove the play to run `base` role on all hosts in the `prod.yml` playbook. Run the playbook and see if role `base` was applied on hosts in the `web` group as well.
+- Rewrite the `httpd` role to apply the `base` role each time it is used in a playbook (dependency).
+- Remove the play to run `base` role on all hosts in the `prod.yml` playbook. Run the playbook and see if role `base` was applied on hosts in the `web` group as well.
 
 ## Solutions
 
@@ -74,11 +64,11 @@ roles_path    = /etc/ansible/roles:/usr/share/ansible/roles:/home/ansible/techla
 {{% collapse solution-2 "Solution 2" %}}
 ```bash
 $ cd roles/
-$ ansible-galaxy init webserver
+$ ansible-galaxy init httpd
 
 $ cat roles/webserver/tasks/main.yml
 ---
-# tasks file for webserver
+# tasks file for httpd
 - name: install packaged
   yum:
     name:
@@ -112,7 +102,7 @@ $ cat webserver.yml
 - hosts: web
   become: yes
   roles:
-    - webserver
+    - httpd
 
 $ ansible-playbook webserver.yml
 ```
