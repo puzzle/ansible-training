@@ -114,15 +114,6 @@ $ ansible-doc -s hostname
   - We will need root privileges and therefore we have to use the become option `-b`
 {{% /collapse %}}
 
-{{% collapse solution-4 "Solution 4" %}}
-```bash
-$ ansible all -i hosts -b -m hostname -a "name={{ inventory_hostname }}"
-$ ssh ansible@[nodeIPhere]
-```
-
-Did the host name change?
-{{% /collapse %}}
-
 {{% collapse solution-5 "Solution 5" %}}
 ```bash
 $ ansible web -i hosts -b -m yum -a "name=httpd state=installed"
