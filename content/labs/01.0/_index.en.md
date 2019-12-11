@@ -41,7 +41,7 @@ You can access the nodes using ssh as well. Use your favourite ssh-client to con
 - Install all packages needed to use ansible on the controller.
 
 {{% notice tip %}}
-  Use `sudo` to elevate your privilege to that of `root`. Be sure to only use root priviledges for installing the packages, you should do the rest of the lab as user ansible.
+  Use `sudo` to elevate your privilege to those of `root`. Be sure to only use root priviledges for installing the packages, you should do the rest of the lab as user ansible.
 {{% /notice %}}
 
 - Test if you can connect to the nodes from your controller using SSH. Use their public IPs.
@@ -95,7 +95,7 @@ Opening a SSH connection:
 ```bash
  $ ssh -l ansible <node-ip>
 ```
-- Enter "yes" when prompted if your want to continue connecting
+- Enter "yes" when prompted if you want to continue connecting
 - Copy paste your SSH-password you received from your instructor when prompted and hit return
 
 On the nodes:
@@ -160,7 +160,7 @@ $ ansible all -i hosts -m ping
 
 {{% collapse solution-4 "Solution 4" %}}
 
-In the file `/etc/sudoers` (On CentOS/RHEL), theres already a config entry for the wheel group that is similar to the one we need for our ansible user.
+In the file `/etc/sudoers` (On CentOS/RHEL), there's already a config entry for the wheel group that is similar to the one we need for our ansible user.
 ```bash
 $ ssh -l ansible <node-ip>
 $ sudo -i
