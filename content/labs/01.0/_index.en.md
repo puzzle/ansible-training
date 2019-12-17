@@ -3,19 +3,20 @@ title: "1.0 - Setting up Ansible"
 weight: 10
 ---
 
-During this lab you will configure ansible. You will be able to use ansible on the controller-node and run your first commands on the ansible-nodes.
+During this lab you will configure Ansible. You will be able to use Ansible on the controller-node and run your first commands on the ansible-nodes.
 
-You have the IPs of the controller host and managemeble nodes (given by your instructor). The controller host is where you execute Ansible from and the nodes represent the machines you like to manage. (We will do some configurations on the controller as well.)
+You have the IPs of the controller host and managemeble nodes (given by your instructor). The controller host is where you execute Ansible from and the nodes represent the machines you like to manage. We will do some configurations on the controller as well.
 
-To make it easier for inexperienced users we installed on the controller an editor and terminal accessible with your browser. You can then connect to the nodes from there.
+To make it easier for inexperienced users, we installed an editor and terminal on the controller, accessible from your browser.
+You can then connect to the nodes from there.
 
 Unless otherwise specified, your working directory for all labs should be `/home/ansible/techlab/`.
 
-Some good advise:
+Some good advice:
 
-- always read all the tasks first. Some tasks might not be clear until you get the whole scope of the lab
-- open a terminal that you use only for ansible-doc (see later) and one terminal that you use for ad hoc commands (see later) to check the result of your plays.
-- copypaste all the filenames etc from the labs to your playbooks. You will do lesser errors.
+- Always read all the tasks first. Some tasks might not be clear until you get the whole scope of the lab.
+- Open a terminal that you use only for ansible-doc (see later) and one terminal that you use for ad hoc commands (see later) to check the result of your plays.
+- Copypaste all the filenames etc. from the labs to your playbooks. You'll make fewer mistakes.
 
 ## Connect to your control host
 
@@ -182,8 +183,8 @@ sudo -v
 ```
 
 {{% notice note %}} 
-  Note that you cannot do this using ansible yet. The reason being you
-  need root privileges and we are just setting this up right now.
+  Note that you cannot do this using Ansible yet. The reason being you
+  need root privileges and we are just setting up those right now.
 {{% /notice %}}
 
 {{% /collapse %}}

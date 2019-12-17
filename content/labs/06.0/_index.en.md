@@ -3,7 +3,7 @@ title: "6.0 - Managing Secrets with Ansible Vault"
 weight: 60
 ---
 
-In this lab we are going to practice encryption in ansible playbooks. It assumes your working directory is always `/home/ansible/techlab/`.
+In this lab we are going to practice encryption in Ansible playbooks. It assumes your working directory is always `/home/ansible/techlab/`.
 
 ### Task 1
 
@@ -67,15 +67,12 @@ You don’t have to set a label.
 
 - What can you do, to avoid ansible to print out sensitive data ar runtime?
 
-{{% notice tip %}} 
-Take a look at docs.ansible.com
-{{% /notice %}}
+**Tip:**  Take a look at [docs.ansible.com](https://docs.ansible.com)
 
 
 ## Solutions
 
-
-{{% collapse solution-1 "Solution" %}}
+{{% collapse solution-1 "Solution 1" %}}
 ```bash
 $ cat nsa.j2 
 username: jamesbond
@@ -212,5 +209,7 @@ $ ansible-playbook view secret_vars2.yml --vault-id @prompt
 no_log: true
 ```
 
-- See https://docs.ansible.com/ansible/devel/reference_appendices/logging.html
-- and https://docs.ansible.com/ansible/devel/reference_appendices/faq.html#keep-secret-data
+#### Reference
+
+- [Ansible Docs: Logging](https://docs.ansible.com/ansible/devel/reference_appendices/logging.html)
+- [Ansible Docs: FAQ - How do I keep secret data in my playbook?](https://docs.ansible.com/ansible/devel/reference_appendices/faq.html#keep-secret-data)

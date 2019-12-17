@@ -3,7 +3,7 @@ title: "4.0 - Ansible Playbooks - Basics"
 weight: 40
 ---
 
-In this lab we’ll get used to writing and running ansible playbooks.
+In this lab we’ll get used to writing and running Ansible playbooks.
 
 ### Task 1
 

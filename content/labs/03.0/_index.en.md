@@ -51,7 +51,7 @@ Complete the next steps using ansible ad hoc commands:
 
 ## Solutions
 
-{{% collapse solution-1 "Solution" %}}
+{{% collapse solution-1 "Solution 1" %}}
 ```bash
 $ ansible all -i hosts -m ping
 5.102.146.128 | SUCCESS => {

@@ -3,7 +3,7 @@ title: "5.0 - Ansible Roles - Basics"
 weight: 50
 ---
 
-During this we’ll learn how to write and use ansible roles.
+During this lab we’ll learn how to write and use Ansible roles.
 
 ### Task 1
 
