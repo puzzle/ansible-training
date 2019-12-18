@@ -1,6 +1,6 @@
 ---
 title: "4.3 - Ansible Playbooks - Output"
-weight: 42
+weight: 43
 ---
 
 In this lab we learn how to handle output of tasks.
@@ -36,7 +36,7 @@ Have a look at the documentation about conditionals: <https://docs.ansible.com/a
 - Start the service only if the service is not started. (The output of `systemctl status httpd` doesn't contains the string "Active: inactive (dead)")
 
 {{% notice note %}}
-`systemctl status` returns status `failed` when a service is not running. Therefore we use `ignore_errors: true` in the corresponding task to let ansible continue anyways.
+`systemctl status` returns status `failed` when a service is not running. Therefore we use `ignore_errors: true` in the corresponding task to let Ansible continue anyways.
 {{% /notice %}}
 
 ### Task 5 (Advanced)
