@@ -6,10 +6,10 @@ type : "pages"
 weight: 10
 ---
 
-
-> This **Techlab** is based on Ansible 2.8.
+This **Techlab** is based on Ansible 2.8.
 
 
 ### Additional information
 
 * [Official Ansible Docs](https://docs.ansible.com/)
+* [O’Reilly’s "Ansible: Up and Running" book](https://www.ansiblebook.com/)

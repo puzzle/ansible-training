@@ -35,7 +35,7 @@ You’ve used the `ping` module in a previous lab.
 
 ### Task 6
 
-Complete the next steps using ansible ad hoc commands:
+Complete the next steps using Ansible ad hoc commands:
 
   - Install `httpd` on the nodes in group `web`
   - Start `httpd` on the remote server and configure it to always start on boot.
@@ -51,7 +51,7 @@ Complete the next steps using ansible ad hoc commands:
 
 ## Solutions
 
-{{% collapse solution-1 "Solution" %}}
+{{% collapse solution-1 "Solution 1" %}}
 ```bash
 $ ansible all -i hosts -m ping
 5.102.146.128 | SUCCESS => {
