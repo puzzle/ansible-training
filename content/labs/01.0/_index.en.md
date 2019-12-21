@@ -35,14 +35,14 @@ After a successful login you should see an editor similar to *visual studio code
 
 ### SSH
 
-You can access the nodes using ssh as well. Use your favourite ssh-client to connect to the ip of your control host as user "ansible".
+You can access the nodes using SSH as well. Use your favourite SSH client to connect to the ip of your control host as user `ansible`.
 
 ### Task 1
 
-- Install all packages needed to use ansible on the controller.
+- Install all packages needed to use Ansible on the controller.
 
 {{% notice tip %}}
-  Use `sudo` to elevate your privilege to those of `root`. Be sure to only use root priviledges for installing the packages, you should do the rest of the lab as user ansible.
+  Use `sudo` to elevate your privilege to those of `root`. Be sure to only use root priviledges for installing the packages, you should do the rest of the lab as user `ansible`.
 {{% /notice %}}
 
 - Test if you can connect to the nodes from your controller using SSH. Use their public IPs.
@@ -69,7 +69,7 @@ node1 ansible_host=<your-node1-ip>
 node2 ansible_host=<your-node2-ip>
 ```
 {{% notice tip %}}
-Instead of copying the ssh-id to the controller itself you could set "ansible_connection=local" in the inventory file for host "controller". Then ansible would not use ssh to connect to the controller, but use the "local" transport mechanism.
+Instead of copying the ssh-id to the controller itself you could set `ansible_connection=local` in the inventory file for host "controller". Then Ansible would not use SSH to connect to the controller, but use the "local" transport mechanism.
 {{% /notice %}}
 
 - Check if ansible is ready using the `ping` module to ping all hosts in your inventory
@@ -86,7 +86,7 @@ Instead of copying the ssh-id to the controller itself you could set "ansible_co
 ## Solutions
 
 {{% collapse solution-1 "Solution 1" %}}
-Installing ansible with root privileges:
+Installing Ansible with root privileges:
 
 ```
 # yum -y install ansible
@@ -135,7 +135,7 @@ Now try logging into the machine, with:   "ssh '5.102.146.128'"
 and check to make sure that only the key(s) you wanted were added.
 ```
 
-Test it by running the ssh command executed on that node:
+Test it by running the SSH command executed on that node:
 ```bash
 $ ssh <node-ip> hostname
 [yourusernamehere]-node1

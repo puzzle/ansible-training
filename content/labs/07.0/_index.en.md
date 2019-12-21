@@ -8,7 +8,7 @@ In this lab we are going to use roles from galaxy and from other sources.
 ### Task 1
 - Search the ansible-galaxy for a nginx role
 - Install such a nginx role using `ansible-galaxy`
-- Create a tar.gz file `nginx.tar.gz` with the content of the role using an ansible ad hoc command
+- Create a tar.gz file `nginx.tar.gz` with the content of the role using an Ansible ad hoc command
 
 ### Task 2
 - Remove the nginx role using `ansible-galaxy`
@@ -19,7 +19,7 @@ In this lab we are going to use roles from galaxy and from other sources.
 
 ### Task 3 (CentOS/RHEL only)
 - Search your yum-repository for packages containing the string `roles`
-- Install the package providing ansible roles for system mangement
+- Install the package providing Ansible roles for system mangement
 - See what files where installed with this package
 
 ### Task 4
@@ -50,7 +50,7 @@ $ cat roles/requirements.yml
   name: mynginx
 ```
 {{% notice note %}}
-You can also install roles from url's and other archive-formats. Have a look at the documentation https://docs.ansible.com/ansible/latest/galaxy/user_guide.html#installing-roles.
+You can also install roles from url's and other archive-formats. Have a look at the documentation [Ansible Docs - Installing Roles](https://docs.ansible.com/ansible/latest/galaxy/user_guide.html#installing-roles).
 Note as well, that the order of the roles to be installed in the `requirements.yml` file could matter.
 {{% /notice %}}
 
