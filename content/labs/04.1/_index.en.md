@@ -53,7 +53,7 @@ Delete the 2 tasks "start and enable \[httpd,firewalld\]". Add a new task with t
 ```
 
 {{% notice tip %}}
-Make sure your indentations are correct\!
+Make sure your indentations are correct!
 Older ansible-versions don’t know the keyword "loop" yet, use "with\_items" instead.
 {{% /notice %}}
 
@@ -69,7 +69,10 @@ tasks:
       - firewalld
     state: installed
 ```
-See https://docs.ansible.com/ansible/latest/modules/yum_module.html#yum-module
+
+{{% notice tip %}}
+See [Ansible Docs - Yum Module](https://docs.ansible.com/ansible/latest/modules/yum_module.html#yum-module)
+{{% /notice %}}
 
 {{% /collapse %}}
 

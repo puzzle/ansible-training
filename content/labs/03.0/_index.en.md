@@ -25,7 +25,7 @@ You’ve used the `ping` module in a previous lab.
 
 ### Task 4
 
-  - Try to find an appropriate ansible module to complete Task 3. Find out what parameters the module accepts.
+  - Try to find an appropriate Ansible module to complete Task 3. Find out what parameters the module accepts.
   - This module will try make changes to the `/etc/hostname` file. What options should you use with the `ansible` command for it to work?
 
 ### Task 5

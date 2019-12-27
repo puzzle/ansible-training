@@ -65,10 +65,11 @@ You don’t have to set a label.
 
 ### TASK 8
 
-- What can you do, to avoid ansible to print out sensitive data ar runtime?
+- What can you do, to avoid Ansible to print out sensitive data ar runtime?
 
-**Tip:**  Take a look at [docs.ansible.com](https://docs.ansible.com)
-
+{{% notice tip %}}
+Take a look at [docs.ansible.com](https://docs.ansible.com)
+{{% /notice %}}
 
 ## Solutions
 
@@ -208,8 +209,8 @@ $ ansible-playbook view secret_vars2.yml --vault-id @prompt
 ```bash
 no_log: true
 ```
+{{% notice tip %}}
+See [Ansible Docs: Logging](https://docs.ansible.com/ansible/devel/reference_appendices/logging.html) and [Ansible Docs: FAQ - How do I keep secret data in my playbook?](https://docs.ansible.com/ansible/devel/reference_appendices/faq.html#keep-secret-data)
+{{% /notice %}}
 
-#### Reference
-
-- [Ansible Docs: Logging](https://docs.ansible.com/ansible/devel/reference_appendices/logging.html)
-- [Ansible Docs: FAQ - How do I keep secret data in my playbook?](https://docs.ansible.com/ansible/devel/reference_appendices/faq.html#keep-secret-data)
+{{% /collapse %}}
