@@ -21,7 +21,7 @@
           {{ if .Site.Params.GitRepoUrl }}
           <div class="float-right">
             <span class="ti-pencil"> </span>
-            <a href="{{ path.Join .Site.Params.GitRepoUrl "/edit/master/content" }}/{{ .File }}">
+            <a href="{{ .Site.Params.GitRepoUrl }}/edit/master/content/{{ .File }}">
               Improve this page
             </a>
           </div>
