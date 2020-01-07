@@ -151,7 +151,7 @@ Wrong parameter name:
 ```bash
 $ cat tempfolder.yml
 ---
-- hosts: db
+- hosts: all:!db
   become: yes
   tasks:
     - name: create temp folder with sticky bit set
