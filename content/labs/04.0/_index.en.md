@@ -34,7 +34,7 @@ Check what the options "immediate" and "permanent" of the service module mean an
 
 ### TASK 4
 - Crete a playbook `tempfolder.yml`
-- The playbook `tempfolder.yml` should create a temporary folder `/root/tempfolder` on all servers execpt those in the group `db`.
+- The playbook `tempfolder.yml` should create a temporary folder `/root/tempfolder` on all servers except those in the group `db`.
 
 {{% notice tip %}}
 Have a look at the user guide to know how to use more complex inventory patterns.
