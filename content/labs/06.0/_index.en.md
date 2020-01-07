@@ -150,8 +150,9 @@ $ ansible-playbook secretservice.yml -i inventory/hosts
 
 ```bash
 $ ansible-vault decrypt secret_vars.yml
-
-$ echo "---" > secret_vars.yml; ansible-vault encrypt_string jamesbond -n var_username >> secret_vars.yml; ansible-vault encrypt_string miss_moneypenny -n var_password >> secret_vars.yml
+$ echo "---" > secret_vars.yml
+$ ansible-vault encrypt_string jamesbond -n var_username >> secret_vars.yml
+$ ansible-vault encrypt_string miss_moneypenny -n var_password >> secret_vars.yml
 ```
 
 Content of secret_vars.yml
