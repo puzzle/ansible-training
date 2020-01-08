@@ -1,6 +1,6 @@
 ---
 title: "4.3 - Ansible Playbooks - Output"
-weight: 42
+weight: 43
 ---
 
 In this lab we learn how to handle output of tasks.
@@ -15,7 +15,7 @@ In this lab we learn how to handle output of tasks.
 - Add another task using the debug module and print out the result of the search above. The difficulty here is to print *all* results and not just the first.
 
 {{% notice tip %}}
-Use an appropriate return value to show the output. Information about return values can be found here: <https://docs.ansible.com/ansible/latest/reference_appendices/common_return_values.html>
+Use an appropriate return value to show the output. Information about return values can be found here: [Ansible Docs - Common Return Values](https://docs.ansible.com/ansible/latest/reference_appendices/common_return_values.html)
 {{% /notice %}}
 
 - Now, loop over the results and create a backup file called `<filename.cf>.bak` for each file `<filename.cf>` that was found. Use the command module. Remember, that the result is probably a list with multiple elements.
@@ -25,7 +25,7 @@ Use an appropriate return value to show the output. Information about return val
 - Solve this task by searching for files ending with `.bak` and registering the result to a variable. Then do tasks only if certain conditions are met.
 
 {{% notice tip %}}
-Have a look at the documentation about conditionals: <https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html>
+Have a look at the documentation about conditionals: [Ansible Docs - Playbook Conditionals](https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html)
 {{% /notice %}}
 
 ### Task 4 (Advanced)
@@ -36,14 +36,14 @@ Have a look at the documentation about conditionals: <https://docs.ansible.com/a
 - Start the service only if the service is not started. (The output of `systemctl status httpd` doesn't contains the string "Active: inactive (dead)")
 
 {{% notice note %}}
-`systemctl status` returns status `failed` when a service is not running. Therefore we use `ignore_errors: true` in the corresponding task to let ansible continue anyways.
+`systemctl status` returns status `failed` when a service is not running. Therefore we use `ignore_errors: true` in the corresponding task to let Ansible continue anyways.
 {{% /notice %}}
 
 ### Task 5 (Advanced)
 - Rewrite the playbook `servicehandler.yml` and ensure that the `ignore_errors: true` line is removed. Instead set the state of the task to failed when and only when the output of `systemctl status httpd` contains the string "failed".
 
 {{% notice note %}}
-Have a look at the documentation about errorhandling: <https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html>
+Have a look at the documentation about error handling: [Ansible Docs - Playbooks Error Handling](https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html)
 {{% /notice %}}
 
 - Rerun your playbook and ensure it still runs fine.
@@ -54,8 +54,8 @@ Have a look at the documentation about errorhandling: <https://docs.ansible.com/
 ## Solutions
 
 {{% collapse solution-1 "Solution 1" %}}
-```bash
-[ansible@control0 techlab]$ cat output.yml
+Example `output.yml`:
+```yaml
 ---
 - hosts: node1
   become: true
@@ -71,8 +71,8 @@ Have a look at the documentation about errorhandling: <https://docs.ansible.com/
 
 {{% collapse solution-2 "Solution 2" %}}
 
-```bash
-[ansible@control0 techlab]$ cat output.yml
+Example `output.yml`:
+```yaml
 ---
 - hosts: node1
   become: true
@@ -89,8 +89,8 @@ Have a look at the documentation about errorhandling: <https://docs.ansible.com/
 {{% /collapse %}}
 
 {{% collapse solution-3 "Solution 3" %}}
-```bash
-[ansible@control0 techlab]$ cat output.yml 
+Example `output.yml`:
+```yaml
 ---
 - hosts: node1
   become: true
@@ -104,14 +104,20 @@ Have a look at the documentation about errorhandling: <https://docs.ansible.com/
     - name: create backup only when no backupfile is present
       command: "cp {{ item }} {{ item }}.bak"
       with_items: "{{ output.stdout_lines  }}"
-      when: search.stdout == '' #<- only do this task if the search for files ending with .bak is empty>
+      # only do this task if the search for files ending with .bak is empty>
+      when: search.stdout == ''
 ```
 {{% /collapse %}}
 
 {{% collapse solution-4 "Solution 4" %}}
+
+Stop the httpd service with Ansible:
 ```bash
 [ansible@control0 techlab]$ ansible web -b -a "systemctl stop httpd"
-[ansible@control0 techlab]$ cat servicehandler.yml 
+``` 
+
+Content of `servicehandler.yml`:
+```yaml
 ---
 - hosts: web
   become: yes
@@ -135,8 +141,8 @@ Have a look at the documentation about errorhandling: <https://docs.ansible.com/
 {{% /collapse %}}
 
 {{% collapse solution-5 "Solution 5" %}}
+Example `servicehandler.yml`:
 ```bash
-[ansible@control0 techlab]$ cat servicehandler.yml
 ---
 - hosts: web
   become: yes
@@ -154,7 +160,12 @@ Have a look at the documentation about errorhandling: <https://docs.ansible.com/
     - name: start httpd
       command: 'systemctl start httpd'
       when: "'Active: active (running)' not in status.stdout"
-[ansible@control0 techlab]$ ansible web -b -m copy -a "content='bli bla blup' dest=/etc/httpd/conf/httpd.conf backup=yes"
-[ansible@control0 techlab]$ ansible web -b -m service -a "name=httpd state=restarted"
+```
+
+```bash
+[ansible@control0 techlab]$ ansible web -b -m copy -a \
+  "content='bli bla blup' dest=/etc/httpd/conf/httpd.conf backup=yes"
+[ansible@control0 techlab]$ ansible web -b -m service -a \
+  "name=httpd state=restarted"
 ```
 {{% /collapse %}}

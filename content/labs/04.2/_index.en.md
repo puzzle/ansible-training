@@ -57,7 +57,7 @@ Create a playbook userplay.yml doing the following on node1:
 - Once the password was set, your playbook should not set it again or set it back to the default value once changed.
 - Hash the password using the sha512 algorithm.
 - Don’t define a salt for the password.
-- Verify that you are able to login as one of the users via ssh and providing the password.
+- Verify that you are able to login as one of the users via SSH and providing the password.
 
 {{% notice warning %}}
 Be aware that it is NOT a good idea to set passwords in cleartext. We will learn in the lab about ansible-vault how to handle this in a better way. Never ever do this in a productive environment.
