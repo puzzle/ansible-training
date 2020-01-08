@@ -9,7 +9,7 @@ In this lab we learn how to handle output of tasks.
 
 - Write a playbook `output.yml` that uses the command module to find all config files of postfix. These files are located under `/etc/postfix/` and end with `.cf`. Targeted server is `node1`.
 - Register the result to a variable called `output` by using the `register` keyword.
-- Include a task using the debug module to print out all content of the variabl `output`. If unsure, consult the documentation about the debug module.
+- Include a task using the debug module to print out all content of the variable `output`. If unsure, consult the documentation about the debug module.
 
 ### Task 2
 - Add another task using the debug module and print out the result of the search above. The difficulty here is to print *all* results and not just the first.
@@ -18,7 +18,7 @@ In this lab we learn how to handle output of tasks.
 Use an appropriate return value to show the output. Information about return values can be found here: [Ansible Docs - Common Return Values](https://docs.ansible.com/ansible/latest/reference_appendices/common_return_values.html)
 {{% /notice %}}
 
-- Now, loop over the results and create a backup file called <filename.cf>.bak for each file. Use the command module.
+- Now, loop over the results and create a backup file called `<filename.cf>.bak` for each file `<filename.cf>` that was found. Use the command module. Remember, that the result is probably a list with multiple elements.
 
 ### Task 3 (Advanced)
 - Now we enhance our play to only create the backup if no backup file is present. If one single file with an ending .bak is present, don't do any backup.
