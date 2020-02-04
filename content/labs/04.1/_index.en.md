@@ -38,7 +38,7 @@ Remember `loop:` or `with_items:`
 
 ### Task 6
 
-- Get a feeling for errors with variables: Remove the quotes around the curly brackets and have a look at the output
+- Get a feeling for errors: Remove the quotes around the curly brackets and have a look at the output.
 
 ## Solutions
 
@@ -138,8 +138,8 @@ Your `motd.yml` should look something like this:
 ```yaml
 ---
 - hosts: all
-    become: yes
-    tasks:
+  become: yes
+  tasks:
     - name: set content of /etc/motd
         copy:
         dest: /etc/motd
