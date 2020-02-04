@@ -7,13 +7,17 @@ In this lab we start to use templates!
 
 ### Task 1
 
-- Rewrite your playbook without using the `copy` module, but rather using the `template` module.
+- Rewrite your playbook `motd.yml` without using the `copy` module, but rather using the `template` module.
 - Use a jinja2 template file called `motd.j2` which uses the variable `motd_content`.
 
 ### Task 2
 
 - Improve the template `motd.j2` by adding the default IP address of the server to the template.
 - Add the installed operating system to the motd file aswell.
+
+{{% notice tip %}}
+  Remember using the setup module to get a list of all facts!
+{{% /notice %}}
 
 ### Task 3 (Advanced)
 
@@ -92,8 +96,8 @@ Edit your `motd.yml` playbook to something like this:
 ```yaml
 ---
 - hosts: all
-    become: yes
-    tasks:
+  become: yes
+  tasks:
     - name: set content of /etc/motd
         template:
         src: motd.j2
