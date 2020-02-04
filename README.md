@@ -18,6 +18,12 @@ Ansible Techlab is built using the static page generator [Hugo](https://gohugo.i
 
 The page uses the [dot theme](https://github.com/themefisher/dot) which is included as a Git Submodule.
 
+After cloning the main repo, you need to initialize the submodule like this: 
+
+```bash
+git submodule update --init --recursive
+``` 
+
 ## Build using Docker
 
 Build the image:

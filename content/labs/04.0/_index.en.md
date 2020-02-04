@@ -27,13 +27,13 @@ Check what the options "immediate" and "permanent" of the service module mean an
 
 ### Task 3
 
-- Add intentionally errors to your plabook and have a look at the output. You should get a feeling for errormessages.
+- Add intentionally errors to your playbook and have a look at the output. You should get a feeling for errormessages.
 - Add a wrong intendation. Remember that this is a common mistake!
 - Add a wrong parameter name.
 - Remove the mistakes.
 
 ### TASK 4
-- Crete a playbook `tempfolder.yml`
+- Create a playbook `tempfolder.yml`
 - The playbook `tempfolder.yml` should create a temporary folder `/root/tempfolder` on all servers except those in the group `db`.
 
 {{% notice tip %}}
