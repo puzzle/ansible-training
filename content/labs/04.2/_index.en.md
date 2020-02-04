@@ -38,27 +38,28 @@ users:
 ```
 Put the variable in an appropiate place of your choice.
 
-Create a playbook userplay.yml doing the following on node1:
+Create a playbook userplay.yml doing the following and running on node1 and node2:
 
-- Create a file /etc/dinner.txt with the content below by using the ansible module `template`:
+- On node1: Create a file /etc/dinner.txt with the content below by using the ansible module `template`:
   ```
-  <name_of_user> <food_for_user>`
+  <name_of_user> <food_for_user>
   ```
-- There should be a entry in the file /etc/dinner.txt for each user in the variable users (use a for-loop in the template)
-- If a user has no food specified, use kebab (have a look at "playbooks_filters" in the online docs)
-- On node2 the same playbook userplay.yml should create a (linux) group for every different food specified in the variable users. If a user has no food defined, create the group kebab instead
-- Create a user on node2 for every entry in the users variable. Ensure that this user is also in the group with the same name as his food. Again, if no food defined for this user, add group kebab
+- On node1: There should be a entry in the file /etc/dinner.txt for each user in the variable users (use a for-loop in the template)
+- On node1:If a user has no food specified, use kebab (have a look at "playbooks_filters" in the online docs)
+- On node2: The same playbook userplay.yml should create a (linux) group for every different food specified in the variable users. If a user has no food defined, create the group kebab instead
+- On node2: Create a user for every entry in the users variable. Ensure that this user is also in the group with the same name as his food. Again, if no food is defined for this user, add group kebab
 
 #### Bonus 1
 
-- set the loginshell to /bin/zsh
+- On node2: Set the loginshell to /bin/zsh
 
 #### Bonus 2
-- if (and only if) the user is santos, disable login (means set the shell to /usr/sbin/nologin and use a if/else statement in the template to do so)
+- On node2: If (and only if) the user is santos, disable login (means set the shell to /usr/sbin/nologin and use a if/else statement in the template to do so)
 
 #### Bonus 3 
+On node2:
 - Set the default password on all servers to "`N0t_5o_s3cur3!`"
-- Once the password was set, your playbook should not set it again or set it back to the default value once changed.
+- Once the password was set, your playbook should not set it again. Not even when it got changed.
 - Hash the password using the sha512 algorithm.
 - Don’t define a salt for the password.
 - Verify that you are able to login as one of the users via ssh and providing the password.
@@ -73,10 +74,10 @@ Create a playbook serverinfo.yml that does the following:
 
 - Place a file /root/serverinfo.txt on all nodes with a line like follows for each and every server in the inventory:
 ```  
-server_hostname: OS: <operating system> IP: <IP address> Virtualization Role: <hardware type>
+<hostname>: OS: <operating system> IP: <IP address> Virtualization Role: <hardware type>
 ``` 
 
-- Replace `operating system`, `IP address` and `hardware type` with a reasonable fact.
+- Replace `hostname`, `operating system`, `IP address` and `hardware type` with a reasonable fact.
 - Run your playbook and check on all servers (by using an ansible ad hoc command) if the content of the file `/root/serverinfo.txt` is as expected.
 
 
