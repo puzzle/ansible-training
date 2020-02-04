@@ -45,7 +45,7 @@ Create a playbook userplay.yml doing the following and running on node1 and node
   <name_of_user> <food_for_user>
   ```
 - On node1: There should be a entry in the file /etc/dinner.txt for each user in the variable users (use a for-loop in the template)
-- On node1:If a user has no food specified, use kebab (have a look at "playbooks_filters" in the online docs)
+- On node1: If a user has no food specified, use kebab (have a look at "playbooks_filters" in the online docs)
 - On node2: The same playbook userplay.yml should create a (linux) group for every different food specified in the variable users. If a user has no food defined, create the group kebab instead
 - On node2: Create a user for every entry in the users variable. Ensure that this user is also in the group with the same name as his food. Again, if no food is defined for this user, add group kebab
 
