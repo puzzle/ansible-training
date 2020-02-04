@@ -167,7 +167,7 @@ $ cat tempfolder.yml
         state: directory
 
 $ ansible-playbook tempfolder.yml
-$ ansible db -b -a "ls -lah /root/"
+$ ansible web,tower -b -a "ls -lah /root/"
 ```
 {{% notice note %}}
 `ansible-doc file` doesn't provide any information about setting special permissions like sticky bit. Remember to use a leading 0 before the actual permissions.

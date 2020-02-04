@@ -36,6 +36,10 @@ Remember `loop:` or `with_items:`
   Think about where you have to create the folders for your host and group variables
 {{% /notice %}}
 
+### Task 6
+
+- Get a feeling for errors: Remove the quotes around the curly brackets and have a look at the output.
+
 ## Solutions
 
 {{% collapse solution-1 "Solution 1" %}}
@@ -134,8 +138,8 @@ Your `motd.yml` should look something like this:
 ```yaml
 ---
 - hosts: all
-    become: yes
-    tasks:
+  become: yes
+  tasks:
     - name: set content of /etc/motd
         copy:
         dest: /etc/motd
@@ -158,10 +162,7 @@ Run your playbook and check if the text was changed accordingly on the two nodes
 ```bash
 $ ansible-playbook motd.yml -l node1,node2
 
-$ ssh -l ansible <node1-ip>
-Last login: Fri Nov  1 14:26:37 2019 from 5-102-146-174.cust.cloudscale.ch
-This is node2 # <-- worked like a charm
-[ansible@node2 ~]$
+$ ansible web,node2 -a "cat /etc/motd"
 ```
 {{% /collapse %}}
 
