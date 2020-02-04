@@ -5,7 +5,7 @@ weight: 10
 
 During this lab you will configure Ansible. You will be able to use Ansible on the controller-node and run your first commands on the ansible-nodes.
 
-You have the IPs of the controller host and managemeble nodes (given by your instructor). The controller host is where you execute Ansible from and the nodes represent the machines you like to manage. We will do some configurations on the controller as well.
+You have the IPs of the controller host and manageable nodes (given by your instructor). The controller host is where you execute Ansible from and the nodes represent the machines you like to manage. We will do some configurations on the controller as well.
 
 To make it easier for inexperienced users, we installed an editor and terminal on the controller, accessible from your browser.
 You can then connect to the nodes from there.
@@ -70,6 +70,7 @@ node2 ansible_host=<your-node2-ip>
 ```
 {{% notice tip %}}
 Instead of copying the ssh-id to the controller itself you could set "ansible_connection=local" in the inventory file for host "controller". Then ansible would not use ssh to connect to the controller, but use the "local" transport mechanism.
+If you have a valid /etc/hosts file containing information about lab hosts, you can omit the "ansible_host=<<ip>>" parts in the inventory file.
 {{% /notice %}}
 
 - Check if ansible is ready using the `ping` module to ping all hosts in your inventory
@@ -168,7 +169,7 @@ $ sudo -i
 # grep wheel /etc/sudoers
 ## Allows people in group wheel to run all commands
 %wheel  ALL=(ALL)       ALL
-# %wheel        ALL=(ALL)       NOPASSWD: ALL
+# %wheel        ALL=(ALL)       NOPASSWD: ALL # <-- this line!
 ```
 Add a similar line for user ansible to the sudoers file:
 
