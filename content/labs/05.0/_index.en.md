@@ -8,11 +8,11 @@ During this lab we’ll learn how to write and use Ansible roles.
 ### Task 1
 
 - Create a directory `roles` in your techlab folder.
-- Configure your ansible environment to use the `roles` folder as you did in a previous lab.
+- Configure your ansible environment to use the `roles` folder as an additional resource for roles.
 
 ### Task 2
 
-Write a `httpd` role in your new `roles` folder which does the
+Write a role `httpd` in your new `roles` folder which does the
 following:
 
 - Install `httpd`, start its service and enable it to run on boot.
@@ -25,30 +25,14 @@ following:
 
 ### Task 4
 
-Create a new role called `base`. It’s `main.yml` should import the
-following taskfiles:
-
-`motd.yml`:
-
-- Use the variable `motd_content` to change the `/etc/motd` content to "This is a server\\n". Remember to move the template to correct location in the `roles` folder.
-
-`packages.yml` which has to install:
-
-- firewalld
-- yum-utils
-- dos2unix
-- emacs
-- vim
-
-Write a `prod.yml` playbook which:
-  
-- Applies the `base` role to all servers
-- Only applies the `httpd` role to the group `web`
-
+- Create a new role called `base`. It’s `main.yml` taskfile should import the taskfiles `motd.yml` and `packages.yml`
+- `motd.yml` should do the following: Use the variable `motd_content` to change the `/etc/motd` content to "This is a server\\n". Remember to move the template as well as the variable to a correct location in the `roles` folder.
+- `packages.yml` should install the yum packages `firewalld`, `yum-utils`, `dos2unix`, `emacs` and `vim`
+- Write a playbook `prod.yml` that applies the role `base`to all servers and the role `httpd` only to the group `web`
 
 ### Task 5
 
-- Rewrite the `httpd` role to apply the `base` role each time it is used in a playbook (dependency).
+- Rewrite the `httpd` role to apply the `base` role each time it is used in a playbook. Use a dependency in the `meta/main.yml` file.
 - Remove the play to run `base` role on all hosts in the `prod.yml` playbook. Run the playbook and see if role `base` was applied on hosts in the `web` group as well.
 
 ## Solutions
@@ -66,10 +50,10 @@ roles_path    = /etc/ansible/roles:/usr/share/ansible/roles:/home/ansible/techla
 $ cd roles/
 $ ansible-galaxy init httpd
 
-$ cat roles/webserver/tasks/main.yml
+$ cat roles/httpd/tasks/main.yml
 ---
 # tasks file for httpd
-- name: install packaged
+- name: install packages
   yum:
     name:
       - httpd

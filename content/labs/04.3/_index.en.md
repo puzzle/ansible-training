@@ -12,7 +12,7 @@ In this lab we learn how to handle output of tasks.
 - Include a task using the debug module to print out all content of the variable `output`. If unsure, consult the documentation about the debug module.
 
 ### Task 2
-- Add another task using the debug module and print out the result of the search above. The difficulty here is to print *all* results and not just the first.
+- Add another task to the playbook `output.yml` using the debug module and print out the result of the search above. The difficulty here is to  print *all* results and not just the first.
 
 {{% notice tip %}}
 Use an appropriate return value to show the output. Information about return values can be found here: [Ansible Docs - Common Return Values](https://docs.ansible.com/ansible/latest/reference_appendices/common_return_values.html)
@@ -21,7 +21,7 @@ Use an appropriate return value to show the output. Information about return val
 - Now, loop over the results and create a backup file called `<filename.cf>.bak` for each file `<filename.cf>` that was found. Use the command module. Remember, that the result is probably a list with multiple elements.
 
 ### Task 3 (Advanced)
-- Now we enhance our play to only create the backup if no backup file is present. If one single file with an ending .bak is present, don't do any backup.
+- Now we enhance our playbook `output.yml` to only create the backup if no backup file is present. If one single file with an ending `.bak` is present, don't do any backup.
 - Solve this task by searching for files ending with `.bak` and registering the result to a variable. Then do tasks only if certain conditions are met.
 
 {{% notice tip %}}
@@ -29,11 +29,11 @@ Have a look at the documentation about conditionals: [Ansible Docs - Playbook Co
 {{% /notice %}}
 
 ### Task 4 (Advanced)
-- This task has to be solved without using the module `service`, `systemd` or similar but by using the `command` module.
 - Ensure `httpd` is stopped by using an ansible ad hoc command.
-- Write a play `servicehandler.yml` that installs `httpd`
-- Start the service `httpd` with the command module.
-- Start the service only if the service is not started. (The output of `systemctl status httpd` doesn't contains the string "Active: inactive (dead)")
+- Write a play `servicehandler.yml` that does the following:
+- Install `httpd` by using the `yum`module
+- Start the service `httpd` with the `command` module. Don't user `service` or `systemd` module. 
+- Start the service only if it is not started and running already. (The output of `systemctl status httpd` doesn't contains the string "Active: active (running)")
 
 {{% notice note %}}
 `systemctl status` returns status `failed` when a service is not running. Therefore we use `ignore_errors: true` in the corresponding task to let Ansible continue anyways.
@@ -47,13 +47,14 @@ Have a look at the documentation about error handling: [Ansible Docs - Playbooks
 {{% /notice %}}
 
 - Rerun your playbook and ensure it still runs fine.
-- By using an ansible ad hoc command, place an invalid configuration file `/etc/httpd/conf/httpd.conf` for httpd and backup the file before. Use the copy module to do this in one task.
+- By using an ansible ad hoc command, place an invalid configuration file `/etc/httpd/conf/httpd.conf` and backup the file before. Use the copy module to do this in ad hoc command.
 - Restart `httpd` by using an ansible ad hoc command. This should fail since the config file is not vaild.
 - Rerun your playbook and ensure it fails. 
 
 ## Solutions
 
 {{% collapse solution-1 "Solution 1" %}}
+Documentation about [debug module](https://docs.ansible.com/ansible/latest/modules/debug_module.html)
 Example `output.yml`:
 ```yaml
 ---
@@ -113,7 +114,7 @@ Example `output.yml`:
 
 Stop the httpd service with Ansible:
 ```bash
-[ansible@control0 techlab]$ ansible web -b -a "systemctl stop httpd"
+$ ansible web -b -a "systemctl stop httpd"
 ``` 
 
 Content of `servicehandler.yml`:
@@ -135,8 +136,6 @@ Content of `servicehandler.yml`:
     - name: start httpd
       command: 'systemctl start httpd'
       when: "'Active: active (running)' not in status.stdout"
-[ansible@control0 techlab]$
-
 ```
 {{% /collapse %}}
 
@@ -163,9 +162,7 @@ Example `servicehandler.yml`:
 ```
 
 ```bash
-[ansible@control0 techlab]$ ansible web -b -m copy -a \
-  "content='bli bla blup' dest=/etc/httpd/conf/httpd.conf backup=yes"
-[ansible@control0 techlab]$ ansible web -b -m service -a \
-  "name=httpd state=restarted"
+$ ansible web -b -m copy -a "content='bli bla blup' dest=/etc/httpd/conf/httpd.conf backup=yes"
+$ ansible web -b -m service -a "name=httpd state=restarted"
 ```
 {{% /collapse %}}
