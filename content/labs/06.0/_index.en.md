@@ -29,23 +29,33 @@ In this lab we are going to practice encryption in Ansible playbooks. It assumes
 ### Task 3
 
 - Create a file named `vaultpassword` containing the unencrypted string "goldfinger".
-- Encrypt the `secret_vars.yml` file by using `ansible-vault` with the password *Dr.NO\!*.
+- Encrypt the `secret_vars.yml` file by using `ansible-vault` with the password *goldfinger*.
 
 {{% notice tip %}}
-You don’t have to set a label.
+You don’t have to set a label when encrypting the file.
 {{% /notice %}}
 
-- Rerun the playbook providing the vaultpassword file.
+- Rerun the playbook providing the password for decrypting `secret_vars.yml` at the command prompt.
+- Rerun the playbook providing the password for decrypting `secret_vars.yml` from the file `vaultpassword`.
+
+{{% notice tip %}}
+Since the password is in cleartext in the file vaultpassword, you shoul never ever check it in a git repository or similar. Als doublecheck, that only the necessary rights are set.
+{{% /notice %}}
+
 
 ### Task 4
 
 - Configure your environment to always use the `vaultpassword` file as the vault file.
-- Rerun the playbook without providing the password or the passwordfile in the commandline.
+- Rerun the playbook without providing the password or the passwordfile at the commandline.
 
 ### Task 5
 
 - Decrypt the file `secret_vars.yml`.
-- Encrypt the values of `username` and `password` and put them into the `secret_vars.yml` file.
+- Encrypt the values of the variables `username` and `password` and put them into the `secret_vars.yml` file.
+
+{{% notice note %}}
+Look for an option to ansible-vault to give the name of the variable while encrypting the value. This makes it easyier to copy-paste the output later!
+{{% /notice %}}
 
 ### Task 6
 
@@ -89,7 +99,7 @@ $ cat secretservice.yml
         src: nsa.j2
         dest: /etc/MI6
 
-$ ansible-playbook secretservice.yml -i inventory/hosts  
+$ ansible-playbook secretservice.yml
 ```
 {{% /collapse %}}
 
@@ -118,7 +128,7 @@ $ cat secretservice.yml
         src: nsa.j2
         dest: /etc/MI6
 
-$ ansible-playbook secretservice.yml -i inventoryhosts
+$ ansible-playbook secretservice.yml
 ```
 {{% /collapse %}}
 
@@ -128,9 +138,8 @@ $ cat vaultpassword
 goldfinger
 
 $ ansible-vault encrypt secret_vars.yml --vault-id vaultpassword
-Encryption successful
 
-$ ansible-playbook secretservice.yml -i inventory/hosts --vault-id vaultpassword
+$ ansible-playbook secretservice.yml --vault-id vaultpassword
 ```
 {{% /collapse %}}
 
@@ -142,7 +151,7 @@ Make sure you recieve the following output in your terminal:
 $ grep ^vault /home/ansible/techlab/ansible.cfg 
 vault_password_file = /home/ansible/techlab/vaultpassword
 
-$ ansible-playbook secretservice.yml -i inventory/hosts
+$ ansible-playbook secretservice.yml
 ```
 
 {{% /collapse %}}
@@ -175,7 +184,7 @@ var_password: !vault |
           3931
 ```
 ```bash
-$ ansible-playbook secretservice.yml -i inventory/hosts
+$ ansible-playbook secretservice.yml
 ```
 
 {{% /collapse %}}
@@ -207,11 +216,12 @@ $ ansible-playbook view secret_vars2.yml --vault-id @prompt
 {{% /collapse %}}
 
 {{% collapse solution-8 "Solution 8" %}}
-```bash
-no_log: true
-```
 {{% notice tip %}}
 See [Ansible Docs: Logging](https://docs.ansible.com/ansible/devel/reference_appendices/logging.html) and [Ansible Docs: FAQ - How do I keep secret data in my playbook?](https://docs.ansible.com/ansible/devel/reference_appendices/faq.html#keep-secret-data)
 {{% /notice %}}
+
+```bash
+no_log: true
+```
 
 {{% /collapse %}}
