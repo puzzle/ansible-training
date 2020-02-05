@@ -36,7 +36,7 @@ users:
   - name: santos
     food: kebab
 ```
-Put the variable in an appropiate place of your choice.
+Put the variable in an appropriate place of your choice.
 
 Create a playbook userplay.yml doing the following and running on node1 and node2:
 
@@ -46,18 +46,18 @@ Create a playbook userplay.yml doing the following and running on node1 and node
   ```
 - On node1: There should be a entry in the file `/etc/dinner.txt` for each user in the variable `users`. Use a for-loop in the template.
 - On node1: If a user has no food specified, use kebab. Look for `filters` in the online docs. You should be familiar with searching the online docs by now.
-- On node2: The same playbook userplay.yml should create a (linux) group for every different food specified in the variable users. If a user has no food defined, create the group kebab instead
-- On node2: Create a user for every entry in the users variable. Ensure that this user is also in the group with the same name as his food. Again, if no food is defined for this user, add group kebab
+- On node2: The same playbook `userplay.yml` should create a (linux) group for every different food specified in the variable users. If a user has no food defined, create the group kebab instead
+- On node2: Create a user for every entry in the users variable. Ensure that this user is also in the group with the same name as his food. Again, if no food is defined for this user, add group kebab.
 
 #### Bonus 1
 
-- On node2: Set the loginshell to /bin/zsh
+- On node2: Set the loginshell to /bin/zsh for all users.
 
 #### Bonus 2
-- On node2: If (and only if) the user is santos, disable login (means set the shell to /usr/sbin/nologin and use a if/else statement in the template to do so)
+- On node2: If (and only if) the user is santos, disable login. This means set the shell to /usr/sbin/nologin and use a if/else statement in the template to do so.
 
 #### Bonus 3 
-On node2:
+- All on node2:
 - Set the default password on all servers to "`N0t_5o_s3cur3!`"
 - Once the password was set, your playbook should not set it again. Not even when it got changed.
 - Hash the password using the sha512 algorithm.
@@ -70,15 +70,15 @@ Be aware that it is NOT a good idea to set passwords in cleartext. We will learn
 
 ### Task 4 (Advanced)
 
-Create a playbook serverinfo.yml that does the following:
+Create a playbook `serverinfo.yml` that does the following:
 
-- Place a file /root/serverinfo.txt on all nodes with a line like follows for each and every server in the inventory:
+- Place on all nodes a file `/root/serverinfo.txt` with a line like follows for each and every server in the inventory:
 ```  
 <hostname>: OS: <operating system> IP: <IP address> Virtualization Role: <hardware type>
 ``` 
 
 - Replace `hostname`, `operating system`, `IP address` and `hardware type` with a reasonable fact.
-- Run your playbook and check on all servers (by using an ansible ad hoc command) if the content of the file `/root/serverinfo.txt` is as expected.
+- Run your playbook and check on all servers by using an ansible ad hoc command if the content of the file `/root/serverinfo.txt` is as expected.
 
 
 ## Solutions
@@ -100,7 +100,7 @@ Edit your `motd.yml` playbook to something like this:
   become: yes
   tasks:
     - name: set content of /etc/motd
-        template:
+      template:
         src: motd.j2
         dest: /etc/motd
 ```
@@ -122,17 +122,11 @@ IP ADDRESS: {{ ansible_default_ipv4.address }}
 OS:         {{ ansible_os_family }}
 ```
 
-Rerun the playbook and login to a node to check if the text has been changed accordingly:
+Rerun the playbook and check if the text has been changed accordingly:
 
 ```bash
 $ ansible-playbook motd.yml -l node1,node2
-$ ssh -l ansible <node1-ip>
-[3~Last login: Fri Nov  1 14:39:53 2019 from 5-102-146-174.cust.cloudscale.ch
-This is node2
-
-IP ADDRESS:     5.102.146.204
-OS:             RedHat
-[ansible@node2 ~]$
+$ ansible -i hosts all -a "cat /etc/motd"
 ``` 
 {{% /collapse %}}
 
@@ -208,12 +202,14 @@ See the user-module for how to set the password and search for a link to additio
 
 Check on node1 (as user root) if everthing is as expected:
 
-    # cat /etc/dinner.txt
-    jim         pizza
-    sabrina     burger
-    hans        vegan
-    eveline     burger
-    santos      kebab
+```bash
+# cat /etc/dinner.txt
+jim         pizza
+sabrina     burger
+hans        vegan
+eveline     burger
+santos      kebab
+```
 
 Check as well on node2 (as user root):
 ```bash
@@ -244,7 +240,7 @@ Possible solution 1:
 ```bash
 $ cat serverinfo.txt.j2 
 {% for host in groups['nodes'] %}
-{{ hostvars[host].ansible_hostname }}: OS: {{ hostvars[host].ansible_os_family }} IP {{ hostvars[host].ansible_default_ipv4.address }} Virtualization Role: {{ hostvars[host].ansible_virtualization_role }}
+{{ hostvars[host].ansible_hostname }}: OS: {{ hostvars[host].ansible_os_family }} IP: {{ hostvars[host].ansible_default_ipv4.address }} Virtualization Role: {{ hostvars[host].ansible_virtualization_role }}
 {% endfor %}
 
 $ cat serverinfo.yml 
