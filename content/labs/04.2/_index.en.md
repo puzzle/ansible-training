@@ -153,7 +153,6 @@ users:
   - name: eveline
     food: burger
   - name: santos
-    food: kebab
 
 $ cat userplay.yml
 ---
