@@ -195,7 +195,7 @@ $ cat user_template.j2
 ```
 
 {{% notice tip %}}
-See the user-module for how to set the password and search for a link to additional documentation about how to set passwords in Ansible. Note, that it would be even better, to create a hash of the password before and then set the hash in the task above. The version above would result in a state `changed` everytime it runs and is therefore not idempotent. You can find in the documentation mentioned how to get the hash.
+See the user-module for how to set the password and search for a link to additional documentation about how to set passwords in Ansible. Note, that it would be even better to create a hash of the password before and then set the hash in the task above and not create it in the task itself. Reason beeing the above would result in a state `changed` everytime it runs and is therefore not idempotent. You can find in the documentation mentioned how to get the hash before.
 {{% /notice %}}
 
 Check on node1 (as user root) if everthing is as expected:
