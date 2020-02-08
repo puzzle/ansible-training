@@ -34,7 +34,6 @@ users:
   - name: eveline
     food: burger
   - name: santos
-    food: kebab
 ```
 Put the variable in an appropriate place of your choice.
 
