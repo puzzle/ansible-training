@@ -57,7 +57,7 @@ Create a playbook userplay.yml doing the following and running on node1 and node
 
 #### Bonus 3 
 - All on node2:
-- Set the default password on all servers to "`N0t_5o_s3cur3!`"
+- Set the default password on all servers to "`N0t_5o_s3cur3`"
 - Once the password was set, your playbook should not set it again. Not even when it got changed.
 - Hash the password using the sha512 algorithm.
 - Don’t define a salt for the password.
@@ -184,7 +184,7 @@ $ cat userplay.yml
         group: "{{ item.food | default('kebab') }}"
         append: yes
         shell: "{% if item.name == 'santos' %}/usr/sbin/nologin{% else %}/usr/bin/zsh{% endif %}"
-        password: "{{ 'N0t_5o_s3cur3!' | password_hash('sha512') }}"
+        password: "{{ 'N0t_5o_s3cur3' | password_hash('sha512') }}"
         update_password: on_create
       with_items: "{{ users }}"
 
@@ -195,7 +195,7 @@ $ cat user_template.j2
 ```
 
 {{% notice tip %}}
-See the user-module for how to set the password and search for a link to additional documentation about how to set passwords in Ansible.
+See the user-module for how to set the password and search for a link to additional documentation about how to set passwords in Ansible. Note, that it would be even better, to create a hash of the password before and then set the hash in the task above. The version above would result in a state `changed` everytime it runs and is therefore not idempotent. You can find in the documentation mentioned how to get the hash.
 {{% /notice %}}
 
 Check on node1 (as user root) if everthing is as expected:
