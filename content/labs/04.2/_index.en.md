@@ -67,7 +67,7 @@ Create a playbook userplay.yml doing the following and running on node1 and node
 Be aware that it is NOT a good idea to set passwords in cleartext. We will learn in the lab about ansible-vault how to handle this in a better way. Never ever do this in a productive environment.
 {{% /notice %}}
 
-### Task 4 (Advanced)
+### Task 4 (Maester)
 
 Create a playbook `serverinfo.yml` that does the following:
 
@@ -79,6 +79,7 @@ Create a playbook `serverinfo.yml` that does the following:
 - Replace `hostname`, `operating system`, `IP address` and `hardware type` with a reasonable fact.
 - Run your playbook and check on all servers by using an ansible ad hoc command if the content of the file `/root/serverinfo.txt` is as expected.
 
+- Are you an Ansible-Maester already? Solve the solution once by using a template and once without using a template!
 
 ## Solutions
 
@@ -251,6 +252,9 @@ $ cat serverinfo.yml
         src: serverinfo.txt.j2
         dest: /root/serverinfo.txt
 ```
+{{% notice note %}}
+Have good look at where to set quotes and where not! `hostvars[host]` without the quotes around `host` is not really intuitive...
+{{% /notice %}}
 
 Possible solution 2:
 ```bash
