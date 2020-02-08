@@ -253,7 +253,7 @@ $ cat serverinfo.yml
         dest: /root/serverinfo.txt
 ```
 {{% notice note %}}
-Have good look at where to set quotes and where not! `hostvars[host]` without the quotes around `host` is not really intuitive...
+Have good look at where to set quotes and where not! `hostvars[host]` without the quotes around `host` is not really intuitive. More about that in the [F.A.Q.](https://docs.ansible.com/ansible/latest/reference_appendices/faq.html#how-do-i-loop-over-a-list-of-hosts-in-a-group-inside-of-a-template).
 {{% /notice %}}
 
 Possible solution 2:
