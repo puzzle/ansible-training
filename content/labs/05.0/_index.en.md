@@ -16,7 +16,7 @@ Write a role `httpd` in your new `roles` folder which does the
 following:
 
 - Install `httpd`, start its service and enable it to run on boot.
-- Install `firewalld` and allow traffic for the services `http` and `https`.
+- Install `firewalld`, start its service and allow traffic for the services `http` and `https`.
 
 ### Task 3
 
