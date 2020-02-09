@@ -39,7 +39,7 @@ You don’t have to set a label when encrypting the file.
 - Rerun the playbook providing the password for decrypting `secret_vars.yml` from the file `vaultpassword`.
 
 {{% notice tip %}}
-Since the password is in cleartext in the file vaultpassword, you shoul never ever check it in a git repository or similar. Als doublecheck, that only the necessary rights are set.
+Since the password is in cleartext in the file vaultpassword, you shoul never ever push it to a git repository or similar. Also doublecheck that only the necessary permissions are set.
 {{% /notice %}}
 
 
@@ -75,7 +75,7 @@ Look for an option to ansible-vault to give the name of the variable while encry
 
 ### TASK 8
 
-- What can you do, to avoid Ansible to print out sensitive data ar runtime?
+- What can you do, to avoid Ansible to print out sensitive data at runtime?
 
 {{% notice tip %}}
 Take a look at [docs.ansible.com](https://docs.ansible.com)
@@ -206,7 +206,7 @@ Note that the `command` module is the `default` module and therefore has not to 
 $ ansible-vault encrypt secret_vars2.yml
 ```
 
-Be sure to use `rekey` with `--new-vault-id`. By using `--vault-id`, ansible-vault would use the value from the vaultpasswordfile and not the one asked for by using `@prompt`. This could be quite misleading...
+Be sure to use `rekey` with `--new-vault-id`. By using `--vault-id`, ansible-vault would use the value from the vaultpasswordfile and not the one asked for by using `@prompt`. This could be quite misleading... You can check the same unexpected behaviour when trying to view an encrpyted file with providing a wrong password at cmdline. Giving a wrong password after `ansible-vault view secret_vars2.yml --vault-id @prompt` still results in showing the decrypted content of the file when ansible.cfg points to the correct vaultpasswordfile.
 
 ```bash
 $ ansible-vault rekey secret_vars2.yml --new-vault-id @prompt
