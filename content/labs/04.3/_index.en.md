@@ -21,7 +21,7 @@ Use an appropriate return value to show the output. Information about return val
 - Now, loop over the results and create a backup file called `<filename.cf>.bak` for each file `<filename.cf>` that was found. Use the command module. Remember, that the result is probably a list with multiple elements.
 
 ### Task 3 (Advanced)
-- Now we enhance our playbook `output.yml` to only create the backup if no backup file is present. If one single file with an ending `.bak` is present, don't do any backup.
+- Now we enhance our playbook `output.yml` to only create the backup if no backup file is present.
 - Solve this task by searching for files ending with `.bak` and registering the result to a variable. Then do tasks only if certain conditions are met.
 
 {{% notice tip %}}
@@ -106,8 +106,8 @@ Example `output.yml`:
     - name: create backup only when no backupfile is present
       command: "cp {{ item }} {{ item }}.bak"
       with_items: "{{ output.stdout_lines  }}"
-      # only do this task if the search for files ending with .bak is empty>
-      when: search.stdout == ''
+      # only do this if there is no .bak for file: item
+      when: search.stdout.find(item) == -1
 ```
 {{% /collapse %}}
 
