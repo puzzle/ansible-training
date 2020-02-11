@@ -16,7 +16,7 @@ Write a role `httpd` in your new `roles` folder which does the
 following:
 
 - Install `httpd`, start its service and enable it to run on boot.
-- Install `firewalld` and allow traffic for the services `http` and `https`.
+- Install `firewalld`, start its service and allow traffic for the services `http` and `https`.
 
 ### Task 3
 
@@ -28,7 +28,7 @@ following:
 - Create a new role called `base`. It’s `main.yml` taskfile should import the taskfiles `motd.yml` and `packages.yml`
 - `motd.yml` should do the following: Use the variable `motd_content` to change the `/etc/motd` content to "This is a server\\n". Remember to move the template as well as the variable to a correct location in the `roles` folder.
 - `packages.yml` should install the yum packages `firewalld`, `yum-utils`, `dos2unix`, `emacs` and `vim`
-- Write a playbook `prod.yml` that applies the role `base`to all servers and the role `httpd` only to the group `web`
+- Write a playbook `prod.yml` that applies the role `base` to all servers and the role `httpd` only to the group `web`
 
 ### Task 5
 
@@ -156,6 +156,7 @@ Take notice the of different content of `/etc/motd` on the control node!
 
 ```bash
 $ cat roles/httpd/meta/main.yml
+---
 dependencies:
   - base
 $ cat prod.yml

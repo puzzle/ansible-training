@@ -22,7 +22,7 @@ In this lab we are going to use roles from galaxy and from other sources.
 - Install the package providing Ansible roles for system mangement
 - See what files where installed with this package
 
-### Task 4
+### Task 4 (CentOS/RHEL only)
 - Search the installed files for an example to use the `rhel-system-roles.selinux` role
 - use the example to create a playbook `selinux.yml` to set selinux mode to disabled on all servers
 - run the playbook

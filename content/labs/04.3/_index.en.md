@@ -12,7 +12,7 @@ In this lab we learn how to handle output of tasks.
 - Include a task using the debug module to print out all content of the variable `output`. If unsure, consult the documentation about the debug module.
 
 ### Task 2
-- Add another task to the playbook `output.yml` using the debug module and print out the result of the search above. The difficulty here is to  print *all* results and not just the first.
+- Add another task to the playbook `output.yml` using the debug module and print out the resultng filenames of the search above.
 
 {{% notice tip %}}
 Use an appropriate return value to show the output. Information about return values can be found here: [Ansible Docs - Common Return Values](https://docs.ansible.com/ansible/latest/reference_appendices/common_return_values.html)
@@ -31,9 +31,9 @@ Have a look at the documentation about conditionals: [Ansible Docs - Playbook Co
 ### Task 4 (Advanced)
 - Ensure `httpd` is stopped by using an ansible ad hoc command.
 - Write a play `servicehandler.yml` that does the following:
-- Install `httpd` by using the `yum`module
-- Start the service `httpd` with the `command` module. Don't user `service` or `systemd` module. 
-- Start the service only if it is not started and running already. (The output of `systemctl status httpd` doesn't contains the string "Active: active (running)")
+- Install `httpd` by using the `yum` module
+- Start the service `httpd` with the `command` module. Don't use `service` or `systemd` module. 
+- Start the service only if it is not started and running already. (The output of `systemctl status httpd` doesn't contains the string `Active: active (running)`)
 
 {{% notice note %}}
 `systemctl status` returns status `failed` when a service is not running. Therefore we use `ignore_errors: true` in the corresponding task to let Ansible continue anyways.
@@ -49,7 +49,8 @@ Have a look at the documentation about error handling: [Ansible Docs - Playbooks
 - Rerun your playbook and ensure it still runs fine.
 - By using an ansible ad hoc command, place an invalid configuration file `/etc/httpd/conf/httpd.conf` and backup the file before. Use the copy module to do this in ad hoc command.
 - Restart `httpd` by using an ansible ad hoc command. This should fail since the config file is not vaild.
-- Rerun your playbook and ensure it fails. 
+- Rerun your playbook and ensure it fails.
+- Fix the errors in the config filei, restart httpd on node1 and rerun your playbook. Everything should be fine again.
 
 ## Solutions
 

@@ -57,7 +57,7 @@ Create a playbook userplay.yml doing the following and running on node1 and node
 
 #### Bonus 3 
 - All on node2:
-- Set the default password on all servers to "`N0t_5o_s3cur3!`"
+- Set the default password on all servers to "`N0t_5o_s3cur3`"
 - Once the password was set, your playbook should not set it again. Not even when it got changed.
 - Hash the password using the sha512 algorithm.
 - Don’t define a salt for the password.
@@ -67,7 +67,7 @@ Create a playbook userplay.yml doing the following and running on node1 and node
 Be aware that it is NOT a good idea to set passwords in cleartext. We will learn in the lab about ansible-vault how to handle this in a better way. Never ever do this in a productive environment.
 {{% /notice %}}
 
-### Task 4 (Advanced)
+### Task 4 (Maester)
 
 Create a playbook `serverinfo.yml` that does the following:
 
@@ -79,6 +79,7 @@ Create a playbook `serverinfo.yml` that does the following:
 - Replace `hostname`, `operating system`, `IP address` and `hardware type` with a reasonable fact.
 - Run your playbook and check on all servers by using an ansible ad hoc command if the content of the file `/root/serverinfo.txt` is as expected.
 
+- Are you an Ansible-Maester already? Solve the solution once by using a template and once without using a template!
 
 ## Solutions
 
@@ -184,7 +185,7 @@ $ cat userplay.yml
         group: "{{ item.food | default('kebab') }}"
         append: yes
         shell: "{% if item.name == 'santos' %}/usr/sbin/nologin{% else %}/usr/bin/zsh{% endif %}"
-        password: "{{ 'N0t_5o_s3cur3!' | password_hash('sha512') }}"
+        password: "{{ 'N0t_5o_s3cur3' | password_hash('sha512') }}"
         update_password: on_create
       with_items: "{{ users }}"
 
@@ -195,7 +196,7 @@ $ cat user_template.j2
 ```
 
 {{% notice tip %}}
-See the user-module for how to set the password and search for a link to additional documentation about how to set passwords in Ansible.
+See the user-module for how to set the password and search for a link to additional documentation about how to set passwords in Ansible. Note, that it would be even better to create a hash of the password before and then set the hash in the task above and not create it in the task itself. Reason beeing the above would result in a state `changed` everytime it runs and is therefore not idempotent. You can find in the documentation mentioned how to get the hash before.
 {{% /notice %}}
 
 Check on node1 (as user root) if everthing is as expected:
@@ -251,6 +252,9 @@ $ cat serverinfo.yml
         src: serverinfo.txt.j2
         dest: /root/serverinfo.txt
 ```
+{{% notice note %}}
+Have good look at where to set quotes and where not! `hostvars[host]` without the quotes around `host` is not really intuitive. More about that in the [F.A.Q.](https://docs.ansible.com/ansible/latest/reference_appendices/faq.html#how-do-i-loop-over-a-list-of-hosts-in-a-group-inside-of-a-template).
+{{% /notice %}}
 
 Possible solution 2:
 ```bash
