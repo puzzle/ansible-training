@@ -68,10 +68,10 @@ Older ansible-versions don’t know the keyword "loop" yet, use "with\_items" in
 tasks:
   - name: install httpd and firewalld
     yum:
-    name:
-      - httpd
-      - firewalld
-    state: installed
+      name:
+        - httpd
+        - firewalld
+      state: installed
 ```
 
 {{% notice tip %}}
