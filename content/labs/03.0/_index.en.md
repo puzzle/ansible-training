@@ -21,7 +21,7 @@ You’ve used the `ping` module in a previous lab.
 ### Task 3
 
   - Search through the online documentation for special (magical) variables.
-  - Which special variable you could use to set the `hostname` on all the servers using the information in the `inventory` file?
+  - Which special variable you could use to set the `hostname` on each of the servers using the information in the `inventory` file?
 
 ### Task 4
 

@@ -14,7 +14,7 @@ Create a playbook `webserver.yml` which does the following:
 - Ensure port 80 is open on the `firewall`.
 
 {{% notice tip %}}
-Check what the options "immediate" and "permanent" of the service module mean and do.
+Check what the options "immediate" and "permanent" of the firewalld module mean and do.
 {{% /notice %}}
 
 - Run the playbook. After completion test if the `httpd.service` is running and enabled on node1.
@@ -167,7 +167,7 @@ $ cat tempfolder.yml
         state: directory
 
 $ ansible-playbook tempfolder.yml
-$ ansible web,tower -b -a "ls -lah /root/"
+$ ansible web,controller -b -a "ls -lah /root/"
 ```
 {{% notice note %}}
 `ansible-doc file` doesn't provide any information about setting special permissions like sticky bit. Remember to use a leading 0 before the actual permissions.

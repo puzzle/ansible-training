@@ -51,6 +51,7 @@ You can access the nodes using SSH as well. Use your favourite SSH client to con
 ### Task 2
 
 - Create a SSH-keypair for the `ansible` user on the `controller`.
+- Don't set a password for the private key! Just hit ENTER at the prompt.
 - Enable SSH-key login for the `ansible` user on all nodes and the controller by distributing the SSH-public key.
 - Test the login on the nodes.
 
@@ -79,6 +80,10 @@ If you have a valid /etc/hosts file containing information about lab hosts, you 
 
 - Configure the `ansible` user to have root privilege on all hosts in your inventory file. Also enable login without a password for this user.
 - Test the functionality by running `sudo -v` as user `ansible` on all nodes.
+
+{{% notice note %}}
+If you are using the lab servers provided by your teacher, the sudoers configuration is already done. Anyways have a look at it to see how stuff works.
+{{% /notice %}}
 
 ### TASK 5
 - extend the inventory with a group `nodes` that has the groups `ẁeb` and `db` as members
@@ -192,8 +197,8 @@ sudo -v
 
 {{% collapse solution-5 "Solution 5" %}}
 ```bash
-$ cat inventory/hosts
-[control]
+$ cat hosts
+[controler]
 control0 ansible_host=192.168.122.30
 
 [web]
