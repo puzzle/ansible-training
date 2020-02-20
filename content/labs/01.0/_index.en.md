@@ -60,7 +60,7 @@ You can access the nodes using SSH as well. Use your favourite SSH client to con
 - Create an inventory file named `hosts` in your working directory with your public IPs:
 
 ```
-[tower]
+[controller]
 controller ansible_host=<your-controller-ip>
     
 [web]
@@ -198,7 +198,7 @@ sudo -v
 {{% collapse solution-5 "Solution 5" %}}
 ```bash
 $ cat hosts
-[controler]
+[controller]
 control0 ansible_host=192.168.122.30
 
 [web]
