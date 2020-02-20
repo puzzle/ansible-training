@@ -141,7 +141,7 @@ Your `motd.yml` should look something like this:
   become: yes
   tasks:
     - name: set content of /etc/motd
-        copy:
+      copy:
         dest: /etc/motd
         content: "{{ motd_content }}"
 ```
