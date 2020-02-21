@@ -94,8 +94,8 @@ If you are using the lab servers provided by your teacher, the sudoers configura
 {{% collapse solution-1 "Solution 1" %}}
 Installing Ansible with root privileges:
 
-```
-# yum -y install ansible
+```bash
+$ sudo yum -y install ansible
 ```
 
 Opening a SSH connection:
@@ -103,7 +103,7 @@ Opening a SSH connection:
  $ ssh -l ansible <node-ip>
 ```
 - Enter "yes" when prompted if you want to continue connecting
-- Copy paste your SSH-password you received from your instructor when prompted and hit return
+- Insert your SSH-password you received from your instructor when prompted and hit return
 
 On the nodes:
 ```bash

@@ -23,7 +23,6 @@ In this lab we are going to practice encryption in Ansible playbooks. It assumes
     var_password: miss_moneypenny
   ```
 - Rewrite the `nsa.j2` template to use the variables from the `secret_vars.yml` file. Nothing is encrypted yet.
-- Make playbook `secretservice.yml` use the variable file `secret_vars.yml`.
 - Rerun the playbook and remember nothing has been encrypted yet.
 
 ### Task 3
@@ -207,6 +206,8 @@ $ ansible-vault encrypt secret_vars2.yml
 ```
 
 Be sure to use `rekey` with `--new-vault-id`. By using `--vault-id`, ansible-vault would use the value from the vaultpasswordfile and not the one asked for by using `@prompt`. This could be quite misleading... You can check the same unexpected behaviour when trying to view an encrpyted file with providing a wrong password at cmdline. Giving a wrong password after `ansible-vault view secret_vars2.yml --vault-id @prompt` still results in showing the decrypted content of the file when ansible.cfg points to the correct vaultpasswordfile.
+
+There is an open [issue](https://github.com/ansible/ansible/issues/33831) about this topic on github.
 
 ```bash
 $ ansible-vault rekey secret_vars2.yml --new-vault-id @prompt
