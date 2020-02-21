@@ -36,7 +36,7 @@ You have to have a reasonable fresh version of ansible in order to get this work
 ```bash
 $ ansible-galaxy search nginx
 $ ansible-galaxy install geerlingguy.nginx
-$ ansible control -m archive -a "path=/home/ansible/techlab/roles/geerlingguy.nginx dest=/home/ansible/techlab/nginx.tar.gz format=bz2"
+$ ansible controller -m archive -a "path=/home/ansible/techlab/roles/geerlingguy.nginx dest=/home/ansible/techlab/nginx.tar.gz format=bz2"
 ```
 {{% /collapse %}}
 
