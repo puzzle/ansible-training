@@ -12,7 +12,7 @@ In this lab we learn how to handle output of tasks.
 - Include a task using the debug module to print out all content of the variable `output`. If unsure, consult the documentation about the debug module.
 
 ### Task 2
-- Add another task to the playbook `output.yml` using the debug module and print out the resultng filenames of the search above.
+- Add another task to the playbook `output.yml` using the debug module and print out the resulting filenames of the search above.
 
 {{% notice tip %}}
 Use an appropriate return value to show the output. Information about return values can be found here: [Ansible Docs - Common Return Values](https://docs.ansible.com/ansible/latest/reference_appendices/common_return_values.html)

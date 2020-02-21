@@ -21,8 +21,8 @@ weight: 20
 
 ### Task 3 (Advanced)
 
-- Find documentation provided by the ansible-doc yum package, but not provided by the command itself
-- Find documentation about jinja2 on the controller
+- By installing the `ansible-doc` package, not only the command itself gets installed but also a lot of additional documentation. Use your package-managers functionality to find out what files are installed with `yum install ansible-doc`.
+- Now find documentation about jinja2 on the controller.
 
 ### Solutions
 

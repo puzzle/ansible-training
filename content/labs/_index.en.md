@@ -19,7 +19,7 @@ The cloud-based lab infrastructure is provided if you are following a Puzzle-gui
 
 #### Local Vagrant Setup (optional)
 
-You can do the labs with any Linux servers you'd like.
+You can do the labs with any Linux servers you'd like. However, the labs are taylored to use CentOS/RHEL.
 
 An easy solution would be to use [Vagrant](https://www.vagrantup.com/).
 
