@@ -147,7 +147,7 @@ $ cat prod.yml
 ```
 
 {{% notice note %}}
-Take notice the of different content of `/etc/motd` on the control node!
+Take notice of the different content of `/etc/motd` on the control node!
 {{% /notice %}}
 
 {{% /collapse %}}
