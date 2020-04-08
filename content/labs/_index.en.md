@@ -2,7 +2,7 @@
 title: "Labs"
 icon: "ti-panel"
 description: "Ansible Techlabs"
-type : "pages"
+type : "docs"
 weight: 2
 ---
 

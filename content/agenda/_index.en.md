@@ -2,7 +2,7 @@
 title: "Slides"
 icon: "ti-blackboard"
 description: "Getting started with Ansible"
-type : "pages"
+type : "docs"
 weight: 1
 ---
 

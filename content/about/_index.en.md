@@ -2,7 +2,7 @@
 title: "About"
 icon: "ti-info-alt"
 description: "About Ansible Techlab"
-type : "pages"
+type : "docs"
 weight: 10
 ---
 
