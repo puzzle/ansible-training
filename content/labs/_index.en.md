@@ -6,53 +6,40 @@ type : "docs"
 weight: 2
 ---
 
-### Puzzle Techlab Setup
+Welcome to the Puzzle Ansible Techlab. This is an
+introductory course for getting to know the
+basics of the Ansible configuration management
+system.
 
-We assume that each user has three virtual machines available:
+### Target Audience
+
+This Course is targeting Linux system administrators
+with working knowledge of Linux but had not yet had
+exposure to the Ansible configuration management
+system. A familiarity with the basic concept of
+configuration management is not a pre-requisite.
+
+
+### Techlab Setup
+
+This Ansible techlab assumes each participant has a
+cluster of three virtual machines available. Namely:
 
 - a control host
 - two nodes called `node1` and `node2`
 
 {{% notice note %}}
-The cloud-based lab infrastructure is provided if you are following a Puzzle-guided Techlab.  
+The cloud-based lab infrastructure is provided if you
+are following a Puzzle-guided Techlab.
 {{% /notice %}}
 
-#### Local Vagrant Setup (optional)
+To run techlab environment locally there is a
+guide for Vagrant based virtual hosts in the
+<i class="ti-plug" style="color: #003399"></i>
+[setup section](/setup)
+<i class="ti-plug" style="color: #003399"></i>
+of this website.
 
-You can do the labs with any Linux servers you'd like. However, the labs are taylored to use CentOS/RHEL.
-
-An easy solution would be to use [Vagrant](https://www.vagrantup.com/).
-
-With the Vagrant setup provided with this lab you can use three local CentOS virtual machines using KVM.
-An example Vagrantfile can be found here: [GitHub: Ansible Techlab - Vagrantfile](https://raw.githubusercontent.com/puzzle/ansible-techlab/master/Vagrantfile)
-
-{{% notice warning %}}
-The following passwords are not secure and intended only to be used with local virtual machines not reachable from outside of the virtualization host.
-{{% /notice %}}
-
-```
-control 192.168.122.50
-node1 192.168.122.51
-node2 192.168.122.52
-
-user: vagrant
-password: vagrant
-```
-With Vagrant you can create those vm's on your local machine:
-
-```bash
-# Install vagrant on CentOS/RHEL
-yum install vagrant
-
-# Install vagrant on Debian/Ubuntu
-apt install vagrant
-
-# install libvirt provider
-vagrant plugin install vagrant-libvirt
-
-# setup vm's
-vagrant up
-
-# remove all vm's
-vagrant destroy -f
-```
+If you already have a setup or the instructor provided
+a ready-made one, you may skip ahead to
+[1.0 Setting up Ansible](01.0)
