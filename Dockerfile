@@ -22,4 +22,8 @@ RUN hugo --baseURL=${HUGO_BASE_URL:-http://localhost/} \
 
 FROM nginxinc/nginx-unprivileged:alpine
 
+USER root
+RUN sed -i '/^http {/a \    port_in_redirect off;' /etc/nginx/nginx.conf
+
+USER 101
 COPY --from=builder  /opt/app/src/public /usr/share/nginx/html
