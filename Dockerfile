@@ -1,4 +1,4 @@
-ARG HUGO_VERSION=0.59.1
+ARG HUGO_VERSION=0.70.0
 
 FROM registry.puzzle.ch/puzzle/hugo:${HUGO_VERSION} AS builder
 
