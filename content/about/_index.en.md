@@ -6,8 +6,7 @@ type : "docs"
 weight: 10
 ---
 
-This **Techlab** is based on Ansible 2.8.
-
+**Puzzle Ansible Techlabs**, made with :heart: at [Puzzle ITC](https://puzzle.ch).
 
 ### Additional information
 

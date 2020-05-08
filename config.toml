@@ -15,7 +15,14 @@ theme = "dot"
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = true
 
-copyright = "The Hugo Documents are copyright © [gethugothemes](https://gethugothemes.com/) 2019."
+# disable language
+disableLanguages = []
+# google analytics
+googleAnalytics = "" # paste your analytics ID here. (Ex: UA-123-45)
+
+# unsafe html
+[markup.goldmark.renderer]
+unsafe= true
 
 [frontmatter]
 publishDate = ["publishDate", "date", ":git"]
@@ -25,15 +32,19 @@ publishDate = ["publishDate", "date", ":git"]
 # logo is for all page
 logo = "images/puzzle_classic_rgb.png"
 # logo white is for homepage logo, you can use colorful logo too...
-logoWhite = "images/puzzle_classic_bg_rgb.png"
+logo_white = "images/puzzle_classic_bg_rgb.png"
 # when logo is empty, it will shown your site title
 
 # customize color
-primaryColor = "#02007e"
-secondaryColor = "#f9f9f9"
-textColor = "#636363"
-textColorDark = "#242738"
-whiteColor = "#ffffff"
+primary_color = "#02007e"
+body_color = "#f9f9f9"
+text_color = "#636363"
+text_color_dark = "#242738"
+white_color = "#ffffff"
+light_color = "#f8f9fa"
+
+# font family
+font_family = "Roboto"
 
 # public Git Repo - used for "improve this page" links
 gitRepoUrl = "https://github.com/puzzle/ansible-techlab"
@@ -60,7 +71,7 @@ link = "https://linkedin.com/company/puzzle-itc"
   languageCode = "en-us"
   weight = 1
   home = "Home"
-  copyright = "The Techlabs are copyright &copy; [Puzzle ITC](https://puzzle.ch) 2019."
+  copyright = "The Techlabs are copyright &copy; [Puzzle ITC](https://puzzle.ch) 2020."
 
     # navigation
     [Languages.en.menu]
@@ -75,7 +86,7 @@ link = "https://linkedin.com/company/puzzle-itc"
     [Languages.en.params.banner]
       title = "Puzzle Ansible Techlabs"
       description = "Learning Ansible from the ground up"
-      image = "images/pic_puzzle_man.png"
+      bg_image = "images/pic_puzzle_man.png"
       placeholder = "Just enter terms to query our labs content"
 
     # Topics

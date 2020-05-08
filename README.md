@@ -22,7 +22,7 @@ After cloning the main repo, you need to initialize the submodule like this:
 
 ```bash
 git submodule update --init --recursive
-``` 
+```
 
 ## Build using Docker
 
