@@ -35,16 +35,16 @@ You have to have a reasonable fresh version of ansible in order to get this work
 {{% collapse solution-1 "Solution 1" %}}
 ```bash
 $ ansible-galaxy search nginx
-$ ansible-galaxy install geerlingguy.nginx
-$ ansible controller -m archive -a "path=/home/ansible/techlab/roles/geerlingguy.nginx dest=/home/ansible/techlab/nginx.tar.gz format=bz2"
+$ ansible-galaxy install nginxinc.nginx
+$ ansible controller -m archive -a "path=/home/ansible/techlab/roles/nginxinc.nginx dest=/home/ansible/techlab/nginx.tar.gz"
 ```
 {{% /collapse %}}
 
 {{% collapse solution-2 "Solution 2" %}}
 ```bash
-$ ansible-galaxy remove geerlingguy.nginx
+$ ansible-galaxy remove nginxinc.nginx
 
-$ cat roles/requirements.yml 
+$ cat roles/requirements.yml
 ---
 - src: nginx.tar.gz
   name: mynginx
@@ -91,4 +91,5 @@ $ cp /usr/share/doc/rhel-system-roles-1.0/selinux/example-selinux-playbook.yml s
 
 $ ansible-playbook selinux.yml
 ```
+Before you can use `rhel-system-roles` you need to add them to the `roles_path` variable in your `ansible.cfg`
 {{% /collapse %}}

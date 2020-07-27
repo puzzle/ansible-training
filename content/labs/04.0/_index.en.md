@@ -34,14 +34,14 @@ Check what the options "immediate" and "permanent" of the firewalld module mean 
 
 ### TASK 4
 - Create a playbook `tempfolder.yml`
-- The playbook `tempfolder.yml` should create a temporary folder `/root/tempfolder` on all servers except those in the group `db`.
+- The playbook `tempfolder.yml` should create a temporary folder `/var/tempfolder` on all servers except those in the group `db`.
 
 {{% notice tip %}}
 Have a look at the user guide to know how to use more complex inventory patterns.
 See [Ansible Docs - User Guide ](https://docs.ansible.com/ansible/latest/user_guide/intro_patterns.html#common-patterns)
 {{% /notice %}}
 
-- The folder has to have the sticky bit set, so that only the owner of the content (or root) can delete the files.
+- The folder has to have the sticky bit set, so that only the owner (set owner/group to `ansible`) of the content (or root) can delete the files.
 - Run the playbook and then check if the sticky bit was set using an ad hoc command.
 
 ## Solutions
@@ -162,15 +162,17 @@ $ cat tempfolder.yml
   tasks:
     - name: create temp folder with sticky bit set
       file:
-        dest: /root/tempfolder
+        dest: /var/tempfolder
         mode: "01755"
+        owner: ansible
+        group: ansible
         state: directory
 
 $ ansible-playbook tempfolder.yml
 $ ansible web,controller -b -a "ls -lah /root/"
 ```
 {{% notice note %}}
-`ansible-doc file` doesn't provide any information about setting special permissions like sticky bit. Remember to use a leading 0 before the actual permissions.
+`ansible-doc file` doesn't provide any information about setting special permissions like sticky bit (`man chmod` will help you though). Remember to use a leading 0 before the actual permissions.
 {{% /notice %}}
 
 {{% /collapse %}}
