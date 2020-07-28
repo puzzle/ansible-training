@@ -7,7 +7,7 @@ In this lab we are going to practice encryption in Ansible playbooks. It assumes
 
 ### Task 1
 
-- Create a simple playbook called `secretservice.yml` which creates a file `MI6` in the `/etc/` directory on node1 and node2. Use the `template` module and a template named `nsa.j2`. Don’t encrypt anything yet and use the inventory hosts from the earlier labs.
+- Create a simple playbook called `secretservice.yml` which creates a file `MI6` in the `/etc/` directory on node1 and node2. Use the `template` module and a template named `mi6.j2`. Don’t encrypt anything yet and use the inventory hosts from the earlier labs.
 - The content of the file `MI6` should be:
   ```
     username: jamesbond
@@ -22,12 +22,11 @@ In this lab we are going to practice encryption in Ansible playbooks. It assumes
     var_username: jamesbond
     var_password: miss_moneypenny
   ```
-- Rewrite the `nsa.j2` template to use the variables from the `secret_vars.yml` file. Nothing is encrypted yet.
+- Rewrite the `mi6.j2` template to use the variables from the `secret_vars.yml` file. Nothing is encrypted yet.
 - Rerun the playbook and remember nothing has been encrypted yet.
 
 ### Task 3
 
-- Create a file named `vaultpassword` containing the unencrypted string "goldfinger".
 - Encrypt the `secret_vars.yml` file by using `ansible-vault` with the password *goldfinger*.
 
 {{% notice tip %}}
@@ -44,6 +43,7 @@ Since the password is in cleartext in the file vaultpassword, you shoul never ev
 
 ### Task 4
 
+- Create a file named `vaultpassword` containing the unencrypted string "goldfinger".
 - Configure your environment to always use the `vaultpassword` file as the vault file.
 - Rerun the playbook without providing the password or the passwordfile at the commandline.
 
@@ -66,7 +66,7 @@ Look for an option to ansible-vault to give the name of the variable while encry
 - Change the encryption of the file: encrpyt it with another password provided at the commandline.
 
 {{% notice note %}}
- Don't do this by decrypting & reencrypting but rather by using the `rekey` option. 
+ Don't do this by decrypting & reencrypting but rather by using the `rekey` option.
  There's a trap hidden here. Doublecheck if everything worked as you expected.
 {{% /notice %}}
 
@@ -84,18 +84,18 @@ Take a look at [docs.ansible.com](https://docs.ansible.com)
 
 {{% collapse solution-1 "Solution 1" %}}
 ```bash
-$ cat nsa.j2 
+$ cat mi6.j2
 username: jamesbond
 password: miss_moneypenny
 
-$ cat secretservice.yml 
+$ cat secretservice.yml
 ---
 - hosts: node1, node2
   become: yes
   tasks:
     - name: put template
       template:
-        src: nsa.j2
+        src: mi6.j2
         dest: /etc/MI6
 
 $ ansible-playbook secretservice.yml
@@ -106,16 +106,16 @@ $ ansible-playbook secretservice.yml
 {{% collapse solution-2 "Solution 2" %}}
 
 ```bash
-$ cat secret_vars.yml 
+$ cat secret_vars.yml
 ---
 var_username: jamesbond
 var_password: miss_moneypenny
 
-$ cat nsa.j2 
+$ cat mi6.j2
 username: {{ var_username }}
 password: {{ var_password }}
 
-$ cat secretservice.yml 
+$ cat secretservice.yml
 ---
 - hosts: node1, node2
   become: yes
@@ -124,7 +124,7 @@ $ cat secretservice.yml
   tasks:
     - name: put template
       template:
-        src: nsa.j2
+        src: mi6.j2
         dest: /etc/MI6
 
 $ ansible-playbook secretservice.yml
@@ -133,7 +133,7 @@ $ ansible-playbook secretservice.yml
 
 {{% collapse solution-3 "Solution 3" %}}
 ```bash
-$ cat vaultpassword 
+$ cat vaultpassword
 goldfinger
 
 $ ansible-vault encrypt secret_vars.yml --vault-id vaultpassword
@@ -147,7 +147,7 @@ $ ansible-playbook secretservice.yml --vault-id vaultpassword
 Make sure you recieve the following output in your terminal:
 
 ```bash
-$ grep ^vault /home/ansible/techlab/ansible.cfg 
+$ grep ^vault /home/ansible/techlab/ansible.cfg
 vault_password_file = /home/ansible/techlab/vaultpassword
 
 $ ansible-playbook secretservice.yml
@@ -193,7 +193,7 @@ $ ansible-playbook secretservice.yml
 $ ansible node1,node2 -i inventory/hosts -b -a "rm /etc/MI6"
 ```
 
-{{% notice tip %}} 
+{{% notice tip %}}
 Note that the `command` module is the `default` module and therefore has not to be specified here.
 {{% /notice %}}
 

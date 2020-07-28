@@ -55,7 +55,7 @@ Create a playbook userplay.yml doing the following and running on node1 and node
 #### Bonus 2
 - On node2: If (and only if) the user is santos, disable login. This means set the shell to /usr/sbin/nologin and use a if/else statement in the template to do so.
 
-#### Bonus 3 
+#### Bonus 3
 - All on node2:
 - Set the default password on all servers to "`N0t_5o_s3cur3`"
 - Once the password was set, your playbook should not set it again. Not even when it got changed.
@@ -72,9 +72,9 @@ Be aware that it is NOT a good idea to set passwords in cleartext. We will learn
 Create a playbook `serverinfo.yml` that does the following:
 
 - Place on all nodes a file `/root/serverinfo.txt` with a line like follows for each and every server in the inventory:
-```  
+```
 <hostname>: OS: <operating system> IP: <IP address> Virtualization Role: <hardware type>
-``` 
+```
 
 - Replace `hostname`, `operating system`, `IP address` and `hardware type` with a reasonable fact.
 - Run your playbook and check on all servers by using an ansible ad hoc command if the content of the file `/root/serverinfo.txt` is as expected.
@@ -127,7 +127,7 @@ Rerun the playbook and check if the text has been changed accordingly:
 ```bash
 $ ansible-playbook motd.yml -l node1,node2
 $ ansible -i hosts all -a "cat /etc/motd"
-``` 
+```
 {{% /collapse %}}
 
 {{% collapse solution-3 "Solution 3" %}}
@@ -237,12 +237,12 @@ $ ssh jim@node2
 {{% collapse solution-4 "Solution 4" %}}
 Possible solution 1:
 ```bash
-$ cat serverinfo.txt.j2 
-{% for host in groups['nodes'] %}
+$ cat serverinfo.txt.j2
+{% for host in groups['all'] %}
 {{ hostvars[host].ansible_hostname }}: OS: {{ hostvars[host].ansible_os_family }} IP: {{ hostvars[host].ansible_default_ipv4.address }} Virtualization Role: {{ hostvars[host].ansible_virtualization_role }}
 {% endfor %}
 
-$ cat serverinfo.yml 
+$ cat serverinfo.yml
 ---
 - hosts: all
   become: true
