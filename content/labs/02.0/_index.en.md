@@ -24,6 +24,11 @@ weight: 20
 - By installing the `ansible-doc` package, not only the command itself gets installed but also a lot of additional documentation. Use your package-managers functionality to find out what files are installed with `yum install ansible-doc`.
 - Now find documentation about jinja2 on the controller.
 
+### Task 4 (Capitain Future)
+
+- Have a look at the development documentation
+- Search for the release dates of future ansible versions.
+
 ### Solutions
 
 {{% collapse solution-1 "Solution 1" %}}
@@ -50,4 +55,9 @@ You can also search for files in `/usr/share/doc`:
 ```bash
 $ ls -lahr /usr/share/doc/ | grep jinja2
 ```
+{{% /collapse %}}
+
+{{% collapse solution-4 "Solution 4" %}}
+- [https://docs.ansible.com/ansible/devel/](https://docs.ansible.com/ansible/devel/)
+- [https://docs.ansible.com/ansible/devel/roadmap/index.html#ansible-roadmap](https://docs.ansible.com/ansible/devel/roadmap/index.html#ansible-roadmap)
 {{% /collapse %}}
