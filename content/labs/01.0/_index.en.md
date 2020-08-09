@@ -195,6 +195,12 @@ Add a similar line for user ansible to the `sudoers` file:
 # echo 'ansible ALL=(ALL)   NOPASSWD: ALL' >> /etc/sudoers
 ```
 
+Alternatively you can put that into a separate file:
+
+```bash
+# echo 'ansible ALL=(ALL)   NOPASSWD: ALL' >> /etc/sudoers.d/ansible
+```
+
 Check if `ansible` user has root privileges:
 
 ```bash
