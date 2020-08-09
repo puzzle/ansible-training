@@ -95,7 +95,7 @@ If you are using the lab servers provided by your teacher, the sudoers configura
 ## Solutions
 
 {{% collapse solution-1 "Solution 1" %}}
-Installing Ansible with root privileges:
+Installing Ansible with root privileges (on controller host):
 
 ```bash
 $ sudo yum -y install ansible
