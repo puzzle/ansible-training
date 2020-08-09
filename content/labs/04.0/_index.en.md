@@ -29,6 +29,7 @@ Check what the options `immediate` and `permanent` of the `firewalld` module mea
 
 - Intentionally add errors to your playbook and have a look at the output. You should get a feeling for Ansible's error messages:
   - Add a wrong indentation. Remember that this is a common mistake!
+  - Use a tab character for identation. Some editors do that automatically.
   - Add a wrong parameter name.
   - Remove the mistakes.
 
