@@ -237,5 +237,24 @@ Ping `nodes`:
 $ ansible -i hosts nodes -m ping
 ...
 ```
-
+{{% notice tip %}}
+Use `ansible -i hosts <group> --list-hosts` to verify group membership in Ansible inventories:
+```bash
+$ ansible -i hosts web  --list-hosts
+  hosts (1):
+    node1
+$ ansible -i hosts db  --list-hosts
+  hosts (1):
+    node2
+$ ansible -i hosts nodes  --list-hosts
+  hosts (2):
+    node1
+    node2
+$ ansible -i hosts all  --list-hosts
+  hosts (3):
+    control0
+    node1
+    node2
+```
+{{% /notice %}}
 {{% /collapse %}}
