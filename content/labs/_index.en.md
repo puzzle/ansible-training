@@ -13,16 +13,16 @@ system.
 
 ### Target Audience
 
-This Course is targeting Linux system administrators
-with working knowledge of Linux but had not yet had
+This course is targeting Linux system administrators
+with working knowledge of Linux that did not yet have
 exposure to the Ansible configuration management
 system. A familiarity with the basic concept of
-configuration management is not a pre-requisite.
+configuration management is not a prerequisite.
 
 
 ### Techlab Setup
 
-This Ansible techlab assumes each participant has a
+This Ansible techlab assumes that each participant has a
 cluster of three virtual machines available. Namely:
 
 - a control host
@@ -30,11 +30,12 @@ cluster of three virtual machines available. Namely:
 
 {{% notice note %}}
 The cloud-based lab infrastructure is provided if you
-are following a Puzzle-guided Techlab.
+are following a guided Techlab by Puzzle ITC.
 {{% /notice %}}
 
-To run techlab environment locally there is a
-guide for Vagrant based virtual hosts in the
+If you prefer to run the techlab environment locally
+you can find instructions to set up Vagrant-based
+virtual hosts in the
 <i class="ti-plug" style="color: #003399"></i>
 [setup section](/setup)
 <i class="ti-plug" style="color: #003399"></i>
