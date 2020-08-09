@@ -161,6 +161,8 @@ $ ssh <node-ip> hostname
 
 {{% collapse solution-3 "Solution 3" %}}
 ```bash
+$ cd techlab
+$ vim hosts # (copy & paste inventory data)
 $ ansible all -i hosts -m ping
 5.102.146.128 | SUCCESS => {
     "ansible_facts": {
