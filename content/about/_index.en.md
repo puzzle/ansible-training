@@ -12,4 +12,5 @@ weight: 10
 
 * [Official Ansible Docs](https://docs.ansible.com/)
 * [O’Reilly’s "Ansible: Up and Running" book](https://www.ansiblebook.com/)
+* ["Ansible for DevOps"](https://www.ansiblefordevops.com/)
 * [Ansible Blog Posts on the Puzzle Website](https://www.puzzle.ch/de/blog/categories/technologien/ansible)
