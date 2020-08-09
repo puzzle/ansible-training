@@ -226,11 +226,12 @@ vegan:x:1004:
 kebab:x:1005:
 ```
 
-Login to node2 as user jim, providing the password via stdin:
-```bash
-$ ssh jim@node2
+Login to `node2` as user `jim`, providing the password via SSH prompt:
+ ```bash
+-$ ssh jim@node2
+ssh -l jim <IP address of node2>
+jim@192.168.122.31's password:
 ```
-
 
 {{% /collapse %}}
 
