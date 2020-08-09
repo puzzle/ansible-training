@@ -27,7 +27,7 @@ Check what the options `immediate` and `permanent` of the `firewalld` module mea
 
 ### Task 3
 
-- Add intentionally errors to your playbook and have a look at the output. You should get a feeling for errormessages.
+- Intentionally add errors to your playbook and have a look at the output. You should get a feeling for errormessages.
 - Add a wrong intendation. Remember that this is a common mistake!
 - Add a wrong parameter name.
 - Remove the mistakes.
