@@ -11,6 +11,11 @@ In this lab we learn how to handle output of tasks.
 - Register the result to a variable called `output` by using the `register` keyword.
 - Include a task using the debug module to print out all content of the variable `output`. If unsure, consult the documentation about the debug module.
 
+{{% notice note %}}
+You might need to install the `postfix` package on `node1`.
+{{% /notice %}}
+
+
 ### Task 2
 - Add another task to the playbook `output.yml` using the debug module and print out the resulting filenames of the search above.
 
