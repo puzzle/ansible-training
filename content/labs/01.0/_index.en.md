@@ -101,6 +101,9 @@ Installing Ansible with root privileges:
 $ sudo yum -y install ansible
 ```
 
+- If `yum` does not find the `ansible` package you might need to
+  install `epel-release.noarch` to enable the EPEL repository.
+
 Opening a SSH connection:
 ```bash
  $ ssh -l ansible <node-ip>
