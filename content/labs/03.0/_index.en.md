@@ -1,5 +1,5 @@
 ---
-title: "3.0 - Setup and AdHoc Commands"
+title: "3.0 - Setup and Ad Hoc Commands"
 weight: 30
 ---
 
@@ -7,7 +7,7 @@ In this lab we’ll continue with our environment setup from [Lab 1](../lab-01) 
 
 ### Task 1
 
-  - Ping all nodes in the inventory file using the ping module
+  - Ping all nodes in the inventory file using the ping module.
 
 {{% notice tip %}}
 You’ve used the `ping` module in a previous lab.
@@ -21,17 +21,17 @@ You’ve used the `ping` module in a previous lab.
 ### Task 3
 
   - Search through the online documentation for special (magical) variables.
-  - Which special variable you could use to set the `hostname` on each of the servers using the information in the `inventory` file?
+  - Which special variable could you use to set the `hostname` on each of the servers using the information in the `inventory` file?
 
 ### Task 4
 
   - Try to find an appropriate Ansible module to complete Task 3. Find out what parameters the module accepts.
-  - This module will try make changes to the `/etc/hostname` file. What options should you use with the `ansible` command for it to work?
+  - This module will try to make changes to the `/etc/hostname` file. What options should you use with the `ansible` command to make that work?
 
 ### Task 5
 
-  - Set the hostname on all nodes using the inventory and an ansible ad-hoc command.
-  - Check on all nodes if the `hostname` has been changed.
+  - Set the hostname on all nodes using the inventory and an ansible ad hoc command.
+  - Check on all nodes if the hostname has been changed.
 
 ### Task 6
 
@@ -95,7 +95,7 @@ $ ansible all -i hosts -m setup -a "filter=ansible_default_ipv4"
 
 {{% collapse solution-3 "Solution 3" %}}
   - See Ansible docs for special variables: <https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html>
-  - `inventory_hostname` can be set to the hostname on the servers.
+  - `inventory_hostname` contains the name of the managed host from the inventory file and can be used to set the hostname on the servers.
 {{% /collapse %}}
 
 {{% collapse solution-4 "Solution 4" %}}
