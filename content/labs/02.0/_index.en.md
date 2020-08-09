@@ -5,28 +5,29 @@ weight: 20
 
 ### Task 1
 
-- Print out a list of all Ansible modules in your terminal
+- Print out a list of all Ansible modules in your terminal.
 
 {{% notice note %}} 
  Don’t be rattled about the massive amount of modules you’ll see in your terminal.
 {{% /notice %}}
 
-- Print out information about the Ansible module `file` in your terminal
+- Print out information about the Ansible module `file` in your terminal.
 
 ### Task 2
 
-- Find the official online documentation of Ansible in your browser
-- Visit the module index (e.g. list of all modules) in the online documentation
-- Use the search field in the upper left of the webpage and also use the search field in the lower right
+- Find the official online documentation of Ansible in your browser.
+- Visit the module index (i.e. list of all modules) in the online documentation.
+- Use the search field in the upper left of the web page and also use the search field in the lower right.
 
 ### Task 3 (Advanced)
 
-- By installing the `ansible-doc` package, not only the command itself gets installed but also a lot of additional documentation. Use your package-managers functionality to find out what files are installed with `yum install ansible-doc`.
+- By installing the `ansible-doc` package you get a lot of additional documentation.
+- Use your package-managers functionality to find out what files are installed with `yum install ansible-doc`.
 - Now find documentation about jinja2 on the controller.
 
-### Task 4 (Capitain Future)
+### Task 4 (Captain Future)
 
-- Have a look at the development documentation
+- Have a look at the development documentation.
 - Search for the release dates of future ansible versions.
 
 ### Solutions
