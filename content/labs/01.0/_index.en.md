@@ -3,9 +3,9 @@ title: "1.0 - Setting up Ansible"
 weight: 10
 ---
 
-During this lab you will configure Ansible. You will be able to use Ansible on the controller-node and run your first commands on the ansible-nodes.
+During this lab you will configure Ansible. You will be able to use Ansible on the controller node and run your first commands on the ansible nodes (managed nodes).
 
-You have the IPs of the controller host and manageable nodes (given by your instructor). The controller host is where you execute Ansible from and the nodes represent the machines you like to manage. We will do some configurations on the controller as well.
+You have the IP addresses of the controller node and managed nodes (given by your instructor). The controller node is where you execute Ansible from and the other nodes represent the machines you like to manage. We will do some configurations on the controller as well.
 
 To make it easier for inexperienced users, we installed an editor and terminal on the controller, accessible from your browser.
 You can then connect to the nodes from there.
@@ -15,14 +15,14 @@ Unless otherwise specified, your working directory for all labs should be `/home
 Some good advice:
 
 - Always read all the tasks first. Some tasks might not be clear until you get the whole scope of the lab.
-- Open a terminal that you use only for ansible-doc (see later) and one terminal that you use for ad hoc commands (see later) to check the result of your plays.
-- Copypaste all the filenames etc. from the labs to your playbooks. You'll make fewer mistakes.
+- Open a terminal that you use only for `ansible-doc` (see later) and another terminal that you use for ad hoc commands (see later) to check the result of your plays.
+- When possible use copy & paste for filenames and file content. You'll make fewer mistakes.
 
-## Connect to your control host
+## Connect to your controller host
 
-### Webbrowser
+### Web Browser
 
-Connect to your control host by pasting the DNS name into your webbrowser
+Connect to your controller host by pasting the DNS name into your web browser
 
     https://<dnsname>
 
@@ -35,14 +35,14 @@ After a successful login you should see an editor similar to *visual studio code
 
 ### SSH
 
-You can access the nodes using SSH as well. Use your favourite SSH client to connect to the ip of your control host as user `ansible`.
+You can access the nodes using SSH as well. Use your favourite SSH client to connect to the IP address of your controller host as user `ansible`.
 
 ### Task 1
 
-- Install all packages needed to use Ansible on the controller.
+- Install all packages needed to use Ansible on the controller host.
 
 {{% notice tip %}}
-  Use `sudo` to elevate your privilege to those of `root`. Be sure to only use root priviledges for installing the packages, you should do the rest of the lab as user `ansible`.
+  Use `sudo` to elevate your privilege to those of `root`. Be sure to only use root priviledges for installing the packages, you should perform the rest of the lab as user `ansible`.
 {{% /notice %}}
 
 - Test if you can connect to the nodes from your controller using SSH. Use their public IPs.
@@ -50,9 +50,9 @@ You can access the nodes using SSH as well. Use your favourite SSH client to con
 
 ### Task 2
 
-- Create a SSH-keypair for the `ansible` user on the `controller`.
+- Create a SSH key pair for the user `ansible` on the controller host.
 - Don't set a password for the private key! Just hit ENTER at the prompt.
-- Enable SSH-key login for the `ansible` user on all nodes and the controller by distributing the SSH-public key.
+- Enable SSH key-based login for the user `ansible` on all nodes and the controller by distributing the SSH-public key.
 - Test the login on the nodes.
 
 ### Task 3
@@ -71,7 +71,7 @@ node2 ansible_host=<your-node2-ip>
 ```
 {{% notice tip %}}
 Instead of copying the ssh-id to the controller itself you could set "ansible_connection=local" in the inventory file for host "controller". Then ansible would not use ssh to connect to the controller, but use the "local" transport mechanism.
-If you have a valid /etc/hosts file containing information about lab hosts, you can omit the "ansible_host=<<ip>>" parts in the inventory file.
+If you have a valid `/etc/hosts` file containing information about lab hosts, you can omit the `ansible_host=<ip>` parts in the inventory file.
 {{% /notice %}}
 
 - Check if ansible is ready using the `ping` module to ping all hosts in your inventory
@@ -176,7 +176,7 @@ $ sudo -i
 %wheel  ALL=(ALL)       ALL
 # %wheel        ALL=(ALL)       NOPASSWD: ALL # <-- this line!
 ```
-Add a similar line for user ansible to the sudoers file:
+Add a similar line for user ansible to the `sudoers` file:
 
 ```bash
 # echo 'ansible ALL=(ALL)   NOPASSWD: ALL' >> /etc/sudoers
