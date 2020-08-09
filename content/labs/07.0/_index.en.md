@@ -78,7 +78,7 @@ $ repoquery -l rhel-system-roles #<-- repoquery is provided by the package `yum-
 ```bash
 $ repoquery -l rhel-system-roles | grep -i exa | grep selinux
 $ cp /usr/share/doc/rhel-system-roles/selinux/example-selinux-playbook.yml  selinux.yml
-[ansible@control0 techlab]$ cat selinux.yml
+$ cat selinux.yml
 ---
 - hosts: all
   become: true
