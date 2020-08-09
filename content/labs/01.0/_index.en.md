@@ -117,6 +117,11 @@ $ which python # (or which python3)
 /usr/bin/python
 ```
 
+If `which` does not find `python` or `python3`:
+```bash
+$ sudo yum -y install python # (or python3)
+```
+
 {{% /collapse %}}
 
 {{% collapse solution-2 "Solution 2" %}}
