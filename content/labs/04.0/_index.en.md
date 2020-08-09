@@ -17,7 +17,7 @@ Create a playbook `webserver.yml` which does the following:
 Check what the options `immediate` and `permanent` of the `firewalld` module mean and do.
 {{% /notice %}}
 
-- Run the playbook. After completion, test if the `httpd.service` is running and enabled on node1.
+- Run the playbook. After completion, test if the `httpd.service` is running and enabled on `node1`.
 
 ### Task 2
 
