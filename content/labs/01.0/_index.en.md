@@ -61,7 +61,7 @@ You can access the nodes using SSH as well. Use your favourite SSH client to con
 
 ```
 [controller]
-controller ansible_host=<your-controller-ip>
+control0 ansible_host=<your-controller-ip>
     
 [web]
 node1 ansible_host=<your-node1-ip>
@@ -70,7 +70,8 @@ node1 ansible_host=<your-node1-ip>
 node2 ansible_host=<your-node2-ip>
 ```
 {{% notice tip %}}
-Instead of copying the ssh-id to the controller itself you could set "ansible_connection=local" in the inventory file for host "controller". Then ansible would not use ssh to connect to the controller, but use the "local" transport mechanism.
+Instead of copying the ssh-id to the controller itself you could set "ansible_connection=local" in the inventory file for host "control0". Then ansible would not use ssh to connect to the controller, but use the "local" transport mechanism.
+
 If you have a valid `/etc/hosts` file containing information about lab hosts, you can omit the `ansible_host=<ip>` parts in the inventory file.
 {{% /notice %}}
 
