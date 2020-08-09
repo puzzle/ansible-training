@@ -231,4 +231,11 @@ node2 ansible_host=192.168.122.32
 web
 db
 ```
+Ping `nodes`:
+
+```bash
+$ ansible -i hosts nodes -m ping
+...
+```
+
 {{% /collapse %}}
