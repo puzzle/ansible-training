@@ -169,7 +169,7 @@ $ cat tempfolder.yml
         state: directory
 
 $ ansible-playbook tempfolder.yml
-$ ansible web,controller -b -a "ls -lah /root/"
+$ ansible web,controller -b -a "ls -ld /var/tempfolder"
 ```
 {{% notice note %}}
 `ansible-doc file` doesn't provide any information about setting special permissions like sticky bit (`man chmod` will help you though). Remember to use a leading 0 before the actual permissions.
