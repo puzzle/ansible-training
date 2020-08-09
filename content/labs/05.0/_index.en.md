@@ -25,9 +25,9 @@ following:
 
 ### Task 4
 
-- Create a new role called `base`. It’s `main.yml` taskfile should import the taskfiles `motd.yml` and `packages.yml`
+- Create a new role called `base`. Its file `tasks/main.yml` should import the files `motd.yml` and `packages.yml`. (Create both files under `tasks/`).
 - `motd.yml` should do the following: Use the variable `motd_content` to change the `/etc/motd` content to "This is a server\\n". Remember to move the template as well as the variable to a correct location in the `roles` folder.
-- `packages.yml` should install the yum packages `firewalld`, `yum-utils`, `dos2unix`, `emacs` and `vim`
+- `packages.yml` should install the packages `firewalld`, `yum-utils`, `dos2unix`, `emacs` and `vim`
 - Write a playbook `prod.yml` that applies the role `base` to all servers and the role `httpd` only to the group `web`
 
 ### Task 5
