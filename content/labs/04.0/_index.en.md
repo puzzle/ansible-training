@@ -10,11 +10,11 @@ In this lab we’ll get used to writing and running Ansible playbooks.
 Create a playbook `webserver.yml` which does the following:
 
 - Install `httpd` on the nodes in the `web` group.
-- Start `httpd` and ensure the service starts on boot. Ensure that the firewall is also started and enabled.
-- Ensure port 80 is open on the `firewall`.
+- Start `httpd` and ensure the service starts on boot. Ensure that the Linux firewall is also started and enabled.
+- Ensure port 80 is open on the firewall.
 
 {{% notice tip %}}
-Check what the options "immediate" and "permanent" of the firewalld module mean and do.
+Check what the options `immediate` and `permanent` of the `firewalld` module mean and do.
 {{% /notice %}}
 
 - Run the playbook. After completion test if the `httpd.service` is running and enabled on node1.
@@ -37,7 +37,7 @@ Check what the options "immediate" and "permanent" of the firewalld module mean 
 - The playbook `tempfolder.yml` should create a temporary folder `/var/tempfolder` on all servers except those in the group `db`.
 
 {{% notice tip %}}
-Have a look at the user guide to know how to use more complex inventory patterns.
+Take a look at the user guide and find out how to use more complex inventory patterns.
 See [Ansible Docs - User Guide ](https://docs.ansible.com/ansible/latest/user_guide/intro_patterns.html#common-patterns)
 {{% /notice %}}
 
