@@ -22,7 +22,7 @@ Check what the options `immediate` and `permanent` of the `firewalld` module mea
 ### Task 2
 
 - Create a folder `inventory` and move your inventory `hosts` there.
-- Configure ansible to use `/home/ansible/techlab/hosts` as the default inventory. Do this using a configuration file in the `/home/ansible/techlab/` directory.
+- Configure Ansible to use `/home/ansible/techlab/inventory/hosts` as the default inventory. Do this using a configuration file in the `/home/ansible/techlab/` directory.
 - Run the playbook again without using the `-i` flag to see if the configuration works.
 
 ### Task 3
