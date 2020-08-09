@@ -215,6 +215,7 @@ sudo -v
 {{% /collapse %}}
 
 {{% collapse solution-5 "Solution 5" %}}
+Add `[nodes:children]` to inventory file:
 ```bash
 $ cat hosts
 [controller]
