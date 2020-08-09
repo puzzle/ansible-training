@@ -69,7 +69,7 @@ $ ansible localhost -m file -a "dest=/home/ansible/techlab/roles/requirements.ym
 {{% collapse solution-3 "Solution 3" %}}
 ```bash
 $ yum search roles
-$ yum install rhel-system-roles
+$ sudo yum install rhel-system-roles
 $ repoquery -l rhel-system-roles #<-- repoquery is provided by the package `yum-utils`
 ```
 {{% /collapse %}}
