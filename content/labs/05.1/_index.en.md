@@ -7,7 +7,7 @@ We start to use handlers and blocks as well.
 
 ### Task 1
 
-- Create a playbook `myhandler.yml` which applies a role `handlerrole` on node2.
+- Create a playbook `myhandler.yml` which applies a role `handlerrole` on `node2`.
 - The role `handlerrole` should do the following:
 - Create a directory `newdir` in the folder `/home/ansible`.
 - If the folder didn't exist before, then do create a file `README.TXT` in this folder containing the text "This folder was created at `<timestamp>`".
@@ -16,7 +16,7 @@ We start to use handlers and blocks as well.
 
 ### Task 2
 
-- Write a playbook `download.yml` which runs a role `downloader` on node2.
+- Write a playbook `download.yml` which runs a role `downloader` on `node2`.
 - The role `downloader` should try to download a file from a non-existing URL.
 - The role should be able to handle errors. Let it write the message _"Download failed!"_ to standard output if the download task failed. The playbook must keep on running and shall not exit after this message.
 - In all cases, output a message at the end of the play informing that the download attempt has finished.
@@ -92,7 +92,7 @@ $ ansible-playbook download.yml
 ```
 
 {{% notice note %}}
-Note the failed download task, but the playbook finished non the less.
+Note the failed download task, but the playbook finished nonetheless.
 {{% /notice %}}
 
 {{% /collapse %}}

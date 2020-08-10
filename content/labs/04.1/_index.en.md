@@ -15,7 +15,7 @@ Remember `loop:` or `with_items:`
 
 ### Task 2
 
-- In your playbook `webserver.yml`, ensure that that the yum package `firewalld` is installed. Do the installation of `httpd` and `firewalld` in one task. Do you really need to use a loop? Have a look at the description of the ansible module yum.
+- In your playbook `webserver.yml`, ensure that that the package `firewalld` is installed. Do the installation of `httpd` and `firewalld` in one task. Do you really need to use a loop? Have a look at the description of Ansible's `yum` module .
 
 ### Task 3
 
@@ -28,9 +28,9 @@ Remember `loop:` or `with_items:`
 
 ### Task 5
 
-- Set the `motd_content` from Task 4 using `group_vars` for node1 and `host_vars` for node2.
+- Set the `motd_content` from Task 4 using `group_vars` for `node1` and `host_vars` for `node2`.
 - Make sure you remove the variable definition in `motd.yml`. Reason being it will have a higher priority.
-- Limit the run to node1 and node2.
+- Limit the run to `node1` and `node2`.
 
 {{% notice tip %}}
   Think about where you have to create the folders for your host and group variables
@@ -58,7 +58,7 @@ Delete the 2 tasks "start and enable \[httpd,firewalld\]". Add a new task with t
 
 {{% notice tip %}}
 Make sure your indentations are correct!
-Older ansible-versions don’t know the keyword "loop" yet, use "with\_items" instead.
+Older versions of Ansible don’t know the keyword `loop` yet -- use `with_items` instead.
 {{% /notice %}}
 
 {{% /collapse %}}
@@ -82,7 +82,7 @@ See [Ansible Docs - Yum Module](https://docs.ansible.com/ansible/latest/modules/
 
 
 {{% collapse solution-3 "Solution 3" %}}
-Content of motd.yml:
+Content of `motd.yml`:
 
 ```yaml
 ---
