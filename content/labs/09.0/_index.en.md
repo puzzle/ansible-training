@@ -1,6 +1,6 @@
 ---
-title: "8.0 - AWX/Ansible Tower"
-weight: 80
+title: "9.0 - AWX/Ansible Tower"
+weight: 90
 ---
 
 AWX ist the upstream/community edition of Ansible Tower, hosted on [GitHub](https://github.com/ansible/awx).

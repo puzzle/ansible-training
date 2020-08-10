@@ -1,6 +1,6 @@
 ---
-title: "8.2 - AWX Overview"
-weight: 82
+title: "9.2 - AWX Overview"
+weight: 92
 ---
 
 In this lab we are working with AWX

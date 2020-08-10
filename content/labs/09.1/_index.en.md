@@ -1,6 +1,6 @@
 ---
-title: "8.1 - AWX Installation"
-weight: 81
+title: "9.1 - AWX Installation"
+weight: 91
 ---
 
 AWX only supports containerized installations via OpenShift, Kubernetes or Docker Compose. We have chosen to use Docker Compose to run AWX on `control0` in this techlab.
@@ -170,5 +170,5 @@ localhost                  : ok=16   changed=8    unreachable=0    failed=0    s
 
 Go to http://192.168.122.30 and enter admin name and password:
 
-![Example image](awx001.png)
+![AWX Login](awx001.png)
 {{% /collapse %}}
