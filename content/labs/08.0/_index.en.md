@@ -33,7 +33,7 @@ With `ansible-config dump` you can even see the default configuration values not
 - Reinstall the `tar.gz` file of the collection and verify the new location. 
 {{% notice tip %}}
 Note the subfolder `ansible-collections` that was created. This is default ansible behavior.
-{{% /notice %}
+{{% /notice %}}
 
 ### Task 4
 
