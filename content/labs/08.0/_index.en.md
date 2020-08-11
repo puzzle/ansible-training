@@ -197,7 +197,7 @@ $ cat collections.yml
         name: my_nginx_container
         image: nginx
         state: present
-        expose:
+        publish:
           - '80'
 $
 ```
@@ -224,7 +224,7 @@ $ cat collections.yml
         name: my_nginx_container
         image: nginx
         state: present
-        expose:
+        publish:
           - '80'
 $
 ```
@@ -251,7 +251,7 @@ $ cat collections.yml
         name: my_nginx_container
         image: nginx
         state: present
-        expose:
+        publish:
           - '80'
 $
 $ ansible-playbook -i hosts collections.yml 
@@ -272,28 +272,14 @@ Check the running container:
 
 ```bash
 ]$ sudo podman ps -l
-CONTAINER ID  IMAGE                         COMMAND               CREATED             STATUS                 PORTS  NAMES
-00783ec12950  quay.io/bitnami/nginx:latest  /opt/bitnami/scri...  About a minute ago  Up About a minute ago         my_nginx_container
+CONTAINER ID  IMAGE                         COMMAND               CREATED             STATUS                 PORTS                                  NAMES
+00783ec12950  quay.io/bitnami/nginx:latest  /opt/bitnami/scri...  About a minute ago  Up About a minute ago  8443/tcp, 0.0.0.0:32771->8080/tcp      my_nginx_container
 $
 ```
-You can even connect to your container on port 80, using the podman-interface shown by the `ip a` command (`cni-podman0` in our case). A warning is shown because of the unverified certificate, but connection to port 80 on the container works:
+You can even connect to your container using a dynamically assigned port (32771 in the example above) on your host machine. Make sure to adjust the port in the `curl` command-line accordingly:
 ```bash
-$ ip a | grep -A2 podman
-3: cni-podman0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
-    link/ether 66:8c:38:9e:30:54 brd ff:ff:ff:ff:ff:ff
-    inet 10.88.0.1/16 brd 10.88.255.255 scope global cni-podman0
-$ wget 10.88.0.1:80 --no-check-certificate
---2020-08-10 13:41:16--  http://10.88.0.1/
-Connecting to 10.88.0.1:80... connected.
-HTTP request sent, awaiting response... 302 Found
-Location: https://10.88.0.1/ [following]
---2020-08-10 13:41:16--  https://10.88.0.1/
-Connecting to 10.88.0.1:443... connected.
-WARNING: cannot verify 10.88.0.1's certificate, issued by ‘/C=US/O=Let's Encrypt/CN=Let's Encrypt Authority X3’:
-  Unable to locally verify the issuer's authority.
-    WARNING: certificate common name ‘*.xip.puzzle.ch’ doesn't match requested host name ‘10.88.0.1’.
-HTTP request sent, awaiting response... 401 Unauthorized
-Authorization failed.
+$ curl -s http://localhost:32771 | grep title
+<title>Welcome to nginx!</title>
 $
 ```
 
