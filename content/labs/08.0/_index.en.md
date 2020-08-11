@@ -22,7 +22,7 @@ Check the [dev guide](https://docs.ansible.com/ansible/latest/dev_guide/developi
 
 ### Task 3
 
-- Install one of your newly build collections from the `tar.gz` file. See where it was installed.
+- Install one of your newly built collections from the `tar.gz` file. See where it was installed.
 - Have a look at the ansible configuration and figure out why it was installed there.
 
 {{% notice tip %}}
@@ -38,15 +38,15 @@ Note the subfolder `ansible-collections` that was created. This is default ansib
 ### Task 4
 
 - Use `ansible-config dump` to see what default galaxy server is configured
-- Add another galaxy-server to your GALAXY_SERVER_LIST. This entry can point to a nonexistent galaxy-server.
+- Add another galaxy server to your `GALAXY_SERVER_LIST`. This entry can point to a nonexistent galaxy server.
 - Set it explicitly to `galaxy.ansible.com` in the `ansible.cfg` file, even though this is the default value.
-- Review the setting with `ansible_config dump`
+- Review the setting with `ansible-config dump`
 
 
 ### Task 5
 
-- Install the collection `nginx_controller` from nginx incorporation (nginxinc.nginx_controller) using the `ansible-galaxy` command.
-- Write a requirements-file `requirements.yml` that ensures the collection `cloud` from `cloudscale_ch` is installed. Install the collection by using this requirements-file.
+- Install the collection `nginx_controller`, provided by the company NGINX (`nginxinc.nginx_controller`) using the `ansible-galaxy` command.
+- Write a requirements file `requirements.yml` that ensures the collection `cloud` from `cloudscale_ch` is installed. Install the collection by using this requirements file.
 
 
 
@@ -164,11 +164,12 @@ Process install dependency map
 Starting collection install process
 Installing 'cloudscale_ch.cloud:1.0.0' to '/home/ansible/techlab/collections/ansible_collections/cloudscale_ch/cloud'
 $
+```
 {{% /collapse %}}
 
 {{% collapse solution-6 "Solution 6" %}}
 ```bash
-$ $ ansible-galaxy collection install containers.podman
+$ ansible-galaxy collection install containers.podman
 Process install dependency map
 Starting collection install process
 Installing 'containers.podman:1.1.4' to '/home/ansible/techlab/collections/ansible_collections/containers/podman'
@@ -227,7 +228,7 @@ $ cat collections.yml
           - '80'
 $
 ```
-This would not work, since the module podman_container is only content of the collection and not part of the ansible-base installation:
+This would not work, since the module `podman_container` is only content of the collection and not part of the ansible-base installation:
 ```bash
 $ cat collections.yml 
 ---
