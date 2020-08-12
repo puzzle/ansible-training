@@ -51,11 +51,16 @@ Note the subfolder `ansible-collections` that was created. This is default ansib
 
 
 ### Task 6
+
 - Install the collection `podman` from namespace `containers` using any of the methods you know.
 - Write a playbook `collection.yml` that runs only on the controller and uses the `podman` collection from the namespace `containers`.
 - The playbook should install podman on the controller and pull any podman image. Be sure to escalate privileges if needed. (Use the image `quay.io/bitnami/nginx` if unsure).
 - Use the module `podman_container` to start a container from the previously pulled image.
 - Confirm the container is up and running using `sudo podman ps -l`.
+
+### Task 7
+
+- Remove podman with an ad-hoc command to not interfere with the next labs.
 
 
 ## Solutions
@@ -271,7 +276,7 @@ $
 Check the running container:
 
 ```bash
-]$ sudo podman ps -l
+$ sudo podman ps -l
 CONTAINER ID  IMAGE                         COMMAND               CREATED             STATUS                 PORTS                                  NAMES
 00783ec12950  quay.io/bitnami/nginx:latest  /opt/bitnami/scri...  About a minute ago  Up About a minute ago  8443/tcp, 0.0.0.0:32771->8080/tcp      my_nginx_container
 $
@@ -282,5 +287,10 @@ $ curl -s http://localhost:32771 | grep title
 <title>Welcome to nginx!</title>
 $
 ```
+{{% /collapse %}}
 
+{{% collapse solution-7 "Solution 7" %}}
+```bash
+$ ansible localhost -b -m yum -a"name=podman, state=absent"
+```
 {{% /collapse %}}
