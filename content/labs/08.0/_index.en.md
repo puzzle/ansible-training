@@ -271,7 +271,7 @@ $
 Check the running container:
 
 ```bash
-]$ sudo podman ps -l
+$ sudo podman ps -l
 CONTAINER ID  IMAGE                         COMMAND               CREATED             STATUS                 PORTS                                  NAMES
 00783ec12950  quay.io/bitnami/nginx:latest  /opt/bitnami/scri...  About a minute ago  Up About a minute ago  8443/tcp, 0.0.0.0:32771->8080/tcp      my_nginx_container
 $
@@ -282,5 +282,10 @@ $ curl -s http://localhost:32771 | grep title
 <title>Welcome to nginx!</title>
 $
 ```
+{{% /collapse %}}
 
+{{% collapse solution-7 "Solution 7" %}}
+```bash
+$ ansible localhost -b -m yum -a"name=podman, state=absent"
+```
 {{% /collapse %}}
