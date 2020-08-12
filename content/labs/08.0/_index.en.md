@@ -51,11 +51,16 @@ Note the subfolder `ansible-collections` that was created. This is default ansib
 
 
 ### Task 6
+
 - Install the collection `podman` from namespace `containers` using any of the methods you know.
 - Write a playbook `collection.yml` that runs only on the controller and uses the `podman` collection from the namespace `containers`.
 - The playbook should install podman on the controller and pull any podman image. Be sure to escalate privileges if needed. (Use the image `quay.io/bitnami/nginx` if unsure).
 - Use the module `podman_container` to start a container from the previously pulled image.
 - Confirm the container is up and running using `sudo podman ps -l`.
+
+### Task 7
+
+- Remove podman with an ad-hoc command to not interfere with the next labs.
 
 
 ## Solutions
