@@ -138,8 +138,8 @@ $ ansible web -i hosts -b -m yum -a "name=httpd state=absent"
 
 {{% collapse solution-7 "Solution 7" %}}
 ```bash
-$ ansible node2 -i hosts -b -m file -a "path=/home/ansible/testfile.txt state=touch"
-$ ansible node2 -i hosts -b -m copy -a "dest=/home/ansible/testfile.txt content='SOME RANDOM TEXT'"
-$ ansible node2 -i hosts -b -m file -a "path=/home/ansible/testfile.txt state=absent"
+$ ansible node2 -i hosts -m file -a "path=/home/ansible/testfile.txt state=touch"
+$ ansible node2 -i hosts -m copy -a "dest=/home/ansible/testfile.txt content='SOME RANDOM TEXT'"
+$ ansible node2 -i hosts -m file -a "path=/home/ansible/testfile.txt state=absent"
 ```
 {{% /collapse %}}
