@@ -125,7 +125,7 @@ Rerun the playbook and check if the text has been changed accordingly:
 
 ```bash
 $ ansible-playbook motd.yml -l node1,node2
-$ ansible -i hosts all -a "cat /etc/motd"
+$ ansible all -a "cat /etc/motd"
 ```
 {{% /collapse %}}
 
