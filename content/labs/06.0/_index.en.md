@@ -211,7 +211,7 @@ There is an open [issue](https://github.com/ansible/ansible/issues/33831) about 
 
 ```bash
 $ ansible-vault rekey secret_vars2.yml --new-vault-id @prompt
-$ ansible-playbook view secret_vars2.yml --vault-id @prompt
+$ ansible-vault view secret_vars2.yml --vault-id @prompt
 ```
 
 {{% /collapse %}}
