@@ -234,6 +234,7 @@ db
 Ping `nodes`:
 
 ```bash
+# Note: hosts is the inventory file you created, either "-i hosts" or "-i ./hosts" works.
 $ ansible -i hosts nodes -m ping
 ...
 ```
