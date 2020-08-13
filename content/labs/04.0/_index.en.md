@@ -87,7 +87,7 @@ $ ansible-playbook -i hosts webserver.yml
 Check `httpd.service` on group `web`:
 
 ```bash
-$ ansible web -b -a "systemctl status httpd"
+$ ansible -i hosts web -b -a "systemctl status httpd"
 ```
 {{% /collapse %}}
 
