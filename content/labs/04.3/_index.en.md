@@ -169,6 +169,10 @@ Example `servicehandler.yml`:
 
 ```bash
 $ ansible web -b -m copy -a "content='bli bla blup' dest=/etc/httpd/conf/httpd.conf backup=yes"
+```
+Now fix your apache config. You could use the backup of the file created in the previous ad-hoc command.
+
+```bash
 $ ansible web -b -m service -a "name=httpd state=restarted"
 ```
 {{% /collapse %}}
