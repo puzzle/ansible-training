@@ -91,5 +91,14 @@ $ cat selinux.yml
 
 $ ansible-playbook selinux.yml
 ```
-Before you can use `rhel-system-roles` you need to add them to the `roles_path` variable in your `ansible.cfg`
+Before you can use `rhel-system-roles` you need to add them to the `roles_path` variable in your `ansible.cfg`:
+```bash
+roles_path    = /home/ansible/techlab/roles:/usr/share/ansible/roles
+```
+Check that the path `/usr/share/ansible/roles` is part of your `ROLES_PATH`:
+```bash
+$ ansible-config dump | grep -i roles_path
+DEFAULT_ROLES_PATH(/home/ansible/techlab/ansible.cfg) = [u'/home/ansible/techlab/roles', u'/usr/share/ansible/roles']
+$
+```
 {{% /collapse %}}
