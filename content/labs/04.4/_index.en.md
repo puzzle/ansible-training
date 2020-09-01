@@ -22,7 +22,10 @@ On node1:
   - Also verify, that no content of the git repository was copied to the local folder.
 
 {{% notice tip %}}
-If no playbook is specified, ansible-pull looks for a playbook `local.yml`. Also note, that the location of files given as paratmeters to the ansibel-pull command ar always relative to the top level of the git repository.
+Note the following:
+ - If no playbook is specified, ansible-pull looks for a playbook `local.yml`.
+ - The location of files given as paratmeters to the ansibel-pull command ar always relative to the top level of the git repository.
+ - All information to run the ansible-pull command is taken from the git repository (playbook, inventory, MOTD-file to be copied). No local configuration is used!
 {{% /notice %}}
 
 ### Task 3
