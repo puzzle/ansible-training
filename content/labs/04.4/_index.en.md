@@ -45,9 +45,6 @@ This task has nothing to do with `ansible-pull`, we just clean up the ansible-pu
 
 Run the playbook.
 
-### Task 5
-
-
 
 ## Solutions
 
