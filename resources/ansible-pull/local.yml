@@ -3,7 +3,7 @@
   tasks:
   - name: set the MOTD using ansible-pull
     copy:
-      src: resources/files/motd
+      src: motd
       dest: /etc/motd
       owner: root
       group: root
