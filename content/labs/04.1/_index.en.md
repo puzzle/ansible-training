@@ -46,7 +46,7 @@ Remember `loop:` or `with_items:`
   - Don't include the subfolder `/home/ansible/techlab/awx` with all its content in the archive.
   - Compress the archive using any supported type of compression.
   - Ensure an archive is created even if the source is one single file.
-  - Send this file via mail to an email adress. Note that you have to have valid credentials for a smtp server. Put these credentials to a password file `password_file.yml`.
+  - Send this file via mail to your own email adress. Note that you have to have valid credentials for a smtp server. Put these credentials into a password file `password_file.yml`.
   - Run the playbook using the smtp password from the file `password_file.yml`
   - remove the password file `password_file.yml`
 
