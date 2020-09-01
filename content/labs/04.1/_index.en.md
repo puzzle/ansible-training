@@ -40,6 +40,20 @@ Remember `loop:` or `with_items:`
 
 - Get a feeling for errors: Remove the quotes around the curly brackets and have a look at the output.
 
+### TASK 7 (BONUS!)
+- Create a playbook `takemehome.yml` that does the following:
+  - Create a compressed archive containing all the content from your `/home/ansible/techlab/` folder
+  - Don't include the subfolder `/home/ansible/techlab/awx` with all its content in the archive.
+  - Compress the archive using any supported type of compression.
+  - Ensure an archive is created even if the source is one single file.
+  - Send this file via mail to an email adress. Note that you have to have valid credentials for a smtp server. Put these credentials to a password file `password_file.yml`.
+  - Run the playbook using the smtp password from the file `password_file.yml`
+  - remove the password file `password_file.yml`
+
+{{% notice warning %}}
+It's NOT secure to put the smtp password unencrypted in a file. We will learn in the labs about ansible-vault how to encrypt sensitive data in a secure way.
+{{% /notice %}}
+
 ## Solutions
 
 {{% collapse solution-1 "Solution 1" %}}
@@ -177,4 +191,47 @@ $ ansible web,node2 -a "cat /etc/motd"
         dest: /etc/motd
         content: {{ motd_content }} #<-- missing quotes here
 ``` 
+{{% /collapse %}}
+
+{{% collapse solution-7 "Solution 7" %}}
+Write your SMTP Password to a file:
+```bash
+$ cat password_file.yml
+password: "<my_secret_password>"
+
+Create the playbook:
+```bash
+$ cat takemehome.yml
+--- 
+- hosts: localhost
+  #vars_files:              # if the vars file is not provided here, you'll have to use it with
+  #  - password_file.yml    # --extra-vars on cmdline as shown below
+  tasks:
+    - name: Create archive, excluding awx folder
+      archive:
+        path: /home/ansible/techlab/*
+        dest: /home/ansible/techlab.tar.bz2
+        exclude_path: /home/ansible/techlab/awx
+        format: bz2
+        force_archive: true
+    - name: Send archive via email
+      mail:
+        host: smtp.puzzle.ch
+        port: 587
+        username: "tux.puzzler@puzzle.ch"
+        password: "{{ password }}"
+        secure: starttls
+        sender: tux.puzzler@puzzle.ch
+        to: bill.gates@gmail.com
+        subject: Techlab stuff
+        body: Sending my stuff home
+        attach: /home/ansible/techlab.tar.bz2     
+      no_log: true
+```
+Run the playbook by using the SMTP password from the file created before. After the playbook was sent, delete the password file.
+```bash
+$ ansible-playbook takemehome.yml --extra-vars "@password_file.yml"
+$ ansible-playbook takemehome.yml # if vars file provided in playbook
+$ rm -f password_file.yml       
+```
 {{% /collapse %}}
