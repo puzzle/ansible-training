@@ -1,7 +1,7 @@
 ---
 - hosts: all
   tasks:
-  - name: set the MOTD using ansible-pull
+  - name: set the MOTD
     become: yes
     copy:
       src: motd
