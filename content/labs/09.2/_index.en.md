@@ -36,6 +36,7 @@ In this lab we are working with AWX
 
 
 ## Solutions
+
 {{% collapse solution-1 "Solution 1" %}}
 ![Change AWX admin password](awx002.png)
 {{% /collapse %}}
@@ -52,7 +53,7 @@ In this lab we are working with AWX
 ![Demo job run](awx008.png)
 {{% /collapse %}}
 
-e{{% collapse solution-4 "Solution 4" %}}
+{{% collapse solution-4 "Solution 4" %}}
 ![New credentials](awx009.png)
 ![New inventory](awx010.png)
 ![Add a host](awx011.png)
