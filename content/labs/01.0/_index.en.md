@@ -86,7 +86,7 @@ If you are using the lab servers provided by your teacher, the sudoers configura
 {{% /notice %}}
 
 ### TASK 5
-- extend the inventory with a group `nodes` that has the groups `ẁeb` and `db` as members
+- extend the inventory with a group `nodes` that has the groups `web` and `db` as members
   {{% notice tip %}}
   Take a look at https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html for how to use the `:children` suffix in INI file inventories.
   {{% /notice %}}
