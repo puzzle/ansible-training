@@ -1,6 +1,6 @@
 ---
 title: "4.4 - Ansible-Pull"
-weight: 30
+weight: 44
 ---
 
 In this lab we’ll have a short glimpse at how ansible-pull works.
