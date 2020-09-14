@@ -62,10 +62,10 @@ You can access the nodes using SSH as well. Use your favourite SSH client to con
 ```
 [controller]
 control0 ansible_host=<your-controller-ip>
-    
+
 [web]
 node1 ansible_host=<your-node1-ip>
-    
+
 [db]
 node2 ansible_host=<your-node2-ip>
 ```
@@ -78,12 +78,12 @@ If you have a valid `/etc/hosts` file containing information about lab hosts, yo
 
 ### Task 4
 
-- Configure the `ansible` user to have root privilege on all hosts in your inventory file. Also enable login without a password for this user.
-- Test the functionality by running `sudo -v` as user `ansible` on all nodes.
-
 {{% notice note %}}
 If you are using the lab servers provided by your teacher, the sudoers configuration is already done. Anyways have a look at it to see how stuff works.
 {{% /notice %}}
+
+- Configure the `ansible` user to have root privilege on all hosts in your inventory file. Also enable login without a password for this user.
+- Test the functionality by running `sudo -v` as user `ansible` on all nodes.
 
 ### TASK 5
 - extend the inventory with a group `nodes` that has the groups `web` and `db` as members
@@ -207,7 +207,7 @@ Check if `ansible` user has root privileges:
 sudo -v
 ```
 
-{{% notice note %}} 
+{{% notice note %}}
   Note that you cannot do this using Ansible yet. The reason being you
   need root privileges and we are just setting up those right now.
 {{% /notice %}}
