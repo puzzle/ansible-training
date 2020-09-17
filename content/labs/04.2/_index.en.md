@@ -53,11 +53,11 @@ Create a playbook `userplay.yml` doing the following and running on `node1` and 
 - On `node2`: Set the login shell to `/bin/zsh` for all users.
 
 #### Bonus 2
-- On `node2`: If (and only if) the user is "santos", disable login. Do this by setting santo's login shell to `/usr/sbin/nologin`. Use an if/else statement in the template for that purpose.
+- On `node2`: If (and only if) the user is "santos", disable login. Do this by setting santos's login shell to `/usr/sbin/nologin`. Use an if/else statement in the template for that purpose.
 
 #### Bonus 3
 - All on `node2`:
-- Set the default password on all servers to "`N0t_5o_s3cur3`"
+- Set the default password for all of the newly created users to "`N0t_5o_s3cur3`"
 - Once the password has been set, your playbook should not set it again. Not even when it got changed.
 - Hash the password using the sha512 algorithm.
 - Don’t define a salt for the password.
