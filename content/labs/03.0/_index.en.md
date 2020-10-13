@@ -137,6 +137,17 @@ $ ansible web -i hosts -b -m yum -a "name=httpd state=absent"
 {{% /collapse %}}
 
 {{% collapse solution-7 "Solution 7" %}}
+Possible solution 1:
+
+```bash
+$ ansible node2 -i hosts -m file -a "path=/home/ansible/testfile.txt state=touch"
+$ ansible node2 -i hosts -m copy -a "dest=/home/ansible/testfile.txt content='SOME RANDOM TEXT'"
+$ ansible node2 -i hosts -m file -a "path=/home/ansible/testfile.txt state=absent"
+```
+
+Possible solution 2:
+The copy module can create the file directly
+
 ```bash
 $ ansible node2 -i hosts -m copy -a "dest=/home/ansible/testfile.txt content='SOME RANDOM TEXT'"
 $ ansible node2 -i hosts -m file -a "path=/home/ansible/testfile.txt state=absent"
