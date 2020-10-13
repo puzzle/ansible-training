@@ -30,7 +30,7 @@ Use an appropriate return value to show the output. Information about return val
 - Solve this task by searching for files ending with `.bak` and registering the result to a variable. Then do tasks only if certain conditions are met.
 
 {{% notice tip %}}
-Have a look at the documentation about the command modul: [Ansible Docs - command](https://docs.ansible.com/ansible/latest/modules/command_module.html)
+Have a look at the documentation about the command modul: [Ansible Docs - command](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html)
 {{% /notice %}}
 
 ### Task 4 (Advanced)
