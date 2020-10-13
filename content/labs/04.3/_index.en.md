@@ -30,17 +30,19 @@ Use an appropriate return value to show the output. Information about return val
 - Solve this task by searching for files ending with `.bak` and registering the result to a variable. Then do tasks only if certain conditions are met.
 
 {{% notice tip %}}
-Have a look at the documentation about conditionals: [Ansible Docs - Playbook Conditionals](https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html)
+Have a look at the documentation about the command modul: [Ansible Docs - command](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html)
 {{% /notice %}}
 
 ### Task 4 (Advanced)
 - Ensure `httpd` is stopped by using an Ansible ad hoc command.
 - Write a play `servicehandler.yml` that does the following:
 - Install `httpd` by using the `yum` module
-- Start the service `httpd` with the `command` module. Don't use `service` or `systemd` module. 
+- Start the service `httpd` with the `command` module. Don't use `service` or `systemd` module.
 - Start the service only if it is not started and running already. (The output of `systemctl status httpd` doesn't contains the string `Active: active (running)`)
 
 {{% notice note %}}
+Have a look at the documentation about conditionals: [Ansible Docs - Playbook Conditionals](https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html)
+
 `systemctl status` returns status `failed` when a service is not running. Therefore we use `ignore_errors: true` in the corresponding task to let Ansible continue anyways.
 {{% /notice %}}
 
@@ -67,7 +69,7 @@ Example `output.yml`:
 - hosts: node1
   become: true
   tasks:
-    - name: 
+    - name:
       command: "find /etc/postfix -type f -name *.cf"
       register: output
     - debug:
@@ -96,6 +98,25 @@ Example `output.yml`:
 {{% /collapse %}}
 
 {{% collapse solution-3 "Solution 3" %}}
+Possible solution 1:
+Example `output.yml`:
+```yaml
+---
+- hosts: node1
+  become: true
+  tasks:
+    - name:
+      command: "find /etc/postfix -type f -name *.cf"
+      register: output
+    - name: create backup only when no backupfile is present
+      command: "cp {{ item }} {{ item }}.bak"
+      # only do this if there is no .bak for file: item
+      args:
+        creates: "{{ item }}.bak"
+      with_items: "{{ output.stdout_lines }}"
+```
+
+Possible solution 2:
 Example `output.yml`:
 ```yaml
 ---
@@ -105,7 +126,7 @@ Example `output.yml`:
     - name:
       command: "find /etc/postfix -type f -name *.cf.bak"
       register: search
-    - name: 
+    - name:
       command: "find /etc/postfix -type f -name *.cf"
       register: output
     - name: create backup only when no backupfile is present
@@ -121,7 +142,7 @@ Example `output.yml`:
 Stop the `httpd` service with Ansible:
 ```bash
 $ ansible web -b -a "systemctl stop httpd"
-``` 
+```
 
 Content of `servicehandler.yml`:
 ```yaml

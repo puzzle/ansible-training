@@ -118,15 +118,15 @@ $ ansible-doc -s hostname
 ```bash
 $ ansible all -i hosts -b -m hostname -a "name={{ inventory_hostname }}"
 $ ansible all -i hosts -b -a "cat /etc/hostname"
-``` 
+```
 {{% /collapse %}}
-    
+
 
 {{% collapse solution-6 "Solution 6" %}}
 ```bash
 $ ansible web -i hosts -b -m yum -a "name=httpd state=installed"
 $ ansible web -i hosts -b -m service -a "name=httpd state=started enabled=yes"
-``` 
+```
 
 Reverting the changes made on the remote hosts:
 
@@ -138,7 +138,6 @@ $ ansible web -i hosts -b -m yum -a "name=httpd state=absent"
 
 {{% collapse solution-7 "Solution 7" %}}
 ```bash
-$ ansible node2 -i hosts -m file -a "path=/home/ansible/testfile.txt state=touch"
 $ ansible node2 -i hosts -m copy -a "dest=/home/ansible/testfile.txt content='SOME RANDOM TEXT'"
 $ ansible node2 -i hosts -m file -a "path=/home/ansible/testfile.txt state=absent"
 ```
