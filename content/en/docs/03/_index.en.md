@@ -4,7 +4,7 @@ weight: 3
 sectionnumber: 3
 ---
 
-In this lab we’ll continue with our environment setup from [Lab 1](../lab-01) and learn how to run ad hoc commands.
+In this lab we’ll continue with our environment setup from [Chapter 1](../01) and learn how to run ad hoc commands.
 
 ### Task 1
 
