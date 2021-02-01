@@ -1,0 +1,3 @@
+{{- if not (in .Site.Params.enabledModule (.Get 0)) -}}
+{{- .Inner -}}
+{{- end -}}

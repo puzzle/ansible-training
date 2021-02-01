@@ -1,0 +1,2 @@
+{{ $codeCopy := resources.Get "js/code-copy.js" | minify | fingerprint }}
+<script src="{{ $codeCopy.RelPermalink }}" integrity="{{ $codeCopy.Data.Integrity }}" crossorigin="anonymous"></script>
