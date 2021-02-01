@@ -1,94 +1,101 @@
-################################# Default configuration ###################
-# provide your domain here
-baseURL = "https://examplesite.com/"
+baseurl = "/"
+title = "Ansible Techlabs"
 
 enableGitInfo = true
+
+theme = ["docsy-puzzle", "docsy-plus", "docsy"]
+
 languageCode = "en-us"
 
-# site title
-title = "Puzzle Ansible Techlabs"
+contentDir = "content/en"
 
-# theme
-theme = "dot"
+[minify]
+disableSVG = true
 
 # default content language
 defaultContentLanguage = "en"
-defaultContentLanguageInSubdir = true
+defaultContentLanguageInSubdir = false
 
-# disable language
-disableLanguages = []
-# google analytics
-googleAnalytics = "" # paste your analytics ID here. (Ex: UA-123-45)
+disableKinds = ["taxonomy", "taxonomyTerm"]
 
-# unsafe html
-[markup.goldmark.renderer]
-unsafe= true
+# Highlighting config
+pygmentsCodeFences = true
+pygmentsUseClasses = false
+# Use the new Chroma Go highlighter in Hugo.
+pygmentsUseClassic = false
 
-[frontmatter]
-publishDate = ["publishDate", "date", ":git"]
+# Configure how URLs look like per section.
+[permalinks]
+blog = "/:section/:year/:month/:day/:slug/"
 
-############################# Default Parameters ##########################
+
+# Image processing configuration.
+[imaging]
+resampleFilter = "CatmullRom"
+quality = 75
+anchor = "smart"
+
+
+[Languages]
+[Languages.en]
+title = "Puzzle Ansible Techlabs"
+languageName = "English"
+weight = 1
+
+
+# navigation
+[Languages.en.menu]
+
+[[Languages.en.menu.main]]
+weight = 3
+name = "Puzzle ITC GmbH"
+url = "https://www.puzzle.ch"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    LineNos = true
+    # See a complete list of available styles at https://xyproto.github.io/splash/docs/all.html
+    style = "monokai"
+    # Do not uncomment because it has an impact on the copy button. Fenced code blocks w/o syntax highlighting don't
+    # have a copy button to visualize output of a command.
+    # guessSyntax = "true"
+
 [params]
-# logo is for all page
-logo = "images/puzzle_classic_rgb.png"
-# logo white is for homepage logo, you can use colorful logo too...
-logo_white = "images/puzzle_classic_bg_rgb.png"
-# when logo is empty, it will shown your site title
+copyright = "Puzzle ITC GmbH"
+github_repo = "https://github.com/puzzle/ansible-techlab"
+imagePrefix = "puzzle_"
 
-# customize color
-primary_color = "#02007e"
-body_color = "#f9f9f9"
-text_color = "#636363"
-text_color_dark = "#242738"
-white_color = "#ffffff"
-light_color = "#f8f9fa"
+# Enable Lunr.js offline search
+offlineSearch = true
 
-# font family
-font_family = "Roboto"
-
-# public Git Repo - used for "improve this page" links
-gitRepoUrl = "https://github.com/puzzle/ansible-techlab"
+[params.ui]
+# Enable to show the side bar menu in its compact state.
+sidebar_menu_compact = false
+#  Set to true to disable breadcrumb navigation.
+breadcrumb_disable = false
+#  Set to true to hide the sidebar search box (the top nav search box will still be displayed if search is enabled)
+sidebar_search_disable = false
+#  Set to false if you don't want to display a logo (/assets/icons/logo.svg) in the top nav bar
+navbar_logo = true
+# Set to true to disable the About link in the site footer
+footer_about_disable = true
 
 ############################## social links ##############################
-[[params.social]]
-icon = "ti-github" # themify icon pack : https://themify.me/themify-icons
-link = "https://github.com/puzzle/ansible-techlab"
+[params.links]
+[[params.links.developer]]
+name = "GitHub"
+icon = "fab fa-github"
+url = "https://github.com/puzzle/ansible-techlab"
 
-[[params.social]]
-icon = "ti-twitter-alt" # themify icon pack : https://themify.me/themify-icons
-link = "https://twitter.com/puzzleitc"
-  
-[[params.social]]
-icon = "ti-linkedin" # themify icon pack : https://themify.me/themify-icons
-link = "https://linkedin.com/company/puzzle-itc"
+[[params.links.user]]
+name = "Twitter"
+icon = "fab fa-twitter"
+url = "https://twitter.com/puzzleitc"
 
-################################# language ################################
-[Languages]
-
-  ################################ English Language ######################
-  [Languages.en]
-  languageName = "En"
-  languageCode = "en-us"
-  weight = 1
-  home = "Home"
-  copyright = "Ansible Techlabs are copyright &copy; [Puzzle ITC](https://puzzle.ch) 2020."
-
-    # navigation
-    [Languages.en.menu]
-    
-      [[Languages.en.menu.main]]
-        weight = 2
-        name = "Puzzle Website"
-        url = "https://www.puzzle.ch"
-
-
-    # banner
-    [Languages.en.params.banner]
-      title = "Puzzle Ansible Techlabs"
-      description = "Learning Ansible from the ground up"
-      bg_image = "images/pic_puzzle_man.png"
-      placeholder = "Just enter terms to query our labs content"
-
-    # Topics
-    [Languages.en.params.topics]
-      title = "Techlab Sections"
+[[params.links.user]]
+name = "LinkedIn"
+icon = "fab fa-linkedin-in"
+url = "https://linkedin.com/company/puzzle-itc/"

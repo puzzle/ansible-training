@@ -8,4 +8,5 @@ node_modules
 builds
 package-lock.json
 public
+resources
 .env

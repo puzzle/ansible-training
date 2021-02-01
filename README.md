@@ -8,20 +8,43 @@ For more see [Puzzle Ansible Techlabs online](https://ansible.puzzle.ch/).
 
 ## Content Sections
 
-The Techlab content resides within the [content](content) directory.
+The training content resides within the [content](content) directory.
 
-The main part are the labs, which can be found at [content/labs](content/labs).
+The main part are the labs, which can be found at [content/en/docs](content/en/docs).
 
 ## Hugo
 
-Ansible Techlab is built using the static page generator [Hugo](https://gohugo.io/) and published under [ansible.puzzle.ch](https://ansible.puzzle.ch/).
+This site is built using the static page generator [Hugo](https://gohugo.io/).
 
-The page uses the [dot theme](https://github.com/themefisher/dot) which is included as a Git Submodule.
+The page uses the [docsy theme](https://github.com/google/docsy) which is included as a Git Submodule.
+Docsy is being enhanced using [docsy-plus](https://github.com/puzzle/docsy-plus/) as well as [docsy-puzzle](https://github.com/puzzle/docsy-puzzle/) and [docsy-acend](https://github.com/puzzle/docsy-acend/) for brand specific settings.
 
-After cloning the main repo, you need to initialize the submodule like this: 
+After cloning the main repo, you need to initialize the submodules:
 
 ```bash
 git submodule update --init --recursive
+```
+
+In order to update all submodules, run the following command:
+
+```bash
+git pull --recurse-submodules
+```
+
+The default configuration uses the Puzzle setup from [config/_default](config/_default/config.toml).
+Alternatively you can use the acend setup from [config/acend](config/acend/config.toml), which is enabled with `--environment acend`.
+
+### Docsy Theme Usage
+
+* [Official docsy documentation](https://www.docsy.dev/docs/)
+* [Docsy Plus](https://github.com/puzzle/docsy-plus/)
+
+### Update submodules for theme updates
+
+Run the following command to update all submodules with their newest upstream version:
+
+```bash
+git submodule update --remote
 ```
 
 ## Build using Docker
