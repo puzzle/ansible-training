@@ -1,0 +1,61 @@
+<!-- Next prev page -->
+{{ $currentNode := . }}
+
+{{ template "menu-nextprev" dict "menu" .Site.Home "currentnode" $currentNode "enabledmodule" .Site.Params.enabledModule }}
+
+{{ define "menu-nextprev" }}
+    {{ $currentNode := .currentnode }}
+    {{ $enabledModule := .enabledmodule }}
+
+    {{ if ne .menu.Params.hidden true }}
+        {{ if hasPrefix $currentNode.RelPermalink .menu.RelPermalink }}
+            {{ $currentNode.Scratch.Set "NextPageOK" "OK" }}
+            {{ $currentNode.Scratch.Set "prevPage" ($currentNode.Scratch.Get "prevPageTmp") }}
+        {{ else }}
+            {{ if eq ($currentNode.Scratch.Get "NextPageOK") "OK" }}
+                {{ $currentNode.Scratch.Set "NextPageOK" nil }}
+                {{ $currentNode.Scratch.Set "nextPage" .menu }}
+            {{ end }}
+        {{ end }}
+
+        {{ $onlyWhen := default "base" .menu.Params.onlyWhen }}
+        {{ if and (in $enabledModule $onlyWhen) (not (in $enabledModule .menu.Params.onlyWhenNot)) }}
+            {{ $currentNode.Scratch.Set "prevPageTmp" .menu }}
+        {{ end }}
+
+        {{ $currentNode.Scratch.Set "pages" .menu.Pages }}
+
+        {{ if .menu.IsHome}}
+            {{ $currentNode.Scratch.Set "pages" .menu.Sections }}
+        {{ else if .menu.Sections }}
+            {{ $currentNode.Scratch.Set "pages" (.menu.Pages | union .menu.Sections) }}
+        {{ end }}
+
+        {{ $pages := ($currentNode.Scratch.Get "pages") }}
+
+        {{ range $pages.ByWeight  }}
+            {{ $onlyWhen := default "base" .Params.onlyWhen }}
+            {{ if and (in $enabledModule $onlyWhen) (not (in $enabledModule .Params.onlyWhenNot)) }}
+                {{ template "menu-nextprev" dict "menu" . "currentnode" $currentNode "enabledmodule" $enabledModule }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+<div class="row">
+    <div class="col-sm">
+        {{with ($.Scratch.Get "prevPage")}}
+            <a href="{{.Permalink}}" data-toggle="tooltip" title="{{.Title}}">
+                <i class="fa fa-arrow-circle-left"></i> Previous
+            </a>
+        {{end}}
+    </div>
+    <div class="col-sm text-right">
+        {{with ($.Scratch.Get "nextPage")}}
+            <a href="{{.Permalink}}" data-toggle="tooltip" title="{{.Title}}">
+                Next <i class="fa fa-arrow-circle-right"></i>
+            </a>
+        {{end}}
+    </div>
+</div>
+
