@@ -1,6 +1,6 @@
 ---
 title: "Windows Vagrant Setup"
-icon: "ti-plug"
+type : "docs"
 description: "Vagrant installation on Windows"
 weight: 3
 ---

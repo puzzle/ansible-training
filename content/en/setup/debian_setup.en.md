@@ -1,6 +1,6 @@
 ---
 title: "Debian/Ubuntu Vagrant Setup"
-icon: "ti-plug"
+type : "docs"
 description: "Vagrant installation on Debian/Ubuntu Linux"
 weight: 3
 ---

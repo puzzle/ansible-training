@@ -1,9 +1,8 @@
 ---
 title: "Setup"
-icon: "ti-plug"
 description: "Techlab Setup"
 type : "docs"
-weight: 99
+weight: 1
 ---
 
 ### Puzzle Techlab Setup

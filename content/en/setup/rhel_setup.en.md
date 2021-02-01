@@ -1,6 +1,6 @@
 ---
 title: "CentOS/RHEL Vagrant Setup"
-icon: "ti-plug"
+type : "docs"
 description: "Vagrant installation on CentOS/RHEL Linux"
 weight: 3
 ---
