@@ -1,9 +1,9 @@
 ---
 title: "Labs"
-icon: "ti-panel"
-description: "Ansible Techlabs"
-type : "docs"
-weight: 20
+weight: 2
+menu:
+  main:
+    weight: 2
 ---
 
 Welcome to the Puzzle Ansible Techlab. This is an

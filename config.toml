@@ -1,5 +1,5 @@
 baseurl = "/"
-title = "Ansible Techlabs"
+title = "Ansible Training"
 
 enableGitInfo = true
 
@@ -38,7 +38,7 @@ anchor = "smart"
 
 [Languages]
 [Languages.en]
-title = "Puzzle Ansible Techlabs"
+title = "Ansible Training"
 languageName = "English"
 weight = 1
 
