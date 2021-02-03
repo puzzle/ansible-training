@@ -7,7 +7,7 @@ weight: 1
 
 ### Puzzle Techlab Setup
 
-If you run this techlab on your own workstation a basic
+If you run this techlab on your own workstation, a basic
 [Vagrantfile][vagrantfile] is provided to get your lab
 environment up and running in a matter of minutes.
 
