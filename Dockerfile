@@ -1,29 +1,11 @@
-ARG HUGO_VERSION=0.70.0
+FROM klakegg/hugo:0.80.0-ext-alpine AS builder
 
-FROM registry.puzzle.ch/puzzle/hugo:${HUGO_VERSION} AS builder
+COPY . /src
 
-EXPOSE 8080
-
-# add git - required for Hugo GitInfo
-RUN apk add git && rm -rf /var/cache/apk/*
-
-RUN mkdir -p /opt/app/src/static && \
-    chmod -R og+rwx /opt/app
-
-WORKDIR /opt/app/src
-
-ARG HUGO_BASE_URL
-ENV HUGO_BASE_URL $HUGO_BASE_URL
-
-COPY . /opt/app/src
-
-RUN hugo --baseURL=${HUGO_BASE_URL:-http://localhost/} \
-  --theme ${HUGO_THEME:-dot} --minify
+RUN hugo --minify
 
 FROM nginxinc/nginx-unprivileged:alpine
 
-USER root
-RUN sed -i '/^http {/a \    port_in_redirect off;' /etc/nginx/nginx.conf
+EXPOSE 8080
 
-USER 101
-COPY --from=builder  /opt/app/src/public /usr/share/nginx/html
+COPY --from=builder /src/public /usr/share/nginx/html

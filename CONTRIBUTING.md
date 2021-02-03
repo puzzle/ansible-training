@@ -1,4 +1,4 @@
-# How to contribute to the Puzzle Ansible Techlabs
+# How to contribute to the Puzzle Ansible Training
 
 :+1::tada: First off, thanks for taking the time to contribute! :tada::+1:
 
@@ -20,7 +20,7 @@
 
 * **New Feature**: Implement your Feature on a fork and create a pull request. The core team will gladly check and eventually merge your pull request.
 
-## Do you have questions about the techlab?
+## Do you have questions about the training?
 
 * Ask your question as an issue on GitHub
 
