@@ -41,7 +41,7 @@ git pull --recurse-submodules
 Run the following command to update all submodules with their newest upstream version:
 
 ```bash
-git submodule update --remote
+git submodule update --remotefa2cac2e6d8c7cff300561a7d557b1503238a75d
 ```
 
 ## Build using Docker
@@ -49,7 +49,7 @@ git submodule update --remote
 Build the image:
 
 ```bash
-docker build . --build-arg HUGO_BASE_URL=http://localhost:8080/ -t puzzle/ansible-techlab:latest
+docker build . -t puzzle/ansible-techlab:latest
 ```
 
 Run it locally:
