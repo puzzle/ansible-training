@@ -41,7 +41,7 @@ git pull --recurse-submodules
 Run the following command to update all submodules with their newest upstream version:
 
 ```bash
-git submodule update --remotefa2cac2e6d8c7cff300561a7d557b1503238a75d
+git submodule update --remote
 ```
 
 ## Build using Docker
