@@ -49,7 +49,7 @@ git submodule update --remote
 Build the image:
 
 ```bash
-docker build . --build-arg HUGO_BASE_URL=http://localhost:8080/ -t puzzle/ansible-techlab:latest
+docker build . -t puzzle/ansible-techlab:latest
 ```
 
 Run it locally:
