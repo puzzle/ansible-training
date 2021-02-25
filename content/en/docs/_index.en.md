@@ -43,4 +43,4 @@ of this website.
 
 If you already have a setup or the instructor provided
 a ready-made one, you may skip ahead to
-[1.0 Setting up Ansible](01.0)
+[1.0 Setting up Ansible](01)
