@@ -1,6 +1,7 @@
 ---
 title: "5.1 - Ansible Roles - Handlers and Blocks"
 weight: 51
+sectionnumber: 5.1
 ---
 
 We start to use handlers and blocks as well.
