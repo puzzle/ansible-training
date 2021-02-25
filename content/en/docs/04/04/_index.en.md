@@ -50,9 +50,9 @@ Run the playbook.
 ## Solutions
 
 {{% details title="Task 1" %}}
-[https://docs.ansible.com/ansible/latest/cli/ansible-pull.html](https://docs.ansible.com/ansible/latest/cli/ansible-pull.html])
-[https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html#ansible-pull](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html#ansible-pull])
-[https://github.com/ansible/ansible-examples/blob/master/language_features/ansible_pull.yml](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html#ansible-pull])
+[ansible-pull](https://docs.ansible.com/ansible/latest/cli/ansible-pull.html)
+[Ansible-pull](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html#ansible-pull])
+[GitHub ansible-examples](https://github.com/ansible/ansible-examples/blob/master/language_features/ansible_pull.yml)
 {{% /details %}}
 
 {{% details title="Task 2" %}}

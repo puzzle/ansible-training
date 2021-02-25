@@ -43,7 +43,7 @@ $ ansible-doc -s file
 
 {{% details title="Task 2" %}}
 - visit [Ansible Docs](https://docs.ansible.com/)
-- visit [Ansible Docs - Modules by category](https://docs.ansible.com/ansible/latest/modules/modules_by_category.html)
+- visit [Ansible Docs - Modules by category](https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html)
 {{% /details %}}
 
 {{% details title="Task 3" %}}
@@ -61,5 +61,5 @@ $ ls -lahr /usr/share/doc/ | grep jinja2
 
 {{% details title="Task 4" %}}
 - [https://docs.ansible.com/ansible/devel/](https://docs.ansible.com/ansible/devel/)
-- [https://docs.ansible.com/ansible/devel/roadmap/index.html#ansible-roadmap](https://docs.ansible.com/ansible/devel/roadmap/index.html#ansible-roadmap)
+- [https://docs.ansible.com/ansible/devel/roadmap/index.html#ansible-roadmap](https://docs.ansible.com/ansible/devel/roadmap/ansible_roadmap_index.html)
 {{% /details %}}

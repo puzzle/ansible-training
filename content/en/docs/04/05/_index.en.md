@@ -28,7 +28,7 @@ In the playbook `async.yml` do the following:
 - Run the playbook.
 
 {{% alert title="Tip" color="info" %}}
-If unsure, check the documentation about [async_status](https://docs.ansible.com/ansible/latest/modules/async_status_module.html#) for an example.
+If unsure, check the documentation about [async_status](https://docs.ansible.com/ansible/2.9/modules/async_status_module.html) for an example.
 {{% /alert %}}
 
 ## Solutions

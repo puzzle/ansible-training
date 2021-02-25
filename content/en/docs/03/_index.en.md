@@ -95,7 +95,7 @@ $ ansible all -i hosts -m setup -a "filter=ansible_default_ipv4"
 {{% /details %}}
 
 {{% details title="Task 3" %}}
-  - See Ansible docs for special variables: <https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html>
+  - See Ansible docs for special variables: [Special Variables](https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html)
   - `inventory_hostname` contains the name of the managed host from the inventory file and can be used to set the hostname on the servers.
 {{% /details %}}
 
