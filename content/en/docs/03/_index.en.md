@@ -118,7 +118,7 @@ $ ansible-doc -s hostname
 {{% details title="Task 5" %}}
 ```bash
 $ ansible all -i hosts -b -m hostname -a "name={{ inventory_hostname }}"
-$ ansible all -i hosts -b -a "cat /etc/hostname"
+$ ansible all -i hosts -a "cat /etc/hostname"
 ```
 {{% /details %}}
 
