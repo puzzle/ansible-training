@@ -67,6 +67,7 @@ url = "https://www.puzzle.ch"
 copyright = "Puzzle ITC GmbH"
 github_repo = "https://github.com/puzzle/ansible-training"
 imagePrefix = "puzzle_"
+enabledModule = "base"
 
 # Enable Lunr.js offline search
 offlineSearch = true
