@@ -1,0 +1,49 @@
+From 30837a18279c01a2321ff23f730d5bac3cc62068 Mon Sep 17 00:00:00 2001
+From: Lukas Grimm <grimm@puzzle.ch>
+Date: Mon, 15 Mar 2021 17:06:13 +0100
+Subject: [PATCH] added stuff
+
+---
+ index.html | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
+
+diff --git a/index.html b/index.html
+index ae8d607..57fdc17 100644
+--- a/index.html
++++ b/index.html
+@@ -8,7 +8,7 @@
+ 
+ 		<link rel="stylesheet" href="dist/reset.css">
+ 		<link rel="stylesheet" href="dist/reveal.css">
+-		<link rel="stylesheet" href="dist/theme/black.css" id="theme">
++		<link rel="stylesheet" href="dist/theme/puzzle.css" id="theme">
+ 
+ 		<!-- Theme used for syntax highlighted code -->
+ 		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+@@ -16,9 +16,11 @@
+ 	<body>
+ 		<div class="reveal">
+ 			<div class="slides">
+-				<section>Slide 1</section>
+-				<section>Slide 2</section>
+-			</div>
++				<section data-markdown="ansible-techlab/puzzle-demo.md"
++				             data-separator="^----"
++				             data-separator-vertical="^\*\*\*"
++				             data-separator-notes="^Note:">
++				</section>
+ 		</div>
+ 
+ 		<script src="dist/reveal.js"></script>
+@@ -31,6 +33,8 @@
+ 			// - https://revealjs.com/config/
+ 			Reveal.initialize({
+ 				hash: true,
++				width: 1280,
++ 				height: 720,
+ 
+ 				// Learn about plugins: https://revealjs.com/plugins/
+ 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+-- 
+2.30.2
+
