@@ -52,7 +52,7 @@ sudo apt install libvirt-daemon libvirt-clients libvirt-dev
 
 # install vagrant from hashicorp
 curl --location -o /var/tmp/vagrant_2.2.7_x86_64.deb \
-  https://releases.hashicorp.com/vagrant/2.2.7/vagrant_2.2.7_x86_64.deb
+  https://releases.hashicorp.com/vagrant/2.2.16/vagrant_2.2.16_i686.deb
 sudo dpkg -i /var/tmp/vagrant_2.2.7_x86_64.deb
 
 # install vagrant plugin for libvirt
