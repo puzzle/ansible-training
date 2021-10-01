@@ -25,12 +25,12 @@ Some good advice:
 
 Connect to your controller host by pasting the DNS name into your web browser
 
-    https://<dnsname>
+https://<dnsname>
 
 Login using the following username and password:
 
-    username: ansible
-    password: << web password >>
+username: ansible
+password: << web password >>
 
 After a successful login you should see an editor similar to *visual studio code* in your browser. In the navigation bar you can open "Terminal" or press `ctrl-shift-^` to open a terminal. Do this now and then continue with the installation of Ansible.
 
@@ -60,6 +60,7 @@ You can access the nodes using SSH as well. Use your favourite SSH client to con
 
 * Create an inventory file named `hosts` in your working directory with your public IPs:
 
+```bash
    [controller]
    control0 ansible_host=<your-controller-ip>
 
@@ -68,6 +69,7 @@ You can access the nodes using SSH as well. Use your favourite SSH client to con
 
    [db]
    node2 ansible_host=<your-node2-ip>
+```
 
 {{% alert title="Tip" color="info" %}}
 Instead of copying the ssh-id to the controller itself you could set `ansible_connection=local` in the inventory file for host `control0`. Then Ansible would not use SSH to connect to the controller, but use the "local" transport mechanism.
