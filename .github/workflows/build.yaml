@@ -80,6 +80,7 @@ jobs:
           KUBE_CONFIG: '${{ secrets.KUBECONFIG_TEST }}'
         run: |
           mkdir -p $HOME/.kube
+          echo "$KUBE_CONFIG"
           echo "$KUBE_CONFIG" > $HOME/.kube/config
       - 
         name: Deploy Helm Release
