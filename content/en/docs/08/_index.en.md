@@ -53,7 +53,6 @@ Note the subfolder `ansible-collections` that was created. This is default ansib
 * Write a requirements file `requirements.yml` that ensures the collection `cloud` from `cloudscale_ch` is installed. Install the collection by using this requirements file.
 
 
-
 ### Task 6
 
 * Install the collection `podman` from namespace `containers` using any of the methods you know.
@@ -68,6 +67,7 @@ Note the subfolder `ansible-collections` that was created. This is default ansib
 
 
 ## Solutions
+
 {{% details title="Task 1" %}}
 ```bash
 $ pwd
@@ -295,6 +295,6 @@ $
 
 {{% details title="Task 7" %}}
 ```bash
-$ ansible localhost -b -m yum -a"name=podman, state=absent"
+ansible localhost -b -m yum -a"name=podman, state=absent"
 ```
 {{% /details %}}

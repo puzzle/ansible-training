@@ -16,8 +16,8 @@ the setup on your platform of choice.
 
 Currently a setup guide for Linux and Windows exists.
 
-* <i class="ti-linux" style="color: #DD3300;"></i> [Vagrant Setup on CentOS/RHEL Linux](rhel_setup)
-* <i class="ti-linux" style="color: #DD9900;"></i> [Vagrant Setup on Debian/Ubuntu Linux](debian_setup)
-* <i class="ti-microsoft" style="color: #0099FF;"></i> [Vagrant Setup on Windows](windows_setup)
+* [Vagrant Setup on CentOS/RHEL Linux](rhel_setup)
+* [Vagrant Setup on Debian/Ubuntu Linux](debian_setup)
+* [Vagrant Setup on Windows](windows_setup)
 
 [vagrantfile]: https://raw.githubusercontent.com/puzzle/ansible-techlab/master/Vagrantfile

@@ -61,4 +61,3 @@ In this lab we are working with AWX
 ![Demo job run on nodes](awx012.png)
 {{% /details %}}
 
-
