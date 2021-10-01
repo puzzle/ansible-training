@@ -54,9 +54,11 @@ Create a playbook `userplay.yml` doing the following and running on `node1` and 
 * On `node2`: Set the login shell to `/bin/zsh` for all users.
 
 #### Bonus 2
+
 * On `node2`: If (and only if) the user is "santos", disable login. Do this by setting santos's login shell to `/usr/sbin/nologin`. Use an if/else statement in the template for that purpose.
 
 #### Bonus 3
+
 * All on `node2`:
 * Set the default password for all of the newly created users to "`N0t_5o_s3cur3`"
 * Once the password has been set, your playbook should not set it again. Not even when it got changed.
@@ -73,9 +75,11 @@ Be aware that it is NOT a good idea to set passwords in clear text. We will lear
 Create a playbook `serverinfo.yml` that does the following:
 
 * On all nodes: Place a file `/root/serverinfo.txt` with a line like follows for each and every server in the inventory:
+
 ```
 <hostname>: OS: <operating system> IP: <IP address> Virtualization Role: <hardware type>
 ```
+
 * Replace `hostname`, `operating system`, `IP address` and `hardware type` with a reasonable fact.
 * Run your playbook and check on all servers by using an `ansible` ad hoc command if the content of the file `/root/serverinfo.txt` is as expected.
 
@@ -107,7 +111,7 @@ Edit your `motd.yml` playbook to something like this:
 
 Run the playbook again.
 ```bash
-$ ansible-playbook motd.yml -l node1,node2
+ ansible-playbook motd.yml -l node1,node2
 ```
 {{% /details %}}
 
@@ -125,8 +129,8 @@ OS:         {{ ansible_os_family }}
 Rerun the playbook and check if the text has been changed accordingly:
 
 ```bash
-$ ansible-playbook motd.yml -l node1,node2
-$ ansible all -a "cat /etc/motd"
+ansible-playbook motd.yml -l node1,node2
+ansible all -a "cat /etc/motd"
 ```
 {{% /details %}}
 

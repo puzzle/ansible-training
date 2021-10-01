@@ -42,6 +42,7 @@ Remember `loop:` or `with_items:`
 * Get a feeling for errors: Remove the quotes around the curly brackets and have a look at the output.
 
 ### TASK 7 (BONUS!)
+
 * Create a playbook `takemehome.yml` that does the following:
   * Create a compressed archive containing all the content from your `/home/ansible/techlab/` folder
   * Don't include the subfolder `/home/ansible/techlab/awx` with all its content in the archive.
@@ -112,7 +113,7 @@ Content of `motd.yml`:
        content: "{{ motd_content }}"
 ```
 ```bash
-$ ansible-playbook motd.yml
+ansible-playbook motd.yml
 ```
 
 Take a look at what your playbook just did:
@@ -175,9 +176,9 @@ motd_content: "This is node2\n"
 Run your playbook and check if the text was changed accordingly on the two nodes:
 
 ```bash
-$ ansible-playbook motd.yml -l node1,node2
+ansible-playbook motd.yml -l node1,node2
 
-$ ansible web,node2 -a "cat /etc/motd"
+ansible web,node2 -a "cat /etc/motd"
 ```
 {{% /details %}}
 
@@ -191,7 +192,7 @@ $ ansible web,node2 -a "cat /etc/motd"
       copy:
         dest: /etc/motd
         content: {{ motd_content }} #<-- missing quotes here
-``` 
+```
 {{% /details %}}
 
 {{% details title="Task 7" %}}
@@ -231,8 +232,8 @@ $ cat takemehome.yml
 ```
 Run the playbook by using the SMTP password from the file created before. After the playbook was sent, delete the password file.
 ```bash
-$ ansible-playbook takemehome.yml --extra-vars "@password_file.yml"
-$ ansible-playbook takemehome.yml # if vars file provided in playbook
-$ rm -f password_file.yml       
+ansible-playbook takemehome.yml --extra-vars "@password_file.yml"
+ansible-playbook takemehome.yml # if vars file provided in playbook
+rm -f password_file.yml       
 ```
 {{% /details %}}
