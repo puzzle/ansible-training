@@ -37,6 +37,7 @@ You have to have a reasonable fresh version of Ansible in order to get this work
 {{% /alert %}}
 
 ## Solutions
+
 {{% details title="Task 1" %}}
 ```bash
 ansible-galaxy search nginx
