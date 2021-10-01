@@ -25,12 +25,16 @@ Some good advice:
 
 Connect to your controller host by pasting the DNS name into your web browser
 
+```bash
 https://<dnsname>
+```
 
 Login using the following username and password:
 
+```
 username: ansible
 password: << web password >>
+```
 
 After a successful login you should see an editor similar to *visual studio code* in your browser. In the navigation bar you can open "Terminal" or press `ctrl-shift-^` to open a terminal. Do this now and then continue with the installation of Ansible.
 
@@ -111,6 +115,7 @@ Opening a SSH connection:
 ```bash
    ssh -l ansible <node-ip>
 ```
+
 * Enter "yes" when prompted if you want to continue connecting
 * Insert your SSH-password you received from your instructor when prompted and hit return
 
