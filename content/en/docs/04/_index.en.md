@@ -41,7 +41,7 @@ Check what the options `immediate` and `permanent` of the `firewalld` module mea
 
 {{% alert title="Tip" color="info" %}}
 Take a look at the user guide and find out how to use more complex inventory patterns.
-See [Ansible Docs - User Guide ](https://docs.ansible.com/ansible/latest/user_guide/intro_patterns.html#common-patterns)
+See [Ansible Docs - User Guide](https://docs.ansible.com/ansible/latest/user_guide/intro_patterns.html#common-patterns)
 {{% /alert %}}
 
 * The folder has to have the sticky bit set, so that only the owner (set owner/group to `ansible`) of the content (or root) can delete the files.
@@ -83,13 +83,13 @@ Below is a possible solution for your playbook:
 Run your playbook with:
 
 ```bash
-$ ansible-playbook -i hosts webserver.yml
+ansible-playbook -i hosts webserver.yml
 ```
 
 Check `httpd.service` on group `web`:
 
 ```bash
-$ ansible -i hosts web -b -a "systemctl status httpd"
+ ansible -i hosts web -b -a "systemctl status httpd"
 ```
 {{% /details %}}
 
@@ -98,9 +98,9 @@ $ ansible -i hosts web -b -a "systemctl status httpd"
 Copy the default ansible.cfg to your directory:
 
 ```bash
-$ mkdir /home/ansible/techlab/inventory
-$ mv /home/ansible/techlab/hosts /home/ansible/techlab/inventory/
-$ cp /etc/ansible/ansible.cfg /home/ansible/techlab/
+mkdir /home/ansible/techlab/inventory
+mv /home/ansible/techlab/hosts /home/ansible/techlab/inventory/
+cp /etc/ansible/ansible.cfg /home/ansible/techlab/
 ```
 
 Edit your `ansible.cfg` file. Uncomment and edit the "inventory" entry to use your file:
@@ -136,7 +136,7 @@ Wrong intendation:
   tasks:
     - name: install httpd
       yum:
-      name: httpd	       # <-- wrong intendation
+      name: httpd        # <-- wrong intendation
       state: installed   # <-- wrong intendation
 ```
 
