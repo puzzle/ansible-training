@@ -8,7 +8,7 @@ In this lab we’ll continue with our environment setup from [Chapter 1](../01) 
 
 ### Task 1
 
-  * Ping all nodes in the inventory file using the ping module.
+* Ping all nodes in the inventory file using the ping module.
 
 {{% alert title="Tip" color="info" %}}
 You’ve used the `ping` module in a previous lab.
@@ -16,39 +16,39 @@ You’ve used the `ping` module in a previous lab.
 
 ### Task 2
 
-  * Gather all facts from the nodes.
-  * Only gather the fact `ansible_default_ipv4` from all hosts.
+* Gather all facts from the nodes.
+* Only gather the fact `ansible_default_ipv4` from all hosts.
 
 ### Task 3
 
-  * Search through the online documentation for special (magical) variables.
-  * Which special variable could you use to set the `hostname` on each of the servers using the information in the `inventory` file?
+* Search through the online documentation for special (magical) variables.
+* Which special variable could you use to set the `hostname` on each of the servers using the information in the `inventory` file?
 
 ### Task 4
 
-  * Try to find an appropriate Ansible module to complete Task 3. Find out what parameters the module accepts.
-  * This module will try to make changes to the `/etc/hostname` file. What options should you use with the `ansible` command to make that work?
+* Try to find an appropriate Ansible module to complete Task 3. Find out what parameters the module accepts.
+* This module will try to make changes to the `/etc/hostname` file. What options should you use with the `ansible` command to make that work?
 
 ### Task 5
 
-  * Set the hostname on all nodes using the inventory and an ansible ad hoc command.
-  * Check on all nodes if the hostname has been changed.
+* Set the hostname on all nodes using the inventory and an ansible ad hoc command.
+* Check on all nodes if the hostname has been changed.
 
 ### Task 6
 
 Complete the next steps using Ansible ad hoc commands:
 
-  * Install `httpd` on the nodes in group `web`
-  * Start `httpd` on the remote server and configure it to always start on boot.
-  * Revert the changes made by the ad hoc commands again.
+* Install `httpd` on the nodes in group `web`
+* Start `httpd` on the remote server and configure it to always start on boot.
+* Revert the changes made by the ad hoc commands again.
 
 ### Task 7
 
 Complete the next steps using ansible ad hoc commands:
 
-  * Create a file `/home/ansible/testfile.txt` on node2.
-  * Paste some custom text into the file using the `copy` module.
-  * Remove the file with an ad hoc command.
+* Create a file `/home/ansible/testfile.txt` on node2.
+* Paste some custom text into the file using the `copy` module.
+* Remove the file with an ad hoc command.
 
 ## Solutions
 
@@ -95,8 +95,10 @@ $ ansible all -i hosts -m setup -a "filter=ansible_default_ipv4"
 {{% /details %}}
 
 {{% details title="Task 3" %}}
-  * See Ansible docs for special variables: [Special Variables](https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html)
-  * `inventory_hostname` contains the name of the managed host from the inventory file and can be used to set the hostname on the servers.
+
+* See Ansible docs for special variables: [Special Variables](https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html)
+* `inventory_hostname` contains the name of the managed host from the inventory file and can be used to set the hostname on the servers.
+
 {{% /details %}}
 
 {{% details title="Task 4" %}}
@@ -112,28 +114,30 @@ $ ansible-doc -s hostname
   hostname:
       name:                  # (required) Name of the host
 ```
-  - We will need root privileges and therefore we have to use the become option `-b`
+
+* We will need root privileges and therefore we have to use the become option `-b`
+
 {{% /details %}}
 
 {{% details title="Task 5" %}}
 ```bash
-$ ansible all -i hosts -b -m hostname -a "name={{ inventory_hostname }}"
-$ ansible all -i hosts -a "cat /etc/hostname"
+ansible all -i hosts -b -m hostname -a "name={{ inventory_hostname }}"
+ansible all -i hosts -a "cat /etc/hostname"
 ```
 {{% /details %}}
 
 
 {{% details title="Task 6" %}}
 ```bash
-$ ansible web -i hosts -b -m yum -a "name=httpd state=installed"
-$ ansible web -i hosts -b -m service -a "name=httpd state=started enabled=yes"
+ansible web -i hosts -b -m yum -a "name=httpd state=installed"
+ansible web -i hosts -b -m service -a "name=httpd state=started enabled=yes"
 ```
 
 Reverting the changes made on the remote hosts:
 
 ```bash
-$ ansible web -i hosts -b -m service -a "name=httpd state=stopped enabled=no"
-$ ansible web -i hosts -b -m yum -a "name=httpd state=absent"
+ansible web -i hosts -b -m service -a "name=httpd state=stopped enabled=no"
+ansible web -i hosts -b -m yum -a "name=httpd state=absent"
 ```
 {{% /details %}}
 
@@ -141,16 +145,16 @@ $ ansible web -i hosts -b -m yum -a "name=httpd state=absent"
 Possible solution 1:
 
 ```bash
-$ ansible node2 -i hosts -m file -a "path=/home/ansible/testfile.txt state=touch"
-$ ansible node2 -i hosts -m copy -a "dest=/home/ansible/testfile.txt content='SOME RANDOM TEXT'"
-$ ansible node2 -i hosts -m file -a "path=/home/ansible/testfile.txt state=absent"
+ansible node2 -i hosts -m file -a "path=/home/ansible/testfile.txt state=touch"
+ansible node2 -i hosts -m copy -a "dest=/home/ansible/testfile.txt content='SOME RANDOM TEXT'"
+ansible node2 -i hosts -m file -a "path=/home/ansible/testfile.txt state=absent"
 ```
 
 Possible solution 2:
 The copy module can create the file directly
 
 ```bash
-$ ansible node2 -i hosts -m copy -a "dest=/home/ansible/testfile.txt content='SOME RANDOM TEXT'"
-$ ansible node2 -i hosts -m file -a "path=/home/ansible/testfile.txt state=absent"
+ansible node2 -i hosts -m copy -a "dest=/home/ansible/testfile.txt content='SOME RANDOM TEXT'"
+ansible node2 -i hosts -m file -a "path=/home/ansible/testfile.txt state=absent"
 ```
 {{% /details %}}
