@@ -16,8 +16,8 @@ In this lab we learn how to handle output of tasks.
 You might need to install the `postfix` package on `node1`.
 {{% /alert %}}
 
-
 ### Task 2
+
 * Add another task to the playbook `output.yml` using the `debug` module and print out the resulting filenames of the search above.
 
 {{% alert title="Tip" color="info" %}}
@@ -27,6 +27,7 @@ Use an appropriate return value to show the output. Information about return val
 * Now, loop over the results and create a backup file called `<filename.cf>.bak` for each file `<filename.cf>` that was found. Use the `command` module. Remember, that the result is probably a list with multiple elements.
 
 ### Task 3 (Advanced)
+
 * Now we enhance our playbook `output.yml` to only create the backup if no backup file is present.
 * Solve this task by searching for files ending with `.bak` and registering the result to a variable. Then do tasks only if certain conditions are met.
 
@@ -35,6 +36,7 @@ Have a look at the documentation about the command modul: [Ansible Docs - comman
 {{% /alert %}}
 
 ### Task 4 (Advanced)
+
 * Ensure `httpd` is stopped by using an Ansible ad hoc command.
 * Write a play `servicehandler.yml` that does the following:
 * Install `httpd` by using the `yum` module
@@ -48,6 +50,7 @@ Have a look at the documentation about conditionals: [Ansible Docs - Playbook Co
 {{% /alert %}}
 
 ### Task 5 (Advanced)
+
 * Rewrite the playbook `servicehandler.yml` and ensure that the `ignore_errors: true` line is removed. Instead set the state of the task to failed when and only when the output of `systemctl status httpd` contains the string "failed".
 
 {{% alert title="Note" color="primary" %}}
@@ -142,7 +145,7 @@ Example `output.yml`:
 
 Stop the `httpd` service with Ansible:
 ```bash
-$ ansible web -b -a "systemctl stop httpd"
+ansible web -b -a "systemctl stop httpd"
 ```
 
 Content of `servicehandler.yml`:
@@ -190,11 +193,11 @@ Example `servicehandler.yml`:
 ```
 
 ```bash
-$ ansible web -b -m copy -a "content='bli bla blup' dest=/etc/httpd/conf/httpd.conf backup=yes"
+ansible web -b -m copy -a "content='bli bla blup' dest=/etc/httpd/conf/httpd.conf backup=yes"
 ```
 Now fix your apache config. You could use the backup of the file created in the previous ad-hoc command.
 
 ```bash
-$ ansible web -b -m service -a "name=httpd state=restarted"
+ansible web -b -m service -a "name=httpd state=restarted"
 ```
 {{% /details %}}

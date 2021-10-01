@@ -7,6 +7,7 @@ sectionnumber: 4.5
 In this lab we learn about task control.
 
 ### Task 1
+
 * Write an ad-hoc command that sleeps for 1000 seconds and runs on `node1`
 * Ensure that the command times out after 10 seconds if not completed by then. Run the task.
 * Use the `time` command to see how long your ad-hoc command had to run. Use `man time` to see how `time` works.
@@ -23,6 +24,7 @@ In this lab we learn about task control.
 ### Task 3 (Advanced)
 
 In the playbook `async.yml` do the following:
+
 * Put the task above in the background and change the values of the sleepduration, polling intervall ans async time to reasonable values.
 * Check back with an `async_status` task if the sleep-task has finished.
 * Run the playbook.
@@ -43,16 +45,16 @@ $ time ansible node1 -i hosts -B 10 -a "/usr/bin/sleep 1000"
 node1 | FAILED | rc=-1 >>
 async task did not complete within the requested time - 10s
 
-real	0m17.626s #<- a bit more than 10 seconds
-user	0m3.603s
-sys	0m0.510s
+real  0m17.626s #<- a bit more than 10 seconds
+user  0m3.603s
+sys 0m0.510s
 $ time ansible node1 -i hosts -B 10 -P 30 -a "/usr/bin/sleep 1000"
 node1 | FAILED | rc=-1 >>
 async task did not complete within the requested time - 10s
 
-real	0m32.625s #<- more than the polling intervall
-user	0m5.541s
-sys	0m0.684s
+real  0m32.625s #<- more than the polling intervall
+user  0m5.541s
+sys 0m0.684s
 $
 ```
 Setting the poll parameter without the async parameter results in the job not beeing put in background.
