@@ -17,7 +17,7 @@ acendTraining:
         domainmain: puzzle.ch
         domain: k8s.puzzle.ch
 
-nameOverride: "ansible-basics"
+nameOverride: "ansible-training"
 fullnameOverride: ""
 
 serviceAccount:
