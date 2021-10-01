@@ -7,26 +7,26 @@ sectionnumber: 7
 In this lab we are going to use roles from galaxy and from other sources.
 
 ### Task 1
-- Search the Ansible Galaxy for a nginx role.
-- Install such a nginx role using `ansible-galaxy`.
-- Create a tar.gz file `nginx.tar.gz` with the content of the role using an Ansible ad hoc command.
+* Search the Ansible Galaxy for a nginx role.
+* Install such a nginx role using `ansible-galaxy`.
+* Create a tar.gz file `nginx.tar.gz` with the content of the role using an Ansible ad hoc command.
 
 ### Task 2
-- Remove the nginx role using `ansible-galaxy`.
-- Create a file `requirements.yml` in the folder `/home/ansible/techlab/roles/`. The file should contain the information to install the role packed in `nginx.tar.gz` as `mynginx`.
-- Install the role by using an appropriate `ansible-galaxy` command and the `requirements.yml` file.
-- Remove the role `mynginx` using `ansible-galaxy`.
-- Remove the file `nginx.tar.gz` and `roles/requirements.yml` by using an ad hoc command for each.
+* Remove the nginx role using `ansible-galaxy`.
+* Create a file `requirements.yml` in the folder `/home/ansible/techlab/roles/`. The file should contain the information to install the role packed in `nginx.tar.gz` as `mynginx`.
+* Install the role by using an appropriate `ansible-galaxy` command and the `requirements.yml` file.
+* Remove the role `mynginx` using `ansible-galaxy`.
+* Remove the file `nginx.tar.gz` and `roles/requirements.yml` by using an ad hoc command for each.
 
 ### Task 3 (CentOS/RHEL only)
-- Search your Yum repositories for packages containing the string `roles`.
-- Install the package providing Ansible roles for system management.
-- See what files where installed with this package.
+* Search your Yum repositories for packages containing the string `roles`.
+* Install the package providing Ansible roles for system management.
+* See what files where installed with this package.
 
 ### Task 4 (CentOS/RHEL only)
-- Search the installed files for an example to use the `rhel-system-roles.selinux` role.
-- Use the example to create a playbook `selinux.yml` to set selinux mode to disabled on all servers.
-- Run the playbook.
+* Search the installed files for an example to use the `rhel-system-roles.selinux` role.
+* Use the example to create a playbook `selinux.yml` to set selinux mode to disabled on all servers.
+* Run the playbook.
 
 {{% alert title="Note" color="primary" %}}
 You have to have a reasonable fresh version of Ansible in order to get this working. On older systems you could get an error message containing strings like `template error while templating string: no test named 'version'`.

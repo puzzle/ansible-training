@@ -8,7 +8,7 @@ In this lab we’ll start to use variables and loops.
 
 ### Task 1
 
-- In your playbook `webserver.yml` you have two tasks for starting and enabling `httpd` and `firewalld`. Merge these 2 tasks into one.
+* In your playbook `webserver.yml` you have two tasks for starting and enabling `httpd` and `firewalld`. Merge these 2 tasks into one.
 
 {{% alert title="Tip" color="info" %}}
 Remember `loop:` or `with_items:`
@@ -16,22 +16,22 @@ Remember `loop:` or `with_items:`
 
 ### Task 2
 
-- In your playbook `webserver.yml`, ensure that that the package `firewalld` is installed. Do the installation of `httpd` and `firewalld` in one task. Do you really need to use a loop? Have a look at the description of Ansible's `yum` module .
+* In your playbook `webserver.yml`, ensure that that the package `firewalld` is installed. Do the installation of `httpd` and `firewalld` in one task. Do you really need to use a loop? Have a look at the description of Ansible's `yum` module .
 
 ### Task 3
 
-- Write a new playbook `motd.yml` which sets the content of `/etc/motd` on all servers to a custom text. Use the variable `motd_content` and the `copy` module with the option `content` containing the variable.
+* Write a new playbook `motd.yml` which sets the content of `/etc/motd` on all servers to a custom text. Use the variable `motd_content` and the `copy` module with the option `content` containing the variable.
 
 ### Task 4
 
-- Using the command line, overwrite the content of `motd` by providing the variable `motd_content` with a different value.
-- Modify the content again, but use a `vars.yml` file.
+* Using the command line, overwrite the content of `motd` by providing the variable `motd_content` with a different value.
+* Modify the content again, but use a `vars.yml` file.
 
 ### Task 5
 
-- Set the `motd_content` from Task 4 using `group_vars` for `node1` and `host_vars` for `node2`.
-- Make sure you remove the variable definition in `motd.yml`. Reason being it will have a higher priority.
-- Limit the run to `node1` and `node2`.
+* Set the `motd_content` from Task 4 using `group_vars` for `node1` and `host_vars` for `node2`.
+* Make sure you remove the variable definition in `motd.yml`. Reason being it will have a higher priority.
+* Limit the run to `node1` and `node2`.
 
 {{% alert title="Tip" color="info" %}}
   Think about where you have to create the folders for your host and group variables
@@ -39,17 +39,17 @@ Remember `loop:` or `with_items:`
 
 ### Task 6
 
-- Get a feeling for errors: Remove the quotes around the curly brackets and have a look at the output.
+* Get a feeling for errors: Remove the quotes around the curly brackets and have a look at the output.
 
 ### TASK 7 (BONUS!)
-- Create a playbook `takemehome.yml` that does the following:
-  - Create a compressed archive containing all the content from your `/home/ansible/techlab/` folder
-  - Don't include the subfolder `/home/ansible/techlab/awx` with all its content in the archive.
-  - Compress the archive using any supported type of compression.
-  - Ensure an archive is created even if the source is one single file.
-  - Send this file via mail to your own email adress. Note that you have to have valid credentials for a smtp server. Put these credentials into a password file `password_file.yml`.
-  - Run the playbook using the smtp password from the file `password_file.yml`
-  - remove the password file `password_file.yml`
+* Create a playbook `takemehome.yml` that does the following:
+  * Create a compressed archive containing all the content from your `/home/ansible/techlab/` folder
+  * Don't include the subfolder `/home/ansible/techlab/awx` with all its content in the archive.
+  * Compress the archive using any supported type of compression.
+  * Ensure an archive is created even if the source is one single file.
+  * Send this file via mail to your own email adress. Note that you have to have valid credentials for a smtp server. Put these credentials into a password file `password_file.yml`.
+  * Run the playbook using the smtp password from the file `password_file.yml`
+  * remove the password file `password_file.yml`
 
 {{% alert title="Warning" color="warning" %}}
 It's NOT secure to put the smtp password unencrypted in a file. We will learn in the labs about ansible-vault how to encrypt sensitive data in a secure way.

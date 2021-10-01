@@ -7,25 +7,25 @@ sectionnumber: 4.5
 In this lab we learn about task control.
 
 ### Task 1
-- Write an ad-hoc command that sleeps for 1000 seconds and runs on `node1`
-- Ensure that the command times out after 10 seconds if not completed by then. Run the task.
-- Use the `time` command to see how long your ad-hoc command had to run. Use `man time` to see how `time` works.
-- Now add a polling interval of 30 seconds. Run the task, and ensure with the `time` command, that it had a longer runtime.
-- See what happens if you only specify the polling interval but no async timeout. Tip: set a sleep duration of only 10 seconds.
+* Write an ad-hoc command that sleeps for 1000 seconds and runs on `node1`
+* Ensure that the command times out after 10 seconds if not completed by then. Run the task.
+* Use the `time` command to see how long your ad-hoc command had to run. Use `man time` to see how `time` works.
+* Now add a polling interval of 30 seconds. Run the task, and ensure with the `time` command, that it had a longer runtime.
+* See what happens if you only specify the polling interval but no async timeout. Tip: set a sleep duration of only 10 seconds.
 
 ### Task 2
 
-- Write a playbook `async.yml` that does the same as in the task above:
-- Run a command that sleeps for 1000 second and runs on `node1`.
-- Let the task wait at most for 10 seconds before timing out.
-- Run the task.
+* Write a playbook `async.yml` that does the same as in the task above:
+* Run a command that sleeps for 1000 second and runs on `node1`.
+* Let the task wait at most for 10 seconds before timing out.
+* Run the task.
  
 ### Task 3 (Advanced)
 
 In the playbook `async.yml` do the following:
-- Put the task above in the background and change the values of the sleepduration, polling intervall ans async time to reasonable values.
-- Check back with an `async_status` task if the sleep-task has finished.
-- Run the playbook.
+* Put the task above in the background and change the values of the sleepduration, polling intervall ans async time to reasonable values.
+* Check back with an `async_status` task if the sleep-task has finished.
+* Run the playbook.
 
 {{% alert title="Tip" color="info" %}}
 If unsure, check the documentation about [async_status](https://docs.ansible.com/ansible/2.9/modules/async_status_module.html) for an example.
@@ -67,7 +67,7 @@ $
 ```bash
 $ cat async.yml 
 ---
-- hosts: node1
+^* hosts: node1
   tasks:
     - name: sleeping beauty
       command: "/usr/bin/sleep 1000"
@@ -95,7 +95,7 @@ $
 ```bash
 $ cat async.yml 
 ---
-- hosts: node1
+^* hosts: node1
   tasks:
     - name: sleeping beauty
       command: "/usr/bin/sleep 30"

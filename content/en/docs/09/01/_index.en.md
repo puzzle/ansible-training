@@ -16,40 +16,40 @@ CentOS 8 doesn't provide an easy way to install AWX -- we have to solve some pro
 
 ### Task 1
 
-- Create a playbook `prepare_for_awx.yml` that should run on the controller node.
-- That playbook should first check that at least 4GB of main memory are available on the machine `control0`.
-- It should than install the following packages: `epel-release`,  `git` and  `python3-pip`.
+* Create a playbook `prepare_for_awx.yml` that should run on the controller node.
+* That playbook should first check that at least 4GB of main memory are available on the machine `control0`.
+* It should than install the following packages: `epel-release`,  `git` and  `python3-pip`.
           
 ### Task 2
 
-- Extend `prepare_for_awx.yml`:
-  - It should add the Docker CE repository https://download.docker.com/linux/centos/docker-ce.repo to `/etc/yum.repos.d/`
-  - Install `docker-ce` by running `yum -y install --nobest docker-ce` in a `command` module.
-  - To make this idempotend, first check if it is already installed. Take care to return proper "changed" info. Use the `command` module.
-  - Start and enable `dockerd`.
-  - Add the user `ansible` to the `docker` group.
+* Extend `prepare_for_awx.yml`:
+  * It should add the Docker CE repository https://download.docker.com/linux/centos/docker-ce.repo to `/etc/yum.repos.d/`
+  * Install `docker-ce` by running `yum -y install --nobest docker-ce` in a `command` module.
+  * To make this idempotend, first check if it is already installed. Take care to return proper "changed" info. Use the `command` module.
+  * Start and enable `dockerd`.
+  * Add the user `ansible` to the `docker` group.
 
 ### Task 3
 
-- Extend `prepare_for_awx.yml`:
-  - Install Docker Compose via the Python package manager (pip).
-  - Use the  Ansible module `pip`.
+* Extend `prepare_for_awx.yml`:
+  * Install Docker Compose via the Python package manager (pip).
+  * Use the  Ansible module `pip`.
 
 ### Task 4
 
-- Extend `prepare_for_awx.yml`:
-  - Clone the AWX source from [GitHub](https://github.com/ansible/awx.git).
-  - Use Ansible's `git` module to store the cloned repo under `/home/ansible/techlab/awx/`.
-  - Choose a dedicaded version (i.e. 14.0.0), take a look at [AWX Releases]/https://github.com/ansible/awx/releases) for the current stable version.
-  - Make sure that the directory with the AWX sources is readable and writable by the user `ansible`.
+* Extend `prepare_for_awx.yml`:
+  * Clone the AWX source from [GitHub](https://github.com/ansible/awx.git).
+  * Use Ansible's `git` module to store the cloned repo under `/home/ansible/techlab/awx/`.
+  * Choose a dedicaded version (i.e. 14.0.0), take a look at [AWX Releases]/https://github.com/ansible/awx/releases) for the current stable version.
+  * Make sure that the directory with the AWX sources is readable and writable by the user `ansible`.
 
 ### Task 5
 
-- Activate the docker group for current user: Log out and log in again as user `ansible` to `control0`.
-- Change directry to `/home/ansible/techlab/awx/installer`
-- Optional: Edit the file `inventory` and change the values of `admin_user` and `admin_password` (or keep the defaults: "admin" and "password").
-- Run the installer: `ansible-playbook -i inventory install.yml`
-- With your Web Browser connect to http://<IP of control0>. You should see a login form and be able to log in.
+* Activate the docker group for current user: Log out and log in again as user `ansible` to `control0`.
+* Change directry to `/home/ansible/techlab/awx/installer`
+* Optional: Edit the file `inventory` and change the values of `admin_user` and `admin_password` (or keep the defaults: "admin" and "password").
+* Run the installer: `ansible-playbook -i inventory install.yml`
+* With your Web Browser connect to http://<IP of control0>. You should see a login form and be able to log in.
 
 ## Solutions
 {{% details title="Task 1" %}}
