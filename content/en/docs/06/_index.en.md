@@ -159,10 +159,10 @@ $ ansible-playbook secretservice.yml
 {{% details title="Task 5" %}}
 
 ```bash
-$ ansible-vault decrypt secret_vars.yml
-$ echo "---" > secret_vars.yml
-$ ansible-vault encrypt_string jamesbond -n var_username >> secret_vars.yml
-$ ansible-vault encrypt_string miss_moneypenny -n var_password >> secret_vars.yml
+ansible-vault decrypt secret_vars.yml
+echo "---" > secret_vars.yml
+ansible-vault encrypt_string jamesbond -n var_username >> secret_vars.yml
+ansible-vault encrypt_string miss_moneypenny -n var_password >> secret_vars.yml
 ```
 
 Content of secret_vars.yml
@@ -184,14 +184,14 @@ var_password: !vault |
           3931
 ```
 ```bash
-$ ansible-playbook secretservice.yml
+ansible-playbook secretservice.yml
 ```
 
 {{% /details %}}
 
 {{% details title="Task 6" %}}
 ```bash
-$ ansible node1,node2 -i inventory/hosts -b -a "rm /etc/MI6"
+ansible node1,node2 -i inventory/hosts -b -a "rm /etc/MI6"
 ```
 
 {{% alert title="Tip" color="info" %}}
@@ -203,7 +203,7 @@ Note that the `command` module is the `default` module and therefore has not to 
 {{% details title="Task 7" %}}
 
 ```bash
-$ ansible-vault encrypt secret_vars2.yml
+ansible-vault encrypt secret_vars2.yml
 ```
 
 Be sure to use `rekey` with `--new-vault-id`. By using `--vault-id`, `ansible-vault` would use the value from `vaultpasswordfile` and not the one asked for by using `@prompt`. This could be quite misleading... You can check the same unexpected behavior when trying to view an encrypted file with providing a wrong password at command line. Giving a wrong password after `ansible-vault view secret_vars2.yml --vault-id @prompt` still results in showing the decrypted content of the file when `ansible.cfg` points to the correct `vaultpasswordfile`.
@@ -211,8 +211,8 @@ Be sure to use `rekey` with `--new-vault-id`. By using `--vault-id`, `ansible-va
 There is an open [issue](https://github.com/ansible/ansible/issues/33831) about this topic on github.
 
 ```bash
-$ ansible-vault rekey secret_vars2.yml --new-vault-id @prompt
-$ ansible-vault view secret_vars2.yml --vault-id @prompt
+ansible-vault rekey secret_vars2.yml --new-vault-id @prompt
+ansible-vault view secret_vars2.yml --vault-id @prompt
 ```
 
 {{% /details %}}

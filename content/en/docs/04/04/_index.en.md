@@ -10,7 +10,7 @@ In this lab we’ll have a short glimpse at how ansible-pull works.
 
 * Search `docs.ansible.com` for information about the ansible-pull command.
 * Look for a way to execute a playbook using ansible-pull
-* Search for a example playbook 
+* Search for a example playbook
 
 ### Task 2
 

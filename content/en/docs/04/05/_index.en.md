@@ -20,7 +20,7 @@ In this lab we learn about task control.
 * Run a command that sleeps for 1000 second and runs on `node1`.
 * Let the task wait at most for 10 seconds before timing out.
 * Run the task.
- 
+
 ### Task 3 (Advanced)
 
 In the playbook `async.yml` do the following:
