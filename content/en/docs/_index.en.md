@@ -25,8 +25,8 @@ configuration management is not a prerequisite.
 This Ansible techlab assumes that each participant has a
 cluster of three virtual machines available. Namely:
 
-- a control host
-- two nodes called `node1` and `node2`
+* a control host
+* two nodes called `node1` and `node2`
 
 {{% alert title="Note" color="primary" %}}
 The cloud-based lab infrastructure is provided if you
@@ -35,10 +35,7 @@ are following a guided Techlab by Puzzle ITC.
 
 If you prefer to run the techlab environment locally
 you can find instructions to set up Vagrant-based
-virtual hosts in the
-<i class="ti-plug" style="color: #003399"></i>
-[setup section](/setup)
-<i class="ti-plug" style="color: #003399"></i>
+virtual hosts in the [setup section](/setup)
 of this website.
 
 If you already have a setup or the instructor provided

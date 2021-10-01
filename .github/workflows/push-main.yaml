@@ -3,7 +3,7 @@ name: Publish Main Version
 on:
   push:
     branches: 
-      - migrate/to_rancher
+      - migrate/_to_rancher
 
 jobs:
   build:

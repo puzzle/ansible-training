@@ -8,33 +8,33 @@ During this lab we’ll learn how to write and use Ansible roles.
 
 ### Task 1
 
-- Create a directory `roles` in your techlab folder.
-- Configure your ansible environment to use the `roles` folder as an additional resource for roles.
+* Create a directory `roles` in your techlab folder.
+* Configure your ansible environment to use the `roles` folder as an additional resource for roles.
 
 ### Task 2
 
 Write a role `httpd` in your new `roles` folder which does the
 following:
 
-- Install `httpd`, start its service and enable it to run on boot.
-- Install `firewalld`, start its service and allow traffic for the services `http` and `https`.
+* Install `httpd`, start its service and enable it to run on boot.
+* Install `firewalld`, start its service and allow traffic for the services `http` and `https`.
 
 ### Task 3
 
-- Modify your playbook `webserver.yml` to use your new `httpd` role. It should be run on all hosts in the `web` group.
-- Run your playbook and check if everything went as expected.
+* Modify your playbook `webserver.yml` to use your new `httpd` role. It should be run on all hosts in the `web` group.
+* Run your playbook and check if everything went as expected.
 
 ### Task 4
 
-- Create a new role called `base`. Its file `tasks/main.yml` should import the files `motd.yml` and `packages.yml`. (Create both files under `tasks/`).
-- `motd.yml` should do the following: Use the variable `motd_content` to change the `/etc/motd` content to "This is a server\\n". Remember to move the template as well as the variable to a correct location in the `roles` folder.
-- `packages.yml` should install the packages `firewalld`, `yum-utils`, `dos2unix`, `emacs` and `vim`
-- Write a playbook `prod.yml` that applies the role `base` to all servers and the role `httpd` only to the group `web`
+* Create a new role called `base`. Its file `tasks/main.yml` should import the files `motd.yml` and `packages.yml`. (Create both files under `tasks/`).
+* `motd.yml` should do the following: Use the variable `motd_content` to change the `/etc/motd` content to "This is a server\\n". Remember to move the template as well as the variable to a correct location in the `roles` folder.
+* `packages.yml` should install the packages `firewalld`, `yum-utils`, `dos2unix`, `emacs` and `vim`
+* Write a playbook `prod.yml` that applies the role `base` to all servers and the role `httpd` only to the group `web`
 
 ### Task 5
 
-- Rewrite the `httpd` role to apply the `base` role each time it is used in a playbook. Use a dependency in the `meta/main.yml` file.
-- Remove the play to run `base` role on all hosts in the `prod.yml` playbook. Run the playbook and see if role `base` was applied on hosts in the `web` group as well.
+* Rewrite the `httpd` role to apply the `base` role each time it is used in a playbook. Use a dependency in the `meta/main.yml` file.
+* Remove the play to run `base` role on all hosts in the `prod.yml` playbook. Run the playbook and see if role `base` was applied on hosts in the `web` group as well.
 
 ## Solutions
 
