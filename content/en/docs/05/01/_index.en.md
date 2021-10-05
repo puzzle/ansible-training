@@ -1,5 +1,5 @@
 ---
-title: "5.1 - Ansible Roles - Handlers and Blocks"
+title: "5.1 Ansible Roles - Handlers and Blocks"
 weight: 51
 sectionnumber: 5.1
 ---

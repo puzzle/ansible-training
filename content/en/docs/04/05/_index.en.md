@@ -1,5 +1,5 @@
 ---
-title: "4.5 - Task control"
+title: "4.5 Task control"
 weight: 45
 sectionnumber: 4.5
 ---
@@ -69,7 +69,7 @@ $
 ```bash
 $ cat async.yml 
 ---
-^* hosts: node1
+- hosts: node1
   tasks:
     - name: sleeping beauty
       command: "/usr/bin/sleep 1000"
@@ -97,7 +97,7 @@ $
 ```bash
 $ cat async.yml 
 ---
-^* hosts: node1
+- hosts: node1
   tasks:
     - name: sleeping beauty
       command: "/usr/bin/sleep 30"
