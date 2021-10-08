@@ -89,7 +89,7 @@ jobs:
         name: Redeploy Deployments
         env:
           TRAINING_HELM_RELEASE: 'pr-${{ github.event.pull_request.number }}'
-          TRAINING_NAMESPACE: 'pitc-ansible-test'
+          TRAINING_NAMESPACE: 'pitc-ansible-training-test'
         run: |
           kubectl rollout restart deployment/$TRAINING_HELM_RELEASE-ansible-puzzle --kubeconfig $HOME/.kube/config --namespace $TRAINING_NAMESPACE
       - 
