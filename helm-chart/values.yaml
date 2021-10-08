@@ -13,11 +13,11 @@ acendTraining:
         annotations: 
           kubernetes.io/ingress.class: nginx-public
         useDefaultSecret: true
-        appname: ansible-training
+        appname: ansible
         domainmain: puzzle.ch
         domain: k8s.puzzle.ch
 
-nameOverride: "ansible-training"
+nameOverride: "ansible"
 fullnameOverride: ""
 
 serviceAccount:
