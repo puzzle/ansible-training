@@ -92,4 +92,4 @@ jobs:
           TRAINING_HELM_RELEASE: 'latest'
           TRAINING_NAMESPACE: 'pitc-ansible-training-prod'
         run: |
-          kubectl rollout restart deployment/$TRAINING_HELM_RELEASE-ansible-training-puzzle --kubeconfig $HOME/.kube/config --namespace $TRAINING_NAMESPACE
+          kubectl rollout restart deployment/$TRAINING_HELM_RELEASE-ansible-puzzle --kubeconfig $HOME/.kube/config --namespace $TRAINING_NAMESPACE

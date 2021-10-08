@@ -89,9 +89,9 @@ jobs:
         name: Redeploy Deployments
         env:
           TRAINING_HELM_RELEASE: 'pr-${{ github.event.pull_request.number }}'
-          TRAINING_NAMESPACE: 'pitc-ansible-training-test'
+          TRAINING_NAMESPACE: 'pitc-ansible-test'
         run: |
-          kubectl rollout restart deployment/$TRAINING_HELM_RELEASE-ansible-training-puzzle --kubeconfig $HOME/.kube/config --namespace $TRAINING_NAMESPACE
+          kubectl rollout restart deployment/$TRAINING_HELM_RELEASE-ansible-puzzle --kubeconfig $HOME/.kube/config --namespace $TRAINING_NAMESPACE
       - 
         name: Comment on PR
         uses: marocchino/sticky-pull-request-comment@v2
