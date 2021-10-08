@@ -6,7 +6,7 @@ type : "docs"
 weight: 10
 ---
 
-**Puzzle Ansible Techlabs**, made with <span class="ti-heart"></span> at [Puzzle ITC](https://puzzle.ch).
+**Puzzle Ansible Techlabs**, made with heart at [Puzzle ITC](https://puzzle.ch).
 
 ### Additional information
 

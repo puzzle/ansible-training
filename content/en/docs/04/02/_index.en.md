@@ -8,13 +8,13 @@ In this lab we start to use templates!
 
 ### Task 1
 
-- Rewrite your playbook `motd.yml` without using the `copy` module, but rather using the `template` module.
-- Use a Jinja2 template file called `motd.j2` which uses the variable `motd_content`.
+* Rewrite your playbook `motd.yml` without using the `copy` module, but rather using the `template` module.
+* Use a Jinja2 template file called `motd.j2` which uses the variable `motd_content`.
 
 ### Task 2
 
-- Improve the template `motd.j2` by adding the default IP address of the server to the template.
-- Add information about the installed operating system to the `motd` file as well.
+* Improve the template `motd.j2` by adding the default IP address of the server to the template.
+* Add information about the installed operating system to the `motd` file as well.
 
 {{% alert title="Tip" color="info" %}}
   Remember using the `setup` module to get a list of all facts!
@@ -40,29 +40,31 @@ Put the variable in an appropriate place of your choice.
 
 Create a playbook `userplay.yml` doing the following and running on `node1` and `node2`:
 
-- On `node1`: Create a file `/etc/dinner.txt` with the content below by using the `template` module:
+* On `node1`: Create a file `/etc/dinner.txt` with the content below by using the `template` module:
   ```
   <name_of_user> <food_for_user>
   ```
-- On `node1`: There should be a entry in the file `/etc/dinner.txt` for each user in the variable `users`. Use a for loop in the template.
-- On `node1`: If a user has no food specified, use "kebab". Look for `filters` in the online docs. You should be familiar with searching the online docs by now.
-- On `node2`: The same playbook `userplay.yml` should create a (Linux) group for every different food specified in the variable `users`. If a user has no food defined, create the group "kebab" instead.
-- On `node2`: Create a user for every entry in the `users` variable. Ensure that this user is also in the group with the same name as his food. Again, if no food is defined for this user, add group "kebab".
+* On `node1`: There should be a entry in the file `/etc/dinner.txt` for each user in the variable `users`. Use a for loop in the template.
+* On `node1`: If a user has no food specified, use "kebab". Look for `filters` in the online docs. You should be familiar with searching the online docs by now.
+* On `node2`: The same playbook `userplay.yml` should create a (Linux) group for every different food specified in the variable `users`. If a user has no food defined, create the group "kebab" instead.
+* On `node2`: Create a user for every entry in the `users` variable. Ensure that this user is also in the group with the same name as his food. Again, if no food is defined for this user, add group "kebab".
 
 #### Bonus 1
 
-- On `node2`: Set the login shell to `/bin/zsh` for all users.
+* On `node2`: Set the login shell to `/bin/zsh` for all users.
 
 #### Bonus 2
-- On `node2`: If (and only if) the user is "santos", disable login. Do this by setting santos's login shell to `/usr/sbin/nologin`. Use an if/else statement in the template for that purpose.
+
+* On `node2`: If (and only if) the user is "santos", disable login. Do this by setting santos's login shell to `/usr/sbin/nologin`. Use an if/else statement in the template for that purpose.
 
 #### Bonus 3
-- All on `node2`:
-- Set the default password for all of the newly created users to "`N0t_5o_s3cur3`"
-- Once the password has been set, your playbook should not set it again. Not even when it got changed.
-- Hash the password using the sha512 algorithm.
-- Don’t define a salt for the password.
-- Verify that you are able to login as one of the users via SSH providing the password.
+
+* All on `node2`:
+* Set the default password for all of the newly created users to "`N0t_5o_s3cur3`"
+* Once the password has been set, your playbook should not set it again. Not even when it got changed.
+* Hash the password using the sha512 algorithm.
+* Don’t define a salt for the password.
+* Verify that you are able to login as one of the users via SSH providing the password.
 
 {{% alert title="Warning" color="warning" %}}
 Be aware that it is NOT a good idea to set passwords in clear text. We will learn in the lab about `ansible-vault` how to handle this in a better way. Never ever do this in a productive environment.
@@ -72,14 +74,16 @@ Be aware that it is NOT a good idea to set passwords in clear text. We will lear
 
 Create a playbook `serverinfo.yml` that does the following:
 
-- On all nodes: Place a file `/root/serverinfo.txt` with a line like follows for each and every server in the inventory:
+* On all nodes: Place a file `/root/serverinfo.txt` with a line like follows for each and every server in the inventory:
+
 ```
 <hostname>: OS: <operating system> IP: <IP address> Virtualization Role: <hardware type>
 ```
-- Replace `hostname`, `operating system`, `IP address` and `hardware type` with a reasonable fact.
-- Run your playbook and check on all servers by using an `ansible` ad hoc command if the content of the file `/root/serverinfo.txt` is as expected.
 
-- Are you an Ansible Maester already? Solve the solution once by using a template and once without using a template!
+* Replace `hostname`, `operating system`, `IP address` and `hardware type` with a reasonable fact.
+* Run your playbook and check on all servers by using an `ansible` ad hoc command if the content of the file `/root/serverinfo.txt` is as expected.
+
+* Are you an Ansible Maester already? Solve the solution once by using a template and once without using a template!
 
 ## Solutions
 
@@ -107,7 +111,7 @@ Edit your `motd.yml` playbook to something like this:
 
 Run the playbook again.
 ```bash
-$ ansible-playbook motd.yml -l node1,node2
+ ansible-playbook motd.yml -l node1,node2
 ```
 {{% /details %}}
 
@@ -125,8 +129,8 @@ OS:         {{ ansible_os_family }}
 Rerun the playbook and check if the text has been changed accordingly:
 
 ```bash
-$ ansible-playbook motd.yml -l node1,node2
-$ ansible all -a "cat /etc/motd"
+ansible-playbook motd.yml -l node1,node2
+ansible all -a "cat /etc/motd"
 ```
 {{% /details %}}
 

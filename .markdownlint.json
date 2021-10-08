@@ -1,0 +1,26 @@
+{
+  "default": true,
+  "MD003": {
+    "style": "atx"
+  },
+  "MD004": {
+    "style": "asterisk"
+  },
+  "MD012": {
+    "maximum": 2
+  },
+  "MD013": false,
+  "MD024": false,
+  "MD031": false,
+  "MD035": {
+    "style": "---"
+  },
+  "MD034": false,
+  "MD040": false,
+  "MD046": {
+    "style": "fenced"
+  },
+  "MD048": {
+    "style": "backtick"
+  }
+}
