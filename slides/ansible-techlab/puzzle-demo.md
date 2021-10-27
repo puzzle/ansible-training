@@ -411,6 +411,7 @@ provisioning: local
 - Windows:
   - Cygwin
   - VS Code + Git for Windows
+  - WSL
 
 <img alt="cygwin" src="ansible-techlab/img/cygwin.png" width="52"/> <img alt="vscode" src="ansible-techlab/img/vscode.png" width="52"/> <img alt="gitforwin" src="ansible-techlab/img/gitforwin.png" width="52"/>
 <!-- .slide: class="master-content" > -->
@@ -470,13 +471,13 @@ right:
 <!-- .slide: class="master-content" > -->
 ***
 ## Common Mistakes
-### quoting of variables
+### quoting of variables or spacing
 wrong:
 ```yaml
 - services:
     name: {{ item }}
     state: started
-  loop: {{ my_services }}
+  loop: "{{my_services}}"
 ```
 right:
 ```yaml
@@ -658,7 +659,13 @@ A bit more complex:
 
 - YAML
 - Idempotent!
-- Older Ansible-Versions: Retry-file (contains failed hosts)
+
+Note:
+
+Idempotence (UK: /ˌɪdɛmˈpoʊtəns/, US: /ˌaɪdəm-/) is the property of certain operations in mathematics and computer science whereby they can be applied multiple times without changing the result beyond the initial application. The concept of idempotence arises in a number of places in abstract algebra (in particular, in the theory of projectors and closure operators) and functional programming (in which it is connected to the property of referential transparency).
+
+The term was introduced by Benjamin Peirce in the context of elements of algebras that remain invariant when raised to a positive integer power, and literally means "(the quality of having) the same power", from idem + potence (same + power).
+
 ***
 # Lab 4.0: Ansible Playbooks - Basics
 
@@ -747,6 +754,10 @@ being iterated over in the play)
 (List of groups the current host is part of)
 <!-- .slide: class="master-content" > -->
 
+Note:
+variable precedence
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#understanding-variable-precedence
+
 ***
 ## Bonus Level: Loops!
 ```yaml
@@ -762,7 +773,7 @@ being iterated over in the play)
 
 Note:
 
-"with_items" & "loop" possible
+"with_items" & "loop" possible, new better use loop
 <!-- .slide: class="master-content" > -->
 ***
 # Lab 4.1: Ansible Playbooks - Variables and Loops
