@@ -36,11 +36,13 @@ jobs:
           username: ${{ secrets.QUAYIO_USERNAME }}
           password: ${{ secrets.QUAYIO_TOKEN }}
       - 
-        name: Build Puzzle Version
+        name: Build Slides 
         uses: docker/build-push-action@v2
         with:
           context: .
           file: ./slides/Dockerfile
+          secrets: |
+            "gitlab_token=${{ secrets.GITLAB_TOKEN }}"
           push: true
           tags: |
             quay.io/puzzle/ansible-training-slides:slides-${{ github.event.pull_request.number }}

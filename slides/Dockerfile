@@ -1,6 +1,7 @@
 FROM node
 
-ARG PULLSECRET
+RUN --mount=type=secret,id=gitlab_token \
+  cat /run/secrets/gitlab_token
 
 WORKDIR /app
 
