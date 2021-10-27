@@ -1760,7 +1760,7 @@ Should be fine from 2020 on. Not tested yet...
 - Supports only installation via Operator on
   - OpenShift
   - Kubernetes
-  - Docker Compose (also possible but not really supportet)
+  - Docker Compose (also possible but not really supported)
 
 <!-- .slide: class="master-content" > -->
 
