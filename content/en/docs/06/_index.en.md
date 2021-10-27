@@ -8,35 +8,35 @@ In this lab we are going to practice encryption in Ansible playbooks. It assumes
 
 ### Task 1
 
-- Create a simple playbook called `secretservice.yml` which creates a file `MI6` in the `/etc/` directory on `node1` and `node2`. Use the `template` module and a template named `mi6.j2`. Don’t encrypt anything yet and use the inventory hosts from the earlier labs.
-- The content of the file `MI6` should be:
+* Create a simple playbook called `secretservice.yml` which creates a file `MI6` in the `/etc/` directory on `node1` and `node2`. Use the `template` module and a template named `mi6.j2`. Don’t encrypt anything yet and use the inventory hosts from the earlier labs.
+* The content of the file `MI6` should be:
   ```
     username: jamesbond
     password: miss_moneypenny
   ```
-- Run the playbook and check if the file `/etc/MI6` has been deployed on the nodes.
+* Run the playbook and check if the file `/etc/MI6` has been deployed on the nodes.
 
 ### Task 2
 
-- Make the playbook `secretservice.yml` use a variable file named `secret_vars.yml` with the content:
+* Make the playbook `secretservice.yml` use a variable file named `secret_vars.yml` with the content:
   ```
     var_username: jamesbond
     var_password: miss_moneypenny
   ```
-- Rewrite the `mi6.j2` template to use the variables from the `secret_vars.yml` file. Nothing is encrypted yet.
-- Rerun the playbook and remember nothing has been encrypted yet.
+* Rewrite the `mi6.j2` template to use the variables from the `secret_vars.yml` file. Nothing is encrypted yet.
+* Rerun the playbook and remember nothing has been encrypted yet.
 
 ### Task 3
 
-- Encrypt the `secret_vars.yml` file by using `ansible-vault` with the password *goldfinger*.
+* Encrypt the `secret_vars.yml` file by using `ansible-vault` with the password *goldfinger*.
 
 {{% alert title="Tip" color="info" %}}
 You don’t have to set a label when encrypting the file.
 {{% /alert %}}
 
-- Rerun the playbook providing the password for decrypting `secret_vars.yml` at the command prompt.
-- Create a file named `vaultpassword` containing the unencrypted string "goldfinger".
-- Rerun the playbook providing the password for decrypting `secret_vars.yml` from the file `vaultpassword`.
+* Rerun the playbook providing the password for decrypting `secret_vars.yml` at the command prompt.
+* Create a file named `vaultpassword` containing the unencrypted string "goldfinger".
+* Rerun the playbook providing the password for decrypting `secret_vars.yml` from the file `vaultpassword`.
 
 {{% alert title="Tip" color="info" %}}
 Since the password is in clear text in the file `vaultpassword`, you should never ever push it to a git repository or similar. Also double check that only the necessary permissions are set.
@@ -45,13 +45,13 @@ Since the password is in clear text in the file `vaultpassword`, you should neve
 
 ### Task 4
 
-- Configure your environment to always use the `vaultpassword` file as the vault file.
-- Rerun the playbook without providing the password or the password file at the command line.
+* Configure your environment to always use the `vaultpassword` file as the vault file.
+* Rerun the playbook without providing the password or the password file at the command line.
 
 ### Task 5
 
-- Decrypt the file `secret_vars.yml`.
-- Encrypt the values of the variables `username` and `password` and put them into the `secret_vars.yml` file.
+* Decrypt the file `secret_vars.yml`.
+* Encrypt the values of the variables `username` and `password` and put them into the `secret_vars.yml` file.
 
 {{% alert title="Note" color="primary" %}}
 Look for an option to `ansible-vault` to give the name of the variable while encrypting the value. This makes it easier to copy-paste the output later!
@@ -59,23 +59,23 @@ Look for an option to `ansible-vault` to give the name of the variable while enc
 
 ### Task 6
 
-- Remove the `/etc/MI6` file on the nodes using an ad hoc command.
+* Remove the `/etc/MI6` file on the nodes using an ad hoc command.
 
 ### Task 7
 
-- Encrypt another file `secret_vars2.yml`. Ensure it is encrypted with your vault password file `vaultpassword`
-- Change the encryption of the file: encrypt it with another password provided at the command line.
+* Encrypt another file `secret_vars2.yml`. Ensure it is encrypted with your vault password file `vaultpassword`
+* Change the encryption of the file: encrypt it with another password provided at the command line.
 
 {{% alert title="Note" color="primary" %}}
  Don't do this by decrypting & reencrypting but rather by using the `rekey` option.
  There's a trap hidden here. Double check if everything worked as you expected.
 {{% /alert %}}
 
-- Check the content of `secret_vars2.yml` by viewing it and providing the password at the command line.
+* Check the content of `secret_vars2.yml` by viewing it and providing the password at the command line.
 
 ### TASK 8
 
-- What can you do, to avoid Ansible to print out sensitive data at runtime?
+* What can you do, to avoid Ansible to print out sensitive data at runtime?
 
 {{% alert title="Tip" color="info" %}}
 Take a look at [docs.ansible.com](https://docs.ansible.com)
@@ -159,10 +159,10 @@ $ ansible-playbook secretservice.yml
 {{% details title="Task 5" %}}
 
 ```bash
-$ ansible-vault decrypt secret_vars.yml
-$ echo "---" > secret_vars.yml
-$ ansible-vault encrypt_string jamesbond -n var_username >> secret_vars.yml
-$ ansible-vault encrypt_string miss_moneypenny -n var_password >> secret_vars.yml
+ansible-vault decrypt secret_vars.yml
+echo "---" > secret_vars.yml
+ansible-vault encrypt_string jamesbond -n var_username >> secret_vars.yml
+ansible-vault encrypt_string miss_moneypenny -n var_password >> secret_vars.yml
 ```
 
 Content of secret_vars.yml
@@ -184,14 +184,14 @@ var_password: !vault |
           3931
 ```
 ```bash
-$ ansible-playbook secretservice.yml
+ansible-playbook secretservice.yml
 ```
 
 {{% /details %}}
 
 {{% details title="Task 6" %}}
 ```bash
-$ ansible node1,node2 -i inventory/hosts -b -a "rm /etc/MI6"
+ansible node1,node2 -i inventory/hosts -b -a "rm /etc/MI6"
 ```
 
 {{% alert title="Tip" color="info" %}}
@@ -203,7 +203,7 @@ Note that the `command` module is the `default` module and therefore has not to 
 {{% details title="Task 7" %}}
 
 ```bash
-$ ansible-vault encrypt secret_vars2.yml
+ansible-vault encrypt secret_vars2.yml
 ```
 
 Be sure to use `rekey` with `--new-vault-id`. By using `--vault-id`, `ansible-vault` would use the value from `vaultpasswordfile` and not the one asked for by using `@prompt`. This could be quite misleading... You can check the same unexpected behavior when trying to view an encrypted file with providing a wrong password at command line. Giving a wrong password after `ansible-vault view secret_vars2.yml --vault-id @prompt` still results in showing the decrypted content of the file when `ansible.cfg` points to the correct `vaultpasswordfile`.
@@ -211,8 +211,8 @@ Be sure to use `rekey` with `--new-vault-id`. By using `--vault-id`, `ansible-va
 There is an open [issue](https://github.com/ansible/ansible/issues/33831) about this topic on github.
 
 ```bash
-$ ansible-vault rekey secret_vars2.yml --new-vault-id @prompt
-$ ansible-vault view secret_vars2.yml --vault-id @prompt
+ansible-vault rekey secret_vars2.yml --new-vault-id @prompt
+ansible-vault view secret_vars2.yml --vault-id @prompt
 ```
 
 {{% /details %}}
