@@ -256,7 +256,7 @@ pull (Puppet way) vs push (ansible way) --> push braucht weder daemon noch sonst
 
 - Control Node
   - ansible installed (newer versions via «pip»)
-  - Nice to have: AWX / Tower / CiCd-Pipeline
+  - Nice to have: AWX / Tower / CI/CD-Pipeline
 - Client
   - ssh, python
 
@@ -1762,7 +1762,7 @@ Should be fine from 2020 on. Not tested yet...
 - Supports only installation via Operator on
   - OpenShift
   - Kubernetes
-  - Docker Compose (also possible but not really supportet)
+  - Docker Compose (also possible but not really supported)
 
 <!-- .slide: class="master-content" > -->
 
@@ -1802,7 +1802,7 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 
 ***
 ## Migration to Ansible (from Puppet?):
-- you can run both tools at the same time if people fear they are not ready yet
+- You can run both tools at the same time if people fear they are not ready yet
 - Keep puppet infrastructure working but disable it
 - Migrate the puppet-modules to ansible-roles step by step. You DONT have to have ALL content ready from start (it probably not realistic)
 <!-- .slide: class="master-content" > -->
