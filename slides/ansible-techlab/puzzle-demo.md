@@ -766,7 +766,7 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#unde
     name: "{{ item }}"
     state: started
     enabled: yes
-  with_items:
+  loop:
     - nginx
     - firewalld
 ```
@@ -774,6 +774,8 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#unde
 Note:
 
 "with_items" & "loop" possible, new better use loop
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html#migrating-to-loop
+
 <!-- .slide: class="master-content" > -->
 ***
 # Lab 4.1: Ansible Playbooks - Variables and Loops
@@ -1851,7 +1853,7 @@ When writing ansible-content in a team:
 - **But**: dont discuss too much about how a problem is solved. There are simply different kind of views.
 <!-- .slide: class="master-content" > -->
 
----
+----
 # Do it yourself!
 
 <!-- .slide: class="master-title" > -->
