@@ -26,8 +26,7 @@ index ae8d607..57fdc17 100644
  			<div class="slides">
 -				<section>Slide 1</section>
 -				<section>Slide 2</section>
--			</div>
-+				<section data-markdown="ansible-techlab/puzzle-demo.md"
+				<section data-markdown="ansible-techlab/puzzle-demo.md"
 +				             data-separator="^----"
 +				             data-separator-vertical="^\*\*\*"
 +				             data-separator-notes="^Note:">
