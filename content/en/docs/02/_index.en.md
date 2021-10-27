@@ -49,7 +49,7 @@ ansible-doc -s file
 {{% alert title="Note" color="primary" %}}
 Starting from Ansible > 2.10 modules are shipped via collections. We will have a look at collections in [Chapter 8](../08). You'll find an overview of the most used collections on [Ansible Docs - Collection Index](https://docs.ansible.com/ansible/latest/collections/index.html)
 
-{{ /alert }}
+{{% /alert %}}
 
 {{% /details %}}
 
