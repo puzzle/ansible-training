@@ -2,8 +2,6 @@ name: Build Slides for Training and Publish
 
 on:
   pull_request:
-    branches:
-      - 'add/slides_to_rancher'
     paths:
       - 'slides/*'
 
