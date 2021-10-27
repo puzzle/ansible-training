@@ -30,7 +30,7 @@ In the playbook `async.yml` do the following:
 * Run the playbook.
 
 {{% alert title="Tip" color="info" %}}
-If unsure, check the documentation about [async_status](https://docs.ansible.com/ansible/2.9/modules/async_status_module.html) for an example.
+If unsure, check the documentation about [async_status](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/async_status_module.html) for an example.
 {{% /alert %}}
 
 ## Solutions
@@ -67,7 +67,7 @@ $
 
 {{% details title="Task 2" %}}
 ```bash
-$ cat async.yml 
+$ cat async.yml
 ---
 - hosts: node1
   tasks:
@@ -75,7 +75,7 @@ $ cat async.yml
       command: "/usr/bin/sleep 1000"
       async: 10
 
-$ ansible-playbook -i hosts async.yml 
+$ ansible-playbook -i hosts async.yml
 
 PLAY [node1] **************************************************************************************************************************************************************************************************
 
@@ -86,7 +86,7 @@ TASK [sleeping beauty] *********************************************************
 fatal: [node1]: FAILED! => {"changed": false, "msg": "async task did not complete within the requested time - 10s"}
 
 PLAY RECAP ****************************************************************************************************************************************************************************************************
-node1                      : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+node1                      : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
 
 $
 ```
@@ -95,7 +95,7 @@ $
 
 {{% details title="Task 3" %}}
 ```bash
-$ cat async.yml 
+$ cat async.yml
 ---
 - hosts: node1
   tasks:
@@ -112,7 +112,7 @@ $ cat async.yml
       until: beauty_status.finished
       retries: 50
 
-$ ansible-playbook -i hosts async.yml 
+$ ansible-playbook -i hosts async.yml
 
 PLAY [node1] **************************************************************************************************************************************************************************************************
 
@@ -132,7 +132,7 @@ FAILED - RETRYING: check back if task in background has finished (45 retries lef
 changed: [node1]
 
 PLAY RECAP ****************************************************************************************************************************************************************************************************
-node1                      : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+node1                      : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 
 $
 ```

@@ -66,7 +66,7 @@ Have a look at the documentation about error handling: [Ansible Docs - Playbooks
 ## Solutions
 
 {{% details title="Task 1" %}}
-Documentation about [debug module](https://docs.ansible.com/ansible/2.9/modules/debug_module.html)
+Documentation about [debug module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/debug_module.html)
 Example `output.yml`:
 ```yaml
 ---
