@@ -191,6 +191,12 @@ https://www.puzzle.ch/de/team
 
 <!-- .slide: class="master-left-right"> -->
 
+Note:
+Automatisierung unserer monatlichen Updates/Restart
+SLOG Cluster automatisierung
+Migration von RZ in die Cloud mit Wechsel von Puppet auf Ansible
+Eure Lab-VMs werden vollautomatisch mit Ansible Deployed und provisioniert
+
 ***
 <div class="small">
 
@@ -210,6 +216,9 @@ https://www.puzzle.ch/de/team
 ![rocannons world](ansible-techlab/img/rocannonsworld.jpg)
 </div>
 <!-- .slide: class="master-left-right" -->
+
+Note:
+Umbenennung von Ansible zu ansible-base (3.x) zu ansible-core (4.x), module in collections auslagern, schneller kern releasen, da keine dependencies zu modulen
 
 ----
 
@@ -238,12 +247,16 @@ https://www.puzzle.ch/de/team
 
 <!-- .slide: class="master-content" > -->
 
+Note:
+Zentraler Controlnode erleichtert das auswerten von Logs im Team
+pull (Puppet way) vs push (ansible way) --> push braucht weder daemon noch sonst was
+
 ***
 ## Requirements
 
 - Control Node
   - ansible installed (newer versions via «pip»)
-  - Nice to have: AWX / Tower
+  - Nice to have: AWX / Tower / CiCd-Pipeline
 - Client
   - ssh, python
 
@@ -269,7 +282,7 @@ https://www.puzzle.ch/de/team
 - Agentless
 - Standard transport (ssh)
 - Easy (relatively), yaml
-- Many modules (~~2834~~, ~~3387~~, 4573 modules, )
+- Many modules (~~2834~~, ~~3387~~, ~~4573~~, ∞ )
 <!-- .slide: class="master-content" > -->
 ***
 
@@ -299,7 +312,7 @@ What do we use on cmdline?
 - ansible.cfg
 - ssh-keys
 - best practice:
-user ansible + sudo
+`user ansible + sudo`
 
 <!-- .slide: class="master-content" > -->
 
