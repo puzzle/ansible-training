@@ -42,7 +42,7 @@ jobs:
           context: .
           file: ./slides/Dockerfile
           secrets: |
-            "gitlab_token=${{ secrets.GITLAB_TOKEN }}"
+            "gitlab_pullsecret=${{ secrets.GITLAB_PULLSECRET }}"
           push: true
           tags: |
             quay.io/puzzle/ansible-training-slides:slides-${{ github.event.pull_request.number }}

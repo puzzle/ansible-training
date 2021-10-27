@@ -1,11 +1,10 @@
 FROM node
 
-RUN --mount=type=secret,id=gitlab_token PULLSECRET=$(cat /run/secrets/gitlab_token)
-
 WORKDIR /app
 
-RUN git clone https://github.com/hakimel/reveal.js.git reveal \
- && git clone https://${PULLSECRET}@gitlab.puzzle.ch/jinfanger/pitc-revealjs-theme.git puzzle-theme \
+RUN --mount=type=secret,id=gitlab_pullsecret PULLSECRET=$(cat /run/secrets/gitlab_pullsecret) \
+ && git clone https://github.com/hakimel/reveal.js.git reveal \
+ && git clone https://${PULLSECRET}@gitlab.puzzle.ch/pitc_members/pitc-revealjs-theme.git puzzle-theme \
  && mv puzzle-theme/css/theme/puzzle.css reveal/css/theme/ \
  && mv puzzle-theme/css/theme/source/puzzle.scss reveal/css/theme/source/ \
  && mv puzzle-theme/css/theme/source/puzzle-imgs reveal/css/theme/source/ \
