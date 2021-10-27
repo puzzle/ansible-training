@@ -256,7 +256,7 @@ pull (Puppet way) vs push (ansible way) --> push braucht weder daemon noch sonst
 
 - Control Node
   - ansible installed (newer versions via «pip»)
-  - Nice to have: AWX / Tower / CiCd-Pipeline
+  - Nice to have: AWX / Tower / CI/CD-Pipeline
 - Client
   - ssh, python
 
