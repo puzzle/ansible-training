@@ -1,8 +1,3 @@
-From 30837a18279c01a2321ff23f730d5bac3cc62068 Mon Sep 17 00:00:00 2001
-From: Lukas Grimm <grimm@puzzle.ch>
-Date: Mon, 15 Mar 2021 17:06:13 +0100
-Subject: [PATCH] added stuff
-
 ---
  index.html | 12 ++++++++----
  1 file changed, 8 insertions(+), 4 deletions(-)
@@ -45,4 +40,3 @@ index ae8d607..57fdc17 100644
  				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
 -- 
 2.30.2
-
