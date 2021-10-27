@@ -91,7 +91,7 @@ jobs:
           TRAINING_HELM_RELEASE: 'pr-${{ github.event.pull_request.number }}'
           TRAINING_NAMESPACE: 'pitc-ansible-training-test'
         run: |
-          kubectl rollout restart deployment/$TRAINING_HELM_RELEASE-ansible-training-puzzle --kubeconfig $HOME/.kube/config --namespace $TRAINING_NAMESPACE
+          kubectl rollout restart deployment/$TRAINING_HELM_RELEASE-ansible-puzzle --kubeconfig $HOME/.kube/config --namespace $TRAINING_NAMESPACE
       - 
         name: Comment on PR
         uses: marocchino/sticky-pull-request-comment@v2
@@ -99,4 +99,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           message: |
            PR Environments: 
-           *  puzzle <https://ansible-training-pr-${{ github.event.pull_request.number }}.k8s.puzzle.ch>
+           *  puzzle <https://ansible-pr-${{ github.event.pull_request.number }}.k8s.puzzle.ch>
