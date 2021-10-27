@@ -1,7 +1,6 @@
 FROM node
 
-RUN --mount=type=secret,id=gitlab_token \
-  cat /run/secrets/gitlab_token
+RUN --mount=type=secret,id=gitlab_token PULLSECRET=$(cat /run/secrets/gitlab_token)
 
 WORKDIR /app
 

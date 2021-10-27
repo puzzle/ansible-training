@@ -2,6 +2,8 @@ name: Build Training and Publish
 
 on:
   pull_request:
+  paths_ignore:
+    - 'slides/**'
 
 jobs:
   build:
