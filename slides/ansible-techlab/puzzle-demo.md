@@ -984,7 +984,7 @@ Fact gathering:
 Ansible.cfg:
 
 ```ini
-gathering = implicit (default, bedeute gather_facts: yes)
+gathering = implicit (default, bedeutet gather_facts: yes)
 ```
 
 explicit → gather_facts: no
@@ -998,7 +998,7 @@ explicit → gather_facts: no
 ## Bonus Level: Ansible on Windows
 - No Windows as ansible control host! cygwin etc not supported...
 - But: Works on WSL...
--  Maaaaaany (105 110 106) modules for win
+-  Maaaaaany modules for win
   - win_service
   - win_updates
   - win_chocolatey
@@ -1757,10 +1757,10 @@ Should be fine from 2020 on. Not tested yet...
 ***
 ## AWX
 - Install:
-- Supports only installation via
+- Supports only installation via Operator on
   - OpenShift
   - Kubernetes
-  - Docker Compose (?)
+  - Docker Compose (also possible but not really supportet)
 
 <!-- .slide: class="master-content" > -->
 
@@ -1795,14 +1795,14 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 ## Infrastructure:
 - Start doing config changes only through ansible, limit root access to servers if possible
 - Use controllers to run ansible on your infrastructure, dont run from your laptop
-- Use a tool like Ansible Tower, AWX, Jenkins, ...
+- Use a tool like Ansible Tower, AWX, Jenkins, GitLab, Github...
 <!-- .slide: class="master-content" > -->
 
 ***
 ## Migration to Ansible (from Puppet?):
--  you can run both tools at the same time if people fear they are not ready yet
+- you can run both tools at the same time if people fear they are not ready yet
 - Keep puppet infrastructure working but disable it
--  Migrate the puppet-modules to ansible-roles step by step. You DONT have to have ALL content ready from start (it probably not realistic)
+- Migrate the puppet-modules to ansible-roles step by step. You DONT have to have ALL content ready from start (it probably not realistic)
 <!-- .slide: class="master-content" > -->
 
 ***
@@ -1828,7 +1828,7 @@ Roles:
 ***
 ## Ansible Content:
 Templates:
-- Use `{{ ansible_managed }}` at the beginning of the template to indicate, that the file is managed by
+- Use `{{ ansible_managed | comment }}` at the beginning of the template to indicate, that the file is managed by
 ansible
 
 Files:
