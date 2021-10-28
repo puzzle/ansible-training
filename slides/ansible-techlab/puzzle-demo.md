@@ -1407,9 +1407,8 @@ VAULT_TOKEN=<your token>
 ***
 ## Hashicorps Vault
 ```
-base_root_pw: "{{ lookup('hashi_vault', \
-                  'secret=kv/data/spaces/company/prod/root') \
-                  .data.rootpw_crypted }}"
+base_root_pw: "{{ lookup('community.hashi_vault.hashi_vault', \
+                  'secret=kv/data/spaces/company/prod/root:rootpw_crypted') }}"
 ```
 <!-- .slide: class="master-content" > -->
 ***

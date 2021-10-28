@@ -97,7 +97,7 @@ Example `output.yml`:
         var: output.stdout_lines
     - name: create backup
       command: "cp {{ item }} {{ item }}.bak"
-      with_items: "{{ output.stdout_lines  }}"
+      loop: "{{ output.stdout_lines  }}"
 ```
 {{% /details %}}
 
@@ -117,7 +117,7 @@ Example `output.yml`:
       # only do this if there is no .bak for file: item
       args:
         creates: "{{ item }}.bak"
-      with_items: "{{ output.stdout_lines }}"
+      loop: "{{ output.stdout_lines }}"
 ```
 
 Possible solution 2:
@@ -135,7 +135,7 @@ Example `output.yml`:
       register: output
     - name: create backup only when no backupfile is present
       command: "cp {{ item }} {{ item }}.bak"
-      with_items: "{{ output.stdout_lines  }}"
+      loop: "{{ output.stdout_lines  }}"
       # only do this if there is no .bak for file: item
       when: search.stdout.find(item) == -1
 ```

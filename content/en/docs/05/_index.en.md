@@ -65,7 +65,7 @@ $ cat roles/httpd/tasks/main.yml
     name: "{{ item }}"
     state: started
     enabled: yes
-  with_items:
+  loop:
     - httpd
     - firewalld
 - name: open firewall for http and https
@@ -74,7 +74,7 @@ $ cat roles/httpd/tasks/main.yml
     state: enabled
     immediate: yes
     permanent: true
-  with_items:
+  loop:
     - http
     - https
 ```
