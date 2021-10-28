@@ -45,12 +45,12 @@ jobs:
             "gitlab_pullsecret=${{ secrets.GITLAB_PULLSECRET }}"
           push: true
           tags: |
-            quay.io/puzzle/ansible-training-slides:slides-${{ github.event.pull_request.number }}
+            quay.io/puzzle/ansible-training-slides:latest
       -
         name: Run vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'quay.io/puzzle/ansible-training-slides:slides-${{ github.event.pull_request.number }}'
+          image-ref: 'quay.io/puzzle/ansible-training-slides:latest'
           format: 'table'
           output: 'trivy-results.txt'
           exit-code: '0'
