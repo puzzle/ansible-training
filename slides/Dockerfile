@@ -15,7 +15,7 @@ WORKDIR reveal
 COPY slides/ansible-techlab ./ansible-techlab
 COPY slides/index.html.patch .
 
-RUN patch --forward --strip=1 index.html --input=index.html.patch --verbose \
+RUN patch --forward --strip=1 index.html --input=index.html.patch \
  && npm install && npm run build -- css-themes
 
 EXPOSE 8000
