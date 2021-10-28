@@ -79,7 +79,6 @@ jobs:
       - 
         name: Deploy RevealJS
         env:
-          TRAINING_SLIDES_RELEASE: 'slides-${{ github.event.pull_request.number }}'
           TRAINING_NAMESPACE: 'pitc-ansible-training-test'
         run: |
-          kubectl rollout restart deployment/$TRAINING_SLIDES_RELEASE-ansible-slides --kubeconfig $HOME/.kube/config --namespace $TRAINING_NAMESPACE
+          kubectl rollout restart deployment/ansible-slides --kubeconfig $HOME/.kube/config --namespace $TRAINING_NAMESPACE
