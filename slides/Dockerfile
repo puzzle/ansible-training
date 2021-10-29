@@ -4,7 +4,7 @@ WORKDIR /app
 
 RUN --mount=type=secret,id=gitlab_pullsecret PULLSECRET=$(cat /run/secrets/gitlab_pullsecret) \
  && git clone https://github.com/hakimel/reveal.js.git reveal \
- && sed -i "s/host: 'localhost'/host: '0.0.0.0'/g" reveal.js/gulpfile.js \
+ && sed -i "s/host: 'localhost'/host: '0.0.0.0'/g" reveal/gulpfile.js \
  && git clone https://:${PULLSECRET}@gitlab.puzzle.ch/pitc_members/pitc-revealjs-theme.git puzzle-theme \
  && mv puzzle-theme/css/theme/puzzle.css reveal/css/theme/ \
  && mv puzzle-theme/css/theme/source/puzzle.scss reveal/css/theme/source/ \
