@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ansible-slides
+  namespace: pitc-ansible-training-test
+spec:
+  clusterIP: 10.43.128.38
+  clusterIPs:
+  - 10.43.128.38
+  ports:
+  - name: http
+    port: 8000
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    app.kubernetes.io/instance: slides
+    app.kubernetes.io/name: ansible-slides
+  sessionAffinity: None
+  type: ClusterIP

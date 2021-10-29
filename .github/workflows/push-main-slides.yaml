@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - 'slides/*'
+      - 'slides/**'
 
 jobs:
   build:
@@ -38,19 +38,21 @@ jobs:
           username: ${{ secrets.QUAYIO_USERNAME }}
           password: ${{ secrets.QUAYIO_TOKEN }}
       - 
-        name: Build Puzzle Version
+        name: Build Slides
         uses: docker/build-push-action@v2
         with:
           context: .
           file: ./slides/Dockerfile
+          secrets: |
+            "gitlab_pullsecret=${{ secrets.GITLAB_PULLSECRET }}"
           push: true
           tags: |
-            quay.io/puzzle/ansible-training-slides:slides-latest
+            quay.io/puzzle/ansible-training-slides:latest
       -
         name: Run vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'quay.io/puzzle/ansible-training-slides:slides-latest'
+          image-ref: 'quay.io/puzzle/ansible-training-slides:latest'
           format: 'table'
           output: 'trivy-results.txt'
           exit-code: '0'
@@ -71,7 +73,7 @@ jobs:
       - 
         name: Create KUBECONFIG
         env:
-          KUBE_CONFIG: '${{ secrets.KUBECONFIG_TEST }}'
+          KUBE_CONFIG: '${{ secrets.KUBECONFIG }}'
         run: |
           mkdir -p $HOME/.kube
           echo "$KUBE_CONFIG"
@@ -79,7 +81,6 @@ jobs:
       - 
         name: Deploy RevealJS
         env:
-          TRAINING_SLIDES_RELEASE: 'slides-latest'
           TRAINING_NAMESPACE: 'pitc-ansible-training-prod'
         run: |
-          kubectl rollout restart deployment/$TRAINING_SLIDES_RELEASE-ansible-slides --kubeconfig $HOME/.kube/config --namespace $TRAINING_NAMESPACE
+          kubectl rollout restart deployment/ansible-slides --kubeconfig $HOME/.kube/config --namespace $TRAINING_NAMESPACE
