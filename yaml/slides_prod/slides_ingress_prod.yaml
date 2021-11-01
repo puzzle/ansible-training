@@ -10,7 +10,7 @@ metadata:
   namespace: pitc-ansible-training-prod
 spec:
   rules:
-  - host: ansible-slides.k8s.puzzle.ch
+  - host: ansible-slides.puzzle.ch
     http:
       paths:
       - backend:
@@ -22,4 +22,4 @@ spec:
         pathType: ImplementationSpecific
   tls:
   - hosts:
-    - ansible-slides.k8s.puzzle.ch
+    - ansible-slides.puzzle.ch

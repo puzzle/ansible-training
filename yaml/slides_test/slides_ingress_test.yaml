@@ -10,7 +10,7 @@ metadata:
   namespace: pitc-ansible-training-test
 spec:
   rules:
-  - host: ansible-slides-test.k8s.puzzle.ch
+  - host: ansible-slides-test.puzzle.ch
     http:
       paths:
       - backend:
@@ -22,4 +22,4 @@ spec:
         pathType: ImplementationSpecific
   tls:
   - hosts:
-    - ansible-slides-test.k8s.puzzle.ch
+    - ansible-slides-test.puzzle.ch
