@@ -1,11 +1,11 @@
 FROM node
 
-ARG PULLSECRET
-
 WORKDIR /app
 
-RUN git clone https://github.com/hakimel/reveal.js.git reveal \
- && git clone https://${PULLSECRET}@gitlab.puzzle.ch/jinfanger/pitc-revealjs-theme.git puzzle-theme \
+RUN --mount=type=secret,id=gitlab_pullsecret PULLSECRET=$(cat /run/secrets/gitlab_pullsecret) \
+ && git clone https://github.com/hakimel/reveal.js.git reveal \
+ && sed -i "s/host: 'localhost'/host: '0.0.0.0'/g" reveal/gulpfile.js \
+ && git clone https://:${PULLSECRET}@gitlab.puzzle.ch/pitc_members/pitc-revealjs-theme.git puzzle-theme \
  && mv puzzle-theme/css/theme/puzzle.css reveal/css/theme/ \
  && mv puzzle-theme/css/theme/source/puzzle.scss reveal/css/theme/source/ \
  && mv puzzle-theme/css/theme/source/puzzle-imgs reveal/css/theme/source/ \
@@ -13,10 +13,10 @@ RUN git clone https://github.com/hakimel/reveal.js.git reveal \
 
 WORKDIR reveal
 
-COPY ansible-techlab ./ansible-techlab
-COPY index.html.patch .
+COPY slides/ansible-techlab ./ansible-techlab
+COPY slides/index.html.patch .
 
-RUN patch --forward --strip=1 --input=index.html.patch \
+RUN patch --forward --strip=1 index.html --input=index.html.patch \
  && npm install && npm run build -- css-themes
 
 EXPOSE 8000

@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    field.cattle.io/publicEndpoints: '[{"addresses":["2a06:c00::37e9"],"port":443,"protocol":"HTTPS","serviceName":"pitc-ansible-training-prod:latest-ansible-puzzle","ingressName":"pitc-ansible-training-prod:latest-ansible-puzzle","hostname":"ansible.puzzle.ch","path":"/","allNodes":true}]'
+    kubernetes.io/ingress.class: nginx-public
+    meta.helm.sh/release-name: latest
+    meta.helm.sh/release-namespace: pitc-ansible-training-prod
+  labels:
+    app.kubernetes.io/instance: latest
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: ansible-puzzle
+    app.kubernetes.io/version: 1.0.0
+    helm.sh/chart: acend-training-chart-0.1.2
+  name: latest-ansible-puzzle
+  namespace: pitc-ansible-training-prod
+spec:
+  rules:
+  - host: ansible.puzzle.ch
+    http:
+      paths:
+      - backend:
+          serviceName: latest-ansible-puzzle
+          servicePort: 8080
+        path: /
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - ansible.puzzle.ch
