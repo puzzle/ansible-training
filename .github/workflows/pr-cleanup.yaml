@@ -2,6 +2,8 @@ name: PRCleanup
 on:
   pull_request:
     types: [closed]
+    paths:
+      - '!slides/**'
 
 jobs:
   deployment:
