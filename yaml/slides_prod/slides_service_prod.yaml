@@ -4,9 +4,6 @@ metadata:
   name: ansible-slides
   namespace: pitc-ansible-training-prod
 spec:
-  clusterIP: 10.43.19.106
-  clusterIPs:
-  - 10.43.19.106
   ports:
   - name: http
     port: 8000
