@@ -2,7 +2,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    field.cattle.io/publicEndpoints: '[{"addresses":["10.100.1.8"],"port":443,"protocol":"HTTPS","serviceName":"pitc-ansible-training-port:ansible-slides","ingressName":"pitc-ansible-training-prod:ansible-slides","hostname":"ansible-slides.k8s.puzzle.ch","path";"/","allNodes":true}]'
     kubernetes.io/ingress.class: nginx-public
   labels:
     app.kubernetes.io/instance: slides
