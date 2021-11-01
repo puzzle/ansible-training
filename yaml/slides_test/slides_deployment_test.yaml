@@ -30,7 +30,7 @@ spec:
     spec:
       affinity: {}
       containers:
-      - image: quay.io/puzzle/ansible-training-slides
+      - image: quay.io/puzzle/ansible-training-slides:test
         imagePullPolicy: Always
         name: slides
         ports:

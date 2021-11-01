@@ -15,14 +15,6 @@ jobs:
         with:
           submodules: recursive
       -
-        name: Set up npm for linting
-        uses: actions/setup-node@v2
-        with:
-          node-version: '15.x'
-      - 
-        name: Lint Markdown
-        run: npm ci && npm run mdlint
-      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       -
@@ -45,12 +37,12 @@ jobs:
             "gitlab_pullsecret=${{ secrets.GITLAB_PULLSECRET }}"
           push: true
           tags: |
-            quay.io/puzzle/ansible-training-slides:latest
+            quay.io/puzzle/ansible-training-slides:test
       -
         name: Run vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'quay.io/puzzle/ansible-training-slides:latest'
+          image-ref: 'quay.io/puzzle/ansible-training-slides:test'
           format: 'table'
           output: 'trivy-results.txt'
           exit-code: '0'

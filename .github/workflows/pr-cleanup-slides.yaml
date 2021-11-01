@@ -29,15 +29,13 @@ jobs:
       - 
         name: Remove PR Environment Helm Release
         env:
-          TRAINING_SLIDES_RELEASE: 'slides-${{ github.event.pull_request.number }}'
           TRAINING_NAMESPACE: 'pitc-ansible-training-test'
         run: |
-          kubectl remove deployment/$TRAINING_SLIDES_RELEASE-ansible-slides --kubeconfig $HOME/.kube/config --namespace $TRAINING_NAMESPACE
+          kubectl remove deployment/ansible-slides --kubeconfig $HOME/.kube/config --namespace $TRAINING_NAMESPACE
 
       - name: Delete Tags on Quay
         id: delete_tags
         env:
-          PR_NUMBER: '${{ github.event.pull_request.number }}'
           QUAYIO_API_TOKEN: '${{ secrets.QUAYIO_API_TOKEN }}'
         run: |
-          curl -X DELETE -H "Authorization: Bearer ${QUAYIO_API_TOKEN}" https://quay.io/api/v1/repository/puzzle/ansible-training/tag/slides-${PR_NUMBER}
+          curl -X DELETE -H "Authorization: Bearer ${QUAYIO_API_TOKEN}" https://quay.io/api/v1/repository/puzzle/ansible-training/tag/test

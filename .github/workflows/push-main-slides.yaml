@@ -17,14 +17,6 @@ jobs:
         with:
           submodules: recursive
       -
-        name: Set up npm for linting
-        uses: actions/setup-node@v2
-        with:
-          node-version: '15.x'
-      - 
-        name: Lint Markdown
-        run: npm ci && npm run mdlint
-      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       -
