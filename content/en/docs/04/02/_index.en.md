@@ -178,7 +178,7 @@ $ cat userplay.yml
     - name: create groups
       group:
         name: "{{ item.food | default('kebab') }}"
-      with_items: "{{ users }}"
+      loop: "{{ users }}"
     - name: ensure zsh is installed
       yum:
         name: zsh
@@ -191,7 +191,7 @@ $ cat userplay.yml
         shell: "{% if item.name == 'santos' %}/usr/sbin/nologin{% else %}/usr/bin/zsh{% endif %}"
         password: "{{ 'N0t_5o_s3cur3' | password_hash('sha512') }}"
         update_password: on_create
-      with_items: "{{ users }}"
+      loop: "{{ users }}"
 
 $ cat user_template.j2
 {% for person in users %}

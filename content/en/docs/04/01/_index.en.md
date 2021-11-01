@@ -67,14 +67,14 @@ Delete the 2 tasks "start and enable \[httpd,firewalld\]". Add a new task with t
     name: "{{ item }}"
     state: started
     enabled: yes
-  with_items:
+  loop:
     - httpd
     - firewalld
 ```
 
 {{% alert title="Tip" color="info" %}}
 Make sure your indentations are correct!
-Older versions of Ansible don’t know the keyword `loop` yet -- use `with_items` instead.
+Older versions of Ansible used `with_items` instead of `loop`
 {{% /alert %}}
 
 {{% /details %}}
@@ -204,7 +204,7 @@ password: "<my_secret_password>"
 Create the playbook:
 ```bash
 $ cat takemehome.yml
---- 
+---
 - hosts: localhost
   #vars_files:              # if the vars file is not provided here, you'll have to use it with
   #  - password_file.yml    # --extra-vars on cmdline as shown below
@@ -227,13 +227,13 @@ $ cat takemehome.yml
         to: bill.gates@gmail.com
         subject: Techlab stuff
         body: Sending my stuff home
-        attach: /home/ansible/techlab.tar.bz2     
+        attach: /home/ansible/techlab.tar.bz2
       no_log: true
 ```
 Run the playbook by using the SMTP password from the file created before. After the playbook was sent, delete the password file.
 ```bash
 ansible-playbook takemehome.yml --extra-vars "@password_file.yml"
 ansible-playbook takemehome.yml # if vars file provided in playbook
-rm -f password_file.yml       
+rm -f password_file.yml
 ```
 {{% /details %}}
