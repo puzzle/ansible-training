@@ -191,6 +191,12 @@ https://www.puzzle.ch/de/team
 
 <!-- .slide: class="master-left-right"> -->
 
+Note:
+Automatisierung unserer monatlichen Updates/Restart
+SLOG Cluster automatisierung
+Migration von RZ in die Cloud mit Wechsel von Puppet auf Ansible
+Eure Lab-VMs werden vollautomatisch mit Ansible Deployed und provisioniert
+
 ***
 <div class="small">
 
@@ -210,6 +216,9 @@ https://www.puzzle.ch/de/team
 ![rocannons world](ansible-techlab/img/rocannonsworld.jpg)
 </div>
 <!-- .slide: class="master-left-right" -->
+
+Note:
+Umbenennung von Ansible zu ansible-base (3.x) zu ansible-core (4.x), module in collections auslagern, schneller kern releasen, da keine dependencies zu modulen
 
 ----
 
@@ -238,12 +247,16 @@ https://www.puzzle.ch/de/team
 
 <!-- .slide: class="master-content" > -->
 
+Note:
+Zentraler Controlnode erleichtert das auswerten von Logs im Team
+pull (Puppet way) vs push (ansible way) --> push braucht weder daemon noch sonst was
+
 ***
 ## Requirements
 
 - Control Node
   - ansible installed (newer versions via «pip»)
-  - Nice to have: AWX / Tower
+  - Nice to have: AWX / Tower / CI/CD-Pipeline
 - Client
   - ssh, python
 
@@ -269,7 +282,7 @@ https://www.puzzle.ch/de/team
 - Agentless
 - Standard transport (ssh)
 - Easy (relatively), yaml
-- Many modules (~~2834~~, ~~3387~~, 4573 modules, )
+- Many modules (~~2834~~, ~~3387~~, ~~4573~~, ∞ )
 <!-- .slide: class="master-content" > -->
 ***
 
@@ -299,7 +312,7 @@ What do we use on cmdline?
 - ansible.cfg
 - ssh-keys
 - best practice:
-user ansible + sudo
+`user ansible + sudo`
 
 <!-- .slide: class="master-content" > -->
 
@@ -398,6 +411,7 @@ provisioning: local
 - Windows:
   - Cygwin
   - VS Code + Git for Windows
+  - WSL
 
 <img alt="cygwin" src="ansible-techlab/img/cygwin.png" width="52"/> <img alt="vscode" src="ansible-techlab/img/vscode.png" width="52"/> <img alt="gitforwin" src="ansible-techlab/img/gitforwin.png" width="52"/>
 <!-- .slide: class="master-content" > -->
@@ -457,13 +471,13 @@ right:
 <!-- .slide: class="master-content" > -->
 ***
 ## Common Mistakes
-### quoting of variables
+### quoting of variables or spacing
 wrong:
 ```yaml
 - services:
     name: {{ item }}
     state: started
-  loop: {{ my_services }}
+  loop: "{{my_services}}"
 ```
 right:
 ```yaml
@@ -645,7 +659,13 @@ A bit more complex:
 
 - YAML
 - Idempotent!
-- Older Ansible-Versions: Retry-file (contains failed hosts)
+
+Note:
+
+Idempotence (UK: /ˌɪdɛmˈpoʊtəns/, US: /ˌaɪdəm-/) is the property of certain operations in mathematics and computer science whereby they can be applied multiple times without changing the result beyond the initial application. The concept of idempotence arises in a number of places in abstract algebra (in particular, in the theory of projectors and closure operators) and functional programming (in which it is connected to the property of referential transparency).
+
+The term was introduced by Benjamin Peirce in the context of elements of algebras that remain invariant when raised to a positive integer power, and literally means "(the quality of having) the same power", from idem + potence (same + power).
+
 ***
 # Lab 4.0: Ansible Playbooks - Basics
 
@@ -734,6 +754,10 @@ being iterated over in the play)
 (List of groups the current host is part of)
 <!-- .slide: class="master-content" > -->
 
+Note:
+variable precedence
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#understanding-variable-precedence
+
 ***
 ## Bonus Level: Loops!
 ```yaml
@@ -742,14 +766,16 @@ being iterated over in the play)
     name: "{{ item }}"
     state: started
     enabled: yes
-  with_items:
+  loop:
     - nginx
     - firewalld
 ```
 
 Note:
 
-"with_items" & "loop" possible
+"with_items" & "loop" possible, new better use loop
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html#migrating-to-loop
+
 <!-- .slide: class="master-content" > -->
 ***
 # Lab 4.1: Ansible Playbooks - Variables and Loops
@@ -960,7 +986,7 @@ Fact gathering:
 Ansible.cfg:
 
 ```ini
-gathering = implicit (default, bedeute gather_facts: yes)
+gathering = implicit (default, bedeutet gather_facts: yes)
 ```
 
 explicit → gather_facts: no
@@ -974,7 +1000,7 @@ explicit → gather_facts: no
 ## Bonus Level: Ansible on Windows
 - No Windows as ansible control host! cygwin etc not supported...
 - But: Works on WSL...
--  Maaaaaany (105 110 106) modules for win
+-  Maaaaaany modules for win
   - win_service
   - win_updates
   - win_chocolatey
@@ -1732,10 +1758,10 @@ Should be fine from 2020 on. Not tested yet...
 ***
 ## AWX
 - Install:
-- Supports only installation via
+- Supports only installation via Operator on
   - OpenShift
   - Kubernetes
-  - Docker Compose (?)
+  - Docker Compose (also possible but not really supported)
 
 <!-- .slide: class="master-content" > -->
 
@@ -1770,14 +1796,14 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 ## Infrastructure:
 - Start doing config changes only through ansible, limit root access to servers if possible
 - Use controllers to run ansible on your infrastructure, dont run from your laptop
-- Use a tool like Ansible Tower, AWX, Jenkins, ...
+- Use a tool like Ansible Tower, AWX, Jenkins, GitLab, Github...
 <!-- .slide: class="master-content" > -->
 
 ***
 ## Migration to Ansible (from Puppet?):
--  you can run both tools at the same time if people fear they are not ready yet
+- You can run both tools at the same time if people fear they are not ready yet
 - Keep puppet infrastructure working but disable it
--  Migrate the puppet-modules to ansible-roles step by step. You DONT have to have ALL content ready from start (it probably not realistic)
+- Migrate the puppet-modules to ansible-roles step by step. You DONT have to have ALL content ready from start (it probably not realistic)
 <!-- .slide: class="master-content" > -->
 
 ***
@@ -1803,7 +1829,7 @@ Roles:
 ***
 ## Ansible Content:
 Templates:
-- Use `{{ ansible_managed }}` at the beginning of the template to indicate, that the file is managed by
+- Use `{{ ansible_managed | comment }}` at the beginning of the template to indicate, that the file is managed by
 ansible
 
 Files:
@@ -1826,7 +1852,7 @@ When writing ansible-content in a team:
 - **But**: dont discuss too much about how a problem is solved. There are simply different kind of views.
 <!-- .slide: class="master-content" > -->
 
----
+----
 # Do it yourself!
 
 <!-- .slide: class="master-title" > -->
