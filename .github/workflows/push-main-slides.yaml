@@ -1,4 +1,4 @@
-name: Push Slides for Training and Publish to Prod
+name: Push Slides for Training and Publish to Prod Env
 
 on:
   push:
@@ -71,7 +71,7 @@ jobs:
           echo "$KUBE_CONFIG"
           echo "$KUBE_CONFIG" > $HOME/.kube/config
       - 
-        name: Deploy RevealJSa Prod
+        name: Deploy RevealJS Prod
         env:
           TRAINING_NAMESPACE: 'pitc-ansible-training-prod'
         run: |
