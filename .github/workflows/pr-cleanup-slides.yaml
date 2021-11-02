@@ -1,4 +1,4 @@
-name: PRCleanup
+name: PRCleanup Slides Test
 on:
   pull_request:
     types: [closed]
@@ -6,7 +6,7 @@ on:
       - 'slides/**'
 
 jobs:
-  deployment:
+  delete-slides-test:
     runs-on: 'ubuntu-latest'
     steps:
       - 
@@ -27,7 +27,7 @@ jobs:
           mkdir -p $HOME/.kube
           echo "$KUBE_CONFIG" > $HOME/.kube/config
       - 
-        name: Remove Slides test Environment
+        name: Remove Slides Test Environment
         env:
           TRAINING_NAMESPACE: 'pitc-ansible-training-test'
         run: |
