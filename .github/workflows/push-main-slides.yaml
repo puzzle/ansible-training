@@ -1,4 +1,4 @@
-name: Push Slides for Training and Publish
+name: Push Slides for Training and Publish to Prod
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
       - 'slides/**'
 
 jobs:
-  build:
+  push-slides:
     runs-on: ubuntu-latest
     steps:
       - 
@@ -30,7 +30,7 @@ jobs:
           username: ${{ secrets.QUAYIO_USERNAME }}
           password: ${{ secrets.QUAYIO_TOKEN }}
       - 
-        name: Build Slides
+        name: Build Slides Prod
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -71,7 +71,7 @@ jobs:
           echo "$KUBE_CONFIG"
           echo "$KUBE_CONFIG" > $HOME/.kube/config
       - 
-        name: Deploy RevealJS
+        name: Deploy RevealJSa Prod
         env:
           TRAINING_NAMESPACE: 'pitc-ansible-training-prod'
         run: |

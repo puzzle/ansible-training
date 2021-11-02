@@ -1,4 +1,4 @@
-name: Build Slides for Training and Publish
+name: Build Slides for Training and Publish to Test Env
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
       - 'slides/**'
 
 jobs:
-  build:
+  build-slides-test:
     runs-on: ubuntu-latest
     steps:
       - 
@@ -28,7 +28,7 @@ jobs:
           username: ${{ secrets.QUAYIO_USERNAME }}
           password: ${{ secrets.QUAYIO_TOKEN }}
       - 
-        name: Build Slides 
+        name: Build Slides Test
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -69,7 +69,7 @@ jobs:
           echo "$KUBE_CONFIG"
           echo "$KUBE_CONFIG" > $HOME/.kube/config
       - 
-        name: Deploy RevealJS
+        name: Deploy RevealJS Test
         env:
           TRAINING_NAMESPACE: 'pitc-ansible-training-test'
         run: |
