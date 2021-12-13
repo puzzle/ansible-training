@@ -2,7 +2,7 @@
 ### ansible.puzzle.ch
 #### Lukas Grimm
 #### Dominik Meisser
-#### Philippe Schmid
+<!-- #### Philippe Schmid -->
 <!-- .slide: class="master-cover" -->
 
 ----
@@ -26,7 +26,7 @@
 <div class="people">
   <div>
 
-  <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/06/Schmid_Philippe-3-400x300.jpg)" /></div>
+<!--  <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/06/Schmid_Philippe-3-400x300.jpg)" /></div>
 
   ### Philippe Schmid
   Senior System Engineer
@@ -35,7 +35,7 @@
 
   </div><div>
 
-  <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2020/08/Lukas_Grimm_wp-400x300.jpg)" /></div>
+  <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2020/08/Lukas_Grimm_wp-400x300.jpg)" /></div>-->
 
   ### Lukas Grimm
   System Engineer
@@ -1397,6 +1397,7 @@ mysecret: !vault |
 ## Hashicorps Vault
 - ansible can use Hashicorps vault secrets
 - python library needed: `hvac`
+
 ```yaml
 debug:
   msg: "{{ lookup('hashi_vault',<params>}}"
@@ -1420,7 +1421,9 @@ debug:
            url=http://myvault:8200' \
         )}}"
 ```
+
 <!-- .slide: class="master-content" > -->
+
 ***
 ## Hashicorps Vault
 
@@ -1436,7 +1439,9 @@ VAULT_TOKEN=<your token>
 base_root_pw: "{{ lookup('community.hashi_vault.hashi_vault', \
                   'secret=kv/data/spaces/company/prod/root:rootpw_crypted') }}"
 ```
+
 <!-- .slide: class="master-content" > -->
+
 ***
 # CI/CD Pipelines DEMO
 
@@ -1446,13 +1451,16 @@ base_root_pw: "{{ lookup('community.hashi_vault.hashi_vault', \
 
 
 <!-- .slide: class="master-title" > -->
+
 ***
 ## Collections
 - What is a Collection?
 - different kind of ansible content ( playbooks, roles, modules, plugins...)
 - Well defined structure (see later)
 <!-- .slide: class="master-content" > -->
+
 ***
+
 ## Collections
 -  Why Collections?
 
@@ -1462,7 +1470,9 @@ Problem:
 
 Solution:
 - With collections, plugins (modules) can have their own release cycle
+
 <!-- .slide: class="master-content" > -->
+
 ***
 ## Collections
 
@@ -1473,6 +1483,7 @@ Solution:
   - Collections (additional stuff)
 
 <!-- .slide: class="master-content" > -->
+
 ***
 ## Collections
 - Ansible 2.9 → one thing! (Collections as preview)
@@ -1480,13 +1491,17 @@ Solution:
 - Ansible 2.11 → (not available, naming changes to Ansible 3.0)
 - Ansible 3.0 → Ansible-Base 2.10 + Collections
 - Ansible 4.0 → Ansible-Core 2.11 + Collections
+
 <!-- .slide: class="master-content" > -->
+
 ***
 ## Collections
 -  companies offer support for their collections:
 
 Red Hat, Azure, VMWare, Cisco, Checkpoint, F5, IBM, NetApp...
+
 <!-- .slide: class="master-content" > -->
+
 ***
 ## Collections
 - Name of collection is always like:
@@ -1499,6 +1514,7 @@ Example:
 - `puzzle.puzzle_collection`
 
 <!-- .slide: class="master-content" > -->
+
 ***
 ## Collections
 -  Creation of Namespace:
@@ -1508,7 +1524,9 @@ first login into Galaxy with GitHub credentials →
 namespace created automatically (username)
 
 - Github issues for other namespaces
+
 <!-- .slide: class="master-content" > -->
+
 ***
 ## Collections
 
@@ -1528,7 +1546,9 @@ puzzle
 
 Details about structure in
 https://docs.ansible.com/ansible/latest/dev_guide/developing_collections.html#collection-structure
+
 <!-- .slide: class="master-content" > -->
+
 ***
 ## Collections
 Where to get collections?
@@ -1538,7 +1558,9 @@ Use local collections:
 Set `COLLECTIONS_PATHS` in ansible.cfg
 
 (use `ansible-config dump` to what is set)
+
 <!-- .slide: class="master-content" > -->
+
 ***
 ## Collections
 
@@ -1554,7 +1576,9 @@ url=https://hub.puzzle.ch/
 username=<username>
 password=<secret_password>
 ```
+
 <!-- .slide: class="master-content" > -->
+
 ***
 ## Collections
 
@@ -1576,6 +1600,7 @@ Get token from:
 https://cloud.redhat.com/ansible/automation-hub/token/
 
 <!-- .slide: class="master-content" > -->
+
 ***
 ## Collections
 
@@ -1591,7 +1616,9 @@ url=      → PRIMARY GALAXY SERVER URL
 auth_url= → PRIMARY GALAXY AUTHENTICATION URL
 token=    → PRIMARY GALAXY SERVER TOKEN
 ```
+
 <!-- .slide: class="master-content" > -->
+
 ***
 ## Collections
 
@@ -1604,6 +1631,7 @@ collections/requirements.yml
 → needed for Tower to download collections
 
 <!-- .slide: class="master-content" > -->
+
 ***
 ## Collections
 
@@ -1632,7 +1660,9 @@ OR:
         option: bliblub
 ...
 ```
+
 <!-- .slide: class="master-content" > -->
+
 ***
 ## Collections
 How to use collections?
@@ -1649,6 +1679,7 @@ ansible-galaxy collection init puzzle.puzzle_collection
 ```
 
 <!-- .slide: class="master-content" > -->
+
 ***
 ## Collections
 
@@ -1662,7 +1693,9 @@ ansible-galaxy collection build puzzle.puzzle_collection
 Must have: galaxy.yml with infos!
 
 Results in a tar.gz of the collection
+
 <!-- .slide: class="master-content" > -->
+
 ***
 ## Collections
 
@@ -1675,7 +1708,9 @@ ansible-galaxy collection publish puzzle.puzzle_collection
 
 Nota Bene: Collection is published with the namespace and name defined in
 galaxy.yml!
+
 <!-- .slide: class="master-content" > -->
+
 ***
 ## Automation Hub
 
@@ -1688,6 +1723,7 @@ https://cloud.redhat.com/api/automation-hub/ (token required)
 Red Hat Ansible Automation Platform subscription ≃ Red Hat Ansible Tower subscription
 
 <!-- .slide: class="master-content" > -->
+
 ***
 # Lab 8. Ansible Collections
 
@@ -1697,6 +1733,7 @@ Red Hat Ansible Automation Platform subscription ≃ Red Hat Ansible Tower subsc
 
 
 <!-- .slide: class="master-title" > -->
+
 ***
 
 ## Ansible Tower
@@ -1715,6 +1752,7 @@ Red Hat Ansible Automation Platform subscription ≃ Red Hat Ansible Tower subsc
 Watch out:
 
 Some configs from ansible.cfg not taken!
+
 <!-- .slide: class="master-content" > -->
 
 ***
@@ -1729,6 +1767,7 @@ Some configs from ansible.cfg not taken!
   - Tower can be configured using ansible modules :-)
 - Cons:
   - price?
+
 <!-- .slide: class="master-content" > -->
 
 ***
@@ -1743,6 +1782,7 @@ Some configs from ansible.cfg not taken!
 - ~~results in new install and new setup upgrade~~
 
 Should be fine from 2020 on. Not tested yet...
+
 <!-- .slide: class="master-content" > -->
 
 ***
@@ -1753,6 +1793,7 @@ Should be fine from 2020 on. Not tested yet...
   - Setup.sh does ansible magic! :-)
   - Standalone or bundled installer
   - Need for a licence file! (no subscription)
+
 <!-- .slide: class="master-content" > -->
 
 ***
@@ -1781,6 +1822,7 @@ Should be fine from 2020 on. Not tested yet...
 - Very interesting tips:
 
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
+
 <!-- .slide: class="master-content" > -->
 
 ***
@@ -1797,6 +1839,7 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 - Start doing config changes only through ansible, limit root access to servers if possible
 - Use controllers to run ansible on your infrastructure, dont run from your laptop
 - Use a tool like Ansible Tower, AWX, Jenkins, GitLab, Github...
+
 <!-- .slide: class="master-content" > -->
 
 ***
@@ -1804,6 +1847,7 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 - You can run both tools at the same time if people fear they are not ready yet
 - Keep puppet infrastructure working but disable it
 - Migrate the puppet-modules to ansible-roles step by step. You DONT have to have ALL content ready from start (it probably not realistic)
+
 <!-- .slide: class="master-content" > -->
 
 ***
@@ -1824,6 +1868,7 @@ Roles:
 - Prefix all variables of a role with its role-name (possible exception: base role)
 -  Put all used variables in your defaults-folder , even if not yet defined
 -  Use «meta: flush_handler» at the end of a role to be sure all role-related stuff is run even if a later applied role fails.
+
 <!-- .slide: class="master-content" > -->
 
 ***
@@ -1834,6 +1879,7 @@ ansible
 
 Files:
 - Use a comment at the beginning of the file to indicate, that the file ist managed by ansible
+
 <!-- .slide: class="master-content" > -->
 
 ***
@@ -1843,6 +1889,7 @@ Ansible-Vault:
 -  Use encrypt_string to encrypt each variable seperately and not a complete vars-file.
 
    Reason being: You still see which variable has changed in your git repo
+
 <!-- .slide: class="master-content" > -->
 
 ***
@@ -1850,6 +1897,7 @@ Ansible-Vault:
 When writing ansible-content in a team:
 - Define some standards (role-prefixed variables, snake_case for variables/handlers ...)
 - **But**: dont discuss too much about how a problem is solved. There are simply different kind of views.
+
 <!-- .slide: class="master-content" > -->
 
 ----
@@ -1864,7 +1912,9 @@ When writing ansible-content in a team:
 -  https://ansible.puzzle.ch/ (more content to come...)
 -  https://www.puzzle.ch/de/blog/categories/technologien/ansible
 -  → Feedback
+
 <!-- .slide: class="master-content" > -->
+
 ----
 # Merci!
 ### Mehr Informationen zu Puzzle:
