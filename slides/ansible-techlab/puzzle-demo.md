@@ -1112,7 +1112,7 @@ Base/
 │ ├── inventory
 │ └── test.yml
 └── vars
-└── main.yml
+  └── main.yml
 ```
 Remember: only use folders/files you really need!
 <!-- .slide: class="master-content" > -->
@@ -1227,11 +1227,11 @@ handlers:
       name: memcached
       state: restarted
     listen: "restart web services"
-- name: Restart apache
-  ansible.builtin.service:
-    name: apache
-    state: restarted
-  listen: "restart web services"
+  - name: Restart apache
+    ansible.builtin.service:
+      name: apache
+      state: restarted
+    listen: "restart web services"
 ```
 <!-- .slide: class="master-content" > -->
 ***
@@ -1728,6 +1728,7 @@ Red Hat Ansible Automation Platform subscription ≃ Red Hat Ansible Tower subsc
 # Lab 8. Ansible Collections
 
 <!-- .slide: class="master-title" > -->
+
 ----
 # Ansible Tower
 
@@ -1810,7 +1811,9 @@ Should be fine from 2020 on. Not tested yet...
 # Lab 8. Ansible Collections
 
 <!-- .slide: class="master-title" > -->
----
+
+----
+
 # Best Practices
 
 <!-- .slide: class="master-title" > -->
