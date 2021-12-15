@@ -73,7 +73,7 @@ Look for an option to `ansible-vault` to give the name of the variable while enc
 
 * Check the content of `secret_vars2.yml` by viewing it and providing the password at the command line.
 
-### TASK 8
+### Task 8
 
 * What can you do, to avoid Ansible to print out sensitive data at runtime?
 
