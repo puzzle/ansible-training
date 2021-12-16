@@ -597,8 +597,12 @@ node[3:99]
 
 playbook → collection of plays
 
-<img alt='playbook' src='ansible-techlab/img/playbook.png' width="100em" />
+<img alt='playbook' src='ansible-techlab/img/playbook.png' width="200em" />
 <!-- .slide: class="master-content" > -->
+
+Note:
+Kommt aus dem Eishockey: Spielablauf
+Das gleiche bei Ansible
 
 ***
 ## Plays
@@ -619,6 +623,9 @@ Very simple example:
 To use `name` is a best practice
 <!-- .slide: class="master-content" > -->
 
+Note:
+Ein Play ist was, wo wie, gmacht wird
+
 ***
 ## Plays
 "Baby-JSON" possible
@@ -633,6 +640,9 @@ same as before:
 ```
 Not Best Practice!
 <!-- .slide: class="master-content" > -->
+
+Note:
+Syntax ist anders als bei Ad-Hoc Befehl, also Best Practise kein Baby Json
 
 ***
 ## Plays
@@ -661,6 +671,9 @@ A bit more complex:
 - Idempotent!
 
 Note:
+
+Play sollten immer in YAML geschrieben werden
+Idempodent: Man sollte es mehrmals aufrühren können und das gleiche dabei rauskommen. Wikipedia:
 
 Idempotence (UK: /ˌɪdɛmˈpoʊtəns/, US: /ˌaɪdəm-/) is the property of certain operations in mathematics and computer science whereby they can be applied multiple times without changing the result beyond the initial application. The concept of idempotence arises in a number of places in abstract algebra (in particular, in the theory of projectors and closure operators) and functional programming (in which it is connected to the property of referential transparency).
 
@@ -703,6 +716,10 @@ defined in playbook:
 `ansible-playbook myplay.yml --extra-vars my_package="nginx"`
 <!-- .slide: class="master-content" > -->
 
+Note:
+
+-- extra-vars für Command "vars", always win precedence
+
 ***
 ## Where to put variables
 group_vars and host_vars
@@ -712,12 +729,15 @@ inventory/
 │ └── web.yml
 ├── hosts
 └── host_vars/
-└── node2.yml
+  └── node2.yml
 ```
 Name of file in group_vars / host_vars
 **MUST** match name of group / host in
 inventory!
 <!-- .slide: class="master-content" > -->
+
+Note:
+die vars-Ordner müssen im selben Ordner liegen wie das Inventory
 
 ***
 ## Variables
@@ -758,6 +778,8 @@ Note:
 variable precedence
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#understanding-variable-precedence
 
+Don't Name your Variables after Magic Variables
+
 ***
 ## Bonus Level: Loops!
 ```yaml
@@ -790,7 +812,12 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html#migratin
 - Access to the same variables as the play itself
 - Easy if-else statements and, for-loops etc.
 <!-- .slide: class="master-content" > -->
+
+Note:
+Tempates sind dafür da komplexe Files zu erstellen (Variabeln sind möglich und if / else / for
+
 ***
+
 ## Templates
 
 - template task hosts.yml
@@ -858,12 +885,19 @@ values `stdout`, `stderr` and more when processing the output
 ```
 
 - Use «changed_when» to define a as «changed»
+
 <!-- .slide: class="master-content" > -->
+
+Note:
+Nicht nur in Templates sind when Condiations möglich
+
 ***
+
 # Lab 4.3: Ansible Playbooks - Output
 
 <!-- .slide: class="master-title" > -->
 ***
+
 ## Ansible-pull
 - Inverted Architecture:
 - pull playbook and inventory from git repo and apply it
@@ -872,7 +906,9 @@ values `stdout`, `stderr` and more when processing the output
 - no stuff stored locally
 - yum install ansible → ansible-pull
 <!-- .slide: class="master-content" > -->
+
 ***
+
 ## Ansible-pull Example
 
 ```bash
@@ -883,7 +919,12 @@ $ ansible-pull \
 ```
 default playbook: `local.yml`
 <!-- .slide: class="master-content" > -->
+
+Note:
+Pull kehr einfach die Logik um. Man holt sich die Befehle und schickt sie nicht.
+
 ***
+
 # Lab 4.4: Ansible-Pull
 
 <!-- .slide: class="master-title" > -->
@@ -894,7 +935,12 @@ default playbook: `local.yml`
 - «async»: define how long to wait at max for a task to finish. (ad hoc → -B)
 - «poll»: Intervall at which ansible checks back if task has finished. Default: 10sec (ad hoc → -P)
 -  Fire and forget: «async = x » AND «poll = 0»
+
 <!-- .slide: class="master-content" > -->
+
+Note:
+Mit Task Kontrolle kann man die definieren wie Ansible auf eure Nodes zugreift.
+
 ***
 
 ## Task control Examples:
@@ -971,7 +1017,12 @@ forks = 30
 ```
 
 But → mind your controllers processing power...
+
 <!-- .slide: class="master-content" > -->
+
+Note:
+Mit Forks könnt ihr den Control Node in die Knie zwingen
+
 ***
 ## Task control
 
@@ -1459,6 +1510,9 @@ base_root_pw: "{{ lookup('community.hashi_vault.hashi_vault', \
 - Well defined structure (see later)
 <!-- .slide: class="master-content" > -->
 
+Note:
+Ist eine Zusammenzug von verschiedenen Ansible komponenten
+
 ***
 
 ## Collections
@@ -1484,6 +1538,9 @@ Solution:
 
 <!-- .slide: class="master-content" > -->
 
+Note:
+Bei 2.9 nur Techpreview dann ab 2.10 Bestanteil
+
 ***
 ## Collections
 - Ansible 2.9 → one thing! (Collections as preview)
@@ -1494,6 +1551,10 @@ Solution:
 
 <!-- .slide: class="master-content" > -->
 
+Note:
+Version Chaos
+Bei Enterprise OS habt ihr ziemlich sicher 2.9
+
 ***
 ## Collections
 -  companies offer support for their collections:
@@ -1501,6 +1562,7 @@ Solution:
 Red Hat, Azure, VMWare, Cisco, Checkpoint, F5, IBM, NetApp...
 
 <!-- .slide: class="master-content" > -->
+
 
 ***
 ## Collections
@@ -1576,6 +1638,10 @@ url=https://hub.puzzle.ch/
 username=<username>
 password=<secret_password>
 ```
+
+Note:
+Man zeht sich in der Regel Collection von einem Hub/Github
+Red Hat Automation Hub Beispiel
 
 <!-- .slide: class="master-content" > -->
 
