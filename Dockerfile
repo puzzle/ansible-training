@@ -4,7 +4,7 @@ COPY . /src
 
 RUN hugo --minify
 
-FROM nginxinc/nginx-unprivileged:alpine
+FROM nginxinc/nginx-unprivileged:1.21-alpine
 
 # prevent nginx from adding ports in redirects
 USER root
