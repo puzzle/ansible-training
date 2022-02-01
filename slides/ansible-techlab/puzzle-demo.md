@@ -1,8 +1,9 @@
 # Ansible Techlab
 ### ansible.puzzle.ch
 #### Lukas Grimm
-#### Dominik Meisser
-<!-- #### Philippe Schmid -->
+<!-- #### Dominik Meisser -->
+#### Philippe Schmid
+<!-- #### Lukas Preisig -->
 <!-- .slide: class="master-cover" -->
 
 ----
@@ -26,14 +27,14 @@
 <div class="people">
   <div>
 
-<!--  <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/06/Schmid_Philippe-3-400x300.jpg)" /></div>
+  <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/06/Schmid_Philippe-3-400x300.jpg)" /></div>
 
   ### Philippe Schmid
-  Senior System Engineer
+  System Engineer
 
   pschmid@puzzle.ch
 
-  </div> <div> -->
+  </div> <div>
 
   <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2020/08/Lukas_Grimm_wp-400x300.jpg)" /></div>
 
@@ -44,7 +45,7 @@
 
   </div><div>
 
-  <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2020/08/Dominik_Meisser_wp-400x300.jpg)" /></div>
+<--  <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2020/08/Dominik_Meisser_wp-400x300.jpg)" /></div>
 
   ### Dominik Meisser
   System Engineer
@@ -52,6 +53,15 @@
   meisser@puzzle.ch
 
   </div>
+  <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2020/08/Dominik_Meisser_wp-400x300.jpg)" /></div>
+
+  ### Lukas Preisig
+  System Engineer
+
+  preisig@puzzle.ch
+
+  </div>
+-->
   <!--<div>
 
   <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/06/Kobras_Daniel1-400x300.jpg)" /></div>
