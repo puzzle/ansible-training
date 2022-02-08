@@ -223,8 +223,7 @@ Eure Lab-VMs werden vollautomatisch mit Ansible Deployed und provisioniert
 - 2021-05-18 Ansible 4.0
 </div>
 
-
-
+<div>
 ![rocannons world](ansible-techlab/img/rocannonsworld.jpg)
 </div>
 <!-- .slide: class="master-left-right" -->
