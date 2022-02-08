@@ -233,7 +233,8 @@ Note:
 Umbenennung von Ansible zu ansible-base (3.x) zu ansible-core (4.x), module in collections auslagern, schneller kern releasen, da keine dependencies zu modulen
 
 ***
-</div>
+
+## Ansible Versions
 
 - Ansible 2.9   -->   one thing! (Collections as preview)
 - Ansible 2.10  -->   Ansible-Base 2.10 + Collections
@@ -241,8 +242,6 @@ Umbenennung von Ansible zu ansible-base (3.x) zu ansible-core (4.x), module in c
 - Ansible 3.0   -->   Ansible-Core 2.10 + Collections v3
 - Ansible 4.0   -->   Ansible-Core 2.11 + Collections v4
 - Ansible 5.0   -->   Ansible-Core 2.12 + Collections v5
-
-<div>
 
 ----
 
