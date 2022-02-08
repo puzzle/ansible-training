@@ -1865,7 +1865,7 @@ Red Hat Ansible Automation Platform subscription ≃ Red Hat Ansible Tower subsc
       Exection Environment +
       Automation Hub (private)
 
-<!-- .slide: class="master-title" > -->
+<!-- .slide: class="master-content" > -->
 
 ***
 
