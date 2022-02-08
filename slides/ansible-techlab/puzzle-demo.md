@@ -222,7 +222,8 @@ Eure Lab-VMs werden vollautomatisch mit Ansible Deployed und provisioniert
 - 2021-02-18 Ansible 3.0
 - 2021-05-18 Ansible 4.0
 </div>
-<div>
+
+
 
 ![rocannons world](ansible-techlab/img/rocannonsworld.jpg)
 </div>
@@ -230,6 +231,18 @@ Eure Lab-VMs werden vollautomatisch mit Ansible Deployed und provisioniert
 
 Note:
 Umbenennung von Ansible zu ansible-base (3.x) zu ansible-core (4.x), module in collections auslagern, schneller kern releasen, da keine dependencies zu modulen
+
+***
+</div>
+
+- Ansible 2.9   -->   one thing! (Collections as preview)
+- Ansible 2.10  -->   Ansible-Base 2.10 + Collections
+- Ansible 2.11  -->   (not available naming changes to Ansible 3.0)
+- Ansible 3.0   -->   Ansible-Core 2.10 + Collections v3
+- Ansible 4.0   -->   Ansible-Core 2.11 + Collections v4
+- Ansible 5.0   -->   Ansible-Core 2.12 + Collections v5
+
+<div>
 
 ----
 
@@ -249,6 +262,7 @@ Umbenennung von Ansible zu ansible-base (3.x) zu ansible-core (4.x), module in c
 <!-- .slide: class="master-content" > -->
 
 ***
+
 ## How stuff works?
 
 - Common Setup
@@ -263,6 +277,7 @@ Zentraler Controlnode erleichtert das auswerten von Logs im Team
 pull (Puppet way) vs push (ansible way) --> push braucht weder daemon noch sonst was
 
 ***
+
 ## Requirements
 
 - Control Node
@@ -275,6 +290,7 @@ pull (Puppet way) vs push (ansible way) --> push braucht weder daemon noch sonst
 <!-- .slide: class="master-content" > -->
 
 ***
+
 ## Many possibilities...
 
 - Transporters:
@@ -286,7 +302,9 @@ pull (Puppet way) vs push (ansible way) --> push braucht weder daemon noch sonst
 
 <img alt='azure' src="ansible-techlab/img/azure.png" width="52"/> <img alt='aws' src="ansible-techlab/img/aws.png" width="52"/> <img alt='cloudscale' src="ansible-techlab/img/cloudscale.png" width="52"/> <img alt='vmware' src="ansible-techlab/img/vmware.png" width="52"/> <img alt='foreman' src="ansible-techlab/img/foreman.png" width="52"/>
 <!-- .slide: class="master-content" > -->
+
 ***
+
 ## Why Ansible?
 
 - Simple setup (yum install ansible)
@@ -295,6 +313,32 @@ pull (Puppet way) vs push (ansible way) --> push braucht weder daemon noch sonst
 - Easy (relatively), yaml
 - Many modules (~~2834~~, ~~3387~~, ~~4573~~, ∞ )
 <!-- .slide: class="master-content" > -->
+
+***
+
+## Why cows?
+ __________________
+< PLAY [localhost] >
+ ------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+<!-- .slide: class="master-content" > -->
+
+***
+
+## Why cows?
+
+- programm `cowsay`
+- was default configuration
+- still can be enabled:
+
+`$ ANSIBLE_NOCOWS=0 ansible-playbook plays/site.yml`
+
+<!-- .slide: class="master-content" > -->
+
 ***
 
 ## Commands
@@ -306,6 +350,7 @@ What do we use on cmdline?
 - `ansible-vault` (secrets)
 - `ansible-config`
 <!-- .slide: class="master-content" > -->
+
 ***
 
 ## Commands (cont.)
@@ -1807,14 +1852,24 @@ Red Hat Ansible Automation Platform subscription ≃ Red Hat Ansible Tower subsc
 <!-- .slide: class="master-title" > -->
 
 ----
-# Ansible Tower
+# Ansible Automation Plattform
 
+
+<!-- .slide: class="master-title" > -->
+***
+## Naming
+- Ansible Tower --> Ansible Controller
+- python venv   --> Execution Environments
+- Automation Plattform =
+      Ansible Controller +
+      Exection Environment +
+      Automation Hub (private)
 
 <!-- .slide: class="master-title" > -->
 
 ***
 
-## Ansible Tower
+## Ansible Controller
 - Central place to run playbooks
 - Gets information from git repo
 - Same result as running on command line
@@ -1826,7 +1881,7 @@ Red Hat Ansible Automation Platform subscription ≃ Red Hat Ansible Tower subsc
 
 ***
 
-## Ansible Tower
+## Ansible Controller
 Watch out:
 
 Some configs from ansible.cfg not taken!
@@ -1835,14 +1890,15 @@ Some configs from ansible.cfg not taken!
 
 ***
 
-## Ansible Tower
+## Ansible Controller
 - Pros:
   - «who run what job where?» vs «root access»
   - scheduling, notifications
   - one single environment (vs. pipenv)
   - teams with different permissions
   - teams can use credentials without knowing them
-  - Tower can be configured using ansible modules :-)
+  - Controller can be configured using ansible modules :-)
+    (awx.awx)
 - Cons:
   - price?
 
@@ -1850,27 +1906,48 @@ Some configs from ansible.cfg not taken!
 
 ***
 
-## Ansible Tower
-~~Why no AWX?~~
+## Ansible Controller
 
-~~No supported upgrade path~~
+- why no AWX?
 
-- ~~no update scripts for new DB schema~~
-- ~~only as container~~
-- ~~results in new install and new setup upgrade~~
+- ~Docker install~
+- only Kubernetes Operator available
+- Upgrade Paths available
 
-Should be fine from 2020 on. Not tested yet...
 
 <!-- .slide: class="master-content" > -->
 
 ***
 
-## Ansible Tower
+## Ansible Controller
+
 - Install:
   - Download tar.gz. Contains a setup.sh
   - Setup.sh does ansible magic! :-)
   - Standalone or bundled installer
   - Need for a licence file! (no subscription)
+
+<!-- .slide: class="master-content" > -->
+
+***
+## Execution Environments
+
+- Container mit:
+    - python
+    - python modules
+    - ansible version
+    - ansible collections
+    - binaries
+
+<!-- .slide: class="master-content" > -->
+
+***
+## Execution Environments
+
+- build with ansible-builder
+- (uses different containers)
+- beware of transparent proxy :-/
+
 
 <!-- .slide: class="master-content" > -->
 
