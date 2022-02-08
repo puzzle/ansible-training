@@ -243,6 +243,7 @@ Umbenennung von Ansible zu ansible-base (3.x) zu ansible-core (4.x), module in c
 - Ansible 4.0   -->   Ansible-Core 2.11 + Collections v4
 - Ansible 5.0   -->   Ansible-Core 2.12 + Collections v5
 
+<!-- .slide: class="master-content" > -->
 ----
 
 # Basics
