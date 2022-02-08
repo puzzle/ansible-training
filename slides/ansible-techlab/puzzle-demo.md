@@ -61,7 +61,7 @@
   preisig@puzzle.ch
 
   </div>
--->
+  
   <!--<div>
 
   <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/06/Kobras_Daniel1-400x300.jpg)" /></div>
