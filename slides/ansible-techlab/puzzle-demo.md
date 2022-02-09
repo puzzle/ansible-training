@@ -1947,8 +1947,23 @@ Some configs from ansible.cfg not taken!
 - (uses different containers)
 - beware of transparent proxy :-/
 
-
 <!-- .slide: class="master-content" > -->
+
+***
+## ansible-navigator
+
+- run, logs, EE, builder, collections, doc, 
+  inventory, replay, config, exec, welcome
+  
+<!-- .slide: class="master-content" > -->
+
+***
+## ansible-navigator
+
+- available trough RH-subscription / repo or pip
+- needs podman (or similar)
+- initial download of demo EE
+- cfg per project possible
 
 ***
 ## AWX
