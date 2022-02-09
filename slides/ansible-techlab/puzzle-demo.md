@@ -220,10 +220,9 @@ Eure Lab-VMs werden vollautomatisch mit Ansible Deployed und provisioniert
 - 2019 Ansible 2.9
 - 2020-08-13 Ansible-Base 2.10
 - 2021-02-18 Ansible 3.0
-- 2021-05-18 Ansible 4.0
 </div>
-
 <div>
+
 ![rocannons world](ansible-techlab/img/rocannonsworld.jpg)
 </div>
 <!-- .slide: class="master-left-right" -->
@@ -317,6 +316,7 @@ pull (Puppet way) vs push (ansible way) --> push braucht weder daemon noch sonst
 ***
 
 ## Why cows?
+```
  __________________
 < PLAY [localhost] >
  ------------------
@@ -326,16 +326,16 @@ pull (Puppet way) vs push (ansible way) --> push braucht weder daemon noch sonst
                 ||----w |
                 ||     ||
 <!-- .slide: class="master-content" > -->
-
+```
 ***
 
 ## Why cows?
 
-- programm `cowsay`
+- programm "cowsay"
 - was default configuration
 - still can be enabled:
 
-`$ ANSIBLE_NOCOWS=0 ansible-playbook plays/site.yml`
+"$ ANSIBLE_NOCOWS=0 ansible-playbook plays/site.yml"
 
 <!-- .slide: class="master-content" > -->
 
@@ -1861,9 +1861,10 @@ Red Hat Ansible Automation Platform subscription ≃ Red Hat Ansible Tower subsc
 - Ansible Tower --> Ansible Controller
 - python venv   --> Execution Environments
 - Automation Plattform =
-      Ansible Controller +
-      Exection Environment +
-      Automation Hub (private)
+  
+  Ansible Controller +
+  Exection Environment +
+  Automation Hub (private)
 
 <!-- .slide: class="master-content" > -->
 
@@ -1894,7 +1895,7 @@ Some configs from ansible.cfg not taken!
 - Pros:
   - «who run what job where?» vs «root access»
   - scheduling, notifications
-  - one single environment (vs. pipenv)
+  - Execution Environments (vs. pipenv)
   - teams with different permissions
   - teams can use credentials without knowing them
   - Controller can be configured using ansible modules :-)
@@ -1910,8 +1911,7 @@ Some configs from ansible.cfg not taken!
 
 - why no AWX?
 
-- ~Docker install~
-- only Kubernetes Operator available
+- Install somewhat complicated
 - Upgrade Paths available
 
 
@@ -1922,7 +1922,7 @@ Some configs from ansible.cfg not taken!
 ## Ansible Controller
 
 - Install:
-  - Download tar.gz. Contains a setup.sh
+  - Download tar.gz. contains a setup.sh
   - Setup.sh does ansible magic! :-)
   - Standalone or bundled installer
   - Need for a licence file! (no subscription)
@@ -1948,9 +1948,25 @@ Some configs from ansible.cfg not taken!
 - (uses different containers)
 - beware of transparent proxy :-/
 
-
 <!-- .slide: class="master-content" > -->
 
+***
+## ansible-navigator
+
+- run, logs, EE, builder, collections, doc, 
+  inventory, replay, config, exec, welcome
+  
+<!-- .slide: class="master-content" > -->
+
+***
+## ansible-navigator
+
+- available trough RH-subscription / repo or pip
+- needs podman (or similar)
+- initial download of demo EE
+- cfg per project possible
+
+<!-- .slide: class="master-content" > -->
 ***
 ## AWX
 - Install:
@@ -1960,6 +1976,18 @@ Some configs from ansible.cfg not taken!
   - Docker Compose (also possible but not really supported)
 
 <!-- .slide: class="master-content" > -->
+
+***
+## Alternatives to AAP/AWX?
+
+- Cron
+- Jenkins
+- Gitlab
+- Github
+- ...
+
+<!-- .slide: class="master-content" > -->
+
 
 ***
 # Lab 8. Ansible Collections
@@ -1995,7 +2023,7 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 ## Infrastructure:
 - Start doing config changes only through ansible, limit root access to servers if possible
 - Use controllers to run ansible on your infrastructure, dont run from your laptop
-- Use a tool like Ansible Tower, AWX, Jenkins, GitLab, Github...
+- Use a tool like Ansible Controller, AWX, Jenkins, GitLab, Github...
 
 <!-- .slide: class="master-content" > -->
 
@@ -2023,8 +2051,9 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 ## Ansible Content:
 Roles:
 - Prefix all variables of a role with its role-name (possible exception: base role)
--  Put all used variables in your defaults-folder , even if not yet defined
--  Use «meta: flush_handler» at the end of a role to be sure all role-related stuff is run even if a later applied role fails.
+- Put all used variables in your defaults-folder , even if not yet defined
+- Use «meta: flush_handler» at the end of a role to be sure all role-related stuff is run even if a later applied role fails.
+- when many import_tasks: prefix name with filename
 
 <!-- .slide: class="master-content" > -->
 
