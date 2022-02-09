@@ -1965,6 +1965,7 @@ Some configs from ansible.cfg not taken!
 - initial download of demo EE
 - cfg per project possible
 
+<!-- .slide: class="master-content" > -->
 ***
 ## AWX
 - Install:
