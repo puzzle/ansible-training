@@ -325,8 +325,8 @@ pull (Puppet way) vs push (ansible way) --> push braucht weder daemon noch sonst
             (__)\       )\/\
                 ||----w |
                 ||     ||
-<!-- .slide: class="master-content" > -->
 ```
+<!-- .slide: class="master-content" > -->
 ***
 
 ## Why cows?
