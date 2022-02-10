@@ -128,10 +128,10 @@ https://www.puzzle.ch/de/team
 ***
 # Agenda
 - Ansible Collections
-- Hashicorps Vault
+- Hashicorp Vault
 - Ansible Tower / AWX
 - Demos
-- Do It Youself!
+- Do It Yourself!
 
 <!-- .slide: class="master-agenda" -->
 
@@ -297,7 +297,7 @@ pull (Puppet way) vs push (ansible way) --> push braucht weder daemon noch sonst
 - Modules:
 `file`, `template`, `firewalld`, `service`, `yum`,...
 - Dynamic inventories:
-`vmware`, `cloudscale`, `foreman`,`azure`, `aws`,...
+`vmware`, `cloudscale`, `foreman`, `azure`, `aws`,...
 
 <img alt='azure' src="ansible-techlab/img/azure.png" width="52"/> <img alt='aws' src="ansible-techlab/img/aws.png" width="52"/> <img alt='cloudscale' src="ansible-techlab/img/cloudscale.png" width="52"/> <img alt='vmware' src="ansible-techlab/img/vmware.png" width="52"/> <img alt='foreman' src="ansible-techlab/img/foreman.png" width="52"/>
 <!-- .slide: class="master-content" > -->
@@ -1861,7 +1861,7 @@ Red Hat Ansible Automation Platform subscription ≃ Red Hat Ansible Tower subsc
 - Ansible Tower --> Ansible Controller
 - python venv   --> Execution Environments
 - Automation Plattform =
-  
+
   Ansible Controller +
   Exection Environment +
   Automation Hub (private)
@@ -1953,9 +1953,9 @@ Some configs from ansible.cfg not taken!
 ***
 ## ansible-navigator
 
-- run, logs, EE, builder, collections, doc, 
+- run, logs, EE, builder, collections, doc,
   inventory, replay, config, exec, welcome
-  
+
 <!-- .slide: class="master-content" > -->
 
 ***
