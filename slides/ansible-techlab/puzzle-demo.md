@@ -1492,7 +1492,7 @@ mysecret: !vault |
 <!-- .slide: class="master-title" > -->
 
 ***
-## Hashicorps Vault
+## Hashicorp Vault
 - high availability
 - different permissions for different users and groups
 - centralized place to store secrets
@@ -1501,13 +1501,13 @@ mysecret: !vault |
 
 <!-- .slide: class="master-content" > -->
 ***
-## Hashicorps Vault
-- ansible can use Hashicorps vault secrets
+## Hashicorp Vault
+- ansible can use Hashicorp vault secrets
 - python library needed: `hvac`
 
 ```yaml
 debug:
-  msg: "{{ lookup('hashi_vault',<params>}}"
+  msg: "{{ lookup('hashi_vault',<params>) }}"
 
 vs
 
@@ -1519,7 +1519,7 @@ debug:
 
 ***
 
-## Hashicorps Vault
+## Hashicorp Vault
 ```yaml
 debug:
   msg: "{{ lookup('hashi_vault', \
@@ -1532,7 +1532,7 @@ debug:
 <!-- .slide: class="master-content" > -->
 
 ***
-## Hashicorps Vault
+## Hashicorp Vault
 
 Simpler: set Environment Variables
 ```
@@ -1541,7 +1541,7 @@ VAULT_TOKEN=<your token>
 ```
 <!-- .slide: class="master-content" > -->
 ***
-## Hashicorps Vault
+## Hashicorp Vault
 ```
 base_root_pw: "{{ lookup('community.hashi_vault.hashi_vault', \
                   'secret=kv/data/spaces/company/prod/root:rootpw_crypted') }}"
@@ -1863,7 +1863,7 @@ Red Hat Ansible Automation Platform subscription ≃ Red Hat Ansible Tower subsc
 - Automation Plattform =
 
   Ansible Controller +
-  Exection Environment +
+  Execution Environment +
   Automation Hub (private)
 
 <!-- .slide: class="master-content" > -->
