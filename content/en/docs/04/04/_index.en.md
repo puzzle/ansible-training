@@ -35,7 +35,7 @@ Note the following:
 
 It's a best practice to use cronjobs to trigger `ansible-pull` run at a regular basis. Do the following on node1:
 
-* Create a cronjob `/etc/cron.d/ansible-pull`. This cronjob should run every minute as user root the ansible-pull command from Task 2.
+* Create a cronjob `/etc/cron.d/ansible-pull`. This cronjob should run every minute as user ansible the ansible-pull command from Task 2.
 * Now remove the existing `/etc/motd` file and use the command `watch` to show the content of `/etc/motd` every second. We want to observe that our cronjob runs the `ansible-pull` command again and restore the previously deleted MOTD-file
 
 ### Task 4
