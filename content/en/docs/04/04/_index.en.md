@@ -35,13 +35,13 @@ Note the following:
 
 It's a best practice to use cronjobs to trigger `ansible-pull` run at a regular basis. Do the following on node1:
 
-* Create a cronjob `/etc/cron.d/ansible-pull`. This cronjob should run every minute as user root the ansible-pull commant from Task 2.
+* Create a cronjob `/etc/cron.d/ansible-pull`. This cronjob should run every minute as user ansible the ansible-pull command from Task 2.
 * Now remove the existing `/etc/motd` file and use the command `watch` to show the content of `/etc/motd` every second. We want to observe that our cronjob runs the `ansible-pull` command again and restore the previously deleted MOTD-file
 
 ### Task 4
 
 This task has nothing to do with `ansible-pull`, we just clean up the ansible-pull configurations. Create a playbook `revert_motd.yml` that runs on node1. It should:
-  
+
 * uninstall ansible
 * remove the cronjob `/etc/cron.d/ansible-pull`
 * empty the file `/etc/motd`
@@ -69,7 +69,7 @@ ll #no file here...
 {{% details title="Task 3" %}}
 ```bash
 $ sudo vim /etc/cron.d/ansible-pull #create the file with the content ->
-$ cat /etc/cron.d/ansible-pull 
+$ cat /etc/cron.d/ansible-pull
 * * * * * ansible /usr/bin/ansible-pull -U https://github.com/puzzle/ansible-techlab -i resources/ansible-pull/hosts resources/ansible-pull/local.yml
 $ sudo rm -f /etc/motd; watch cat /etc/motd
 ```

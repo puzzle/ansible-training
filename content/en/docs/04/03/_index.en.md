@@ -37,7 +37,7 @@ Have a look at the documentation about the command modul: [Ansible Docs - comman
 
 ### Task 4 (Advanced)
 
-* Ensure `httpd` is stopped by using an Ansible ad hoc command.
+* Ensure `httpd` is stopped on the group `web` by using an Ansible ad hoc command.
 * Write a play `servicehandler.yml` that does the following:
 * Install `httpd` by using the `yum` module
 * Start the service `httpd` with the `command` module. Don't use `service` or `systemd` module.
