@@ -101,7 +101,7 @@ If you are using the lab servers provided by your teacher, the sudoers configura
 
 ## Solutions
 
-{{% details title="Task 1" %}}
+{{% details title="Solution Task 1" %}}
 Installing Ansible with root privileges (on controller host):
 
 ```bash
@@ -132,7 +132,7 @@ If `which` does not find `python` or `python3`:
 
 {{% /details %}}
 
-{{% details title="Task 2" %}}
+{{% details title="Solution Task 2" %}}
 ```bash
    ssh-keygen #(no passphrase, just hit enter until the end)
    ssh-copy-id <node-ip>
@@ -167,7 +167,7 @@ Test it by running the SSH command executed on that node:
 ```
 {{% /details %}}
 
-{{% details title="Task 3" %}}
+{{% details title="Solution Task 3" %}}
 ```bash
    cd techlab
    vim hosts # (copy & paste inventory data)
@@ -186,7 +186,7 @@ Test it by running the SSH command executed on that node:
 {{% /details %}}
 
 
-{{% details title="Task 4" %}}
+{{% details title="Solution Task 4" %}}
 
 In the file `/etc/sudoers` (On CentOS/RHEL), there's already a config entry for the wheel group that is similar to the one we need for our ansible user.
 ```bash
@@ -222,7 +222,7 @@ Check if `ansible` user has root privileges:
 
 {{% /details %}}
 
-{{% details title="Task 5" %}}
+{{% details title="Solution Task 5" %}}
 Add `[nodes:children]` to inventory file:
 ```bash
    cat hosts

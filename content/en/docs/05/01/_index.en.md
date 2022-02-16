@@ -27,7 +27,7 @@ We start to use handlers and blocks as well.
 
 ## Solutions
 
-{{% details title="Task 1" %}}
+{{% details title="Solution Task 1" %}}
 Below is a possible solution:
 
 ```bash
@@ -61,7 +61,7 @@ $ ansible-playbook myhandler.yml #<-- no changes here, idempotent!
 ```
 {{% /details %}}
 
-{{% details title="Task 2" %}}
+{{% details title="Solution Task 2" %}}
 
 ```bash
 $ cat download.yml 

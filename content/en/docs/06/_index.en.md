@@ -83,7 +83,7 @@ Take a look at [docs.ansible.com](https://docs.ansible.com)
 
 ## Solutions
 
-{{% details title="Task 1" %}}
+{{% details title="Solution Task 1" %}}
 ```bash
 $ cat mi6.j2
 username: jamesbond
@@ -104,7 +104,7 @@ $ ansible-playbook secretservice.yml
 {{% /details %}}
 
 
-{{% details title="Task 2" %}}
+{{% details title="Solution Task 2" %}}
 
 ```bash
 $ cat secret_vars.yml
@@ -132,7 +132,7 @@ $ ansible-playbook secretservice.yml
 ```
 {{% /details %}}
 
-{{% details title="Task 3" %}}
+{{% details title="Solution Task 3" %}}
 ```bash
 $ cat vaultpassword
 goldfinger
@@ -143,7 +143,7 @@ $ ansible-playbook secretservice.yml --vault-id vaultpassword
 ```
 {{% /details %}}
 
-{{% details title="Task 4" %}}
+{{% details title="Solution Task 4" %}}
 
 Make sure you recieve the following output in your terminal:
 
@@ -156,7 +156,7 @@ $ ansible-playbook secretservice.yml
 
 {{% /details %}}
 
-{{% details title="Task 5" %}}
+{{% details title="Solution Task 5" %}}
 
 ```bash
 ansible-vault decrypt secret_vars.yml
@@ -189,7 +189,7 @@ ansible-playbook secretservice.yml
 
 {{% /details %}}
 
-{{% details title="Task 6" %}}
+{{% details title="Solution Task 6" %}}
 ```bash
 ansible node1,node2 -i inventory/hosts -b -a "rm /etc/MI6"
 ```
@@ -200,7 +200,7 @@ Note that the `command` module is the `default` module and therefore has not to 
 
 {{% /details %}}
 
-{{% details title="Task 7" %}}
+{{% details title="Solution Task 7" %}}
 
 ```bash
 ansible-vault encrypt secret_vars2.yml
@@ -217,7 +217,7 @@ ansible-vault view secret_vars2.yml --vault-id @prompt
 
 {{% /details %}}
 
-{{% details title="Task 8" %}}
+{{% details title="Solution Task 8" %}}
 {{% alert title="Tip" color="info" %}}
 See [Ansible Docs: Logging](https://docs.ansible.com/ansible/devel/reference_appendices/logging.html) and [Ansible Docs: FAQ - How do I keep secret data in my playbook?](https://docs.ansible.com/ansible/devel/reference_appendices/faq.html#keep-secret-data)
 {{% /alert %}}

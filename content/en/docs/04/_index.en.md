@@ -49,7 +49,7 @@ See [Ansible Docs - User Guide](https://docs.ansible.com/ansible/latest/user_gui
 
 ## Solutions
 
-{{% details title="Task 1" %}}
+{{% details title="Solution Task 1" %}}
 
 Below is a possible solution for your playbook:
 
@@ -93,7 +93,7 @@ Check `httpd.service` on group `web`:
 ```
 {{% /details %}}
 
-{{% details title="Task 2" %}}
+{{% details title="Solution Task 2" %}}
 
 Copy the default ansible.cfg to your directory:
 
@@ -125,7 +125,7 @@ ok: [node1]
 ```
 {{% /details %}}
 
-{{% details title="Task 3" %}}
+{{% details title="Solution Task 3" %}}
 
 Wrong intendation:
 
@@ -156,7 +156,7 @@ Wrong parameter name:
 
 {{% /details %}}
 
-{{% details title="Task 4" %}}
+{{% details title="Solution Task 4" %}}
 ```bash
 $ cat tempfolder.yml
 ---

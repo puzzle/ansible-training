@@ -58,7 +58,7 @@ It's NOT secure to put the smtp password unencrypted in a file. We will learn in
 
 ## Solutions
 
-{{% details title="Task 1" %}}
+{{% details title="Solution Task 1" %}}
 
 Delete the 2 tasks "start and enable \[httpd,firewalld\]". Add a new task with the following content:
 ```yaml
@@ -79,7 +79,7 @@ Older versions of Ansible used `with_items` instead of `loop`
 
 {{% /details %}}
 
-{{% details title="Task 2" %}}
+{{% details title="Solution Task 2" %}}
 ```yaml
 tasks:
   - name: install httpd and firewalld
@@ -97,7 +97,7 @@ See [Ansible Docs - Yum Module](https://docs.ansible.com/ansible/latest/modules/
 {{% /details %}}
 
 
-{{% details title="Task 3" %}}
+{{% details title="Solution Task 3" %}}
 Content of `motd.yml`:
 
 ```yaml
@@ -126,7 +126,7 @@ Thi5 1s some r3ally stR4nge teXT! # <-- it worked!
 ```
 {{% /details %}}
 
-{{% details title="Task 4" %}}
+{{% details title="Solution Task 4" %}}
 
 ```bash
 $ ansible-playbook motd.yml --extra-vars motd_content="0th3r_5trang3_TExt"
@@ -147,7 +147,7 @@ $ ansible-playbook motd.yml --extra-vars @vars.yml
 Login via SSH again and check if the new text was set.
 {{% /details %}}
 
-{{% details title="Task 5" %}}
+{{% details title="Solution Task 5" %}}
 
 Your `motd.yml` should look something like this:
 
@@ -182,7 +182,7 @@ ansible web,node2 -a "cat /etc/motd"
 ```
 {{% /details %}}
 
-{{% details title="Task 6" %}}
+{{% details title="Solution Task 6" %}}
 ```yaml
 ---
 - hosts: all
@@ -195,7 +195,7 @@ ansible web,node2 -a "cat /etc/motd"
 ```
 {{% /details %}}
 
-{{% details title="Task 7" %}}
+{{% details title="Solution Task 7" %}}
 Write your SMTP Password to a file:
 ```bash
 $ cat password_file.yml

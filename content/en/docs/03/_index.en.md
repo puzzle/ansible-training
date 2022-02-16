@@ -52,7 +52,7 @@ Complete the next steps using ansible ad hoc commands:
 
 ## Solutions
 
-{{% details title="Task 1" %}}
+{{% details title="Solution Task 1" %}}
 ```bash
 $ ansible all -i hosts -m ping
 5.102.146.128 | SUCCESS => {
@@ -67,7 +67,7 @@ $ ansible all -i hosts -m ping
 ```
 {{% /details %}}
 
-{{% details title="Task 2" %}}
+{{% details title="Solution Task 2" %}}
 ```bash
 $ ansible all -i hosts -m setup # (a lot of green output should be printed)
 $ ansible all -i hosts -m setup -a "filter=ansible_default_ipv4"
@@ -94,14 +94,14 @@ $ ansible all -i hosts -m setup -a "filter=ansible_default_ipv4"
 ```
 {{% /details %}}
 
-{{% details title="Task 3" %}}
+{{% details title="Solution Task 3" %}}
 
 * See Ansible docs for special variables: [Special Variables](https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html)
 * `inventory_hostname` contains the name of the managed host from the inventory file and can be used to set the hostname on the servers.
 
 {{% /details %}}
 
-{{% details title="Task 4" %}}
+{{% details title="Solution Task 4" %}}
 
 ```bash
 $ ansible-doc -l | grep hostname # or see webpage
@@ -119,7 +119,7 @@ $ ansible-doc -s hostname
 
 {{% /details %}}
 
-{{% details title="Task 5" %}}
+{{% details title="Solution Task 5" %}}
 ```bash
 ansible all -i hosts -b -m hostname -a "name={{ inventory_hostname }}"
 ansible all -i hosts -a "cat /etc/hostname"
@@ -127,7 +127,7 @@ ansible all -i hosts -a "cat /etc/hostname"
 {{% /details %}}
 
 
-{{% details title="Task 6" %}}
+{{% details title="Solution Task 6" %}}
 ```bash
 ansible web -i hosts -b -m yum -a "name=httpd state=installed"
 ansible web -i hosts -b -m service -a "name=httpd state=started enabled=yes"
@@ -141,7 +141,7 @@ ansible web -i hosts -b -m yum -a "name=httpd state=absent"
 ```
 {{% /details %}}
 
-{{% details title="Task 7" %}}
+{{% details title="Solution Task 7" %}}
 Possible solution 1:
 
 ```bash

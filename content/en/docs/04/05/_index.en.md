@@ -35,7 +35,7 @@ If unsure, check the documentation about [async_status](https://docs.ansible.com
 
 ## Solutions
 
-{{% details title="Task 1" %}}
+{{% details title="Solution Task 1" %}}
 ```bash
 $ ansible node1 -i hosts -B 10 -a "/usr/bin/sleep 1000"
 node1 | FAILED | rc=-1 >>
@@ -65,7 +65,7 @@ $
 ```
 {{% /details %}}
 
-{{% details title="Task 2" %}}
+{{% details title="Solution Task 2" %}}
 ```bash
 $ cat async.yml
 ---
@@ -93,7 +93,7 @@ $
 
 {{% /details %}}
 
-{{% details title="Task 3" %}}
+{{% details title="Solution Task 3" %}}
 ```bash
 $ cat async.yml
 ---

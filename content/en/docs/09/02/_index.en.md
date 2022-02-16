@@ -38,23 +38,23 @@ In this lab we are working with AWX
 
 ## Solutions
 
-{{% details title="Task 1" %}}
+{{% details title="Solution Task 1" %}}
 ![Change AWX admin password](awx002.png)
 {{% /details %}}
 
-{{% details title="Task 2" %}}
+{{% details title="Solution Task 2" %}}
 ![Add Techlab organization](awx003.png)
 ![Add `ansible` user](awx004.png)
 ![AWX login as `ansible`](awx005.png)
 {{% /details %}}
 
-{{% details title="Task 3" %}}
+{{% details title="Solution Task 3" %}}
 ![Demo Projekt](awx006.png)
 ![Demo Job Template](awx007.png)
 ![Demo job run](awx008.png)
 {{% /details %}}
 
-{{% details title="Task 4" %}}
+{{% details title="Solution Task 4" %}}
 ![New credentials](awx009.png)
 ![New inventory](awx010.png)
 ![Add a host](awx011.png)

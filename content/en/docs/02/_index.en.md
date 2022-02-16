@@ -33,7 +33,7 @@ Don’t be rattled about the massive amount of modules you’ll see in your term
 
 ### Solutions
 
-{{% details title="Task 1" %}}
+{{% details title="Solution Task 1" %}}
 ```bash
 ansible-doc -l
 ansible-doc file
@@ -41,7 +41,7 @@ ansible-doc -s file
 ```
 {{% /details %}}
 
-{{% details title="Task 2" %}}
+{{% details title="Solution Task 2" %}}
 
 * visit [Ansible Docs](https://docs.ansible.com/)
 * visit [Ansible Docs - Modules by category](https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html)
@@ -53,7 +53,7 @@ Starting from Ansible > 2.10 modules are shipped via collections. We will have a
 
 {{% /details %}}
 
-{{% details title="Task 3" %}}
+{{% details title="Solution Task 3" %}}
 One way to find a list of provided documentation:
 ```bash
 yum install -y yum-utils # (if needed)
@@ -66,7 +66,7 @@ ls -lahr /usr/share/doc/ | grep jinja2
 ```
 {{% /details %}}
 
-{{% details title="Task 4" %}}
+{{% details title="Solution Task 4" %}}
 
 * [https://docs.ansible.com/ansible/devel/](https://docs.ansible.com/ansible/devel/)
 * [https://docs.ansible.com/ansible/devel/roadmap/index.html#ansible-roadmap](https://docs.ansible.com/ansible/devel/roadmap/ansible_roadmap_index.html)

@@ -68,7 +68,7 @@ Note the subfolder `ansible-collections` that was created. This is default ansib
 
 ## Solutions
 
-{{% details title="Task 1" %}}
+{{% details title="Solution Task 1" %}}
 ```bash
 $ pwd
 /home/ansible/techlab
@@ -94,7 +94,7 @@ $ tree
 ```
 {{% /details %}}
 
-{{% details title="Task 2" %}}
+{{% details title="Solution Task 2" %}}
 
 ```bash
 $ ansible-galaxy collection build puzzle/ansible_techlab/
@@ -112,7 +112,7 @@ $
 ```
 {{% /details %}}
 
-{{% details title="Task 3" %}}
+{{% details title="Solution Task 3" %}}
 ```bash
 $ ansible-galaxy collection install puzzle-ansible_techlab-1.0.0.tar.gz 
 Process install dependency map
@@ -134,7 +134,7 @@ Installing 'puzzle.ansible_techlab:1.0.0' to '/home/ansible/techlab/collections/
 ```
 {{% /details %}}
 
-{{% details title="Task 4" %}}
+{{% details title="Solution Task 4" %}}
 ```bash
 
 $ ansible-config dump | grep -i galaxy_server
@@ -157,7 +157,7 @@ GALAXY_SERVER_LIST(/home/ansible/techlab/ansible.cfg) = [u'puzzle_galaxy']
 ```
 {{% /details %}}
 
-{{% details title="Task 5" %}}
+{{% details title="Solution Task 5" %}}
 ```bash
 $ ansible-galaxy collection install nginxinc.nginx_controller
 Process install dependency map
@@ -176,7 +176,7 @@ $
 ```
 {{% /details %}}
 
-{{% details title="Task 6" %}}
+{{% details title="Solution Task 6" %}}
 ```bash
 $ ansible-galaxy collection install containers.podman
 Process install dependency map
@@ -293,7 +293,7 @@ $
 ```
 {{% /details %}}
 
-{{% details title="Task 7" %}}
+{{% details title="Solution Task 7" %}}
 ```bash
 ansible localhost -b -m yum -a"name=podman, state=absent"
 ```

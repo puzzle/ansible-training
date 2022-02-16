@@ -65,7 +65,7 @@ Have a look at the documentation about error handling: [Ansible Docs - Playbooks
 
 ## Solutions
 
-{{% details title="Task 1" %}}
+{{% details title="Solution Task 1" %}}
 Documentation about [debug module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/debug_module.html)
 Example `output.yml`:
 ```yaml
@@ -82,7 +82,7 @@ Example `output.yml`:
 
 {{% /details %}}
 
-{{% details title="Task 2" %}}
+{{% details title="Solution Task 2" %}}
 
 Example `output.yml`:
 ```yaml
@@ -101,7 +101,7 @@ Example `output.yml`:
 ```
 {{% /details %}}
 
-{{% details title="Task 3" %}}
+{{% details title="Solution Task 3" %}}
 Possible solution 1:
 Example `output.yml`:
 ```yaml
@@ -141,7 +141,7 @@ Example `output.yml`:
 ```
 {{% /details %}}
 
-{{% details title="Task 4" %}}
+{{% details title="Solution Task 4" %}}
 
 Stop the `httpd` service with Ansible:
 ```bash
@@ -170,7 +170,7 @@ Content of `servicehandler.yml`:
 ```
 {{% /details %}}
 
-{{% details title="Task 5" %}}
+{{% details title="Solution Task 5" %}}
 Example `servicehandler.yml`:
 ```bash
 ---

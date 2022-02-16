@@ -38,7 +38,7 @@ following:
 
 ## Solutions
 
-{{% details title="Task 1" %}}
+{{% details title="Solution Task 1" %}}
 ```bash
 $ mkdir roles
 $ grep roles_path ansible.cfg
@@ -46,7 +46,7 @@ roles_path    = /etc/ansible/roles:/usr/share/ansible/roles:/home/ansible/techla
 ```
 {{% /details %}}
 
-{{% details title="Task 2" %}}
+{{% details title="Solution Task 2" %}}
 ```bash
 $ cd roles/
 $ ansible-galaxy init httpd
@@ -80,7 +80,7 @@ $ cat roles/httpd/tasks/main.yml
 ```
 {{% /details %}}
 
-{{% details title="Task 3" %}}
+{{% details title="Solution Task 3" %}}
 ```bash
 $ cat webserver.yml
 ---
@@ -93,7 +93,7 @@ $ ansible-playbook webserver.yml
 ```
 {{% /details %}}
 
-{{% details title="Task 4" %}}
+{{% details title="Solution Task 4" %}}
 ```bash
 $ cd roles/; ansible-galaxy init base;
 
@@ -153,7 +153,7 @@ Take notice of the different content of `/etc/motd` on the control node!
 
 {{% /details %}}
 
-{{% details title="Task 5" %}}
+{{% details title="Solution Task 5" %}}
 
 ```bash
 $ cat roles/httpd/meta/main.yml

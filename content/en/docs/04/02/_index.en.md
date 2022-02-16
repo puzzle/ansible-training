@@ -87,7 +87,7 @@ Create a playbook `serverinfo.yml` that does the following:
 
 ## Solutions
 
-{{% details title="Task 1" %}}
+{{% details title="Solution Task 1" %}}
 
 Create the file `motd.j2` with the following one liner:
 
@@ -115,7 +115,7 @@ Run the playbook again.
 ```
 {{% /details %}}
 
-{{% details title="Task 2" %}}
+{{% details title="Solution Task 2" %}}
 
 Add IP and OS to `motd.j2`:
 
@@ -134,7 +134,7 @@ ansible all -a "cat /etc/motd"
 ```
 {{% /details %}}
 
-{{% details title="Task 3" %}}
+{{% details title="Solution Task 3" %}}
 
 {{% alert title="Note" color="primary" %}}
 Be aware that there are multiple possible solutions.
@@ -238,7 +238,7 @@ jim@192.168.122.31's password:
 
 {{% /details %}}
 
-{{% details title="Task 4" %}}
+{{% details title="Solution Task 4" %}}
 Possible solution 1:
 ```bash
 $ cat serverinfo.txt.j2
