@@ -715,7 +715,7 @@ A bit more complex:
 Note:
 
 Play sollten immer in YAML geschrieben werden
-Idempodent: Man sollte es mehrmals aufrühren können und das gleiche dabei rauskommen. Wikipedia:
+Idempotent: Man sollte es mehrmals aufrühren können und das gleiche dabei rauskommen. Wikipedia:
 
 Idempotence (UK: /ˌɪdɛmˈpoʊtəns/, US: /ˌaɪdəm-/) is the property of certain operations in mathematics and computer science whereby they can be applied multiple times without changing the result beyond the initial application. The concept of idempotence arises in a number of places in abstract algebra (in particular, in the theory of projectors and closure operators) and functional programming (in which it is connected to the property of referential transparency).
 

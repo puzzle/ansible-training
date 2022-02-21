@@ -101,7 +101,7 @@ If you are using the lab servers provided by your teacher, the sudoers configura
 
 ### All done?
 
-* Have a look at the [Bullhorn newsletter](https://github.com/ansible/community/wiki/News#the-bullhorn)
+* Have a look at [The Bullhorn newsletter](https://github.com/ansible/community/wiki/News#the-bullhorn)
 * See what inspired the creators of Ansible: [Rocannon's World](https://www.youtube.com/watch?v=X8F3r4_EkW8)
 
 ## Solutions
