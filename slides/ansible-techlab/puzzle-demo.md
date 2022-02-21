@@ -216,6 +216,19 @@ Eure Lab-VMs werden vollautomatisch mit Ansible Deployed und provisioniert
 <!-- .slide: class="master-left-right" -->
 
 ***
+<div class="small">
+
+## Rocannon's World
+
+“You remember the ansible, the big machine I showed you in the ship, which can speak instantly to other worlds, with no loss of years—it was that that they were after, I expect. It was only bad luck that my friends were all at the ship with it. Without it I can do nothing.”
+</div>
+<div>
+
+![rocannons world](ansible-techlab/img/rocannonsworld.jpg)
+</div>
+<!-- .slide: class="master-left-right" -->
+
+***
 
 ## Ansible Versions
 
