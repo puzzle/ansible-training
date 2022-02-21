@@ -115,7 +115,7 @@ https://www.puzzle.ch/de/team
 ***
 # Agenda
 - Ansible Collections
-- Plugins / Hashicorp Vault
+- Lookup Plugins / Hashicorp Vault
 - Ansible Automation Platform / AWX
 - Demos
 - Do It Yourself!
@@ -881,6 +881,34 @@ Tempates sind dafür da komplexe Files zu erstellen (Variabeln sind möglich und
 ```
 <!-- .slide: class="master-content" > -->
 ***
+
+## Tags
+- run only specific parts of a playbook
+- https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html
+
+<!-- .slide: class="master-content" > -->
+***
+## Tags
+Example: 
+```yaml
+- hosts: all
+  become: true
+  tasks:
+    - name: Install ntp
+      yum:
+        name: ntp
+        state: present
+      tags: ntp
+    - name: Install figlet
+      yum:
+        name: figlet
+        state: present
+      tags: figlet
+```
+ansible-playbook -t ntp myplaybook.yml
+
+<!-- .slide: class="master-content" > -->
+***
 # Lab 4.2: Ansible Playbooks - Templates
 
 <!-- .slide: class="master-title" > -->
@@ -1504,7 +1532,26 @@ debug:
 <!-- .slide: class="master-content" > -->
 
 ***
+## Lookup Plugins
+- access data from outside sources
+- files, databases, key/value stores, APIs, Password-Managers, etc.
+- ansible-doc -t lookup -l
+- https://docs.ansible.com/ansible/latest/plugins/lookup.html
 
+
+<!-- .slide: class="master-content" > -->
+***
+## Lookup Plugins Examples
+```yaml
+vars:
+  file_contents: "{{ lookup('file', 'path/to/file.txt') }}"
+  ipv4: "{{ lookup('dig', 'example.com.')}}"
+
+```
+
+<!-- .slide: class="master-content" > -->
+
+***
 ## Hashicorp Vault
 ```yaml
 debug:
@@ -1609,24 +1656,21 @@ Red Hat, Azure, VMWare, Cisco, Checkpoint, F5, IBM, NetApp...
 ***
 ## Collections
 - Name of collection is always like:
-```
-<namespace>.<collectionname>
-```
+  
+  "namespace.collectionname"
 
 Example:
 - `community.kubernetes`
 - `puzzle.puzzle_collection`
+  -> FQCN
 
 <!-- .slide: class="master-content" > -->
 
 ***
 ## Collections
 -  Creation of Namespace:
-
-first login into Galaxy with GitHub credentials →
-
-namespace created automatically (username)
-
+  - first login into Galaxy with GitHub credentials →
+  - namespace created automatically (username)
 - Github issues for other namespaces
 
 <!-- .slide: class="master-content" > -->
@@ -1657,7 +1701,7 @@ https://docs.ansible.com/ansible/latest/dev_guide/developing_collections.html#co
 ## Collections
 Where to get collections?
 
-Use local collections:
+When using local collections:
 
 Set `COLLECTIONS_PATHS` in ansible.cfg
 
@@ -1716,7 +1760,7 @@ Where to get collections?
 
 Configure automation hub in ansible.cfg:
 
-→ not enough when using tower!
+→ not enough when using AAP
 
 Settings → Jobs →
 ```
@@ -1737,6 +1781,7 @@ Tower:
 collections/requirements.yml
 
 → needed for Tower to download collections
+→ AAP uses EE's
 
 <!-- .slide: class="master-content" > -->
 
