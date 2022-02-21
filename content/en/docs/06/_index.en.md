@@ -81,6 +81,11 @@ Look for an option to `ansible-vault` to give the name of the variable while enc
 Take a look at [docs.ansible.com](https://docs.ansible.com)
 {{% /alert %}}
 
+### All done?
+
+* [Ansible User Guide - Encrypting Content](https://docs.ansible.com/ansible/latest/user_guide/vault.html#vault)
+* [generate encrypted passwords for the user module](https://docs.ansible.com/ansible/latest/reference_appendices/faq.html#how-do-i-generate-encrypted-passwords-for-the-user-module)
+
 ## Solutions
 
 {{% details title="Solution Task 1" %}}

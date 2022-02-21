@@ -33,6 +33,10 @@ In the playbook `async.yml` do the following:
 If unsure, check the documentation about [async_status](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/async_status_module.html) for an example.
 {{% /alert %}}
 
+### All done?
+
+* [Controlling Playbooks](https://docs.ansible.com/ansible/latest/user_guide/playbooks_strategies.html)
+
 ## Solutions
 
 {{% details title="Solution Task 1" %}}

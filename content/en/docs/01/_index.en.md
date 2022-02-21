@@ -91,13 +91,18 @@ If you are using the lab servers provided by your teacher, the sudoers configura
 * Configure the `ansible` user to have root privilege on all hosts in your inventory file. Also enable login without a password for this user.
 * Test the functionality by running `sudo -v` as user `ansible` on all nodes.
 
-### TASK 5
+### Task 5
 
 * extend the inventory with a group `nodes` that has the groups `web` and `db` as members
   {{% alert title="Tip" color="info" %}}
   Take a look at [Ansible Docs - Inventory Intro](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html) for how to use the `:children` suffix in INI file inventories.
   {{% /alert %}}
 * ping all servers in the group `nodes`
+
+### All done?
+
+* Have a look at the [Bullhorn newsletter](https://github.com/ansible/community/wiki/News#the-bullhorn)
+* See what inspired the creators of Ansible: [Rocannon's World](https://www.youtube.com/watch?v=X8F3r4_EkW8)
 
 ## Solutions
 

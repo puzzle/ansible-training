@@ -36,6 +36,11 @@ following:
 * Rewrite the `httpd` role to apply the `base` role each time it is used in a playbook. Use a dependency in the `meta/main.yml` file.
 * Remove the play to run `base` role on all hosts in the `prod.yml` playbook. Run the playbook and see if role `base` was applied on hosts in the `web` group as well.
 
+### All done?
+
+* [Have a look at Jeff Geerling's roles](https://www.jeffgeerling.com/)
+* [jeffgeerling.com](https://www.jeffgeerling.com/)
+
 ## Solutions
 
 {{% details title="Solution Task 1" %}}

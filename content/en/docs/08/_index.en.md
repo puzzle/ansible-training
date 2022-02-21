@@ -65,6 +65,10 @@ Note the subfolder `ansible-collections` that was created. This is default ansib
 
 * Remove podman with an ad-hoc command to not interfere with the next labs.
 
+### All done?
+
+* [What led to ansible collections and reorganization of the community?](https://www.ansible.com/blog/thoughts-on-restructuring-the-ansible-project)
+
 
 ## Solutions
 

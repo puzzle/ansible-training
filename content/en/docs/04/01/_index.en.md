@@ -56,6 +56,10 @@ Remember `loop:` or `with_items:`
 It's NOT secure to put the smtp password unencrypted in a file. We will learn in the labs about ansible-vault how to encrypt sensitive data in a secure way.
 {{% /alert %}}
 
+### All done?
+
+* Wow! Well done. :-)
+
 ## Solutions
 
 {{% details title="Solution Task 1" %}}

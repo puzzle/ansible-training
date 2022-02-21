@@ -50,6 +50,11 @@ Complete the next steps using ansible ad hoc commands:
 * Paste some custom text into the file using the `copy` module.
 * Remove the file with an ad hoc command.
 
+### All done?
+
+* [Puzzle Ansible Blog](https://www.puzzle.ch/de/blog/categories/technologien/ansible)
+* [Ansible Meetup Bern](https://www.meetup.com/Ansible-Bern/)
+
 ## Solutions
 
 {{% details title="Solution Task 1" %}}

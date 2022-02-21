@@ -85,6 +85,10 @@ Create a playbook `serverinfo.yml` that does the following:
 
 * Are you an Ansible Maester already? Solve the solution once by using a template and once without using a template!
 
+### All done?
+
+* [Using filters to manipulate data](https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html)
+
 ## Solutions
 
 {{% details title="Solution Task 1" %}}

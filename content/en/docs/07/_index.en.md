@@ -36,6 +36,10 @@ In this lab we are going to use roles from galaxy and from other sources.
 You have to have a reasonable fresh version of Ansible in order to get this working. On older systems you could get an error message containing strings like `template error while templating string: no test named 'version'`.
 {{% /alert %}}
 
+### All done?
+
+* [galaxy.ansible.com](https://galaxy.ansible.com/)
+
 ## Solutions
 
 {{% details title="Solution Task 1" %}}

@@ -31,6 +31,11 @@ Don’t be rattled about the massive amount of modules you’ll see in your term
 * Have a look at the development documentation.
 * Search for the release dates of future ansible versions.
 
+### All done?
+
+* [RedHat Ansible Blog](https://www.ansible.com/blog)
+* [RedHat Ansible Youtube](https://www.youtube.com/c/AnsibleAutomation/videos)
+
 ### Solutions
 
 {{% details title="Solution Task 1" %}}

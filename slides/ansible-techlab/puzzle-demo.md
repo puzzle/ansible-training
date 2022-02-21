@@ -1,89 +1,77 @@
 # Ansible Techlab
 ### ansible.puzzle.ch
-#### Lukas Grimm
+<!-- #### Lukas Grimm -->
 <!-- #### Dominik Meisser -->
+#### Lukas Preisig
 #### Philippe Schmid
-<!-- #### Lukas Preisig -->
 <!-- .slide: class="master-cover" -->
 
 ----
 
 <div>
 
-## round of introductions
-</div>
-<div style="color: black;">
-
-- Job? Ansible?
-- Personal life?
-- Hobbies?
-</div>
-
-<!-- .slide: class="master-top-head" -->
-
-***
 
 ## Nice to meet you
 <div class="people">
   <div>
-
-  <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/06/Schmid_Philippe-3-400x300.jpg)" /></div>
+    <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/06/Schmid_Philippe-3-400x300.jpg)" />
+  </div>
 
   ### Philippe Schmid
   System Engineer
 
   pschmid@puzzle.ch
+  
+  <!--
 
-  </div> <div>
-
-  <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2020/08/Lukas_Grimm_wp-400x300.jpg)" /></div>
+  <div>
+    <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2020/08/Lukas_Grimm_wp-400x300.jpg)" />
+  </div>
 
   ### Lukas Grimm
   System Engineer
 
   grimm@puzzle.ch
-
+ 
+  <div>
+    <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2020/08/Dominik_Meisser_wp-400x300.jpg)" />
   </div>
- <!-- <div>
-
- <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2020/08/Dominik_Meisser_wp-400x300.jpg)" /></div>
 
   ### Dominik Meisser
   System Engineer
 
   meisser@puzzle.ch
 
+  -->
+  <div>
+    <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/05/Preisig_Lukas-400x300.jpg)" />
   </div>
-  <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2020/08/Dominik_Meisser_wp-400x300.jpg)" /></div>
 
   ### Lukas Preisig
   System Engineer
 
   preisig@puzzle.ch
 
-  </div>
+  <!-- 
 
   <div>
-
-  <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/06/Kobras_Daniel1-400x300.jpg)" /></div>
+    <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/06/Kobras_Daniel1-400x300.jpg)" />
+  </div>
 
   ### Daniel Kobras
   Principal Architect
 
-
   kobras@puzzle-itc.de
-
-  </div><div>
-
-  <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/06/Proehl-Mark-400x300.jpg)" /></div>
+  
+  <div>
+    <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/06/Proehl-Mark-400x300.jpg)" />
+  </div>
 
   ### Mark Pröhl
   Principal Architect
 
-
   proehl@puzzle-itc.de
 
-  </div>
   -->
 </div>
 
@@ -93,9 +81,8 @@ https://www.puzzle.ch/de/team
 
 
 <!-- .slide: class="master-content people" -->
-***
-<div>
 
+***
 ## round of introductions
 </div>
 <div style="color: black;">
@@ -128,8 +115,8 @@ https://www.puzzle.ch/de/team
 ***
 # Agenda
 - Ansible Collections
-- Hashicorps Vault
-- Ansible Tower / AWX
+- Plugins / Hashicorps Vault
+- Ansible Automation Platform / AWX
 - Demos
 - Do It Youself!
 
@@ -160,6 +147,7 @@ https://www.puzzle.ch/de/team
 - The labs get harder quickly!
 - You dont need to do all labs to understand the content
 - Some labs are **HARD**!
+- See "All done?" for more content
 </div>
 <!-- .slide: class="master-left-right" -->
 
@@ -204,7 +192,7 @@ https://www.puzzle.ch/de/team
 
 Note:
 Automatisierung unserer monatlichen Updates/Restart
-SLOG Cluster automatisierung
+SLOG Cluster Automatisierung
 Migration von RZ in die Cloud mit Wechsel von Puppet auf Ansible
 Eure Lab-VMs werden vollautomatisch mit Ansible Deployed und provisioniert
 
@@ -213,10 +201,10 @@ Eure Lab-VMs werden vollautomatisch mit Ansible Deployed und provisioniert
 
 ## Ansible history
 
-- 1966 Ursula K.Le Guin «Rocannons World»
+- 1966 Ursula K.Le Guin «Rocannon's World»
 → instant communication system
 - 2012 Michael DeHaan (Cobbler, Puppet)
-- 2015 RedHat acquired Ansible Inc.
+- 2015 RedHat acquires Ansible Inc.
 - 2019 Ansible 2.9
 - 2020-08-13 Ansible-Base 2.10
 - 2021-02-18 Ansible 3.0
@@ -227,16 +215,13 @@ Eure Lab-VMs werden vollautomatisch mit Ansible Deployed und provisioniert
 </div>
 <!-- .slide: class="master-left-right" -->
 
-Note:
-Umbenennung von Ansible zu ansible-base (3.x) zu ansible-core (4.x), module in collections auslagern, schneller kern releasen, da keine dependencies zu modulen
-
 ***
 
 ## Ansible Versions
 
 - Ansible 2.9   -->   one thing! (Collections as preview)
 - Ansible 2.10  -->   Ansible-Base 2.10 + Collections
-- Ansible 2.11  -->   (not available naming changes to Ansible 3.0)
+- Ansible 2.11  -->   (not available, naming changes to Ansible 3.0)
 - Ansible 3.0   -->   Ansible-Core 2.10 + Collections v3
 - Ansible 4.0   -->   Ansible-Core 2.11 + Collections v4
 - Ansible 5.0   -->   Ansible-Core 2.12 + Collections v5
@@ -280,7 +265,7 @@ pull (Puppet way) vs push (ansible way) --> push braucht weder daemon noch sonst
 
 - Control Node
   - ansible installed (newer versions via «pip»)
-  - Nice to have: AWX / Tower / CI/CD-Pipeline
+  - Nice to have: AWX / AAP / CI/CD-Pipeline
 - Client
   - ssh, python
 
@@ -332,6 +317,7 @@ pull (Puppet way) vs push (ansible way) --> push braucht weder daemon noch sonst
 
 - programm "cowsay"
 - was default configuration
+- → Ansibull → The Bullhorn, ansibullbot
 - still can be enabled:
 
 "$ ANSIBLE_NOCOWS=0 ansible-playbook plays/site.yml"
@@ -375,10 +361,10 @@ What do we use on cmdline?
 
 ## File formats
 
-- **YAML**  (tasks, vars, playbooks...)
-- JSON (returned stuff, custom fact)
-- INI (inventory)
-- jinja2 (templates)
+- **YAML**  (tasks, vars, playbooks... | .yml, .yaml)
+- JSON (returned stuff, custom fact | .json)
+- INI (inventory | .ini)
+- jinja2 (templates | .j2)
 <!-- .slide: class="master-content" > -->
 
 ***
@@ -501,7 +487,7 @@ provisioning: local
 ## Troubleshoot
 
 - Read the output :-)
-- Increase verbosity (`-vvvv...`)
+- Increase verbosity (`-vvvv`)
 - Google it :-)
 - `ansible-lint` (install via package manager)
 - `ansible-playbook --syntax-check`

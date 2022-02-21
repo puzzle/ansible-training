@@ -47,6 +47,10 @@ See [Ansible Docs - User Guide](https://docs.ansible.com/ansible/latest/user_gui
 * The folder has to have the sticky bit set, so that only the owner (set owner/group to `ansible`) of the content (or root) can delete the files.
 * Run the playbook and then check if the sticky bit was set using an ad hoc command.
 
+### All done?
+
+* [Ansible 101 by Jeff Geerling](https://www.youtube.com/watch?v=goclfp6a2IQ&list=PL2_OBreMn7FqZkvMYt6ATmgC0KAGGJNAN)
+
 ## Solutions
 
 {{% details title="Solution Task 1" %}}

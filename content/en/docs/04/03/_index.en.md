@@ -63,6 +63,10 @@ Have a look at the documentation about error handling: [Ansible Docs - Playbooks
 * Rerun your playbook and ensure it fails.
 * Fix the errors in the config file, restart `httpd` on `node1` and rerun your playbook. Everything should be fine again.
 
+### All done?
+
+* [Output as YAML instead of JSON](https://docs.ansible.com/ansible/latest/collections/community/general/yaml_callback.html)
+
 ## Solutions
 
 {{% details title="Solution Task 1" %}}
