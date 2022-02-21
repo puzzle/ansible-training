@@ -60,7 +60,7 @@ Below is a possible solution for your playbook:
 ```yaml
 ---
 - hosts: web
-  become: yes
+  become: true
   tasks:
     - name: install httpd
       yum:
@@ -136,7 +136,7 @@ Wrong intendation:
 ```yaml
 ---
 - hosts: web
-  become: yes
+  become: true
   tasks:
     - name: install httpd
       yum:
@@ -149,7 +149,7 @@ Wrong parameter name:
 ```yaml
 ---
 - hosts: web
-  become: yes
+  become: true
   tasks:
     - name: install httpd
       yum:
@@ -165,7 +165,7 @@ Wrong parameter name:
 $ cat tempfolder.yml
 ---
 - hosts: all:!db
-  become: yes
+  become: true
   tasks:
     - name: create temp folder with sticky bit set
       file:

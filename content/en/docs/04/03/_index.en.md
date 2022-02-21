@@ -156,7 +156,7 @@ Content of `servicehandler.yml`:
 ```yaml
 ---
 - hosts: web
-  become: yes
+  become: true
   tasks:
     - name: install httpd
       yum:
@@ -179,7 +179,7 @@ Example `servicehandler.yml`:
 ```bash
 ---
 - hosts: web
-  become: yes
+  become: true
   tasks:
     - name: install httpd
       yum:

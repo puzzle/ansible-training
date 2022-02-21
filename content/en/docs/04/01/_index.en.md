@@ -107,7 +107,7 @@ Content of `motd.yml`:
 ```yaml
 ---
 - hosts: all
-  become: yes
+  become: true
   vars:
     motd_content: "Thi5 1s some r3ally stR4nge teXT!\n"
   tasks:
@@ -158,7 +158,7 @@ Your `motd.yml` should look something like this:
 ```yaml
 ---
 - hosts: all
-  become: yes
+  become: true
   tasks:
     - name: set content of /etc/motd
       copy:
@@ -190,7 +190,7 @@ ansible web,node2 -a "cat /etc/motd"
 ```yaml
 ---
 - hosts: all
-  become: yes
+  become: true
   tasks:
     - name: set content of /etc/motd
       copy:
