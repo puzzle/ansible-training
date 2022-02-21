@@ -41,18 +41,18 @@ If unsure, check the documentation about [async_status](https://docs.ansible.com
 
 {{% details title="Solution Task 1" %}}
 ```bash
-$ ansible node1 -i hosts -B 10 -a "/usr/bin/sleep 1000"
+$ ansible node1 -B 10 -a "/usr/bin/sleep 1000"
 node1 | FAILED | rc=-1 >>
 async task did not complete within the requested time - 10s
 $
-$ time ansible node1 -i hosts -B 10 -a "/usr/bin/sleep 1000"
+$ time ansible node1 -B 10 -a "/usr/bin/sleep 1000"
 node1 | FAILED | rc=-1 >>
 async task did not complete within the requested time - 10s
 
 real  0m17.626s #<- a bit more than 10 seconds
 user  0m3.603s
 sys 0m0.510s
-$ time ansible node1 -i hosts -B 10 -P 30 -a "/usr/bin/sleep 1000"
+$ time ansible node1 -B 10 -P 30 -a "/usr/bin/sleep 1000"
 node1 | FAILED | rc=-1 >>
 async task did not complete within the requested time - 10s
 
@@ -63,7 +63,7 @@ $
 ```
 Setting the poll parameter without the async parameter results in the job not beeing put in background.
 ```bash
-$ ansible node1 -i hosts -P 30 -a "/usr/bin/sleep 10"
+$ ansible node1 -P 30 -a "/usr/bin/sleep 10"
 node1 | CHANGED | rc=0 >>
 $
 ```
@@ -79,7 +79,7 @@ $ cat async.yml
       command: "/usr/bin/sleep 1000"
       async: 10
 
-$ ansible-playbook -i hosts async.yml
+$ ansible-playbook async.yml
 
 PLAY [node1] **************************************************************************************************************************************************************************************************
 
@@ -116,7 +116,7 @@ $ cat async.yml
       until: beauty_status.finished
       retries: 50
 
-$ ansible-playbook -i hosts async.yml
+$ ansible-playbook async.yml
 
 PLAY [node1] **************************************************************************************************************************************************************************************************
 

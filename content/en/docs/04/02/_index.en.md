@@ -105,7 +105,7 @@ Edit your `motd.yml` playbook to something like this:
 ```yaml
 ---
 - hosts: all
-  become: yes
+  become: true
   tasks:
     - name: set content of /etc/motd
       template:
@@ -165,7 +165,7 @@ users:
 $ cat userplay.yml
 ---
 - hosts: node1
-  become: yes
+  become: true
   vars_files:
     - uservars.yml
   tasks:
@@ -175,7 +175,7 @@ $ cat userplay.yml
         dest: /etc/dinner.txt
 
 - hosts: node2
-  become: yes
+  become: true
   vars_files:
     - uservars.yml
   tasks:
@@ -285,7 +285,7 @@ $ cat serverinfo.yml
       delegate_to: localhost
 
 - hosts: all
-  become: yes
+  become: true
   tasks:
     - name: place the file serverinfo.txt
       copy:

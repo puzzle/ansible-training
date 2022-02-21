@@ -190,7 +190,7 @@ $
 $ cat collections.yml 
 ---
 - name: example for using modules from a collection
-  become: yes
+  become: true
   hosts: controller
   collections:
     - containers.podman
@@ -219,7 +219,7 @@ OR:
 $ cat collections.yml 
 ---
 - name: example for using modules from a collection
-  become: yes
+  become: true
   hosts: controller
   tasks:
     - name: install podman
@@ -246,7 +246,7 @@ This would not work, since the module `podman_container` is only content of the 
 $ cat collections.yml 
 ---
 - name: example for using modules from a collection
-  become: yes
+  become: true
   hosts: controller
   tasks:
     - name: install podman

@@ -34,7 +34,7 @@ Below is a possible solution:
 $ cat myhandler.yml
 ---
 - hosts: node2
-  become: yes
+  become: true
   roles:
     - handlerrole
 
@@ -67,7 +67,7 @@ $ ansible-playbook myhandler.yml #<-- no changes here, idempotent!
 $ cat download.yml 
 ---
 - hosts: node2
-  become: yes
+  become: true
   roles:
     - downloader
 

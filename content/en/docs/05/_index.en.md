@@ -90,7 +90,7 @@ $ cat roles/httpd/tasks/main.yml
 $ cat webserver.yml
 ---
 - hosts: web
-  become: yes
+  become: true
   roles:
     - httpd
 
@@ -142,12 +142,12 @@ $ cat roles/base/tasks/main.yml
 $ cat prod.yml
 ---
 - hosts: all
-  become: yes
+  become: true
   roles:
     - base
 
 - hosts: web
-  become: yes
+  become: true
   roles:
     - httpd
 ```
@@ -168,7 +168,7 @@ dependencies:
 $ cat prod.yml
 ---
 - hosts: web
-  become: yes
+  become: true
   roles:
     - httpd
 

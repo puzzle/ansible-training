@@ -115,10 +115,10 @@ https://www.puzzle.ch/de/team
 ***
 # Agenda
 - Ansible Collections
-- Plugins / Hashicorps Vault
+- Plugins / Hashicorp Vault
 - Ansible Automation Platform / AWX
 - Demos
-- Do It Youself!
+- Do It Yourself!
 
 <!-- .slide: class="master-agenda" -->
 
@@ -227,6 +227,7 @@ Eure Lab-VMs werden vollautomatisch mit Ansible Deployed und provisioniert
 - Ansible 5.0   -->   Ansible-Core 2.12 + Collections v5
 
 <!-- .slide: class="master-content" > -->
+<!-- .slide: class="master-content" > -->
 ----
 
 # Basics
@@ -281,7 +282,7 @@ pull (Puppet way) vs push (ansible way) --> push braucht weder daemon noch sonst
 - Modules:
 `file`, `template`, `firewalld`, `service`, `yum`,...
 - Dynamic inventories:
-`vmware`, `cloudscale`, `foreman`,`azure`, `aws`,...
+`vmware`, `cloudscale`, `foreman`, `azure`, `aws`,...
 
 <img alt='azure' src="ansible-techlab/img/azure.png" width="52"/> <img alt='aws' src="ansible-techlab/img/aws.png" width="52"/> <img alt='cloudscale' src="ansible-techlab/img/cloudscale.png" width="52"/> <img alt='vmware' src="ansible-techlab/img/vmware.png" width="52"/> <img alt='foreman' src="ansible-techlab/img/foreman.png" width="52"/>
 <!-- .slide: class="master-content" > -->
@@ -309,8 +310,8 @@ pull (Puppet way) vs push (ansible way) --> push braucht weder daemon noch sonst
             (__)\       )\/\
                 ||----w |
                 ||     ||
-<!-- .slide: class="master-content" > -->
 ```
+<!-- .slide: class="master-content" > -->
 ***
 
 ## Why cows?
@@ -532,7 +533,7 @@ right:
 ## Common Mistakes
 ### Become root if necessary!
 
-`become: yes`
+`become: true`
 
 to install packages, create users, etc...
 <!-- .slide: class="master-content" > -->
@@ -692,7 +693,7 @@ A bit more complex:
 
 ```yaml
 - hosts: database
-  become: yes
+  become: true
   tasks:
     - name: install mariadb
       yum:
@@ -740,7 +741,7 @@ defined in playbook:
 ```yaml
 ---
 - hosts: web
-  become: yes
+  become: true
   vars:
     my_package: nginx
   tasks:
@@ -1140,7 +1141,7 @@ Example (no roles yet):
 
 ```yaml
 - hosts: web
-  become: yes
+  become: true
   tasks:
     - yum:
         name: httpd
@@ -1157,7 +1158,7 @@ Example:
 
 ```yaml
 - hosts: web
-  become: yes
+  become: true
   roles:
     - httpd
 ```
@@ -1331,7 +1332,7 @@ handlers:
 Last slide not entirely true...
 ```yaml
 - hosts: all
-  become: yes
+  become: true
   pre_tasks:
     - name: ...
   tasks:
@@ -1477,7 +1478,7 @@ mysecret: !vault |
 <!-- .slide: class="master-title" > -->
 
 ***
-## Hashicorps Vault
+## Hashicorp Vault
 - high availability
 - different permissions for different users and groups
 - centralized place to store secrets
@@ -1486,13 +1487,13 @@ mysecret: !vault |
 
 <!-- .slide: class="master-content" > -->
 ***
-## Hashicorps Vault
-- ansible can use Hashicorps vault secrets
+## Hashicorp Vault
+- ansible can use Hashicorp vault secrets
 - python library needed: `hvac`
 
 ```yaml
 debug:
-  msg: "{{ lookup('hashi_vault',<params>}}"
+  msg: "{{ lookup('hashi_vault',<params>) }}"
 
 vs
 
@@ -1504,7 +1505,7 @@ debug:
 
 ***
 
-## Hashicorps Vault
+## Hashicorp Vault
 ```yaml
 debug:
   msg: "{{ lookup('hashi_vault', \
@@ -1517,7 +1518,7 @@ debug:
 <!-- .slide: class="master-content" > -->
 
 ***
-## Hashicorps Vault
+## Hashicorp Vault
 
 Simpler: set Environment Variables
 ```
@@ -1526,7 +1527,7 @@ VAULT_TOKEN=<your token>
 ```
 <!-- .slide: class="master-content" > -->
 ***
-## Hashicorps Vault
+## Hashicorp Vault
 ```
 base_root_pw: "{{ lookup('community.hashi_vault.hashi_vault', \
                   'secret=kv/data/spaces/company/prod/root:rootpw_crypted') }}"
@@ -1846,9 +1847,9 @@ Red Hat Ansible Automation Platform subscription ≃ Red Hat Ansible Tower subsc
 - Ansible Tower --> Ansible Controller
 - python venv   --> Execution Environments
 - Automation Plattform =
-  
+
   Ansible Controller +
-  Exection Environment +
+  Execution Environment +
   Automation Hub (private)
 
 <!-- .slide: class="master-content" > -->
@@ -1938,9 +1939,9 @@ Some configs from ansible.cfg not taken!
 ***
 ## ansible-navigator
 
-- run, logs, EE, builder, collections, doc, 
+- run, logs, EE, builder, collections, doc,
   inventory, replay, config, exec, welcome
-  
+
 <!-- .slide: class="master-content" > -->
 
 ***
@@ -1951,6 +1952,7 @@ Some configs from ansible.cfg not taken!
 - initial download of demo EE
 - cfg per project possible
 
+<!-- .slide: class="master-content" > -->
 ***
 ## AWX
 - Install:

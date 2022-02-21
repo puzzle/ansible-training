@@ -97,7 +97,7 @@ password: miss_moneypenny
 $ cat secretservice.yml
 ---
 - hosts: node1, node2
-  become: yes
+  become: true
   tasks:
     - name: put template
       template:
@@ -124,7 +124,7 @@ password: {{ var_password }}
 $ cat secretservice.yml
 ---
 - hosts: node1, node2
-  become: yes
+  become: true
   vars_files:
     - secret_vars.yml
   tasks:

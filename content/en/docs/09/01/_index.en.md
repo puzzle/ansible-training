@@ -59,7 +59,7 @@ $ cat prepare_for_awx.yml
 ---
 - name: prepare for awx installation
   hosts: controller
-  become: yes
+  become: true
   tasks:
     - name: check that at least 4GB are available
       fail:
