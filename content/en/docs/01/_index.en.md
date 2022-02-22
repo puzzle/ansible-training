@@ -103,6 +103,8 @@ If you are using the lab servers provided by your teacher, the sudoers configura
 
 * Have a look at [The Bullhorn newsletter](https://github.com/ansible/community/wiki/News#the-bullhorn)
 * See what inspired the creators of Ansible: [Rocannon's World](https://www.youtube.com/watch?v=X8F3r4_EkW8)
+* Ansible [Configuration File](https://docs.ansible.com/ansible/latest/installation_guide/intro_configuration.html)
+* Easteregg: [Cowsay not found!](https://docs.ansible.com/ansible/latest/notfound)
 
 ## Solutions
 

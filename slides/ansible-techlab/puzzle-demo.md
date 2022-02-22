@@ -1976,7 +1976,7 @@ Some configs from ansible.cfg not taken!
 ***
 ## Execution Environments
 
-- Container mit:
+- Container with:
     - python
     - python modules
     - ansible version
@@ -2127,6 +2127,13 @@ Ansible-Vault:
 When writing ansible-content in a team:
 - Define some standards (role-prefixed variables, snake_case for variables/handlers ...)
 - **But**: dont discuss too much about how a problem is solved. There are simply different kind of views.
+
+<!-- .slide: class="master-content" > -->
+
+***
+## Ansible Content:
+- Always set file permissions explicitly
+- Use file/template instead of lineinfile/blockinfile
 
 <!-- .slide: class="master-content" > -->
 

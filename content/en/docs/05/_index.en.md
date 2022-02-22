@@ -38,8 +38,7 @@ following:
 
 ### All done?
 
-* [Have a look at Jeff Geerling's roles](https://www.jeffgeerling.com/)
-* [jeffgeerling.com](https://www.jeffgeerling.com/)
+* Have a look at the available [Playbook Keywords](https://docs.ansible.com/ansible/latest/reference_appendices/playbooks_keywords.html)
 
 ## Solutions
 

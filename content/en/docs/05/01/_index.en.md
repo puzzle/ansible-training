@@ -24,6 +24,10 @@ We start to use handlers and blocks as well.
 * Use a `block:` to do these tasks.
 * Run the playbook `download.yml`.
 
+### All done?
+
+* [Playbook Keywords](https://docs.ansible.com/ansible/latest/reference_appendices/playbooks_keywords.html)
+
 
 ## Solutions
 
