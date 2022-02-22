@@ -26,7 +26,8 @@ We start to use handlers and blocks as well.
 
 ### All done?
 
-* [Playbook Keywords](https://docs.ansible.com/ansible/latest/reference_appendices/playbooks_keywords.html)
+* [Have a look at Jeff Geerling's roles](https://www.jeffgeerling.com/)
+* [jeffgeerling.com](https://www.jeffgeerling.com/)
 
 
 ## Solutions
