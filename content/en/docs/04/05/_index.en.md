@@ -33,9 +33,13 @@ In the playbook `async.yml` do the following:
 If unsure, check the documentation about [async_status](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/async_status_module.html) for an example.
 {{% /alert %}}
 
+### All done?
+
+* [Controlling Playbooks](https://docs.ansible.com/ansible/latest/user_guide/playbooks_strategies.html)
+
 ## Solutions
 
-{{% details title="Task 1" %}}
+{{% details title="Solution Task 1" %}}
 ```bash
 $ ansible node1 -B 10 -a "/usr/bin/sleep 1000"
 node1 | FAILED | rc=-1 >>
@@ -65,7 +69,7 @@ $
 ```
 {{% /details %}}
 
-{{% details title="Task 2" %}}
+{{% details title="Solution Task 2" %}}
 ```bash
 $ cat async.yml
 ---
@@ -93,7 +97,7 @@ $
 
 {{% /details %}}
 
-{{% details title="Task 3" %}}
+{{% details title="Solution Task 3" %}}
 ```bash
 $ cat async.yml
 ---

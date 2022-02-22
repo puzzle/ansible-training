@@ -47,16 +47,20 @@ See [Ansible Docs - User Guide](https://docs.ansible.com/ansible/latest/user_gui
 * The folder has to have the sticky bit set, so that only the owner (set owner/group to `ansible`) of the content (or root) can delete the files.
 * Run the playbook and then check if the sticky bit was set using an ad hoc command.
 
+### All done?
+
+* [Ansible 101 by Jeff Geerling](https://www.youtube.com/watch?v=goclfp6a2IQ&list=PL2_OBreMn7FqZkvMYt6ATmgC0KAGGJNAN)
+
 ## Solutions
 
-{{% details title="Task 1" %}}
+{{% details title="Solution Task 1" %}}
 
 Below is a possible solution for your playbook:
 
 ```yaml
 ---
 - hosts: web
-  become: yes
+  become: true
   tasks:
     - name: install httpd
       yum:
@@ -93,7 +97,7 @@ Check `httpd.service` on group `web`:
 ```
 {{% /details %}}
 
-{{% details title="Task 2" %}}
+{{% details title="Solution Task 2" %}}
 
 Copy the default ansible.cfg to your directory:
 
@@ -125,14 +129,14 @@ ok: [node1]
 ```
 {{% /details %}}
 
-{{% details title="Task 3" %}}
+{{% details title="Solution Task 3" %}}
 
 Wrong intendation:
 
 ```yaml
 ---
 - hosts: web
-  become: yes
+  become: true
   tasks:
     - name: install httpd
       yum:
@@ -145,7 +149,7 @@ Wrong parameter name:
 ```yaml
 ---
 - hosts: web
-  become: yes
+  become: true
   tasks:
     - name: install httpd
       yum:
@@ -156,12 +160,12 @@ Wrong parameter name:
 
 {{% /details %}}
 
-{{% details title="Task 4" %}}
+{{% details title="Solution Task 4" %}}
 ```bash
 $ cat tempfolder.yml
 ---
 - hosts: all:!db
-  become: yes
+  become: true
   tasks:
     - name: create temp folder with sticky bit set
       file:

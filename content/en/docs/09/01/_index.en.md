@@ -53,13 +53,13 @@ CentOS 8 doesn't provide an easy way to install AWX -- we have to solve some pro
 
 ## Solutions
 
-{{% details title="Task 1" %}}
+{{% details title="Solution Task 1" %}}
 ```bash
 $ cat prepare_for_awx.yml
 ---
 - name: prepare for awx installation
   hosts: controller
-  become: yes
+  become: true
   tasks:
     - name: check that at least 4GB are available
       fail:
@@ -74,7 +74,7 @@ $ cat prepare_for_awx.yml
 ```
 {{% /details %}}
 
-{{% details title="Task 2" %}}
+{{% details title="Solution Task 2" %}}
 ```bash
 $ cat prepare_for_awx.yml
 ---
@@ -106,7 +106,7 @@ $ cat prepare_for_awx.yml
 ```
 {{% /details %}}
 
-{{% details title="Task 3" %}}
+{{% details title="Solution Task 3" %}}
 ```bash
 $ cat prepare_for_awx.yml
     ...
@@ -118,7 +118,7 @@ $ cat prepare_for_awx.yml
 ```
 {{% /details %}}
 
-{{% details title="Task 4" %}}
+{{% details title="Solution Task 4" %}}
 ```bash
 $ cat prepare_for_awx.yml
     ...
@@ -134,7 +134,7 @@ $ cat prepare_for_awx.yml
 {{% /details %}}
 
 
-{{% details title="Task 5" %}}
+{{% details title="Solution Task 5" %}}
 ```bash
 $ logout 
 Connection to 192.168.122.30 closed.

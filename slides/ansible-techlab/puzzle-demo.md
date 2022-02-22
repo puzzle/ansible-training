@@ -1,89 +1,77 @@
 # Ansible Techlab
 ### ansible.puzzle.ch
-#### Lukas Grimm
+<!-- #### Lukas Grimm -->
 <!-- #### Dominik Meisser -->
+#### Lukas Preisig
 #### Philippe Schmid
-<!-- #### Lukas Preisig -->
 <!-- .slide: class="master-cover" -->
 
 ----
 
 <div>
 
-## round of introductions
-</div>
-<div style="color: black;">
-
-- Job? Ansible?
-- Personal life?
-- Hobbies?
-</div>
-
-<!-- .slide: class="master-top-head" -->
-
-***
 
 ## Nice to meet you
 <div class="people">
   <div>
-
-  <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/06/Schmid_Philippe-3-400x300.jpg)" /></div>
+    <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/06/Schmid_Philippe-3-400x300.jpg)" />
+  </div>
 
   ### Philippe Schmid
   System Engineer
 
   pschmid@puzzle.ch
+  
+  <!--
 
-  </div> <div>
-
-  <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2020/08/Lukas_Grimm_wp-400x300.jpg)" /></div>
+  <div>
+    <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2020/08/Lukas_Grimm_wp-400x300.jpg)" />
+  </div>
 
   ### Lukas Grimm
   System Engineer
 
   grimm@puzzle.ch
-
+ 
+  <div>
+    <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2020/08/Dominik_Meisser_wp-400x300.jpg)" />
   </div>
- <!-- <div>
-
- <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2020/08/Dominik_Meisser_wp-400x300.jpg)" /></div>
 
   ### Dominik Meisser
   System Engineer
 
   meisser@puzzle.ch
 
+  -->
+  <div>
+    <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/05/Preisig_Lukas-400x300.jpg)" />
   </div>
-  <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2020/08/Dominik_Meisser_wp-400x300.jpg)" /></div>
 
   ### Lukas Preisig
   System Engineer
 
   preisig@puzzle.ch
 
-  </div>
+  <!-- 
 
   <div>
-
-  <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/06/Kobras_Daniel1-400x300.jpg)" /></div>
+    <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/06/Kobras_Daniel1-400x300.jpg)" />
+  </div>
 
   ### Daniel Kobras
   Principal Architect
 
-
   kobras@puzzle-itc.de
-
-  </div><div>
-
-  <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/06/Proehl-Mark-400x300.jpg)" /></div>
+  
+  <div>
+    <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/06/Proehl-Mark-400x300.jpg)" />
+  </div>
 
   ### Mark Pröhl
   Principal Architect
 
-
   proehl@puzzle-itc.de
 
-  </div>
   -->
 </div>
 
@@ -93,9 +81,8 @@ https://www.puzzle.ch/de/team
 
 
 <!-- .slide: class="master-content people" -->
-***
-<div>
 
+***
 ## round of introductions
 </div>
 <div style="color: black;">
@@ -128,8 +115,8 @@ https://www.puzzle.ch/de/team
 ***
 # Agenda
 - Ansible Collections
-- Hashicorp Vault
-- Ansible Tower / AWX
+- Lookup Plugins / Hashicorp Vault
+- Ansible Automation Platform / AWX
 - Demos
 - Do It Yourself!
 
@@ -160,6 +147,7 @@ https://www.puzzle.ch/de/team
 - The labs get harder quickly!
 - You dont need to do all labs to understand the content
 - Some labs are **HARD**!
+- See "All done?" for more content
 </div>
 <!-- .slide: class="master-left-right" -->
 
@@ -204,7 +192,7 @@ https://www.puzzle.ch/de/team
 
 Note:
 Automatisierung unserer monatlichen Updates/Restart
-SLOG Cluster automatisierung
+SLOG Cluster Automatisierung
 Migration von RZ in die Cloud mit Wechsel von Puppet auf Ansible
 Eure Lab-VMs werden vollautomatisch mit Ansible Deployed und provisioniert
 
@@ -213,10 +201,10 @@ Eure Lab-VMs werden vollautomatisch mit Ansible Deployed und provisioniert
 
 ## Ansible history
 
-- 1966 Ursula K.Le Guin «Rocannons World»
+- 1966 Ursula K.Le Guin «Rocannon's World»
 → instant communication system
 - 2012 Michael DeHaan (Cobbler, Puppet)
-- 2015 RedHat acquired Ansible Inc.
+- 2015 RedHat acquires Ansible Inc.
 - 2019 Ansible 2.9
 - 2020-08-13 Ansible-Base 2.10
 - 2021-02-18 Ansible 3.0
@@ -227,8 +215,18 @@ Eure Lab-VMs werden vollautomatisch mit Ansible Deployed und provisioniert
 </div>
 <!-- .slide: class="master-left-right" -->
 
-Note:
-Umbenennung von Ansible zu ansible-base (3.x) zu ansible-core (4.x), module in collections auslagern, schneller kern releasen, da keine dependencies zu modulen
+***
+<div class="small">
+
+## Rocannon's World
+
+“You remember the ansible, the big machine I showed you in the ship, which can speak instantly to other worlds, with no loss of years—it was that that they were after, I expect. It was only bad luck that my friends were all at the ship with it. Without it I can do nothing.”
+</div>
+<div>
+
+![rocannons world](ansible-techlab/img/rocannonsworld.jpg)
+</div>
+<!-- .slide: class="master-left-right" -->
 
 ***
 
@@ -236,7 +234,7 @@ Umbenennung von Ansible zu ansible-base (3.x) zu ansible-core (4.x), module in c
 
 - Ansible 2.9   -->   one thing! (Collections as preview)
 - Ansible 2.10  -->   Ansible-Base 2.10 + Collections
-- Ansible 2.11  -->   (not available naming changes to Ansible 3.0)
+- Ansible 2.11  -->   (not available, naming changes to Ansible 3.0)
 - Ansible 3.0   -->   Ansible-Core 2.10 + Collections v3
 - Ansible 4.0   -->   Ansible-Core 2.11 + Collections v4
 - Ansible 5.0   -->   Ansible-Core 2.12 + Collections v5
@@ -281,7 +279,7 @@ pull (Puppet way) vs push (ansible way) --> push braucht weder daemon noch sonst
 
 - Control Node
   - ansible installed (newer versions via «pip»)
-  - Nice to have: AWX / Tower / CI/CD-Pipeline
+  - Nice to have: AWX / AAP / CI/CD-Pipeline
 - Client
   - ssh, python
 
@@ -333,6 +331,7 @@ pull (Puppet way) vs push (ansible way) --> push braucht weder daemon noch sonst
 
 - programm "cowsay"
 - was default configuration
+- → Ansibull → The Bullhorn, ansibullbot
 - still can be enabled:
 
 "$ ANSIBLE_NOCOWS=0 ansible-playbook plays/site.yml"
@@ -376,10 +375,10 @@ What do we use on cmdline?
 
 ## File formats
 
-- **YAML**  (tasks, vars, playbooks...)
-- JSON (returned stuff, custom fact)
-- INI (inventory)
-- jinja2 (templates)
+- **YAML**  (tasks, vars, playbooks... | .yml, .yaml)
+- JSON (returned stuff, custom fact | .json)
+- INI (inventory | .ini)
+- jinja2 (templates | .j2)
 <!-- .slide: class="master-content" > -->
 
 ***
@@ -502,7 +501,7 @@ provisioning: local
 ## Troubleshoot
 
 - Read the output :-)
-- Increase verbosity (`-vvvv...`)
+- Increase verbosity (`-vvvv`)
 - Google it :-)
 - `ansible-lint` (install via package manager)
 - `ansible-playbook --syntax-check`
@@ -547,7 +546,7 @@ right:
 ## Common Mistakes
 ### Become root if necessary!
 
-`become: yes`
+`become: true`
 
 to install packages, create users, etc...
 <!-- .slide: class="master-content" > -->
@@ -707,7 +706,7 @@ A bit more complex:
 
 ```yaml
 - hosts: database
-  become: yes
+  become: true
   tasks:
     - name: install mariadb
       yum:
@@ -729,7 +728,7 @@ A bit more complex:
 Note:
 
 Play sollten immer in YAML geschrieben werden
-Idempodent: Man sollte es mehrmals aufrühren können und das gleiche dabei rauskommen. Wikipedia:
+Idempotent: Man sollte es mehrmals aufrühren können und das gleiche dabei rauskommen. Wikipedia:
 
 Idempotence (UK: /ˌɪdɛmˈpoʊtəns/, US: /ˌaɪdəm-/) is the property of certain operations in mathematics and computer science whereby they can be applied multiple times without changing the result beyond the initial application. The concept of idempotence arises in a number of places in abstract algebra (in particular, in the theory of projectors and closure operators) and functional programming (in which it is connected to the property of referential transparency).
 
@@ -755,7 +754,7 @@ defined in playbook:
 ```yaml
 ---
 - hosts: web
-  become: yes
+  become: true
   vars:
     my_package: nginx
   tasks:
@@ -893,6 +892,34 @@ Tempates sind dafür da komplexe Files zu erstellen (Variabeln sind möglich und
 {{ vm.ip }}  {{ vm.name }}
 {% endfor %}
 ```
+<!-- .slide: class="master-content" > -->
+***
+
+## Tags
+- run only specific parts of a playbook
+- https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html
+
+<!-- .slide: class="master-content" > -->
+***
+## Tags
+Example: 
+```yaml
+- hosts: all
+  become: true
+  tasks:
+    - name: Install ntp
+      yum:
+        name: ntp
+        state: present
+      tags: ntp
+    - name: Install figlet
+      yum:
+        name: figlet
+        state: present
+      tags: figlet
+```
+ansible-playbook -t ntp myplaybook.yml
+
 <!-- .slide: class="master-content" > -->
 ***
 # Lab 4.2: Ansible Playbooks - Templates
@@ -1155,7 +1182,7 @@ Example (no roles yet):
 
 ```yaml
 - hosts: web
-  become: yes
+  become: true
   tasks:
     - yum:
         name: httpd
@@ -1172,7 +1199,7 @@ Example:
 
 ```yaml
 - hosts: web
-  become: yes
+  become: true
   roles:
     - httpd
 ```
@@ -1346,7 +1373,7 @@ handlers:
 Last slide not entirely true...
 ```yaml
 - hosts: all
-  become: yes
+  become: true
   pre_tasks:
     - name: ...
   tasks:
@@ -1518,7 +1545,26 @@ debug:
 <!-- .slide: class="master-content" > -->
 
 ***
+## Lookup Plugins
+- access data from outside sources
+- files, databases, key/value stores, APIs, Password-Managers, etc.
+- ansible-doc -t lookup -l
+- https://docs.ansible.com/ansible/latest/plugins/lookup.html
 
+
+<!-- .slide: class="master-content" > -->
+***
+## Lookup Plugins Examples
+```yaml
+vars:
+  file_contents: "{{ lookup('file', 'path/to/file.txt') }}"
+  ipv4: "{{ lookup('dig', 'example.com.')}}"
+
+```
+
+<!-- .slide: class="master-content" > -->
+
+***
 ## Hashicorp Vault
 ```yaml
 debug:
@@ -1623,24 +1669,21 @@ Red Hat, Azure, VMWare, Cisco, Checkpoint, F5, IBM, NetApp...
 ***
 ## Collections
 - Name of collection is always like:
-```
-<namespace>.<collectionname>
-```
+  
+  "namespace.collectionname"
 
 Example:
 - `community.kubernetes`
 - `puzzle.puzzle_collection`
+  -> FQCN
 
 <!-- .slide: class="master-content" > -->
 
 ***
 ## Collections
 -  Creation of Namespace:
-
-first login into Galaxy with GitHub credentials →
-
-namespace created automatically (username)
-
+  - first login into Galaxy with GitHub credentials →
+  - namespace created automatically (username)
 - Github issues for other namespaces
 
 <!-- .slide: class="master-content" > -->
@@ -1671,7 +1714,7 @@ https://docs.ansible.com/ansible/latest/dev_guide/developing_collections.html#co
 ## Collections
 Where to get collections?
 
-Use local collections:
+When using local collections:
 
 Set `COLLECTIONS_PATHS` in ansible.cfg
 
@@ -1730,7 +1773,7 @@ Where to get collections?
 
 Configure automation hub in ansible.cfg:
 
-→ not enough when using tower!
+→ not enough when using AAP
 
 Settings → Jobs →
 ```
@@ -1751,6 +1794,7 @@ Tower:
 collections/requirements.yml
 
 → needed for Tower to download collections
+→ AAP uses EE's
 
 <!-- .slide: class="master-content" > -->
 
@@ -1932,7 +1976,7 @@ Some configs from ansible.cfg not taken!
 ***
 ## Execution Environments
 
-- Container mit:
+- Container with:
     - python
     - python modules
     - ansible version
@@ -2083,6 +2127,13 @@ Ansible-Vault:
 When writing ansible-content in a team:
 - Define some standards (role-prefixed variables, snake_case for variables/handlers ...)
 - **But**: dont discuss too much about how a problem is solved. There are simply different kind of views.
+
+<!-- .slide: class="master-content" > -->
+
+***
+## Ansible Content:
+- Always set file permissions explicitly
+- Use file/template instead of lineinfile/blockinfile
 
 <!-- .slide: class="master-content" > -->
 

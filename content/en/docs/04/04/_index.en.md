@@ -48,16 +48,20 @@ This task has nothing to do with `ansible-pull`, we just clean up the ansible-pu
 
 Run the playbook.
 
+### All done?
+
+* [ansible-pull](https://docs.ansible.com/ansible/latest/cli/ansible-pull.html)
+
 
 ## Solutions
 
-{{% details title="Task 1" %}}
+{{% details title="Solution Task 1" %}}
 [ansible-pull](https://docs.ansible.com/ansible/latest/cli/ansible-pull.html)
 [Ansible-pull](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html#ansible-pull])
 [GitHub ansible-examples](https://github.com/ansible/ansible-examples/blob/master/language_features/ansible_pull.yml)
 {{% /details %}}
 
-{{% details title="Task 2" %}}
+{{% details title="Solution Task 2" %}}
 ```bash
 sudo yum install -y ansible
 /usr/bin/ansible-pull -U https://github.com/puzzle/ansible-techlab -i resources/ansible-pull/hosts resources/ansible-pull/local.yml
@@ -66,7 +70,7 @@ ll #no file here...
 ```
 {{% /details %}}
 
-{{% details title="Task 3" %}}
+{{% details title="Solution Task 3" %}}
 ```bash
 $ sudo vim /etc/cron.d/ansible-pull #create the file with the content ->
 $ cat /etc/cron.d/ansible-pull
@@ -75,12 +79,12 @@ $ sudo rm -f /etc/motd; watch cat /etc/motd
 ```
 {{% /details %}}
 
-{{% details title="Task 4" %}}
+{{% details title="Solution Task 4" %}}
 ```bash
 $ cat revert_motd.yml
 ---
 - hosts: node1
-  become: yes
+  become: true
   tasks:
     - name: uninstall ansible
       yum:

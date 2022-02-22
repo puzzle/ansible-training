@@ -65,10 +65,14 @@ Note the subfolder `ansible-collections` that was created. This is default ansib
 
 * Remove podman with an ad-hoc command to not interfere with the next labs.
 
+### All done?
+
+* [What led to ansible collections and reorganization of the community?](https://www.ansible.com/blog/thoughts-on-restructuring-the-ansible-project)
+
 
 ## Solutions
 
-{{% details title="Task 1" %}}
+{{% details title="Solution Task 1" %}}
 ```bash
 $ pwd
 /home/ansible/techlab
@@ -94,7 +98,7 @@ $ tree
 ```
 {{% /details %}}
 
-{{% details title="Task 2" %}}
+{{% details title="Solution Task 2" %}}
 
 ```bash
 $ ansible-galaxy collection build puzzle/ansible_techlab/
@@ -112,7 +116,7 @@ $
 ```
 {{% /details %}}
 
-{{% details title="Task 3" %}}
+{{% details title="Solution Task 3" %}}
 ```bash
 $ ansible-galaxy collection install puzzle-ansible_techlab-1.0.0.tar.gz 
 Process install dependency map
@@ -134,7 +138,7 @@ Installing 'puzzle.ansible_techlab:1.0.0' to '/home/ansible/techlab/collections/
 ```
 {{% /details %}}
 
-{{% details title="Task 4" %}}
+{{% details title="Solution Task 4" %}}
 ```bash
 
 $ ansible-config dump | grep -i galaxy_server
@@ -157,7 +161,7 @@ GALAXY_SERVER_LIST(/home/ansible/techlab/ansible.cfg) = [u'puzzle_galaxy']
 ```
 {{% /details %}}
 
-{{% details title="Task 5" %}}
+{{% details title="Solution Task 5" %}}
 ```bash
 $ ansible-galaxy collection install nginxinc.nginx_controller
 Process install dependency map
@@ -176,7 +180,7 @@ $
 ```
 {{% /details %}}
 
-{{% details title="Task 6" %}}
+{{% details title="Solution Task 6" %}}
 ```bash
 $ ansible-galaxy collection install containers.podman
 Process install dependency map
@@ -186,7 +190,7 @@ $
 $ cat collections.yml 
 ---
 - name: example for using modules from a collection
-  become: yes
+  become: true
   hosts: controller
   collections:
     - containers.podman
@@ -215,7 +219,7 @@ OR:
 $ cat collections.yml 
 ---
 - name: example for using modules from a collection
-  become: yes
+  become: true
   hosts: controller
   tasks:
     - name: install podman
@@ -242,7 +246,7 @@ This would not work, since the module `podman_container` is only content of the 
 $ cat collections.yml 
 ---
 - name: example for using modules from a collection
-  become: yes
+  become: true
   hosts: controller
   tasks:
     - name: install podman
@@ -293,7 +297,7 @@ $
 ```
 {{% /details %}}
 
-{{% details title="Task 7" %}}
+{{% details title="Solution Task 7" %}}
 ```bash
 ansible localhost -b -m yum -a"name=podman, state=absent"
 ```

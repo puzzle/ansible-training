@@ -63,9 +63,13 @@ Have a look at the documentation about error handling: [Ansible Docs - Playbooks
 * Rerun your playbook and ensure it fails.
 * Fix the errors in the config file, restart `httpd` on `node1` and rerun your playbook. Everything should be fine again.
 
+### All done?
+
+* [Output as YAML instead of JSON](https://docs.ansible.com/ansible/latest/collections/community/general/yaml_callback.html)
+
 ## Solutions
 
-{{% details title="Task 1" %}}
+{{% details title="Solution Task 1" %}}
 Documentation about [debug module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/debug_module.html)
 Example `output.yml`:
 ```yaml
@@ -82,7 +86,7 @@ Example `output.yml`:
 
 {{% /details %}}
 
-{{% details title="Task 2" %}}
+{{% details title="Solution Task 2" %}}
 
 Example `output.yml`:
 ```yaml
@@ -101,7 +105,7 @@ Example `output.yml`:
 ```
 {{% /details %}}
 
-{{% details title="Task 3" %}}
+{{% details title="Solution Task 3" %}}
 Possible solution 1:
 Example `output.yml`:
 ```yaml
@@ -141,7 +145,7 @@ Example `output.yml`:
 ```
 {{% /details %}}
 
-{{% details title="Task 4" %}}
+{{% details title="Solution Task 4" %}}
 
 Stop the `httpd` service with Ansible:
 ```bash
@@ -152,7 +156,7 @@ Content of `servicehandler.yml`:
 ```yaml
 ---
 - hosts: web
-  become: yes
+  become: true
   tasks:
     - name: install httpd
       yum:
@@ -170,12 +174,12 @@ Content of `servicehandler.yml`:
 ```
 {{% /details %}}
 
-{{% details title="Task 5" %}}
+{{% details title="Solution Task 5" %}}
 Example `servicehandler.yml`:
 ```bash
 ---
 - hosts: web
-  become: yes
+  become: true
   tasks:
     - name: install httpd
       yum:

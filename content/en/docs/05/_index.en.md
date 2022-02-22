@@ -36,9 +36,13 @@ following:
 * Rewrite the `httpd` role to apply the `base` role each time it is used in a playbook. Use a dependency in the `meta/main.yml` file.
 * Remove the play to run `base` role on all hosts in the `prod.yml` playbook. Run the playbook and see if role `base` was applied on hosts in the `web` group as well.
 
+### All done?
+
+* Have a look at the available [Playbook Keywords](https://docs.ansible.com/ansible/latest/reference_appendices/playbooks_keywords.html)
+
 ## Solutions
 
-{{% details title="Task 1" %}}
+{{% details title="Solution Task 1" %}}
 ```bash
 $ mkdir roles
 $ grep roles_path ansible.cfg
@@ -46,7 +50,7 @@ roles_path    = /etc/ansible/roles:/usr/share/ansible/roles:/home/ansible/techla
 ```
 {{% /details %}}
 
-{{% details title="Task 2" %}}
+{{% details title="Solution Task 2" %}}
 ```bash
 $ cd roles/
 $ ansible-galaxy init httpd
@@ -80,12 +84,12 @@ $ cat roles/httpd/tasks/main.yml
 ```
 {{% /details %}}
 
-{{% details title="Task 3" %}}
+{{% details title="Solution Task 3" %}}
 ```bash
 $ cat webserver.yml
 ---
 - hosts: web
-  become: yes
+  become: true
   roles:
     - httpd
 
@@ -93,7 +97,7 @@ $ ansible-playbook webserver.yml
 ```
 {{% /details %}}
 
-{{% details title="Task 4" %}}
+{{% details title="Solution Task 4" %}}
 ```bash
 $ cd roles/; ansible-galaxy init base;
 
@@ -137,12 +141,12 @@ $ cat roles/base/tasks/main.yml
 $ cat prod.yml
 ---
 - hosts: all
-  become: yes
+  become: true
   roles:
     - base
 
 - hosts: web
-  become: yes
+  become: true
   roles:
     - httpd
 ```
@@ -153,7 +157,7 @@ Take notice of the different content of `/etc/motd` on the control node!
 
 {{% /details %}}
 
-{{% details title="Task 5" %}}
+{{% details title="Solution Task 5" %}}
 
 ```bash
 $ cat roles/httpd/meta/main.yml
@@ -163,7 +167,7 @@ dependencies:
 $ cat prod.yml
 ---
 - hosts: web
-  become: yes
+  become: true
   roles:
     - httpd
 

@@ -36,9 +36,13 @@ In this lab we are going to use roles from galaxy and from other sources.
 You have to have a reasonable fresh version of Ansible in order to get this working. On older systems you could get an error message containing strings like `template error while templating string: no test named 'version'`.
 {{% /alert %}}
 
+### All done?
+
+* [galaxy.ansible.com](https://galaxy.ansible.com/)
+
 ## Solutions
 
-{{% details title="Task 1" %}}
+{{% details title="Solution Task 1" %}}
 ```bash
 ansible-galaxy search nginx
 ansible-galaxy install nginxinc.nginx
@@ -46,7 +50,7 @@ ansible controller -m archive -a "path=/home/ansible/techlab/roles/nginxinc.ngin
 ```
 {{% /details %}}
 
-{{% details title="Task 2" %}}
+{{% details title="Solution Task 2" %}}
 ```bash
 ansible-galaxy remove nginxinc.nginx
 
@@ -72,7 +76,7 @@ $ ansible localhost -m file -a "dest=/home/ansible/techlab/roles/requirements.ym
 ```
 {{% /details %}}
 
-{{% details title="Task 3" %}}
+{{% details title="Solution Task 3" %}}
 ```bash
 yum search roles
 sudo yum install rhel-system-roles
@@ -80,7 +84,7 @@ repoquery -l rhel-system-roles #<-- repoquery is provided by the package `yum-ut
 ```
 {{% /details %}}
 
-{{% details title="Task 4" %}}
+{{% details title="Solution Task 4" %}}
 ```bash
 $ repoquery -l rhel-system-roles | grep -i exa | grep selinux
 $ cp /usr/share/doc/rhel-system-roles-1.0/selinux/example-selinux-playbook.yml  selinux.yml

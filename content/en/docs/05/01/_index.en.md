@@ -24,17 +24,21 @@ We start to use handlers and blocks as well.
 * Use a `block:` to do these tasks.
 * Run the playbook `download.yml`.
 
+### All done?
+
+* [Playbook Keywords](https://docs.ansible.com/ansible/latest/reference_appendices/playbooks_keywords.html)
+
 
 ## Solutions
 
-{{% details title="Task 1" %}}
+{{% details title="Solution Task 1" %}}
 Below is a possible solution:
 
 ```bash
 $ cat myhandler.yml
 ---
 - hosts: node2
-  become: yes
+  become: true
   roles:
     - handlerrole
 
@@ -61,13 +65,13 @@ $ ansible-playbook myhandler.yml #<-- no changes here, idempotent!
 ```
 {{% /details %}}
 
-{{% details title="Task 2" %}}
+{{% details title="Solution Task 2" %}}
 
 ```bash
 $ cat download.yml 
 ---
 - hosts: node2
-  become: yes
+  become: true
   roles:
     - downloader
 

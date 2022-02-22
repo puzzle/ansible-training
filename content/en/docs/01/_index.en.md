@@ -91,7 +91,7 @@ If you are using the lab servers provided by your teacher, the sudoers configura
 * Configure the `ansible` user to have root privilege on all hosts in your inventory file. Also enable login without a password for this user.
 * Test the functionality by running `sudo -v` as user `ansible` on all nodes.
 
-### TASK 5
+### Task 5
 
 * extend the inventory with a group `nodes` that has the groups `web` and `db` as members
   {{% alert title="Tip" color="info" %}}
@@ -99,9 +99,16 @@ If you are using the lab servers provided by your teacher, the sudoers configura
   {{% /alert %}}
 * ping all servers in the group `nodes`
 
+### All done?
+
+* Have a look at [The Bullhorn newsletter](https://github.com/ansible/community/wiki/News#the-bullhorn)
+* See what inspired the creators of Ansible: [Rocannon's World](https://www.youtube.com/watch?v=X8F3r4_EkW8)
+* Ansible [Configuration File](https://docs.ansible.com/ansible/latest/installation_guide/intro_configuration.html)
+* Easteregg: [Cowsay not found!](https://docs.ansible.com/ansible/latest/notfound)
+
 ## Solutions
 
-{{% details title="Task 1" %}}
+{{% details title="Solution Task 1" %}}
 Installing Ansible with root privileges (on controller host):
 
 ```bash
@@ -132,7 +139,7 @@ If `which` does not find `python` or `python3`:
 
 {{% /details %}}
 
-{{% details title="Task 2" %}}
+{{% details title="Solution Task 2" %}}
 ```bash
    ssh-keygen #(no passphrase, just hit enter until the end)
    ssh-copy-id <node-ip>
@@ -167,7 +174,7 @@ Test it by running the SSH command executed on that node:
 ```
 {{% /details %}}
 
-{{% details title="Task 3" %}}
+{{% details title="Solution Task 3" %}}
 ```bash
    cd techlab
    vim hosts # (copy & paste inventory data)
@@ -186,7 +193,7 @@ Test it by running the SSH command executed on that node:
 {{% /details %}}
 
 
-{{% details title="Task 4" %}}
+{{% details title="Solution Task 4" %}}
 
 In the file `/etc/sudoers` (On CentOS/RHEL), there's already a config entry for the wheel group that is similar to the one we need for our ansible user.
 ```bash
@@ -222,7 +229,7 @@ Check if `ansible` user has root privileges:
 
 {{% /details %}}
 
-{{% details title="Task 5" %}}
+{{% details title="Solution Task 5" %}}
 Add `[nodes:children]` to inventory file:
 ```bash
    cat hosts
