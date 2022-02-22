@@ -21,9 +21,11 @@
   System Engineer
 
   pschmid@puzzle.ch
-  
-  <!--
+</div> 
 
+<!--
+
+<div class="people">
   <div>
     <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2020/08/Lukas_Grimm_wp-400x300.jpg)" />
   </div>
@@ -32,7 +34,10 @@
   System Engineer
 
   grimm@puzzle.ch
- 
+</div>
+
+
+<div class="people">
   <div>
     <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2020/08/Dominik_Meisser_wp-400x300.jpg)" />
   </div>
@@ -41,8 +46,11 @@
   System Engineer
 
   meisser@puzzle.ch
+</div>
 
-  -->
+-->
+
+<div class="people">
   <div>
     <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/05/Preisig_Lukas-400x300.jpg)" />
   </div>
@@ -52,8 +60,11 @@
 
   preisig@puzzle.ch
 
-  <!-- 
+</div>
 
+<!-- 
+
+<div class="people">
   <div>
     <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/06/Kobras_Daniel1-400x300.jpg)" />
   </div>
@@ -62,7 +73,10 @@
   Principal Architect
 
   kobras@puzzle-itc.de
-  
+</div>
+
+
+<div class="people">
   <div>
     <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/06/Proehl-Mark-400x300.jpg)" />
   </div>
@@ -72,8 +86,9 @@
 
   proehl@puzzle-itc.de
 
-  -->
 </div>
+
+-->
 
 ### ALLE PUZZLER
 
