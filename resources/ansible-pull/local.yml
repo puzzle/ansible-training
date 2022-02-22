@@ -2,7 +2,7 @@
 - hosts: all
   tasks:
   - name: set the MOTD
-    become: yes
+    become: true
     copy:
       src: motd
       dest: /etc/motd
