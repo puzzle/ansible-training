@@ -1,4 +1,4 @@
-FROM klakegg/hugo:0.92.1-ext-alpine AS builder
+FROM klakegg/hugo:0.92.2-ext-alpine AS builder
 
 COPY . /src
 
