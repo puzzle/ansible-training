@@ -7,10 +7,6 @@
 <!-- .slide: class="master-cover" -->
 
 ----
-
-<div>
-
-
 ## Nice to meet you
 <div class="people">
   <div>
