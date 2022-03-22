@@ -59,7 +59,6 @@
   System Engineer
 
   preisig@puzzle.ch
-
 </div>
 
 <!-- 
@@ -109,7 +108,6 @@
 
 ***
 ## round of introductions
-</div>
 <div style="color: black;">
 
 - Job? Ansible?
