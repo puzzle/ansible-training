@@ -89,8 +89,10 @@
 </div>
 
 -->
+
 <!-- .slide: class="master-top-head" -->
 
+***
 ## Alle Puzzler
 
 <div class="people">
@@ -273,14 +275,14 @@ Eure Lab-VMs werden vollautomatisch mit Ansible Deployed und provisioniert
 ## How stuff works?
 
 
-<img alt='workflow1' src="ansible-techlab/img/ansible_workflow_1.png" width="700"/>
+<img alt='workflow1' src="ansible-techlab/img/ansible_workflow_1.png" width="600"/>
 
 <!-- .slide: class="master-content" > -->
 ***
 
 ## How stuff works?
 
-<img alt='workflow2' src="ansible-techlab/img/ansible_workflow_2.png" width="700"/>
+<img alt='workflow2' src="ansible-techlab/img/ansible_workflow_2.png" width="600"/>
 
 <!-- .slide: class="master-content" > -->
 
