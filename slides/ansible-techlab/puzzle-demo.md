@@ -273,14 +273,25 @@ Eure Lab-VMs werden vollautomatisch mit Ansible Deployed und provisioniert
 ***
 ## How stuff works?
 
+
+<img alt='workflow1' src="ansible-techlab/img/ansible_workflow_1.png" width="700"/>
+
+<!-- .slide: class="master-content" > -->
+***
+
+## How stuff works?
+
+<img alt='workflow2' src="ansible-techlab/img/ansible_workflow_2.png" width="700"/>
+
+<!-- .slide: class="master-content" > -->
+
+Note:
 - ssh to client
 - copy python script (/tmp)
 - run python script
 - delete python script
 - python2 or python3
-
-<!-- .slide: class="master-content" > -->
-
+  
 ***
 
 ## How stuff works?
