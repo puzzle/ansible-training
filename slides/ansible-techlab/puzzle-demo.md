@@ -8,7 +8,7 @@
 
 ----
 ## Nice to meet you
-<div class="people">
+<div class="people" style="color: black;">
   <div>
     <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/06/Schmid_Philippe-3-400x300.jpg)" />
   </div>
