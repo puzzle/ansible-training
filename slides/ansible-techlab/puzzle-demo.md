@@ -89,10 +89,9 @@
 </div>
 
 -->
-
 <!-- .slide: class="master-top-head" -->
 
-### ALLE PUZZLER
+## Alle Puzzler
 
 <div class="people">
   <div>
@@ -103,7 +102,6 @@
   https://www.puzzle.ch/de/team
 
 </div>
-
 <!-- .slide: class="master-top-head" -->
 
 ***
