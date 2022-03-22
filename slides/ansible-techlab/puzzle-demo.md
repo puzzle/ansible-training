@@ -89,13 +89,21 @@
 </div>
 
 -->
+<!-- .slide: class="master-top-head" -->
 
-### ALLE PUZZLER
+## Alle Puzzler
 
-https://www.puzzle.ch/de/team
+<div class="people">
+  <div>
+    <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2021/06/2006-1024.png)" />
+  </div>
 
+  ### Members
+  https://www.puzzle.ch/de/team
 
-<!-- .slide: class="master-content people" -->
+</div>
+
+<!-- .slide: class="master-top-head" -->
 
 ***
 ## round of introductions
@@ -265,14 +273,25 @@ Eure Lab-VMs werden vollautomatisch mit Ansible Deployed und provisioniert
 ***
 ## How stuff works?
 
+
+<img alt='workflow1' src="ansible-techlab/img/ansible_workflow_1.png" width="700"/>
+
+<!-- .slide: class="master-content" > -->
+***
+
+## How stuff works?
+
+<img alt='workflow2' src="ansible-techlab/img/ansible_workflow_2.png" width="700"/>
+
+<!-- .slide: class="master-content" > -->
+
+Note:
 - ssh to client
 - copy python script (/tmp)
 - run python script
 - delete python script
 - python2 or python3
-
-<!-- .slide: class="master-content" > -->
-
+  
 ***
 
 ## How stuff works?
