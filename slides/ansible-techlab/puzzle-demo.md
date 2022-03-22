@@ -90,7 +90,7 @@
 ***
 ## Alle Puzzler
 
-<div class="people">
+<div class="people" style="color: black;">
   <div>
     <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2021/06/2006-1024.png)" />
   </div>
