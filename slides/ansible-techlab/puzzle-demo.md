@@ -1629,6 +1629,102 @@ base_root_pw: "{{ lookup('community.hashi_vault.hashi_vault', \
 
 <!-- .slide: class="master-title" > -->
 ----
+# Ansible-Navigator
+
+### (+ Ansible-Builder)
+
+
+<!-- .slide: class="master-title"> -->
+***
+## Execution Environments
+
+- it's a container!
+- place where ansible is run
+  (vs. local python)
+- Advantage:
+  it's a container!
+
+<!-- .slide: class="master-content" > -->
+
+***
+
+
+## Execution Environments
+
+- Container with:
+    - python
+    - python modules
+    - ansible version
+    - ansible collections
+    - binaries
+
+<!-- .slide: class="master-content" > -->
+
+***
+## Execution Environments
+
+- build with ansible-builder
+- (uses different containers)
+- beware of transparent proxy :-/
+
+<!-- .slide: class="master-content" > -->
+
+***
+## ansible-navigator
+
+- run, logs, EE, builder, collections, doc,
+  inventory, replay, config, exec, welcome
+
+<!-- .slide: class="master-content" > -->
+
+***
+## ansible-navigator
+
+- available trough RH-subscription (repo) or pip
+- needs podman (or similar)
+- initial download of demo EE
+- cfg per project possible
+
+<!-- .slide: class="master-content" > -->
+***
+
+## ansible-navigator subcommands
+
+Previous functionality:
+- config
+- doc
+- run
+- ïnventory
+
+<!-- .slide: class="master-content" > -->
+***
+## ansible-navigator subcommands
+
+New functionality:
+- collections
+- images
+- replay
+- log
+
+<!-- .slide: class="master-content" > -->
+***
+
+
+## ansible-navigator config file
+
+- ansible-navigator.yml
+- see possible options at readthedocs.org
+  https://readthedocs.org/projects/ansible-navigator/
+- ansible-navigator --help
+
+BEWARE: set remote_user when using EE!
+
+<!-- .slide: class="master-content" > -->
+***
+
+
+
+----
 # Ansible Collections
 
 
@@ -2003,44 +2099,7 @@ Some configs from ansible.cfg not taken!
 <!-- .slide: class="master-content" > -->
 
 ***
-## Execution Environments
 
-- Container with:
-    - python
-    - python modules
-    - ansible version
-    - ansible collections
-    - binaries
-
-<!-- .slide: class="master-content" > -->
-
-***
-## Execution Environments
-
-- build with ansible-builder
-- (uses different containers)
-- beware of transparent proxy :-/
-
-<!-- .slide: class="master-content" > -->
-
-***
-## ansible-navigator
-
-- run, logs, EE, builder, collections, doc,
-  inventory, replay, config, exec, welcome
-
-<!-- .slide: class="master-content" > -->
-
-***
-## ansible-navigator
-
-- available trough RH-subscription / repo or pip
-- needs podman (or similar)
-- initial download of demo EE
-- cfg per project possible
-
-<!-- .slide: class="master-content" > -->
-***
 ## AWX
 - Install:
 - Supports only installation via Operator on
