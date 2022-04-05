@@ -47,18 +47,20 @@ If the creation fails due to "no space left on device", remove the demo EE insta
 ### Task 6
 
 * Change your configuration file `ansible-navigator.yml` to use your newly created EE `default-ee`.
-* Podman's default behaviour is to pull any image taged with `latest` when starting a container from it. Since we didn't set up a proper registry at localhost we want to avoid this behaviour by a setting in the config file. `ansible-navigator.yml`.
+* Podman's default behaviour is to pull any image taged with `latest` when starting a container from it. Since we didn't set up a proper registry at localhost we want to avoid this behaviour by a setting in the config file `ansible-navigator.yml`.
 
 {{% alert title="Tip" color="info" %}}
-The stable version of ansible-navigator doesn't support the same options as the latest version. Be sure to look into the [documentation of the stable version](https://ansible-navigator.readthedocs.io/en/stable/settings/#the-ansible-navigator-settings-file) since that is what we have installed.
+The stable version of ansible-navigator doesn't support the same options as the latest version. Be sure to look into the [documentation of the stable version](https://ansible-navigator.readthedocs.io/en/stable/settings/#the-ansible-navigator-settings-file) since that is what we have installed. Theres also a [documentation of the latest version](https://ansible-navigator.readthedocs.io/en/latest/) where you can have a glimpse in the comming features.
 {{% /alert %}}
 
 * Run the playbook `container.yml` and verify that the image was pulled on the db servers. Provide an cmdline option to run it in stdout mode.
+* Can you run your previous playbook `site.yml` with the new EE?
 
 ### All done?
 
 * Think about why the container was able to connect to the servers over ssh without providing a password. 
 * Have a look at the [ansible-builder github page](https://github.com/ansible/ansible-builder)
+* Have a look at the [docs of the latest version of ansible-navigator](https://ansible-navigator.readthedocs.io/en/latest/) to see how the tool will evolve.
 
 ## Solutions
 
@@ -247,5 +249,7 @@ REPOSITORY             TAG         IMAGE ID      CREATED       SIZE
 quay.io/bitnami/nginx  latest      c6cb896c1070  11 hours ago  93.5 MB
 ```
 Note that if you pulled the image as user root on the db servers, you will not see it in the output of `podman images` unless its run as user root as well.
+
+You would need to include the collection `ansible.posix` in your EE in order to be able to use the firewalld module.
 
 {{% /details %}}

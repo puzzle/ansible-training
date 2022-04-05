@@ -1636,6 +1636,17 @@ base_root_pw: "{{ lookup('community.hashi_vault.hashi_vault', \
 
 <!-- .slide: class="master-title"> -->
 ***
+
+## New terms
+
+- execution environment
+- ansible-runner
+- ansible-navigator
+- ansible-builder
+
+<!-- .slide: class="master-content" > -->
+
+***
 ## Execution Environments
 
 - it's a container!
@@ -1670,6 +1681,31 @@ base_root_pw: "{{ lookup('community.hashi_vault.hashi_vault', \
 <!-- .slide: class="master-content" > -->
 
 ***
+
+## ansible-runner
+
+- tool and python library that helps when interfacing with Ansible
+- responsible for running ansible and ansible-playbook tasks
+- sending and receiving information
+
+<!-- .slide: class="master-content" > -->
+
+***
+
+## ansible-runner
+
+Attention:
+- theres a container named ansible-runner
+  https://quay.io/repository/ansible/ansible-runner
+
+
+- https://ansible-runner.readthedocs.io/en/stable/
+
+
+<!-- .slide: class="master-content" > -->
+
+***
+
 ## ansible-navigator
 
 - run, logs, EE, builder, collections, doc,
@@ -1722,7 +1758,29 @@ BEWARE: set remote_user when using EE!
 <!-- .slide: class="master-content" > -->
 ***
 
+## ansible-builder
 
+- lets you build your own EE
+- config taken from yaml cfg-file
+- creates podman context and runs it
+- uses two other containers in the background:
+  ansible-builder and ansible-runner
+
+<!-- .slide: class="master-content" > -->
+***
+
+## ansible-builder config files
+
+- your-ee.yml for your ee
+- requirements.txt for python
+- requirements.yml for collections
+- bindep.txt for system binaries
+- ansible.cfg
+- additional_build_steps
+
+
+<!-- .slide: class="master-content" > -->
+***
 
 ----
 # Ansible Collections
