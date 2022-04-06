@@ -255,7 +255,7 @@ OK: [node1] Permanent and Non-Permanent(immediate) operation
 25│  source: null
 26│  state: enabled
 27│  target: null
-28│	 timeout: 0
+28│  timeout: 0
 29│  zone: null
 30│  msg: Permanent and Non-Permanent(immediate) operation
 31│start: '2022-04-03T09:37:18.805035'
