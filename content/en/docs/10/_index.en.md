@@ -24,7 +24,7 @@ Configure ansible-navigator and ensure the following:
 * Use 20 forks
 * Enable colorful output
 * Log to a file `log.txt` in a subfolder `log` with a loglevel of `INFO`.
-* Use the demo execution environment previously downloaded when running a playbook. 
+* Use the demo execution environment previously downloaded when running a playbook.
 * Create artifacts when running a playbook with `ansible-navigator` and put them in a subfolder `artifacts`. Prefix the name of the artifact-file with the name of the actual playbook.
 
 ### Task 3
@@ -34,13 +34,13 @@ Configure ansible-navigator and ensure the following:
 ### Task 4 
 
 * Run the playbook `site.yml` by using ansible-navigator and the configuration from Task 2.
-* What additional config parameter has to be set in your `ansible.cfg`? If unsure, run the playbook and debug the error. 
-* While running the playbook, check in another terminal window if the container gets startet and stopped. You can do this by issuing `watch podman container list` 
+* What additional config parameter has to be set in your `ansible.cfg`? If unsure, run the playbook and debug the error.
+* While running the playbook, check in another terminal window if the container gets startet and stopped. You can do this by issuing `watch podman container list`
 
 ### Task 5
 
 * After a successful run of your playbook, we play around with the TUI. Be sure to not let ansible-navigator run in interactive mode and not stdout mode (-m stdout). Since interactive is the default, you shouldn't have any problems with that.
-* Inspect the output in the TUI. Navigate to the task in 
+* Inspect the output in the TUI. Navigate to the task in
 
 ### Task 6
 
