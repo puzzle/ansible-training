@@ -240,20 +240,20 @@ OK: [node1] Permanent and Non-Permanent(immediate) operation
 11│  changed: false
 12│  invocation:
 13│    module_args:
-14│	 icmp_block: null
-15│	 icmp_block_inversion: null
-16│	 immediate: true
-17│	 interface: null
-18│	 masquerade: null
-19│	 offline: null
+14│  icmp_block: null
+15│  icmp_block_inversion: null
+16│  immediate: true
+17│  interface: null
+18│  masquerade: null
+19│  offline: null
 20│  permanent: true
 21│  port: null
 22│  port_forward: null
 23│  rich_rule: null
 24│  service: http
-25│	 source: null
-26│	 state: enabled
-27│	 target: null
+25│  source: null
+26│  state: enabled
+27│  target: null
 28│	 timeout: 0
 29│  zone: null
 30│  msg: Permanent and Non-Permanent(immediate) operation
