@@ -82,6 +82,7 @@ Since we have no RedHat Subscription available, we install ansible-navigator wit
 ```bash
 $ sudo dnf install -y podman python3-pip
 $ pip3 install ansible-navigator --user
+...
 ```
 
 * Ansible-navigator downloads a default execution environment:
