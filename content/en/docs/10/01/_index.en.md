@@ -201,7 +201,7 @@ DEFAULT-EE:LATEST (INFORMATION ABOUT ANSIBLE AND ANSIBLE COLLECTIONS)
 1│ansible:
 2│  collections:
 3│    details:
-4│	containers.podman: 1.9.3
+4│  containers.podman: 1.9.3
 5│  version:
 6│    details: core 2.12.4.post0
 ```
