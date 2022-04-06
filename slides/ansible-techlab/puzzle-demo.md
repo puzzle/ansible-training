@@ -1664,12 +1664,12 @@ base_root_pw: "{{ lookup('community.hashi_vault.hashi_vault', \
 
 ## Execution Environments
 
-- Container with:
-    - python
-    - python modules
-    - ansible version
-    - ansible collections
-    - binaries
+Container with:
+- ansible
+- ansible collections
+- python
+- python modules
+- binaries
 
 <!-- .slide: class="master-content" > -->
 
@@ -1686,9 +1686,21 @@ base_root_pw: "{{ lookup('community.hashi_vault.hashi_vault', \
 
 ## ansible-runner
 
-- tool and python library that helps when interfacing with Ansible
-- responsible for running ansible and ansible-playbook tasks
-- sending and receiving information
+3 Things:
+- tool, container and python library
+  
+Goal:
+- stable and consistend interface to Ansible
+
+
+<!-- .slide: class="master-content" > -->
+
+***
+
+## ansible-runner
+
+- running ansible and ansible-playbook tasks
+- gathers information of ansible runs
 
 <!-- .slide: class="master-content" > -->
 
@@ -1697,11 +1709,11 @@ base_root_pw: "{{ lookup('community.hashi_vault.hashi_vault', \
 ## ansible-runner
 
 Attention:
-- theres a container named ansible-runner
+- Container:
   https://quay.io/repository/ansible/ansible-runner
 
-
-- https://ansible-runner.readthedocs.io/en/stable/
+- Docs:
+  https://ansible-runner.readthedocs.io/en/stable/
 
 
 <!-- .slide: class="master-content" > -->
@@ -1710,8 +1722,10 @@ Attention:
 
 ## ansible-navigator
 
-- run, logs, EE, builder, collections, doc,
-  inventory, replay, config, exec, welcome
+It's a TUI!
+
+- wraps old functionality
+- adds new stuff
 
 <!-- .slide: class="master-content" > -->
 
@@ -1719,7 +1733,7 @@ Attention:
 ## ansible-navigator
 
 - available trough RH-subscription (repo) or pip
-- needs podman (or similar)
+- needs podman (default) or docker
 - initial download of demo EE
 - cfg per project possible
 
@@ -1751,8 +1765,9 @@ New functionality:
 ## ansible-navigator config file
 
 - ansible-navigator.yml
-- see possible options at readthedocs.org
-  https://readthedocs.org/projects/ansible-navigator/
+  
+Options:
+- https://readthedocs.org/projects/ansible-navigator/ and
 - ansible-navigator --help
 
 BEWARE: set remote_user when using EE!
@@ -1762,10 +1777,11 @@ BEWARE: set remote_user when using EE!
 
 ## ansible-builder
 
-- lets you build your own EE
-- config taken from yaml cfg-file
+Tool to build your own EE
+
+- local config file 
 - creates podman context and runs it
-- uses two other containers in the background:
+- uses two other containers:
   ansible-builder and ansible-runner
 
 <!-- .slide: class="master-content" > -->
