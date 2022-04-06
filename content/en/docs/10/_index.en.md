@@ -85,7 +85,7 @@ $ pip3 install ansible-navigator --user
 ```
 
 * Ansible-navigator downloads a default execution environment:
-
+  
 ```bash
 $ ansible-navigator 
 ----------------------------------------------------------------------------------
@@ -321,10 +321,10 @@ $ ansible-navigator config
   2│ALLOW_WORLD_READABLE_TMPFILE   True default default                     False                        
   3│ANSIBLE_CONNECTION_PATH        True default default                     None                         
   4│ANSIBLE_COW_ACCEPTLIST         True default default                     ['bud-frogs', 'bunny', 'chees...
-  5│ANSIBLE_COW_PATH               True default default                     None   			 
-  6│ANSIBLE_COW_SELECTION          True default default                     default  			 
-  7│ANSIBLE_FORCE_COLOR            True default default                     False     			 
-  8│ANSIBLE_NOCOLOR                True default default                     False     			 
+  5│ANSIBLE_COW_PATH               True default default                     None
+  6│ANSIBLE_COW_SELECTION          True default default                     default
+  7│ANSIBLE_FORCE_COLOR            True default default                     False
+  8│ANSIBLE_NOCOLOR                True default default                     False
   9│ANSIBLE_NOCOWS                 True default default                     False
  10│ANSIBLE_PIPELINING             True default default                     False
  11│ANY_ERRORS_FATAL               True default default                     False
