@@ -31,7 +31,7 @@ Configure ansible-navigator and ensure the following:
 
 * Create a playbook `site.yml` that contains two plays. The first play is the same as `webservers.yml` from the labs before and the second play set the content of `/etc/motd` on all hosts of the group `db` to `This is a database server`. Be sure to set a name-keyword for each play. Use "Run tasks on webservers" for the play that runs on the group `web` and "Run tasks on dbservers" for the play that runs on group `db`.
 
-### Task 4 
+### Task 4
 
 * Run the playbook `site.yml` by using ansible-navigator and the configuration from Task 2.
 * What additional config parameter has to be set in your `ansible.cfg`? If unsure, run the playbook and debug the error.
