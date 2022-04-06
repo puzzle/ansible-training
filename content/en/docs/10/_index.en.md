@@ -361,7 +361,8 @@ Note that no ansible-run is triggered and no container of the EE-image is starte
 
 {{% details title="Solution Task 10" %}}
 ```bash
-$ 
+$ ansible-navigator collections
+...
 ```
 ```bash
    NAME                    VERSION SHADOWED TYPE      PATH
