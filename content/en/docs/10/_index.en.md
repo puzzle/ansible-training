@@ -19,6 +19,7 @@ During this lab you will get to know `ansible-navigator`.
 ### Task 2
 
 Configure ansible-navigator and ensure the following:
+
 * Use the `ansible.cfg` in your local techlab directory
 * Use 20 forks
 * Enable colorful output
@@ -44,6 +45,7 @@ Configure ansible-navigator and ensure the following:
 ### Task 6
 
 Use `ansible-navigator` to see the documentation of:
+
 * the `file` module.
 * the `dig` lookup plugin.
 
@@ -64,6 +66,7 @@ Use `ansible-navigator` to see the documentation of:
 ### Task 10
 
 Use `ansible-navigator` to show all:
+
 * available collections.
 * infos about the module `credential` of the `awx.awx` collection.
 

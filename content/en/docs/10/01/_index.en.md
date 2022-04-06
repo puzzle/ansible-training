@@ -21,6 +21,7 @@ In this lab, we will use `ansible-builder` to build our own execution environmen
 Create a new execution environment with the name `default-ee`. You can find information about the needed configuration files in the [official documentation of ansible-builder](https://ansible-builder.readthedocs.io/en/stable/definition.html#execution-environment-definition). If you have a RedHat account, you have access to their [ansible-builder guide](https://access.redhat.com/documentation/en-us/red_hat_ansible_automation_platform/2.1/html/ansible_builder_guide/index).
 
 The new EE should:
+
 * base on the latest stable version of the `ansible-runner` image from `https://quay.io`
 * use the `ansible.cfg` in the `techlab` folder
 * contain the `pyfiglet` python3 module
@@ -32,6 +33,7 @@ The new EE should:
 * Use the option for very verbose (`-v3`) output. With that set, you can observe what `ansible-builder` does in the background. This will take a few minutes.
 
 If you are interested in the details about how the execution environment is built:
+
 * Have a look at the newly created folder `context/` and see the files created there.
 * Have a look at your local podman registry and see, the images downloaded for creating your EE.
 
