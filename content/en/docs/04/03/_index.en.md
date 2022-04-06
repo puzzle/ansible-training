@@ -1,5 +1,5 @@
 ---
-title: 4.3 Ansible Playbooks - Output
+title: 04.3 Ansible Playbooks - Output
 weight: 43
 sectionnumber: 4.3
 ---

@@ -1,5 +1,5 @@
 ---
-title: 4. Ansible Playbooks - Basics
+title: 04. Ansible Playbooks - Basics
 weight: 4
 sectionnumber: 4
 ---

@@ -1,5 +1,5 @@
 ---
-title: "3. Setup and Ad Hoc Commands"
+title: "03. Setup and Ad Hoc Commands"
 weight: 3
 sectionnumber: 3
 ---

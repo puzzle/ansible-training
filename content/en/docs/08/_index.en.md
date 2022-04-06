@@ -1,5 +1,5 @@
 ---
-title: 8. Ansible Collections
+title: 08. Ansible Collections
 weight: 8
 sectionnumber: 8
 ---

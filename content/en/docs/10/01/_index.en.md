@@ -1,7 +1,7 @@
 ---
 title: "10.1 Ansible-Builder"
 weight: 1
-sectionnumber: 1
+sectionnumber: 2
 ---
 
 In this lab, we will use ansible-builder to build our own execution environment.

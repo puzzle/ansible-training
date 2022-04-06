@@ -1,5 +1,5 @@
 ---
-title: 1. Setting up Ansible
+title: 01. Setting up Ansible
 weight: 1
 sectionnumber: 1
 ---
