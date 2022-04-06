@@ -316,7 +316,7 @@ $ ansible-navigator config
 ```
 ```bash
     OPTION                      DEFAULT SOURCE  VIA                         CURRENT VALUE
-  0│ACTION_WARNINGS                True default default                     True 			 
+  0│ACTION_WARNINGS                True default default                     True
   1│AGNOSTIC_BECOME_PROMPT         True default default                     True                         
   2│ALLOW_WORLD_READABLE_TMPFILE   True default default                     False                        
   3│ANSIBLE_CONNECTION_PATH        True default default                     None                         
