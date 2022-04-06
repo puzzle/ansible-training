@@ -1,30 +1,30 @@
 ---
 title: 10. Ansible-Navigator
-weight: 1
-sectionnumber: 1
+weight: 99
+sectionnumber: 10
 ---
 
-During this lab you will get to know ansible-navigator.
+During this lab you will get to know `ansible-navigator`.
 
 ### Task 1
 
-* Install all packages needed to use ansible-navigator on the controller host.
+* Install all packages needed to use `ansible-navigator` on the controller host.
 
 {{% alert title="Tip" color="info" %}}
   It doesn't matter which container engine you use. Anyways we use podman since its the default.
 {{% /alert %}}
 
-* After installing, start ansible-navigator and closely observe whats happening. What does the output show you?
+* After installing, start `ansible-navigator` and closely observe whats happening. What does the output show you?
 
 ### Task 2
 
 Configure ansible-navigator and ensure the following:
-* Use the ansible.cfg in your local techlab directory
+* Use the `ansible.cfg` in your local techlab directory
 * Use 20 forks
 * Enable colorful output
 * Log to a file `log.txt` in a subfolder `log` with a loglevel of `INFO`.
 * Use the demo execution environment previously downloaded when running a playbook. 
-* Create artifacts when running a playbook with ansible-navigator and put them in a subfolder `artifacts`. Prefix the name with the name of the actual playbook.
+* Create artifacts when running a playbook with `ansible-navigator` and put them in a subfolder `artifacts`. Prefix the name of the artifact-file with the name of the actual playbook.
 
 ### Task 3
 
@@ -33,7 +33,7 @@ Configure ansible-navigator and ensure the following:
 ### Task 4 
 
 * Run the playbook `site.yml` by using ansible-navigator and the configuration from Task 2.
-* What additional config parameter has to be set in your ansible.cfg? If unsure, run the playbook and debug the error. 
+* What additional config parameter has to be set in your `ansible.cfg`? If unsure, run the playbook and debug the error. 
 * While running the playbook, check in another terminal window if the container gets startet and stopped. You can do this by issuing `watch podman container list` 
 
 ### Task 5
@@ -43,27 +43,29 @@ Configure ansible-navigator and ensure the following:
 
 ### Task 6
 
-* Use ansible-navigator to see the documentation of the file module.
-* Use ansible-navigator to see the documentation of the dig lookup plugin.
+Use `ansible-navigator` to see the documentation of:
+* the `file` module.
+* the `dig` lookup plugin.
 
 ### Task 7
 
-* Use ansible-navigator to see the current inventory.
-* Navigate to `groups`, then `db` and the show all information of node `node2`.
+* Use `ansible-navigator` to see the current inventory.
+* Navigate to `groups`, then `db` and then show all information of node `node2`.
 
 ### Task 8
 
-* Use ansible-navigator to see the current ansible configuration.
+* Use `ansible-navigator` to see the current ansible configuration.
 
 ### Task 9
 
-* The run of site.yml should have created an artifact file in the folder `artifacts/`.
-* Replay the run by using the corresponding option.
+* The run of `site.yml` should have created an artifact file in the folder `artifacts/`.
+* Replay the this run by using `ansible-navigator` with the corresponding option.
 
 ### Task 10
 
-* Show all available collection.
-* Show all infos about the `awx.awx` collection.
+Use `ansible-navigator` to show all:
+* available collections.
+* infos about the module `credential` of the `awx.awx` collection.
 
 ### All done?
 
@@ -81,7 +83,6 @@ $ pip3 install ansible-navigator --user
 
 * Ansible-navigator downloads a default execution environment:
 
-Opening a SSH connection:
 ```bash
 $ ansible-navigator 
 ----------------------------------------------------------------------------------
@@ -175,7 +176,7 @@ $ cat site.yml
 ```bash
 $ ansible-navigator run site.yml
 ```
-Set the remote_user to ansible. Otherwise, the EE would use user root.
+Set `remote_user` to `ansible` in the ansible configuration. Otherwise, the EE would use user root to connect to the hosts.
 ```bash
 $ grep remote_user ansible.cfg 
 remote_user = ansible
@@ -197,7 +198,7 @@ o              ansible_runner_afb92a4e-3281-4928-986a-cbb84c999be7
 ```bash
 $ ansible-navigator run site.yml -m interactive
 ```
-Note that `-m interactive` is not needed unless you configured the mode to stdout explicitely in your ansible-navigator.yml config file.
+Note that `-m interactive` is not needed unless you configured the mode to `stdout` explicitly in your `ansible-navigator.yml` config file.
 
 ```bash
   PLAY NAME               OK CHANGED UNREACHABLE FAILED SKIPPED IGNORED IN PROGRESS TASK COUNT   PROGRESS
@@ -257,13 +258,13 @@ OK: [node1] Permanent and Non-Permanent(immediate) operation
 34│task_args: ''
 35│task_path: /home/ansible/techlab/site.yml:20
 ```
-Here you can find a lot of details about the task. Note that you can switch between tasks when pressing the numbers from the play summary. In this case this would be the numbers from 0 to 4.
+Here you can find a lot of details about the task. Note that you can switch between tasks when pressing the numbers from the play summary. In this case this would be the numbers from `0` to `4`.
 
 {{% /details %}}
 
 {{% details title="Solution Task 6" %}}
 
-Attention! Be sure to use an EE that contains the needed documentation. If thats not the case, just switch to not using any EE with the option ``
+Attention! Be sure to use an EE that contains the needed documentation. If thats not the case, just switch to not using any EE with the option `--ee false`
 ```bash
 $ ansible-navigator doc file
 $ ansible-navigator doc -t lookup dig --ee false
@@ -271,7 +272,7 @@ $ ansible-navigator doc -t lookup dig --ee false
 {{% /details %}}
 
 {{% details title="Solution Task 7" %}}
-Note that when inspecting an inventory you have to name it explicitely even when you have it configured in your ansible.cfg.
+Note that when inspecting an inventory you have to name it explicitely even when you have it configured in your `ansible.cfg`.
 ```bash
 $ ansible-navigator inventory -i inventory/hosts
 ```

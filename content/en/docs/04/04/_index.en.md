@@ -1,5 +1,5 @@
 ---
-title: 04.4 Ansible-Pull
+title: 4.4 Ansible-Pull
 weight: 44
 sectionnumber: 4.4
 ---

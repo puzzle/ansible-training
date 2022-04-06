@@ -1,5 +1,5 @@
 ---
-title: 04.2 Ansible Playbooks - Templates
+title: 4.2 Ansible Playbooks - Templates
 weight: 42
 sectionnumber: 4.2
 ---

@@ -1,5 +1,5 @@
 ---
-title: "09.1 AWX Installation"
+title: "9.1 AWX Installation"
 weight: 91
 sectionnumber: 9.1
 ---

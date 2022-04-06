@@ -1,5 +1,5 @@
 ---
-title: 02. Documentation
+title: 2. Documentation
 weight: 2
 sectionnumber: 2
 ---

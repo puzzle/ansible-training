@@ -1,42 +1,42 @@
 ---
 title: "10.1 Ansible-Builder"
-weight: 1
-sectionnumber: 2
+weight: 99
+sectionnumber: 10.1
 ---
 
-In this lab, we will use ansible-builder to build our own execution environment.
+In this lab, we will use `ansible-builder` to build our own execution environment.
 
 ### Task 1
 
-* Install all packages needed to use ansible-builder on the controller host.
+* Install all packages needed to use `ansible-builder` on the controller host.
 
 ### Task 2
 
-* Create a playbook `container.yml` that installs podman and pulls the image `quay.io/bitnami/nginx` on all db servers
-* Run this playbook and see how it fails because the collection `containers.podman` is not available in the demo ee.
-* In the remainder of this lab, we build our own execution environment containing this collection.
+* Create a playbook `container.yml` that installs `podman` and pulls the image `quay.io/bitnami/mariadb` on all `db` servers
+* Run this playbook and see how it fails because the collection `containers.podman` is not available in the demo EE `ansible-navigator-demo-ee`.
+* In the remainder of this lab, we build our own execution environment containing the collection `containers.podman`.
 
 ### Task 3
 
 Create a new execution environment with the name `default-ee`. You can find information about the needed configuration files in the [official documentation of ansible-builder](https://ansible-builder.readthedocs.io/en/stable/definition.html#execution-environment-definition). If you have a RedHat account, you have access to their [ansible-builder guide](https://access.redhat.com/documentation/en-us/red_hat_ansible_automation_platform/2.1/html/ansible_builder_guide/index).
 
 The new EE should:
-* contain the latest stable version of the ansible-runner image from quay.io
-* use the ansible.cfg in the `techlab` folder
+* base on the latest stable version of the `ansible-runner` image from `https://quay.io`
+* use the `ansible.cfg` in the `techlab` folder
 * contain the `pyfiglet` python3 module
 * contain the collection `containers.podman`
 
 ### Task 4
 
-* Build the new exection environment with the file from the last task. The resulting images should have a name of `default-ee`
-* Use the option for very verbose (`-v3`) output. With that set, you can observe what ansible-builder does in the background. This will take a few minutes.
+* Build the new exection environment with the files from the last task. The resulting image should have a name of `default-ee`
+* Use the option for very verbose (`-v3`) output. With that set, you can observe what `ansible-builder` does in the background. This will take a few minutes.
 
-If you are interested in the details about how the execution environment is build
-* Have a look in the newly created folder `context/` and see the files created there.
-* Have a look in your local podman registry and see, the images downloaded for creating your EE and your new EE as well.
+If you are interested in the details about how the execution environment is built:
+* Have a look at the newly created folder `context/` and see the files created there.
+* Have a look at your local podman registry and see, the images downloaded for creating your EE.
 
 {{% alert title="Tip" color="info" %}}
-If the creation fails due to "no space left on device", remove the demo EE installed by ansible-navigator (`podman rmi quay.io/ansible/.ansible-navigator-demo-ee:0.6.0`).
+If the creation fails due to "no space left on device", remove unneeded images. For example, you could remove the demo EE `ansible-navigator-demo-ee` installed by `ansible-navigator` (`podman rmi quay.io/ansible/.ansible-navigator-demo-ee:0.6.0`).
 {{% /alert %}}
 
 ### Task 5
@@ -47,13 +47,13 @@ If the creation fails due to "no space left on device", remove the demo EE insta
 ### Task 6
 
 * Change your configuration file `ansible-navigator.yml` to use your newly created EE `default-ee`.
-* Podman's default behaviour is to pull any image taged with `latest` when starting a container from it. Since we didn't set up a proper registry at localhost we want to avoid this behaviour by a setting in the config file `ansible-navigator.yml`.
+* Podman's default behaviour is to pull any image taigged with `latest` when starting a container from it. Since we didn't set up a proper registry at localhost we want to avoid this behaviour by a setting in the config file `ansible-navigator.yml`.
 
 {{% alert title="Tip" color="info" %}}
-The stable version of ansible-navigator doesn't support the same options as the latest version. Be sure to look into the [documentation of the stable version](https://ansible-navigator.readthedocs.io/en/stable/settings/#the-ansible-navigator-settings-file) since that is what we have installed. Theres also a [documentation of the latest version](https://ansible-navigator.readthedocs.io/en/latest/) where you can have a glimpse in the comming features.
+The stable version of ansible-navigator doesn't support the same options as the latest version. Be sure to look into the [documentation of the stable version](https://ansible-navigator.readthedocs.io/en/stable/settings/#the-ansible-navigator-settings-file) since that is what we have installed. There's also a [documentation of the latest version](https://ansible-navigator.readthedocs.io/en/latest/) where you can have a glimpse at the comming features.
 {{% /alert %}}
 
-* Run the playbook `container.yml` and verify that the image was pulled on the db servers. Provide an cmdline option to run it in stdout mode.
+* Run the playbook `container.yml` and verify that the image `docker pull quay.io/bitnami/mariadb` was pulled on the db servers. Provide an cmdline option to run it in stdout mode.
 * Can you run your previous playbook `site.yml` with the new EE?
 
 ### All done?
@@ -87,7 +87,7 @@ $ cat container.yml
       state: present
   - name: Pull an image
     containers.podman.podman_image:
-      name: quay.io/bitnami/nginx
+      name: quay.io/bitnami/mariadb
 
 $ ansible-navigator run container.yml
 
@@ -246,10 +246,10 @@ node2                      : ok=3    changed=0    unreachable=0    failed=0    s
 $ ansible db -b -a "podman images"
 node2 | CHANGED | rc=0 >>
 REPOSITORY             TAG         IMAGE ID      CREATED       SIZE
-quay.io/bitnami/nginx  latest      c6cb896c1070  11 hours ago  93.5 MB
+quay.io/bitnami/mariadb  latest      c6cb896c1070  11 hours ago  93.5 MB
 ```
-Note that if you pulled the image as user root on the db servers, you will not see it in the output of `podman images` unless its run as user root as well.
+Note that if you pulled the image as user `root` on the `db` servers, you will not see it in the output of `podman images` unless it's run as user `root` as well.
 
-You would need to include the collection `ansible.posix` in your EE in order to be able to use the firewalld module.
+You would need to include the collection `ansible.posix` in your EE in order to be able to use the `firewalld` module.
 
 {{% /details %}}
