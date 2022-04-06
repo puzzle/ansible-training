@@ -178,6 +178,7 @@ $ cat site.yml
 {{% details title="Solution Task 4" %}}
 ```bash
 $ ansible-navigator run site.yml
+...
 ```
 Set `remote_user` to `ansible` in the ansible configuration. Otherwise, the EE would use user root to connect to the hosts.
 ```bash
@@ -200,6 +201,7 @@ o              ansible_runner_afb92a4e-3281-4928-986a-cbb84c999be7
 
 ```bash
 $ ansible-navigator run site.yml -m interactive
+...
 ```
 Note that `-m interactive` is not needed unless you configured the mode to `stdout` explicitly in your `ansible-navigator.yml` config file.
 
@@ -271,6 +273,7 @@ Attention! Be sure to use an EE that contains the needed documentation. If thats
 ```bash
 $ ansible-navigator doc file
 $ ansible-navigator doc -t lookup dig --ee false
+...
 ```
 {{% /details %}}
 
