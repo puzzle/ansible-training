@@ -190,7 +190,7 @@ See the running container:
 $ watch podman container list
 
 Every 2.0s: podman container list                                       phippu-controller: Sun Apr  3 08:12:20 2022
-CONTAINER ID  IMAGE	                                       COMMAND               CREATED        STATUS
+CONTAINER ID  IMAGE                                        COMMAND               CREATED        STATUS
    PORTS       NAMES
 ae762caaa21  quay.io/ansible/ansible-navigator-demo-ee:0.6.0  ansible-playbook ...  9 seconds ago  Up 9 seconds ag
 o              ansible_runner_afb92a4e-3281-4928-986a-cbb84c999be7
@@ -214,11 +214,11 @@ Choose `0` to inspect the tasks that run on the hostgroup `web`
 
 ```bash
   RESULT HOST  NUMBER CHANGED  TASK                         TASK ACTION   DURATION
-0│OK     node1      0   False  Gathering Facts              gather_facts	2s
-1│OK     node1      1   False  install httpd                yum			2s
-2│OK     node1      2   False  start and enable httpd       service		1s
-3│OK     node1      3   False  start and enable firewalld   service		0s
-4│OK     node1      4   False  open firewall for http       firewalld		1s
+0│OK     node1      0   False  Gathering Facts              gather_facts  2s
+1│OK     node1      1   False  install httpd                yum           2s
+2│OK     node1      2   False  start and enable httpd       service       1s
+3│OK     node1      3   False  start and enable firewalld   service       0s
+4│OK     node1      4   False  open firewall for http       firewalld     1s
 ```
 Choose `4` to inspect the task for setting firewall rules
 
@@ -246,16 +246,16 @@ OK: [node1] Permanent and Non-Permanent(immediate) operation
 17│	 interface: null
 18│	 masquerade: null
 19│	 offline: null
-20│	 permanent: true
-21│	 port: null
-22│	 port_forward: null
-23│	 rich_rule: null
-24│	 service: http
+20│  permanent: true
+21│  port: null
+22│  port_forward: null
+23│  rich_rule: null
+24│  service: http
 25│	 source: null
 26│	 state: enabled
 27│	 target: null
 28│	 timeout: 0
-29│	 zone: null
+29│  zone: null
 30│  msg: Permanent and Non-Permanent(immediate) operation
 31│start: '2022-04-03T09:37:18.805035'
 32│task: open firewall for http
