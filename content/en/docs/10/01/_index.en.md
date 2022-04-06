@@ -58,7 +58,7 @@ The stable version of ansible-navigator doesn't support the same options as the 
 
 ### All done?
 
-* Think about why the container was able to connect to the servers over ssh without providing a password. 
+* Think about why the container was able to connect to the servers over ssh without providing a password.
 * Have a look at the [ansible-builder github page](https://github.com/ansible/ansible-builder)
 * Have a look at the [docs of the latest version of ansible-navigator](https://ansible-navigator.readthedocs.io/en/latest/) to see how the tool will evolve.
 
