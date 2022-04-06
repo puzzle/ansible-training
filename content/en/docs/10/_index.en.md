@@ -278,6 +278,7 @@ $ ansible-navigator doc -t lookup dig --ee false
 Note that when inspecting an inventory you have to name it explicitely even when you have it configured in your `ansible.cfg`.
 ```bash
 $ ansible-navigator inventory -i inventory/hosts
+...
 ```
 Navigate trough the inventory and see what information you can find. For example show all information about the hosts in group `db`:
 
@@ -311,6 +312,7 @@ Choose `0`
 {{% details title="Solution Task 8" %}}
 ```bash
 $ ansible-navigator config
+...
 ```
 ```bash
     OPTION                      DEFAULT SOURCE  VIA                         CURRENT VALUE
@@ -354,6 +356,7 @@ ANSIBLE NOCOWS (current/default: False)
 {{% details title="Solution Task 9" %}}
 ```bash
 $ ansible-navigator replay artifacts/site-artifact.json
+...
 ```
 Note that no ansible-run is triggered and no container of the EE-image is started.
 {{% /details %}}
