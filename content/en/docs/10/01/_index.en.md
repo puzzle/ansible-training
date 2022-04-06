@@ -70,6 +70,7 @@ Since we have no RedHat Subscription available, we install ansible-builder with 
 ```bash
 $ sudo dnf install -y podman python3-pip
 $ pip3 install ansible-builder --user
+...
 ```
 {{% /details %}}
 
