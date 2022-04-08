@@ -80,7 +80,7 @@ sudo firewall-cmd --permanent --zone=libvirt --add-port=2049/tcp
 sudo firewall-cmd --permanent --zone=libvirt --add-port=2049/udp
 sudo firewall-cmd --reload
 
-sudo sed -i 's/#udp=n/udp=y/g' /etc/nfs.conf
+sudo sed -i 's/# udp=n/udp=y/g' /etc/nfs.conf
 sudo systemctl restart nfs-server.service
 
 # setup vm's

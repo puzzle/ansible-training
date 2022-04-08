@@ -62,7 +62,7 @@ Complete the next steps using ansible ad hoc commands:
 $ ansible all -i hosts -m ping
 5.102.146.128 | SUCCESS => {
     "ansible_facts": {
-        "discovered_interpreter_python": "/usr/bin/python"
+        "discovered_interpreter_python": "/usr/libexec/platform-python"
     },
     "changed": false,
     "ping": "pong"
@@ -90,7 +90,7 @@ $ ansible all -i hosts -m setup -a "filter=ansible_default_ipv4"
             "network": "5.102.146.0",
             "type": "ether"
         },
-        "discovered_interpreter_python": "/usr/bin/python"
+        "discovered_interpreter_python": "/usr/libexec/platform-python"
     },
     "changed": false
 }
