@@ -196,7 +196,7 @@ $ cat collections.yml
     - containers.podman
   tasks:
     - name: install podman
-      yum:
+      dnf:
         name: podman
         state: installed
 
@@ -223,7 +223,7 @@ $ cat collections.yml
   hosts: controller
   tasks:
     - name: install podman
-      yum:
+      dnf:
         name: podman
         state: installed
 
@@ -250,7 +250,7 @@ $ cat collections.yml
   hosts: controller
   tasks:
     - name: install podman
-      yum:
+      dnf:
         name: podman
         state: installed
 
@@ -299,6 +299,6 @@ $
 
 {{% details title="Solution Task 7" %}}
 ```bash
-ansible localhost -b -m yum -a"name=podman, state=absent"
+ansible localhost -b -m dnf -a"name=podman, state=absent"
 ```
 {{% /details %}}

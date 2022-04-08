@@ -39,7 +39,7 @@ Have a look at the documentation about the command modul: [Ansible Docs - comman
 
 * Ensure `httpd` is stopped on the group `web` by using an Ansible ad hoc command.
 * Write a play `servicehandler.yml` that does the following:
-* Install `httpd` by using the `yum` module
+* Install `httpd` by using the `dnf` module
 * Start the service `httpd` with the `command` module. Don't use `service` or `systemd` module.
 * Start the service only if it is not started and running already. (The output of `systemctl status httpd` doesn't contains the string `Active: active (running)`)
 
@@ -159,7 +159,7 @@ Content of `servicehandler.yml`:
   become: true
   tasks:
     - name: install httpd
-      yum:
+      dnf:
         name: httpd
         state: present
     - name: check state of service httpd
@@ -182,7 +182,7 @@ Example `servicehandler.yml`:
   become: true
   tasks:
     - name: install httpd
-      yum:
+      dnf:
         name: httpd
         state: present
     - name: check state of service httpd

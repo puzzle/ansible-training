@@ -10,7 +10,7 @@ In this lab we’ll have a short glimpse at how ansible-pull works.
 
 * Search `docs.ansible.com` for information about the ansible-pull command.
 * Look for a way to execute a playbook using ansible-pull
-* Search for a example playbook
+* Search for an example playbook
 
 ### Task 2
 
@@ -26,7 +26,7 @@ On node1:
 Note the following:
 
 * If no playbook is specified, ansible-pull looks for a playbook `local.yml`.
-* The location of files given as paratmeters to the ansibel-pull command ar always relative to the top level of the git repository.
+* The location of files given as parameters to the ansible-pull command are always relative to the top level of the git repository.
 * All information to run the ansible-pull command is taken from the git repository (playbook, inventory, MOTD-file to be copied). No local configuration is used!
 
 {{% /alert %}}
@@ -63,7 +63,7 @@ Run the playbook.
 
 {{% details title="Solution Task 2" %}}
 ```bash
-sudo yum install -y ansible
+sudo dnf install -y ansible
 /usr/bin/ansible-pull -U https://github.com/puzzle/ansible-techlab -i resources/ansible-pull/hosts resources/ansible-pull/local.yml
 cat /etc/motd
 ll #no file here...
@@ -87,7 +87,7 @@ $ cat revert_motd.yml
   become: true
   tasks:
     - name: uninstall ansible
-      yum:
+      dnf:
         name: ansible
         state: absent
     - name: ensure cronjob not present

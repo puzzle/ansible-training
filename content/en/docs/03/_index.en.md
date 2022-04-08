@@ -134,7 +134,7 @@ ansible all -i hosts -a "cat /etc/hostname"
 
 {{% details title="Solution Task 6" %}}
 ```bash
-ansible web -i hosts -b -m yum -a "name=httpd state=installed"
+ansible web -i hosts -b -m dnf -a "name=httpd state=installed"
 ansible web -i hosts -b -m service -a "name=httpd state=started enabled=yes"
 ```
 
@@ -142,7 +142,7 @@ Reverting the changes made on the remote hosts:
 
 ```bash
 ansible web -i hosts -b -m service -a "name=httpd state=stopped enabled=no"
-ansible web -i hosts -b -m yum -a "name=httpd state=absent"
+ansible web -i hosts -b -m dnf -a "name=httpd state=absent"
 ```
 {{% /details %}}
 

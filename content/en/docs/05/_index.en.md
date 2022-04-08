@@ -59,7 +59,7 @@ $ cat roles/httpd/tasks/main.yml
 ---
 # tasks file for httpd
 - name: install packages
-  yum:
+  dnf:
     name:
       - httpd
       - firewalld
@@ -119,7 +119,7 @@ $ cat roles/base/tasks/motd.yml
 $ cat roles/base/tasks/packages.yml
 ---
 - name: install packages
-  yum:
+  dnf:
     name:
       - firewalld
       - yum-utils

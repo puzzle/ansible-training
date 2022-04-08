@@ -22,7 +22,7 @@ In this lab we are going to use roles from galaxy and from other sources.
 
 ### Task 3 (CentOS/RHEL only)
 
-* Search your Yum repositories for packages containing the string `roles`.
+* Search your Dnf repositories for packages containing the string `roles`.
 * Install the package providing Ansible roles for system management.
 * See what files where installed with this package.
 
@@ -78,8 +78,8 @@ $ ansible localhost -m file -a "dest=/home/ansible/techlab/roles/requirements.ym
 
 {{% details title="Solution Task 3" %}}
 ```bash
-yum search roles
-sudo yum install rhel-system-roles
+dnf search roles
+sudo dnf install rhel-system-roles
 repoquery -l rhel-system-roles #<-- repoquery is provided by the package `yum-utils`
 ```
 {{% /details %}}
