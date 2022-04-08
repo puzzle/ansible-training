@@ -1,0 +1,14 @@
+<network>
+  <name>vagrant</name>
+  <uuid>f7211f12-446a-4028-9620-70507d8c316a</uuid>
+  <forward mode="nat">
+    <nat>
+      <port start="1024" end="65535"/>
+    </nat>
+  </forward>
+  <bridge name="virbr1" stp="on" delay="0"/>
+  <mac address="52:54:00:ac:69:2e"/>
+  <domain name="vagrant"/>
+  <ip address="192.168.123.1" netmask="255.255.255.0">
+  </ip>
+</network>

@@ -53,7 +53,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force;
 iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
 # installl VirtualBox and Vagrant
-choco install virtualbox vagrant
+choco install -y virtualbox vagrant
 
 ```
 
@@ -65,6 +65,9 @@ and execute the following commands.
 mkdir ansible-techlab
 cd ansible-techlab
 iwr -OutFile Vagrantfile https://raw.githubusercontent.com/puzzle/ansible-techlab/master/Vagrantfile
+
+# add Rocky Linux Box
+vagrant box add --name=rockylinux/8 https://app.vagrantup.com/rockylinux/boxes/8/versions/4.0.0/providers/download/virtualbox.box
 
 # setup vm's
 vagrant up

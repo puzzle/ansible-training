@@ -1,7 +1,7 @@
 ---
-title: "CentOS/RHEL Vagrant Setup"
+title: "Fedora/CentOS/RHEL Vagrant Setup"
 type : "docs"
-description: "Vagrant installation on CentOS/RHEL Linux"
+description: "Vagrant installation on Fedora/CentOS/RHEL Linux"
 weight: 3
 ---
 
@@ -21,13 +21,13 @@ of the virtualization host.
 ### Connectivity Details
 
 With the Linux Vagrant setup provided the three local
-CentOS virtual machines running under KVM have the
+Rockylinux virtual machines running under KVM have the
 following IP addresses and credentials.
 
 ```yaml
-control: 192.168.122.30
-node1: 192.168.122.31
-node2: 192.168.122.32
+control: 192.168.123.30
+node1: 192.168.123.31
+node2: 192.168.123.32
 
 user: vagrant
 password: vagrant
@@ -36,42 +36,55 @@ password: vagrant
 ### CentOS/RHEL Based Systems
 
 {{% alert title="Info" color="primary" %}}
-RHEL and CentOS ship per default with Vagrant.
-Depending on the version and age of the distribution
-Vagrant may not include support for CentOS 8 and fails
-during the initial setup. As such the RPM package
-from HashiCorp the vendor of Vagrant is utilized to
-ensure a frictionless lab experience.
+On Linux we use the libvirt provider for vagrant.
+Using Libvirt in user session is quite troublesome: the vagrant vms fail to use the default NAT network, but in user session you can not create a new one. This is why we have to use sudo a lot in the follwing setup.
 {{% /alert %}}
 
 #### Techlab Installation and Startup
 
 ```bash
 # install libvirt and build-dependencies
-sudo yum install libvirt libvirt-daemon-kvm libvirt-devel gcc make rsync
+sudo dnf install libvirt libvirt-daemon-kvm libvirt-devel gcc make rsync
 
 # start libvirtd
 sudo systemctl start libvirtd.service
 
-# install vagrant from hashicorp
-curl --location -o /var/tmp/vagrant_2.2.7_x86_64.rpm \
-  https://releases.hashicorp.com/vagrant/2.2.7/vagrant_2.2.7_x86_64.rpm
-sudo yum localinstall /var/tmp/vagrant_2.2.7_x86_64.rpm
+# install vagrant
+sudo dnf install vagrant
 
 # Add your user to the libvirt group
 sudo usermod -a -G libvirt ${USER}
 
 # install vagrant plugin for libvirt
-vagrant plugin install vagrant-libvirt
+sudo vagrant plugin install vagrant-libvirt
 
 # create working directory and download vagrant file
 mkdir ansible-techlab
 cd ansible-techlab
 curl -o Vagrantfile \
-  https://raw.githubusercontent.com/puzzle/ansible-techlab/master/Vagrantfile
+  https://raw.githubusercontent.com/puzzle/ansible-techlab/master/Vagrantfile.rhel
+
+# create libvirt network for vagrant and activate it
+curl -o vagrant.xml \
+  https://raw.githubusercontent.com/puzzle/ansible-techlab/master/vagrant.xml
+virsh net-define vagrant.xml
+virsh net-start vagrant
+virsh net-autostart vagrant
+
+# Tweaks needed for mounting local folder into VMs
+sudo firewall-cmd --permanent --zone=libvirt --add-service=nfs3
+sudo firewall-cmd --permanent --zone=libvirt --add-service=nfs
+sudo firewall-cmd --permanent --zone=libvirt --add-service=mountd
+sudo firewall-cmd --permanent --zone=libvirt --add-service=rpc-bind
+sudo firewall-cmd --permanent --zone=libvirt --add-port=2049/tcp
+sudo firewall-cmd --permanent --zone=libvirt --add-port=2049/udp
+sudo firewall-cmd --reload
+
+sudo sed -i 's/#udp=n/udp=y/g' /etc/nfs.conf
+sudo systemctl restart nfs-server.service
 
 # setup vm's
-vagrant up
+sudo vagrant up
 ```
 
 #### Techlab Shutdown
@@ -80,7 +93,8 @@ vagrant up
 cd ansible-techlab
 
 # shutdown all vm's
-vagrant destroy -f
+sudo vagrant destroy -f
+sudo rm -rf .vagrant/
 ```
 
 [vagrant]: https://www.vagrantup.com/
