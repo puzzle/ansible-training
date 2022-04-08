@@ -87,7 +87,7 @@ repoquery -l rhel-system-roles #<-- repoquery is provided by the package `yum-ut
 {{% details title="Solution Task 4" %}}
 ```bash
 $ repoquery -l rhel-system-roles | grep -i exa | grep selinux
-$ cp /usr/share/doc/rhel-system-roles-1.0/selinux/example-selinux-playbook.yml  selinux.yml
+$ cp /usr/share/doc/rhel-system-roles/selinux/example-selinux-playbook.yml  selinux.yml
 $ cat selinux.yml
 ---
 - hosts: all
@@ -108,7 +108,7 @@ roles_path    = /home/ansible/techlab/roles:/usr/share/ansible/roles
 Check that the path `/usr/share/ansible/roles` is part of your `ROLES_PATH`:
 ```bash
 $ ansible-config dump | grep -i roles_path
-DEFAULT_ROLES_PATH(/home/ansible/techlab/ansible.cfg) = [u'/home/ansible/techlab/roles', u'/usr/share/ansible/roles']
+DEFAULT_ROLES_PATH(/home/ansible/techlab/ansible.cfg) = ['/home/ansible/techlab/roles', '/usr/share/ansible/roles']
 $
 ```
 {{% /details %}}

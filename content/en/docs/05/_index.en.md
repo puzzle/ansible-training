@@ -46,7 +46,7 @@ following:
 ```bash
 $ mkdir roles
 $ grep roles_path ansible.cfg
-roles_path    = /etc/ansible/roles:/usr/share/ansible/roles:/home/ansible/techlab/roles
+roles_path    = /home/ansible/techlab/roles
 ```
 {{% /details %}}
 
