@@ -23,7 +23,7 @@ Don’t be rattled about the massive amount of modules you’ll see in your term
 ### Task 3 (Advanced)
 
 * By installing the `ansible-doc` package you get a lot of additional documentation.
-* Use your package-managers functionality to find out what files are installed with `yum install ansible-doc`.
+* Use your package-managers functionality to find out what files are installed with `dnf install ansible-doc`.
 * Now find documentation about jinja2 on the controller.
 
 ### Task 4 (Captain Future)
@@ -61,7 +61,7 @@ Starting from Ansible > 2.10 modules are shipped via collections. We will have a
 {{% details title="Solution Task 3" %}}
 One way to find a list of provided documentation:
 ```bash
-yum install -y yum-utils # (if needed)
+dnf install -y yum-utils # (if needed)
 repoquery ansible-doc -l
 ```
 

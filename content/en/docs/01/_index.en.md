@@ -112,10 +112,10 @@ If you are using the lab servers provided by your teacher, the sudoers configura
 Installing Ansible with root privileges (on controller host):
 
 ```bash
-   sudo yum -y install ansible
+   sudo dnf -y install ansible
 ```
 
-* If `yum` does not find the `ansible` package you might need to
+* If `dnf` does not find the `ansible` package you might need to
   install `epel-release.noarch` to enable the EPEL repository.
 
 Opening a SSH connection:
@@ -128,13 +128,13 @@ Opening a SSH connection:
 
 On the nodes:
 ```bash
-   which python # (or which python3)
-   /usr/bin/python
+   which python3 # (or which python)
+   /usr/bin/python3
 ```
 
-If `which` does not find `python` or `python3`:
+If `which` does not find `python3` or `python`:
 ```bash
-   sudo yum -y install python # (or python3)
+   sudo dnf -y install python3 # (or python)
 ```
 
 {{% /details %}}
@@ -181,7 +181,7 @@ Test it by running the SSH command executed on that node:
    ansible all -i hosts -m ping
    5.102.146.128 | SUCCESS => {
        "ansible_facts": {
-           "discovered_interpreter_python": "/usr/bin/python"
+           "discovered_interpreter_python": "/usr/libexec/platform-python"
        },
        "changed": false,
        "ping": "pong"

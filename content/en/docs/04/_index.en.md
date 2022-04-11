@@ -63,7 +63,7 @@ Below is a possible solution for your playbook:
   become: true
   tasks:
     - name: install httpd
-      yum:
+      dnf:
         name: httpd
         state: installed
     - name: start and enable httpd
@@ -139,7 +139,7 @@ Wrong intendation:
   become: true
   tasks:
     - name: install httpd
-      yum:
+      dnf:
       name: httpd        # <-- wrong intendation
       state: installed   # <-- wrong intendation
 ```
@@ -152,10 +152,10 @@ Wrong parameter name:
   become: true
   tasks:
     - name: install httpd
-      yum:
+      dnf:
         name: httpd
         state: installed
-        enabled: yes     # <-- doesn't exist for yum module
+        enabled: yes     # <-- doesn't exist for dnf module
 ```
 
 {{% /details %}}

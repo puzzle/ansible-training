@@ -144,6 +144,8 @@ goldfinger
 
 $ ansible-vault encrypt secret_vars.yml --vault-id vaultpassword
 
+$ ansible-playbook secretservice.yml --ask-vault-pass
+
 $ ansible-playbook secretservice.yml --vault-id vaultpassword
 ```
 {{% /details %}}

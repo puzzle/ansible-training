@@ -22,7 +22,7 @@ In this lab we are going to use roles from galaxy and from other sources.
 
 ### Task 3 (CentOS/RHEL only)
 
-* Search your Yum repositories for packages containing the string `roles`.
+* Search your Dnf repositories for packages containing the string `roles`.
 * Install the package providing Ansible roles for system management.
 * See what files where installed with this package.
 
@@ -78,8 +78,8 @@ $ ansible localhost -m file -a "dest=/home/ansible/techlab/roles/requirements.ym
 
 {{% details title="Solution Task 3" %}}
 ```bash
-yum search roles
-sudo yum install rhel-system-roles
+dnf search roles
+sudo dnf install rhel-system-roles
 repoquery -l rhel-system-roles #<-- repoquery is provided by the package `yum-utils`
 ```
 {{% /details %}}
@@ -87,7 +87,7 @@ repoquery -l rhel-system-roles #<-- repoquery is provided by the package `yum-ut
 {{% details title="Solution Task 4" %}}
 ```bash
 $ repoquery -l rhel-system-roles | grep -i exa | grep selinux
-$ cp /usr/share/doc/rhel-system-roles-1.0/selinux/example-selinux-playbook.yml  selinux.yml
+$ cp /usr/share/doc/rhel-system-roles/selinux/example-selinux-playbook.yml  selinux.yml
 $ cat selinux.yml
 ---
 - hosts: all
@@ -108,7 +108,7 @@ roles_path    = /home/ansible/techlab/roles:/usr/share/ansible/roles
 Check that the path `/usr/share/ansible/roles` is part of your `ROLES_PATH`:
 ```bash
 $ ansible-config dump | grep -i roles_path
-DEFAULT_ROLES_PATH(/home/ansible/techlab/ansible.cfg) = [u'/home/ansible/techlab/roles', u'/usr/share/ansible/roles']
+DEFAULT_ROLES_PATH(/home/ansible/techlab/ansible.cfg) = ['/home/ansible/techlab/roles', '/usr/share/ansible/roles']
 $
 ```
 {{% /details %}}

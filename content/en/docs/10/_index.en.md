@@ -146,7 +146,7 @@ $ cat site.yml
   become: true
   tasks:
     - name: install httpd
-      yum:
+      dnf:
         name: httpd
         state: installed
     - name: start and enable httpd
@@ -216,7 +216,7 @@ Choose `0` to inspect the tasks that run on the hostgroup `web`
 ```bash
   RESULT HOST  NUMBER CHANGED  TASK                         TASK ACTION   DURATION
 0│OK     node1      0   False  Gathering Facts              gather_facts  2s
-1│OK     node1      1   False  install httpd                yum           2s
+1│OK     node1      1   False  install httpd                dnf           2s
 2│OK     node1      2   False  start and enable httpd       service       1s
 3│OK     node1      3   False  start and enable firewalld   service       0s
 4│OK     node1      4   False  open firewall for http       firewalld     1s

@@ -184,7 +184,7 @@ $ cat userplay.yml
         name: "{{ item.food | default('kebab') }}"
       loop: "{{ users }}"
     - name: ensure zsh is installed
-      yum:
+      dnf:
         name: zsh
         state: installed
     - name: create users

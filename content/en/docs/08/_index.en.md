@@ -156,7 +156,7 @@ url = https://galaxy.ansible.com
 
 $ ansible-config dump | grep GALAXY_SERVER
 GALAXY_SERVER(default) = https://galaxy.ansible.com
-GALAXY_SERVER_LIST(/home/ansible/techlab/ansible.cfg) = [u'puzzle_galaxy']
+GALAXY_SERVER_LIST(/home/ansible/techlab/ansible.cfg) = ['puzzle_galaxy']
 [ansible@master-controller techlab]$
 ```
 {{% /details %}}
@@ -196,7 +196,7 @@ $ cat collections.yml
     - containers.podman
   tasks:
     - name: install podman
-      yum:
+      dnf:
         name: podman
         state: installed
 
@@ -211,7 +211,7 @@ $ cat collections.yml
         image: nginx
         state: present
         publish:
-          - '80'
+          - '8080'
 $
 ```
 OR:
@@ -223,7 +223,7 @@ $ cat collections.yml
   hosts: controller
   tasks:
     - name: install podman
-      yum:
+      dnf:
         name: podman
         state: installed
 
@@ -238,7 +238,7 @@ $ cat collections.yml
         image: nginx
         state: present
         publish:
-          - '80'
+          - '8080'
 $
 ```
 This would not work, since the module `podman_container` is only content of the collection and not part of the ansible-base installation:
@@ -250,7 +250,7 @@ $ cat collections.yml
   hosts: controller
   tasks:
     - name: install podman
-      yum:
+      dnf:
         name: podman
         state: installed
 
@@ -265,7 +265,7 @@ $ cat collections.yml
         image: nginx
         state: present
         publish:
-          - '80'
+          - '8080'
 $
 $ ansible-playbook -i hosts collections.yml 
 ERROR! couldn't resolve module/action 'podman_container'. This often indicates a misspelling, missing collection, or incorrect module path.
@@ -299,6 +299,6 @@ $
 
 {{% details title="Solution Task 7" %}}
 ```bash
-ansible localhost -b -m yum -a"name=podman, state=absent"
+ansible localhost -b -m dnf -a"name=podman, state=absent"
 ```
 {{% /details %}}
