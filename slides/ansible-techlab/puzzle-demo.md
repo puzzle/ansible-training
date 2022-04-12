@@ -2083,6 +2083,11 @@ BEWARE: set remote_user when using EE!
 <!-- .slide: class="master-content" > -->
 ***
 
+# Lab 10.0: Ansible-Navigator
+
+<!-- .slide: class="master-title" > -->
+***
+
 ## ansible-builder
 
 Tool to build your own EE
@@ -2108,7 +2113,12 @@ Tool to build your own EE
 <!-- .slide: class="master-content" > -->
 ***
 
-----
+# Lab 10.1: Ansible-Builder
+
+<!-- .slide: class="master-title" > -->
+***
+
+
 # Ansible Automation Plattform
 
 
