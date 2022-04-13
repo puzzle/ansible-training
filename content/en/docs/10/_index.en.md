@@ -8,10 +8,10 @@ During this lab you will get to know `ansible-navigator`.
 
 ### Task 1
 
-* Install all packages needed to use `ansible-navigator` on the controller host.
+* Install all packages needed to use `ansible-navigator` on the controller host
 
 {{% alert title="Tip" color="info" %}}
-  It doesn't matter which container engine you use. Anyways we use podman since its the default.
+It doesn't matter which container engine you use. Anyways we use podman since its the default.
 {{% /alert %}}
 
 * After installing, start `ansible-navigator` and closely observe whats happening. What does the output show you?
@@ -23,52 +23,52 @@ Configure ansible-navigator and ensure the following:
 * Use the `ansible.cfg` in your local techlab directory
 * Use 20 forks
 * Enable colorful output
-* Log to a file `log.txt` in a subfolder `log` with a loglevel of `INFO`.
-* Use the demo execution environment previously downloaded when running a playbook.
+* Log to a file `log.txt` in a subfolder `log` with a loglevel of `INFO`
+* Use the demo execution environment previously downloaded when running a playbook
 * Create artifacts when running a playbook with `ansible-navigator` and put them in a subfolder `artifacts`. Prefix the name of the artifact-file with the name of the actual playbook.
 
 ### Task 3
 
-* Create a playbook `site.yml` that contains two plays. The first play is the same as `webservers.yml` from the labs before and the second play set the content of `/etc/motd` on all hosts of the group `db` to `This is a database server`. Be sure to set a name-keyword for each play. Use "Run tasks on webservers" for the play that runs on the group `web` and "Run tasks on dbservers" for the play that runs on group `db`.
+* Create a playbook `site.yml` that contains two plays. The first play is the same as `webservers.yml` from the earlier labs. The second play sets the content of `/etc/motd` on all hosts of the group `db` to `This is a database server`. Be sure to set a `name` keyword for each play. Use "Run tasks on webservers" for the play that runs on the group `web` and "Run tasks on dbservers" for the play that runs on group `db`.
 
 ### Task 4
 
-* Run the playbook `site.yml` by using ansible-navigator and the configuration from Task 2.
+* Run the playbook `site.yml` by using ansible-navigator and the configuration from Task 2
 * What additional config parameter has to be set in your `ansible.cfg`? If unsure, run the playbook and debug the error.
-* While running the playbook, check in another terminal window if the container gets startet and stopped. You can do this by issuing `watch podman container list`
+* While running the playbook, check in another terminal window if the container gets startet and stopped. You can do this by issuing `watch podman container list`.
 
 ### Task 5
 
 * After a successful run of your playbook, we play around with the TUI. Be sure to not let ansible-navigator run in interactive mode and not stdout mode (-m stdout). Since interactive is the default, you shouldn't have any problems with that.
-* Inspect the output in the TUI. Navigate to the task in
+* Inspect the output in the TUI. Navigate to the task in FIXME
 
 ### Task 6
 
 Use `ansible-navigator` to see the documentation of:
 
-* the `file` module.
-* the `dig` lookup plugin.
+* the `file` module
+* the `dig` lookup plugin
 
 ### Task 7
 
-* Use `ansible-navigator` to see the current inventory.
-* Navigate to `groups`, then `db` and then show all information of node `node2`.
+* Use `ansible-navigator` to see the current inventory
+* Navigate to `groups`, then `db` and then show all information of node `node2`
 
 ### Task 8
 
-* Use `ansible-navigator` to see the current ansible configuration.
+* Use `ansible-navigator` to see the current ansible configuration
 
 ### Task 9
 
-* The run of `site.yml` should have created an artifact file in the folder `artifacts/`.
-* Replay the this run by using `ansible-navigator` with the corresponding option.
+* The run of `site.yml` should have created an artifact file in the folder `artifacts/`
+* Replay the this run by using `ansible-navigator` with the corresponding option
 
 ### Task 10
 
 Use `ansible-navigator` to show all:
 
-* available collections.
-* infos about the module `credential` of the `awx.awx` collection.
+* available collections
+* infos about the module `credential` of the `awx.awx` collection
 
 ### All done?
 
@@ -77,7 +77,7 @@ Use `ansible-navigator` to show all:
 ## Solutions
 
 {{% details title="Solution Task 1" %}}
-Since we have no RedHat Subscription available, we install ansible-navigator with pip. We install podman as well to be able to use containers.
+Since we have no Red Hat Subscription available, we install ansible-navigator with pip. We install podman as well to be able to use containers.
 
 ```bash
 $ sudo dnf install -y podman python3-pip
@@ -264,13 +264,13 @@ OK: [node1] Permanent and Non-Permanent(immediate) operation
 34│task_args: ''
 35│task_path: /home/ansible/techlab/site.yml:20
 ```
-Here you can find a lot of details about the task. Note that you can switch between tasks when pressing the numbers from the play summary. In this case this would be the numbers from `0` to `4`.
+Here you can find a lot of details about the task. Note that you can switch between tasks when pressing the number equal to the indicated line number from the play summary. In this case this would be the numbers from `0` to `4`.
 
 {{% /details %}}
 
 {{% details title="Solution Task 6" %}}
 
-Attention! Be sure to use an EE that contains the needed documentation. If thats not the case, just switch to not using any EE with the option `--ee false`
+Attention! Be sure to use an EE that contains the needed documentation. If that's not the case, just switch to not using any EE with the option `--ee false`.
 ```bash
 $ ansible-navigator doc file
 $ ansible-navigator doc -t lookup dig --ee false
@@ -279,7 +279,7 @@ $ ansible-navigator doc -t lookup dig --ee false
 {{% /details %}}
 
 {{% details title="Solution Task 7" %}}
-Note that when inspecting an inventory you have to name it explicitely even when you have it configured in your `ansible.cfg`.
+Note that when inspecting an inventory you have to name it explicitly even when you have it configured in your `ansible.cfg`.
 ```bash
 $ ansible-navigator inventory -i inventory/hosts
 ...

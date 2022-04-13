@@ -1972,7 +1972,7 @@ Container with:
 ***
 ## Execution Environments
 
-- builded with ansible-builder
+- built with ansible-builder
 - (uses different containers)
 - beware of transparent proxy :-/
 
@@ -1982,11 +1982,11 @@ Container with:
 
 ## ansible-runner
 
-3 Things:
+3 things:
 - tool, container and python library
   
 Goal:
-- stable and consistend interface to Ansible
+- stable and consistent interface to Ansible
 
 
 <!-- .slide: class="master-content" > -->
@@ -2008,7 +2008,7 @@ Goal:
 
 ## ansible-runner
 
-- running ansible and ansible-playbook tasks
+- runs ansible and ansible-playbook tasks
 - gathers information of ansible runs
 
 <!-- .slide: class="master-content" > -->
@@ -2054,7 +2054,7 @@ Previous functionality:
 - config
 - doc
 - run
-- ïnventory
+- inventory
 
 <!-- .slide: class="master-content" > -->
 ***

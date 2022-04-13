@@ -33,8 +33,8 @@ Don’t be rattled about the massive amount of modules you’ll see in your term
 
 ### All done?
 
-* [RedHat Ansible Blog](https://www.ansible.com/blog)
-* [RedHat Ansible Youtube](https://www.youtube.com/c/AnsibleAutomation/videos)
+* [Red Hat Ansible Blog](https://www.ansible.com/blog)
+* [Red Hat Ansible Youtube](https://www.youtube.com/c/AnsibleAutomation/videos)
 
 ### Solutions
 
