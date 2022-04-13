@@ -77,7 +77,7 @@ Use `ansible-navigator` to show all:
 ## Solutions
 
 {{% details title="Solution Task 1" %}}
-Since we have no RedHat Subscription available, we install ansible-navigator with pip. We install podman as well to be able to use containers.
+Since we have no Red Hat Subscription available, we install ansible-navigator with pip. We install podman as well to be able to use containers.
 
 ```bash
 $ sudo dnf install -y podman python3-pip

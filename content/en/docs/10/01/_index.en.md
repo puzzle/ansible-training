@@ -18,7 +18,7 @@ In this lab, we will use `ansible-builder` to build our own execution environmen
 
 ### Task 3
 
-Create a new execution environment with the name `default-ee`. You can find information about the needed configuration files in the [official documentation of ansible-builder](https://ansible-builder.readthedocs.io/en/stable/definition.html#execution-environment-definition). If you have a RedHat account, you have access to their [ansible-builder guide](https://access.redhat.com/documentation/en-us/red_hat_ansible_automation_platform/2.1/html/ansible_builder_guide/index).
+Create a new execution environment with the name `default-ee`. You can find information about the needed configuration files in the [official documentation of ansible-builder](https://ansible-builder.readthedocs.io/en/stable/definition.html#execution-environment-definition). If you have a Red Hat account, you have access to their [ansible-builder guide](https://access.redhat.com/documentation/en-us/red_hat_ansible_automation_platform/2.1/html/ansible_builder_guide/index).
 
 The new EE should:
 
@@ -67,7 +67,7 @@ The stable version of ansible-navigator doesn't support the same options as the 
 ## Solutions
 
 {{% details title="Solution Task 1" %}}
-Since we have no RedHat Subscription available, we install ansible-builder with pip. We install podman as well to be able to use containers.
+Since we have no Red Hat Subscription available, we install ansible-builder with pip. We install podman as well to be able to use containers.
 
 ```bash
 $ sudo dnf install -y podman python3-pip
