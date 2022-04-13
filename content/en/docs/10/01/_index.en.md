@@ -8,13 +8,13 @@ In this lab, we will use `ansible-builder` to build our own execution environmen
 
 ### Task 1
 
-* Install all packages needed to use `ansible-builder` on the controller host.
+* Install all packages needed to use `ansible-builder` on the controller host
 
 ### Task 2
 
 * Create a playbook `container.yml` that installs `podman` and pulls the image `quay.io/bitnami/mariadb` on all `db` servers
-* Run this playbook and see how it fails because the collection `containers.podman` is not available in the demo EE `ansible-navigator-demo-ee`.
-* In the remainder of this lab, we build our own execution environment containing the collection `containers.podman`.
+* Run this playbook and see how it fails because the collection `containers.podman` is not available in the demo EE `ansible-navigator-demo-ee`
+* In the remainder of this lab, we build our own execution environment containing the collection `containers.podman`
 
 ### Task 3
 
@@ -30,12 +30,12 @@ The new EE should:
 ### Task 4
 
 * Build the new exection environment with the files from the last task. The resulting image should have a name of `default-ee`
-* Use the option for very verbose (`-v3`) output. With that set, you can observe what `ansible-builder` does in the background. This will take a few minutes.
+* With the option for very verbose (`-v3`) set, you can observe what `ansible-builder` does in the background (this will take a few minutes)
 
 If you are interested in the details about how the execution environment is built:
 
-* Have a look at the newly created folder `context/` and see the files created there.
-* Have a look at your local podman registry and see, the images downloaded for creating your EE.
+* Have a look at the newly created folder `context/` and see the files created there
+* Have a look at your local podman registry and see, the images downloaded for creating your EE
 
 {{% alert title="Tip" color="info" %}}
 If the creation fails due to "no space left on device", remove unneeded images. For example, you could remove the demo EE `ansible-navigator-demo-ee` installed by `ansible-navigator` (`podman rmi quay.io/ansible/.ansible-navigator-demo-ee:0.6.0`).
@@ -44,25 +44,25 @@ If the creation fails due to "no space left on device", remove unneeded images. 
 ### Task 5
 
 * Inspect the image of your new EE with `ansible-navigator`
-* Check the included ansible version and verify that the colletion `containers.podman`is present.
+* Check the included ansible version and verify that the colletion `containers.podman`is present
 
 ### Task 6
 
-* Change your configuration file `ansible-navigator.yml` to use your newly created EE `default-ee`.
-* Podman's default behaviour is to pull any image taigged with `latest` when starting a container from it. Since we didn't set up a proper registry at localhost we want to avoid this behaviour by a setting in the config file `ansible-navigator.yml`.
+* Change your configuration file `ansible-navigator.yml` to use your newly created EE `default-ee`
+* Podman's default behaviour is to pull any image tagged with `latest` when starting a container from it. Since we didn't set up a proper registry at localhost we want to avoid this behaviour by a setting in the config file `ansible-navigator.yml`.
 
 {{% alert title="Tip" color="info" %}}
-The stable version of ansible-navigator doesn't support the same options as the latest version. Be sure to look into the [documentation of the stable version](https://ansible-navigator.readthedocs.io/en/stable/settings/#the-ansible-navigator-settings-file) since that is what we have installed. There's also a [documentation of the latest version](https://ansible-navigator.readthedocs.io/en/latest/) where you can have a glimpse at the comming features.
+The stable version of ansible-navigator doesn't support the same options as the latest version. Be sure to look into the [documentation of the stable version](https://ansible-navigator.readthedocs.io/en/stable/settings/#the-ansible-navigator-settings-file) since that is what we have installed. There's also a [documentation of the latest version](https://ansible-navigator.readthedocs.io/en/latest/) where you can have a glimpse at the upcoming features.
 {{% /alert %}}
 
-* Run the playbook `container.yml` and verify that the image `docker pull quay.io/bitnami/mariadb` was pulled on the db servers. Provide an cmdline option to run it in stdout mode.
+* Run the playbook `container.yml` and verify that the image `docker pull quay.io/bitnami/mariadb` was pulled on the db servers. Provide a cmdline option to run it in stdout mode.
 * Can you run your previous playbook `site.yml` with the new EE?
 
 ### All done?
 
-* Think about why the container was able to connect to the servers over ssh without providing a password.
+* Think about why the container was able to connect to the servers over ssh without providing a password
 * Have a look at the [ansible-builder github page](https://github.com/ansible/ansible-builder)
-* Have a look at the [docs of the latest version of ansible-navigator](https://ansible-navigator.readthedocs.io/en/latest/) to see how the tool will evolve.
+* Have a look at the [docs of the latest version of ansible-navigator](https://ansible-navigator.readthedocs.io/en/latest/) to see how the tool will evolve
 
 ## Solutions
 
