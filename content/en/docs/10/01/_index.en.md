@@ -131,7 +131,7 @@ collections:
 $ ansible-builder build -f default-ee.yml -v3 -t default-ee
 ...
 Complete! The build context can be found at: /home/ansible/techlab/context
-$ podman image list | grep default-ee
+$ podman image list --filter reference=default-ee
 localhost/default-ee             latest      04a2ff8e9e37  About an hour ago  830 MB
 
 $ tree context/
