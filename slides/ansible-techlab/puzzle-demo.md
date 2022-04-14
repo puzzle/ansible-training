@@ -1983,8 +1983,11 @@ Container with:
 ## ansible-runner
 
 3 things:
-- tool, container and python library
-  
+
+1. tool
+2. container and
+3. python library
+ 
 Goal:
 - stable and consistent interface to Ansible
 
@@ -1998,9 +2001,9 @@ Goal:
 - Interface accepts multiple kinds of input:
   - python module parameters
   - cmdline arguments (like ansible-playbook)
-  - can be directory structure
-    https://ansible-runner.readthedocs.io/en/stable/intro/
-    https://github.com/ansible/ansible-runner/tree/devel/demo
+  - can be a directory structure
+    [ansible runner introduction](https://ansible-runner.readthedocs.io/en/stable/intro/)
+    [ansible runner demonstration](https://github.com/ansible/ansible-runner/tree/devel/demo)
   
 <!-- .slide: class="master-content" > -->
 
@@ -2030,7 +2033,7 @@ Goal:
 
 ## ansible-navigator
 
-It's a TUI!
+It's a text-based user interface (TUI)!
 
 - wraps old functionality
 - adds new stuff
@@ -2040,17 +2043,17 @@ It's a TUI!
 ***
 ## ansible-navigator
 
-- available trough RH-subscription (repo) or pip
-- needs podman (default) or docker
-- initial download of demo EE
-- cfg per project possible
+- available through Red Hat subscription (repo) or pip
+- needs `podman` (default) or `docker`
+- initial download of demo Execution Environment (EE)
+- configuration per project possible
 
 <!-- .slide: class="master-content" > -->
 ***
 
 ## ansible-navigator subcommands
 
-Previous functionality:
+Known functionality:
 - config
 - doc
 - run
@@ -2072,13 +2075,13 @@ New functionality:
 
 ## ansible-navigator config file
 
-- ansible-navigator.yml
+- `ansible-navigator.yml`
   
 Options:
 - https://readthedocs.org/projects/ansible-navigator/ and
-- ansible-navigator --help
+- `ansible-navigator --help`
 
-BEWARE: set remote_user when using EE!
+BEWARE: set `remote_user` when using EE!
 
 <!-- .slide: class="master-content" > -->
 ***
@@ -2119,7 +2122,7 @@ Tool to build your own EE
 ***
 
 
-# Ansible Automation Plattform
+# Ansible Automation Platform
 
 
 <!-- .slide: class="master-title" > -->
@@ -2127,7 +2130,7 @@ Tool to build your own EE
 ## Naming
 - Ansible Tower --> Ansible Controller
 - python venv   --> Execution Environments
-- Automation Plattform =
+- Automation Platform =
 
   Ansible Controller +
   Execution Environment +
@@ -2190,9 +2193,9 @@ Some configs from ansible.cfg not taken!
 
 - Install:
   - Download tar.gz. contains a setup.sh
-  - Setup.sh does ansible magic! :-)
+  - setup.sh does ansible magic! :-)
   - Standalone or bundled installer
-  - Need for a licence file! (no subscription)
+  - Need for a license file! (no subscription)
 
 <!-- .slide: class="master-content" > -->
 
