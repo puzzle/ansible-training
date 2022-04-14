@@ -126,7 +126,7 @@ ansible-navigator:
   execution-environment:
     container-engine: podman
     enabled: True
-    image: ansible-navigator-demo-ee:0.6.0
+    image: quay.io/ansible/ansible-navigator-demo-ee:0.6.0
   logging:
     level: info
     file: logs/log.txt
