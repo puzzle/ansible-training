@@ -29,7 +29,7 @@ jobs:
           password: ${{ secrets.QUAYIO_TOKEN }}
       - 
         name: Build Slides Test
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: .
           file: ./slides/Dockerfile
