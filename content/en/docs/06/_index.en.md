@@ -105,6 +105,7 @@ $ cat secretservice.yml
         dest: /etc/MI6
 
 $ ansible-playbook secretservice.yml
+$ ansible node1,node2 -b -a "cat /etc/MI6"  #<-- show created files with it's content
 ```
 {{% /details %}}
 
