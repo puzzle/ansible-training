@@ -1252,7 +1252,7 @@ https://galaxy.ansible.com/
 ## Roles
 Quite handy:
 ```bash
-ansible-galaxy init <rolename>
+ansible-galaxy role init <rolename>
 ```
 
 → creates default folder-structure
