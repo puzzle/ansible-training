@@ -62,6 +62,7 @@ $ cat roles/handlerrole/handlers/main.yml
   listen: timestamp
 
 $ ansible-playbook myhandler.yml #<-- some changes when run the first time
+$ ansible all -b -a "cat /home/ansible/newdir/README.TXT" #<-- show created files with it's content
 $ ansible-playbook myhandler.yml #<-- no changes here, idempotent!
 ```
 {{% /details %}}
