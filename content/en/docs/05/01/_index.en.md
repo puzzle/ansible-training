@@ -98,5 +98,5 @@ Note the failed download task, but the playbook finished nonetheless.
 
 ### All done?
 
-* [Have a look at Jeff Geerling's roles](https://www.jeffgeerling.com/)
+* [Have a look at Jeff Geerling's roles](https://galaxy.ansible.com/geerlingguy)
 * [jeffgeerling.com](https://www.jeffgeerling.com/)
