@@ -8,12 +8,19 @@ In this lab, we will use `ansible-builder` to build our own execution environmen
 
 ### Task 1
 
+* Ensure to have a new version of python installed. `ansible-builder` is developping quickly and chances are, that you cannot run it with a python version that's not rather new.
 * Install all packages needed to use `ansible-builder` on the controller host
+
 
 {{% details title="Solution Task 1" %}}
 Since we have no Red Hat Subscription available, we install ansible-builder with pip. We install podman as well to be able to use containers.
 
 ```bash
+$ sudo dnf module install python38
+$ sudo dnf module enable python38
+$ sudo dnf remove python36
+$ python3 --version
+Python 3.8.10
 $ sudo dnf install -y podman python3-pip
 $ pip3 install ansible-builder --user
 ...
@@ -22,7 +29,7 @@ $ pip3 install ansible-builder --user
 
 ### Task 2
 
-* Create a playbook `container.yml` that installs `podman` and pulls the image `quay.io/bitnami/mariadb` on all `db` servers
+* Create a playbook `container.yml` that installs `podman` and pulls the image `docker.io/bitnami/mariadb` on all `db` servers
 * Run this playbook and see how it fails because the collection `containers.podman` is not available in the demo EE `ansible-navigator-demo-ee`
 * In the remainder of this lab, we build our own execution environment containing the collection `containers.podman`
 
@@ -40,7 +47,7 @@ $ cat container.yml
       state: present
   - name: Pull an image
     containers.podman.podman_image:
-      name: quay.io/bitnami/mariadb
+      name: docker.io/bitnami/mariadb
 
 $ ansible-navigator run container.yml
 
