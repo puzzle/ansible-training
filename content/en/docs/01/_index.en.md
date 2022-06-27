@@ -186,6 +186,7 @@ Allows people in group wheel to run all commands
 %wheel  ALL=(ALL)       ALL
 %wheel        ALL=(ALL)       NOPASSWD: ALL # <-- this line!
 ```
+
 Add a similar line for user ansible to the `sudoers` file:
 
 ```bash
