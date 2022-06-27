@@ -133,11 +133,21 @@ $ cat site.yml
 
 ### Task 4
 
+* Be sure to have an `ansible.cfg` ready. If not already set up, create a default version with `ansible-config init --disabled > ansible.cfg`. To be able to use `ansible-config` you have to have Ansible installed.
+* Be sure to have the inventory from Lab 1 Task 3 ready. If not, copy it from there. Let your ansible.cfg use your inventory.
 * Run the playbook `site.yml` by using ansible-navigator and the configuration from Task 2
 * What additional config parameter has to be set in your `ansible.cfg`? If unsure, run the playbook and debug the error.
 * While running the playbook, check in another terminal window if the container gets startet and stopped. You can do this by issuing `watch podman container list`.
 
 {{% details title="Solution Task 4" %}}
+```bash
+sudo dnf install ansible
+```
+```bash
+$ cat inventory ansible.cfg
+inventory=/home/ansible/techlab/hosts
+```
+
 ```bash
 $ ansible-navigator run site.yml
 ...
