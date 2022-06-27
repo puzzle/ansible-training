@@ -65,14 +65,14 @@ You can access the nodes using SSH as well. Use your favourite SSH client to con
 * Create an inventory file named `hosts` in your working directory with your public IPs:
 
 ```bash
-   [controller]
-   control0 ansible_host=<your-controller-ip>
+[controller]
+control0 ansible_host=<your-controller-ip>
 
-   [web]
-   node1 ansible_host=<your-node1-ip>
+[web]
+node1 ansible_host=<your-node1-ip>
 
-   [db]
-   node2 ansible_host=<your-node2-ip>
+[db]
+node2 ansible_host=<your-node2-ip>
 ```
 
 {{% alert title="Tip" color="info" %}}
@@ -112,7 +112,7 @@ If you are using the lab servers provided by your teacher, the sudoers configura
 Installing Ansible with root privileges (on controller host):
 
 ```bash
-   sudo dnf -y install ansible
+sudo dnf -y install ansible
 ```
 
 * If `dnf` does not find the `ansible` package you might need to
@@ -120,7 +120,7 @@ Installing Ansible with root privileges (on controller host):
 
 Opening a SSH connection:
 ```bash
-   ssh -l ansible <node-ip>
+ssh -l ansible <node-ip>
 ```
 
 * Enter "yes" when prompted if you want to continue connecting
@@ -128,21 +128,21 @@ Opening a SSH connection:
 
 On the nodes:
 ```bash
-   which python3 # (or which python)
-   /usr/bin/python3
+which python3 # (or which python)
+/usr/bin/python3
 ```
 
 If `which` does not find `python3` or `python`:
 ```bash
-   sudo dnf -y install python3 # (or python)
+sudo dnf -y install python3 # (or python)
 ```
 
 {{% /details %}}
 
 {{% details title="Solution Task 2" %}}
 ```bash
-   ssh-keygen #(no passphrase, just hit enter until the end)
-   ssh-copy-id <node-ip>
+ssh-keygen #(no passphrase, just hit enter until the end)
+ssh-copy-id <node-ip>
 ```
 
 Follow the prompt and enter the `ansible` user password you received from your instructor:
@@ -152,42 +152,42 @@ Follow the prompt and enter the `ansible` user password you received from your i
 {{% /alert %}}
 
 ```bash
-   usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/home/ansible/.ssh/id_rsa.pub"
-   The authenticity of host '5.102.146.128 (5.102.146.128)' can't be established.
-   ECDSA key fingerprint is SHA256:5PmNPnSzE2IS309kJ8fAKrAjk0/NZT91qC4zQo0Vwiw.
-   ECDSA key fingerprint is MD5:43:5f:9c:e1:ad:b5:76:a1:fa:5d:09:9c:be:5d:c2:7e.
-   Are you sure you want to continue connecting (yes/no)? yes
-   /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
-   /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
-   ansible@5.102.146.128's password:
+usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/home/ansible/.ssh/id_rsa.pub"
+The authenticity of host '5.102.146.128 (5.102.146.128)' can't be established.
+ECDSA key fingerprint is SHA256:5PmNPnSzE2IS309kJ8fAKrAjk0/NZT91qC4zQo0Vwiw.
+ECDSA key fingerprint is MD5:43:5f:9c:e1:ad:b5:76:a1:fa:5d:09:9c:be:5d:c2:7e.
+Are you sure you want to continue connecting (yes/no)? yes
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+ansible@5.102.146.128's password:
 
-   Number of key(s) added: 1
+Number of key(s) added: 1
 
-   Now try logging into the machine, with:   "ssh '5.102.146.128'"
-   and check to make sure that only the key(s) you wanted were added.
+Now try logging into the machine, with:   "ssh '5.102.146.128'"
+and check to make sure that only the key(s) you wanted were added.
 ```
 
 Test it by running the SSH command executed on that node:
 ```bash
-   ssh <node-ip> hostname
-   [yourusernamehere]-node1
+ssh <node-ip> hostname
+[yourusernamehere]-node1
 ```
 {{% /details %}}
 
 {{% details title="Solution Task 3" %}}
 ```bash
-   cd techlab
-   vim hosts # (copy & paste inventory data)
-   ansible all -i hosts -m ping
-   5.102.146.128 | SUCCESS => {
-       "ansible_facts": {
-           "discovered_interpreter_python": "/usr/libexec/platform-python"
-       },
-       "changed": false,
-       "ping": "pong"
-   }
-   ...
-   ...
+cd techlab
+vim hosts # (copy & paste inventory data)
+ansible all -i hosts -m ping
+5.102.146.128 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/libexec/platform-python"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+...
+...
 ```
 
 {{% /details %}}
@@ -197,29 +197,29 @@ Test it by running the SSH command executed on that node:
 
 In the file `/etc/sudoers` (On CentOS/RHEL), there's already a config entry for the wheel group that is similar to the one we need for our ansible user.
 ```bash
-   ssh -l ansible <node-ip>
-   sudo -i
-   grep wheel /etc/sudoers
-   Allows people in group wheel to run all commands
-   %wheel  ALL=(ALL)       ALL
-   %wheel        ALL=(ALL)       NOPASSWD: ALL # <-- this line!
+ssh -l ansible <node-ip>
+sudo -i
+grep wheel /etc/sudoers
+Allows people in group wheel to run all commands
+%wheel  ALL=(ALL)       ALL
+%wheel        ALL=(ALL)       NOPASSWD: ALL # <-- this line!
 ```
 Add a similar line for user ansible to the `sudoers` file:
 
 ```bash
-   echo 'ansible ALL=(ALL)   NOPASSWD: ALL' >> /etc/sudoers
+echo 'ansible ALL=(ALL)   NOPASSWD: ALL' >> /etc/sudoers
 ```
 
 Alternatively you can put that into a separate file:
 
 ```bash
-   echo 'ansible ALL=(ALL)   NOPASSWD: ALL' >> /etc/sudoers.d/ansible
+echo 'ansible ALL=(ALL)   NOPASSWD: ALL' >> /etc/sudoers.d/ansible
 ```
 
 Check if `ansible` user has root privileges:
 
 ```bash
-   sudo -v
+sudo -v
 ```
 
 {{% alert title="Note" color="primary" %}}
@@ -232,45 +232,45 @@ Check if `ansible` user has root privileges:
 {{% details title="Solution Task 5" %}}
 Add `[nodes:children]` to inventory file:
 ```bash
-   cat hosts
-   [controller]
-   control0 ansible_host=192.168.122.30
+cat hosts
+[controller]
+control0 ansible_host=192.168.122.30
 
-   [web]
-   node1 ansible_host=192.168.122.31
+[web]
+node1 ansible_host=192.168.122.31
 
-   [db]
-   node2 ansible_host=192.168.122.32
+[db]
+node2 ansible_host=192.168.122.32
 
-   [nodes:children]
-   web
-   db
+[nodes:children]
+web
+db
 ```
 Ping `nodes`:
 
 ```bash
-   # Note: hosts is the inventory file you created, either "-i hosts" or "-i ./hosts" works.
-   ansible -i hosts nodes -m ping
+# Note: hosts is the inventory file you created, either "-i hosts" or "-i ./hosts" works.
+ansible -i hosts nodes -m ping
 ...
 ```
 {{% alert title="Tip" color="info" %}}
 Use `ansible -i hosts <group> --list-hosts` to verify group membership in Ansible inventories:
 ```bash
-   ansible -i hosts web  --list-hosts
-     hosts (1):
-       node1
-   ansible -i hosts db  --list-hosts
-     hosts (1):
-       node2
-   ansible -i hosts nodes  --list-hosts
-     hosts (2):
-       node1
-       node2
-   ansible -i hosts all  --list-hosts
-     hosts (3):
-       control0
-       node1
-       node2
+ansible -i hosts web  --list-hosts
+  hosts (1):
+    node1
+ansible -i hosts db  --list-hosts
+  hosts (1):
+    node2
+ansible -i hosts nodes  --list-hosts
+  hosts (2):
+    node1
+    node2
+ansible -i hosts all  --list-hosts
+  hosts (3):
+    control0
+    node1
+    node2
 ```
 {{% /alert %}}
 {{% /details %}}
