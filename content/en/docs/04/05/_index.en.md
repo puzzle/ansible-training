@@ -14,31 +14,6 @@ In this lab we learn about task control.
 * Now add a polling interval of 30 seconds. Run the task, and ensure with the `time` command, that it had a longer runtime.
 * See what happens if you only specify the polling interval but no async timeout. Tip: set a sleep duration of only 10 seconds.
 
-### Task 2
-
-* Write a playbook `async.yml` that does the same as in the task above:
-* Run a command that sleeps for 1000 second and runs on `node1`.
-* Let the task wait at most for 10 seconds before timing out.
-* Run the task.
-
-### Task 3 (Advanced)
-
-In the playbook `async.yml` do the following:
-
-* Put the task above in the background and change the values of the sleepduration, polling intervall ans async time to reasonable values.
-* Check back with an `async_status` task if the sleep-task has finished.
-* Run the playbook.
-
-{{% alert title="Tip" color="info" %}}
-If unsure, check the documentation about [async_status](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/async_status_module.html) for an example.
-{{% /alert %}}
-
-### All done?
-
-* [Controlling Playbooks](https://docs.ansible.com/ansible/latest/user_guide/playbooks_strategies.html)
-
-## Solutions
-
 {{% details title="Solution Task 1" %}}
 ```bash
 $ ansible node1 -B 10 -a "/usr/bin/sleep 1000"
@@ -69,6 +44,13 @@ $
 ```
 {{% /details %}}
 
+### Task 2
+
+* Write a playbook `async.yml` that does the same as in the task above:
+* Run a command that sleeps for 1000 second and runs on `node1`.
+* Let the task wait at most for 10 seconds before timing out.
+* Run the task.
+
 {{% details title="Solution Task 2" %}}
 ```bash
 $ cat async.yml
@@ -96,6 +78,18 @@ $
 ```
 
 {{% /details %}}
+
+### Task 3 (Advanced)
+
+In the playbook `async.yml` do the following:
+
+* Put the task above in the background and change the values of the sleepduration, polling intervall ans async time to reasonable values.
+* Check back with an `async_status` task if the sleep-task has finished.
+* Run the playbook.
+
+{{% alert title="Tip" color="info" %}}
+If unsure, check the documentation about [async_status](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/async_status_module.html) for an example.
+{{% /alert %}}
 
 {{% details title="Solution Task 3" %}}
 ```bash
@@ -141,3 +135,7 @@ node1                      : ok=3    changed=2    unreachable=0    failed=0    s
 $
 ```
 {{% /details %}}
+
+### All done?
+
+* [Controlling Playbooks](https://docs.ansible.com/ansible/latest/user_guide/playbooks_strategies.html)

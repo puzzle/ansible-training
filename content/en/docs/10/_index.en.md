@@ -16,66 +16,6 @@ It doesn't matter which container engine you use. Anyways we use podman since it
 
 * After installing, start `ansible-navigator` and closely observe whats happening. What does the output show you?
 
-### Task 2
-
-Configure ansible-navigator and ensure the following:
-
-* Use the `ansible.cfg` in your local techlab directory
-* Use 20 forks
-* Enable colorful output
-* Log to a file `log.txt` in a subfolder `log` with a loglevel of `INFO`
-* Use the demo execution environment previously downloaded when running a playbook
-* Create artifacts when running a playbook with `ansible-navigator` and put them in a subfolder `artifacts`. Prefix the name of the artifact-file with the name of the actual playbook.
-
-### Task 3
-
-* Create a playbook `site.yml` that contains two plays. The first play is the same as `webservers.yml` from the earlier labs. The second play sets the content of `/etc/motd` on all hosts of the group `db` to `This is a database server`. Be sure to set a `name` keyword for each play. Use "Run tasks on webservers" for the play that runs on the group `web` and "Run tasks on dbservers" for the play that runs on group `db`.
-
-### Task 4
-
-* Run the playbook `site.yml` by using ansible-navigator and the configuration from Task 2
-* What additional config parameter has to be set in your `ansible.cfg`? If unsure, run the playbook and debug the error.
-* While running the playbook, check in another terminal window if the container gets startet and stopped. You can do this by issuing `watch podman container list`.
-
-### Task 5
-
-* After a successful run of your playbook, we play around with the TUI. Be sure to not let ansible-navigator run in interactive mode and not stdout mode (-m stdout). Since interactive is the default, you shouldn't have any problems with that.
-* Inspect the output in the TUI. Navigate to the task in FIXME
-
-### Task 6
-
-Use `ansible-navigator` to see the documentation of:
-
-* the `file` module
-* the `dig` lookup plugin
-
-### Task 7
-
-* Use `ansible-navigator` to see the current inventory
-* Navigate to `groups`, then `db` and then show all information of node `node2`
-
-### Task 8
-
-* Use `ansible-navigator` to see the current ansible configuration
-
-### Task 9
-
-* The run of `site.yml` should have created an artifact file in the folder `artifacts/`
-* Replay the this run by using `ansible-navigator` with the corresponding option
-
-### Task 10
-
-Use `ansible-navigator` to show all:
-
-* available collections
-* infos about the module `credential` of the `awx.awx` collection
-
-### All done?
-
-* Have a look at the [ansible-navigator github page](https://github.com/ansible/ansible-navigator)
-
-## Solutions
-
 {{% details title="Solution Task 1" %}}
 Since we have no Red Hat Subscription available, we install ansible-navigator with pip. We install podman as well to be able to use containers.
 
@@ -111,6 +51,17 @@ e65e4777caa3791b6b55a61cd5b171a99fad6d0e2b58097ad242b2b8d50e5103
 
 {{% /details %}}
 
+### Task 2
+
+Configure ansible-navigator and ensure the following:
+
+* Use the `ansible.cfg` in your local techlab directory
+* Use 20 forks
+* Enable colorful output
+* Log to a file `log.txt` in a subfolder `log` with a loglevel of `INFO`
+* Use the demo execution environment previously downloaded when running a playbook
+* Create artifacts when running a playbook with `ansible-navigator` and put them in a subfolder `artifacts`. Prefix the name of the artifact-file with the name of the actual playbook.
+
 {{% details title="Solution Task 2" %}}
 
 ```bash
@@ -136,6 +87,10 @@ ansible-navigator:
 
 ```
 {{% /details %}}
+
+### Task 3
+
+* Create a playbook `site.yml` that contains two plays. The first play is the same as `webservers.yml` from the earlier labs. The second play sets the content of `/etc/motd` on all hosts of the group `db` to `This is a database server`. Be sure to set a `name` keyword for each play. Use "Run tasks on webservers" for the play that runs on the group `web` and "Run tasks on dbservers" for the play that runs on group `db`.
 
 {{% details title="Solution Task 3" %}}
 ```bash
@@ -176,6 +131,12 @@ $ cat site.yml
 ```
 {{% /details %}}
 
+### Task 4
+
+* Run the playbook `site.yml` by using ansible-navigator and the configuration from Task 2
+* What additional config parameter has to be set in your `ansible.cfg`? If unsure, run the playbook and debug the error.
+* While running the playbook, check in another terminal window if the container gets startet and stopped. You can do this by issuing `watch podman container list`.
+
 {{% details title="Solution Task 4" %}}
 ```bash
 $ ansible-navigator run site.yml
@@ -197,6 +158,11 @@ ae762caaa21  quay.io/ansible/ansible-navigator-demo-ee:0.6.0  ansible-playbook .
 o              ansible_runner_afb92a4e-3281-4928-986a-cbb84c999be7
 ```
 {{% /details %}}
+
+### Task 5
+
+* After a successful run of your playbook, we play around with the TUI. Be sure to not let ansible-navigator run in interactive mode and not stdout mode (-m stdout). Since interactive is the default, you shouldn't have any problems with that.
+* Inspect the output in the TUI. Navigate to the task in FIXME
 
 {{% details title="Solution Task 5" %}}
 
@@ -268,6 +234,13 @@ Here you can find a lot of details about the task. Note that you can switch betw
 
 {{% /details %}}
 
+### Task 6
+
+Use `ansible-navigator` to see the documentation of:
+
+* the `file` module
+* the `dig` lookup plugin
+
 {{% details title="Solution Task 6" %}}
 
 Attention! Be sure to use an EE that contains the needed documentation. If that's not the case, just switch to not using any EE with the option `--ee false`.
@@ -277,6 +250,11 @@ $ ansible-navigator doc -t lookup dig --ee false
 ...
 ```
 {{% /details %}}
+
+### Task 7
+
+* Use `ansible-navigator` to see the current inventory
+* Navigate to `groups`, then `db` and then show all information of node `node2`
 
 {{% details title="Solution Task 7" %}}
 Note that when inspecting an inventory you have to name it explicitly even when you have it configured in your `ansible.cfg`.
@@ -312,6 +290,10 @@ Choose `0`
 2│inventory_hostname: node2
 ```
 {{% /details %}}
+
+### Task 8
+
+* Use `ansible-navigator` to see the current ansible configuration
 
 {{% details title="Solution Task 8" %}}
 ```bash
@@ -357,6 +339,11 @@ ANSIBLE NOCOWS (current/default: False)
 ```
 {{% /details %}}
 
+### Task 9
+
+* The run of `site.yml` should have created an artifact file in the folder `artifacts/`
+* Replay the this run by using `ansible-navigator` with the corresponding option
+
 {{% details title="Solution Task 9" %}}
 ```bash
 $ ansible-navigator replay artifacts/site-artifact.json
@@ -365,6 +352,12 @@ $ ansible-navigator replay artifacts/site-artifact.json
 Note that no ansible-run is triggered and no container of the EE-image is started.
 {{% /details %}}
 
+### Task 10
+
+Use `ansible-navigator` to show all:
+
+* available collections
+* infos about the module `credential` of the `awx.awx` collection
 
 {{% details title="Solution Task 10" %}}
 ```bash
@@ -412,3 +405,7 @@ AWX.AWX.CREDENTIAL: create, update, or destroy Automation Platform Controller
 ```
 
 {{% /details %}}
+
+### All done?
+
+* Have a look at the [ansible-navigator github page](https://github.com/ansible/ansible-navigator)
