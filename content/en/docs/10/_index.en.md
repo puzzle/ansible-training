@@ -162,7 +162,7 @@ o              ansible_runner_afb92a4e-3281-4928-986a-cbb84c999be7
 ### Task 5
 
 * After a successful run of your playbook, we play around with the TUI. Be sure to let ansible-navigator run in interactive mode and not stdout mode (-m stdout). Since interactive is the default, you shouldn't have any problems with that.
-* Inspect the output in the TUI. Navigate to the task in FIXME
+* Inspect the output in the TUI. Navigate to the task in "open firewall for http".
 
 {{% details title="Solution Task 5" %}}
 
