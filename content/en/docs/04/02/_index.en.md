@@ -10,6 +10,34 @@ In this lab we start to use templates!
 
 * Rewrite your playbook `motd.yml` without using the `copy` module, but rather using the `template` module.
 * Use a Jinja2 template file called `motd.j2` which uses the variable `motd_content`.
+  
+{{% details title="Solution Task 1" %}}
+
+Create the file `motd.j2` with the following one liner:
+
+```bash
+$ cat motd.j2
+{{ motd_content }}
+```
+
+Edit your `motd.yml` playbook to something like this:
+
+```yaml
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: set content of /etc/motd
+      template:
+        src: motd.j2
+        dest: /etc/motd
+```
+
+Run the playbook again.
+```bash
+ ansible-playbook motd.yml -l node1,node2
+```
+{{% /details %}}
 
 ### Task 2
 
@@ -19,6 +47,25 @@ In this lab we start to use templates!
 {{% alert title="Tip" color="info" %}}
   Remember using the `setup` module to get a list of all facts!
 {{% /alert %}}
+
+{{% details title="Solution Task 2" %}}
+
+Add IP and OS to `motd.j2`:
+
+```bash
+$ cat motd.j2
+{{ motd_content }}
+IP ADDRESS: {{ ansible_default_ipv4.address }}
+OS:         {{ ansible_os_family }}
+```
+
+Rerun the playbook and check if the text has been changed accordingly:
+
+```bash
+ansible-playbook motd.yml -l node1,node2
+ansible all -a "cat /etc/motd"
+```
+{{% /details %}}
 
 ### Task 3 (Advanced)
 
@@ -69,74 +116,6 @@ Create a playbook `userplay.yml` doing the following and running on `node1` and 
 {{% alert title="Warning" color="warning" %}}
 Be aware that it is NOT a good idea to set passwords in clear text. We will learn in the lab about `ansible-vault` how to handle this in a better way. Never ever do this in a productive environment.
 {{% /alert %}}
-
-### Task 4 (Maester)
-
-Create a playbook `serverinfo.yml` that does the following:
-
-* On all nodes: Place a file `/root/serverinfo.txt` with a line like follows for each and every server in the inventory:
-
-```
-<hostname>: OS: <operating system> IP: <IP address> Virtualization Role: <hardware type>
-```
-
-* Replace `hostname`, `operating system`, `IP address` and `hardware type` with a reasonable fact.
-* Run your playbook and check on all servers by using an `ansible` ad hoc command if the content of the file `/root/serverinfo.txt` is as expected.
-
-* Are you an Ansible Maester already? Solve the solution once by using a template and once without using a template!
-
-### All done?
-
-* [Using filters to manipulate data](https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html)
-
-## Solutions
-
-{{% details title="Solution Task 1" %}}
-
-Create the file `motd.j2` with the following one liner:
-
-```bash
-$ cat motd.j2
-{{ motd_content }}
-```
-
-Edit your `motd.yml` playbook to something like this:
-
-```yaml
----
-- hosts: all
-  become: true
-  tasks:
-    - name: set content of /etc/motd
-      template:
-        src: motd.j2
-        dest: /etc/motd
-```
-
-Run the playbook again.
-```bash
- ansible-playbook motd.yml -l node1,node2
-```
-{{% /details %}}
-
-{{% details title="Solution Task 2" %}}
-
-Add IP and OS to `motd.j2`:
-
-```bash
-$ cat motd.j2
-{{ motd_content }}
-IP ADDRESS: {{ ansible_default_ipv4.address }}
-OS:         {{ ansible_os_family }}
-```
-
-Rerun the playbook and check if the text has been changed accordingly:
-
-```bash
-ansible-playbook motd.yml -l node1,node2
-ansible all -a "cat /etc/motd"
-```
-{{% /details %}}
 
 {{% details title="Solution Task 3" %}}
 
@@ -242,6 +221,21 @@ jim@192.168.122.31's password:
 
 {{% /details %}}
 
+### Task 4 (Maester)
+
+Create a playbook `serverinfo.yml` that does the following:
+
+* On all nodes: Place a file `/root/serverinfo.txt` with a line like follows for each and every server in the inventory:
+
+```
+<hostname>: OS: <operating system> IP: <IP address> Virtualization Role: <hardware type>
+```
+
+* Replace `hostname`, `operating system`, `IP address` and `hardware type` with a reasonable fact.
+* Run your playbook and check on all servers by using an `ansible` ad hoc command if the content of the file `/root/serverinfo.txt` is as expected.
+
+* Are you an Ansible Maester already? Solve the solution once by using a template and once without using a template!
+
 {{% details title="Solution Task 4" %}}
 Possible solution 1:
 ```bash
@@ -296,3 +290,7 @@ $ ansible-playbook serverinfo.yml
 $ ansible all -b -a "cat /root/serverinfo.txt"
 ```
 {{% /details %}}
+
+### All done?
+
+* [Using filters to manipulate data](https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html)

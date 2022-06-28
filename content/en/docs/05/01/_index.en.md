@@ -15,23 +15,6 @@ We start to use handlers and blocks as well.
 * The value of `<timestamp>` should contain a quite accurate timestamp of when `ansible-playbook` was run.
 * Run the playbook several times to see if it is really idempotent.
 
-### Task 2
-
-* Write a playbook `download.yml` which runs a role `downloader` on `node2`.
-* The role `downloader` should try to download a file from a non-existing URL.
-* The role should be able to handle errors. Let it write the message _"Download failed!"_ to standard output if the download task failed. The playbook must keep on running and shall not exit after this message.
-* In all cases, output a message at the end of the play informing that the download attempt has finished.
-* Use a `block:` to do these tasks.
-* Run the playbook `download.yml`.
-
-### All done?
-
-* [Have a look at Jeff Geerling's roles](https://www.jeffgeerling.com/)
-* [jeffgeerling.com](https://www.jeffgeerling.com/)
-
-
-## Solutions
-
 {{% details title="Solution Task 1" %}}
 Below is a possible solution:
 
@@ -65,6 +48,15 @@ $ ansible-playbook myhandler.yml #<-- some changes when run the first time
 $ ansible-playbook myhandler.yml #<-- no changes here, idempotent!
 ```
 {{% /details %}}
+
+### Task 2
+
+* Write a playbook `download.yml` which runs a role `downloader` on `node2`.
+* The role `downloader` should try to download a file from a non-existing URL.
+* The role should be able to handle errors. Let it write the message _"Download failed!"_ to standard output if the download task failed. The playbook must keep on running and shall not exit after this message.
+* In all cases, output a message at the end of the play informing that the download attempt has finished.
+* Use a `block:` to do these tasks.
+* Run the playbook `download.yml`.
 
 {{% details title="Solution Task 2" %}}
 
@@ -102,3 +94,8 @@ Note the failed download task, but the playbook finished nonetheless.
 {{% /alert %}}
 
 {{% /details %}}
+
+### All done?
+
+* [Have a look at Jeff Geerling's roles](https://www.jeffgeerling.com/)
+* [jeffgeerling.com](https://www.jeffgeerling.com/)

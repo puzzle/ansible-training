@@ -20,39 +20,6 @@ Check what the options `immediate` and `permanent` of the `firewalld` module mea
 
 * Run the playbook. After completion, test if the `httpd.service` is running and enabled on `node1`.
 
-### Task 2
-
-* Create a folder `inventory` and move your inventory `hosts` there.
-* Configure Ansible to use `/home/ansible/techlab/inventory/hosts` as the default inventory. Do this using a configuration file in the `/home/ansible/techlab/` directory.
-* Run the playbook again without using the `-i` flag to see if the configuration works.
-
-### Task 3
-
-* Intentionally add errors to your playbook and have a look at the output. You should get a feeling for Ansible's error messages:
-  * Add a wrong indentation. Remember that this is a common mistake!
-  * Use a tab character for identation. Some editors do that automatically.
-  * Add a wrong parameter name.
-  * Remove the mistakes.
-
-### Task 4
-
-* Create a playbook `tempfolder.yml`
-* The playbook `tempfolder.yml` should create a temporary folder `/var/tempfolder` on all servers except those in the group `db`.
-
-{{% alert title="Tip" color="info" %}}
-Take a look at the user guide and find out how to use more complex inventory patterns.
-See [Ansible Docs - User Guide](https://docs.ansible.com/ansible/latest/user_guide/intro_patterns.html#common-patterns)
-{{% /alert %}}
-
-* The folder has to have the sticky bit set, so that only the owner (set owner/group to `ansible`) of the content (or root) can delete the files.
-* Run the playbook and then check if the sticky bit was set using an ad hoc command.
-
-### All done?
-
-* [Ansible 101 by Jeff Geerling](https://www.youtube.com/watch?v=goclfp6a2IQ&list=PL2_OBreMn7FqZkvMYt6ATmgC0KAGGJNAN)
-
-## Solutions
-
 {{% details title="Solution Task 1" %}}
 
 Below is a possible solution for your playbook:
@@ -97,6 +64,12 @@ Check `httpd.service` on group `web`:
 ```
 {{% /details %}}
 
+### Task 2
+
+* Create a folder `inventory` and move your inventory `hosts` there.
+* Configure Ansible to use `/home/ansible/techlab/inventory/hosts` as the default inventory. Do this using a configuration file in the `/home/ansible/techlab/` directory.
+* Run the playbook again without using the `-i` flag to see if the configuration works.
+
 {{% details title="Solution Task 2" %}}
 
 Copy the default ansible.cfg to your directory:
@@ -129,6 +102,14 @@ ok: [node1]
 ```
 {{% /details %}}
 
+### Task 3
+
+* Intentionally add errors to your playbook and have a look at the output. You should get a feeling for Ansible's error messages:
+  * Add a wrong indentation. Remember that this is a common mistake!
+  * Use a tab character for identation. Some editors do that automatically.
+  * Add a wrong parameter name.
+  * Remove the mistakes.
+
 {{% details title="Solution Task 3" %}}
 
 Wrong intendation:
@@ -160,6 +141,19 @@ Wrong parameter name:
 
 {{% /details %}}
 
+### Task 4
+
+* Create a playbook `tempfolder.yml`
+* The playbook `tempfolder.yml` should create a temporary folder `/var/tempfolder` on all servers except those in the group `db`.
+
+{{% alert title="Tip" color="info" %}}
+Take a look at the user guide and find out how to use more complex inventory patterns.
+See [Ansible Docs - User Guide](https://docs.ansible.com/ansible/latest/user_guide/intro_patterns.html#common-patterns)
+{{% /alert %}}
+
+* The folder has to have the sticky bit set, so that only the owner (set owner/group to `ansible`) of the content (or root) can delete the files.
+* Run the playbook and then check if the sticky bit was set using an ad hoc command.
+
 {{% details title="Solution Task 4" %}}
 ```bash
 $ cat tempfolder.yml
@@ -183,3 +177,7 @@ $ ansible web,controller -b -a "ls -ld /var/tempfolder"
 {{% /alert %}}
 
 {{% /details %}}
+
+### All done?
+
+* [Ansible 101 by Jeff Geerling](https://www.youtube.com/watch?v=goclfp6a2IQ&list=PL2_OBreMn7FqZkvMYt6ATmgC0KAGGJNAN)

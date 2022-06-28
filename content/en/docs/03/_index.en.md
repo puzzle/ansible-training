@@ -14,49 +14,6 @@ In this lab we’ll continue with our environment setup from [Chapter 1](../01) 
 You’ve used the `ping` module in a previous lab.
 {{% /alert %}}
 
-### Task 2
-
-* Gather all facts from the nodes.
-* Only gather the fact `ansible_default_ipv4` from all hosts.
-
-### Task 3
-
-* Search through the online documentation for special (magical) variables.
-* Which special variable could you use to set the `hostname` on each of the servers using the information in the `inventory` file?
-
-### Task 4
-
-* Try to find an appropriate Ansible module to complete Task 3. Find out what parameters the module accepts.
-* This module will try to make changes to the `/etc/hostname` file. What options should you use with the `ansible` command to make that work?
-
-### Task 5
-
-* Set the hostname on all nodes using the inventory and an ansible ad hoc command.
-* Check on all nodes if the hostname has been changed.
-
-### Task 6
-
-Complete the next steps using Ansible ad hoc commands:
-
-* Install `httpd` on the nodes in group `web`
-* Start `httpd` on the remote server and configure it to always start on boot.
-* Revert the changes made by the ad hoc commands again.
-
-### Task 7
-
-Complete the next steps using ansible ad hoc commands:
-
-* Create a file `/home/ansible/testfile.txt` on node2.
-* Paste some custom text into the file using the `copy` module.
-* Remove the file with an ad hoc command.
-
-### All done?
-
-* [Puzzle Ansible Blog](https://www.puzzle.ch/de/blog/categories/technologien/ansible)
-* [Ansible Meetup Bern](https://www.meetup.com/Ansible-Bern/)
-
-## Solutions
-
 {{% details title="Solution Task 1" %}}
 ```bash
 $ ansible all -i hosts -m ping
@@ -71,6 +28,11 @@ $ ansible all -i hosts -m ping
 ...
 ```
 {{% /details %}}
+
+### Task 2
+
+* Gather all facts from the nodes.
+* Only gather the fact `ansible_default_ipv4` from all hosts.
 
 {{% details title="Solution Task 2" %}}
 ```bash
@@ -99,12 +61,22 @@ $ ansible all -i hosts -m setup -a "filter=ansible_default_ipv4"
 ```
 {{% /details %}}
 
+### Task 3
+
+* Search through the online documentation for special (magical) variables.
+* Which special variable could you use to set the `hostname` on each of the servers using the information in the `inventory` file?
+
 {{% details title="Solution Task 3" %}}
 
 * See Ansible docs for special variables: [Special Variables](https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html)
 * `inventory_hostname` contains the name of the managed host from the inventory file and can be used to set the hostname on the servers.
 
 {{% /details %}}
+
+### Task 4
+
+* Try to find an appropriate Ansible module to complete Task 3. Find out what parameters the module accepts.
+* This module will try to make changes to the `/etc/hostname` file. What options should you use with the `ansible` command to make that work?
 
 {{% details title="Solution Task 4" %}}
 
@@ -124,6 +96,11 @@ $ ansible-doc -s hostname
 
 {{% /details %}}
 
+### Task 5
+
+* Set the hostname on all nodes using the inventory and an ansible ad hoc command.
+* Check on all nodes if the hostname has been changed.
+
 {{% details title="Solution Task 5" %}}
 ```bash
 ansible all -i hosts -b -m hostname -a "name={{ inventory_hostname }}"
@@ -131,6 +108,13 @@ ansible all -i hosts -a "cat /etc/hostname"
 ```
 {{% /details %}}
 
+### Task 6
+
+Complete the next steps using Ansible ad hoc commands:
+
+* Install `httpd` on the nodes in group `web`
+* Start `httpd` on the remote server and configure it to always start on boot.
+* Revert the changes made by the ad hoc commands again.
 
 {{% details title="Solution Task 6" %}}
 ```bash
@@ -145,6 +129,14 @@ ansible web -i hosts -b -m service -a "name=httpd state=stopped enabled=no"
 ansible web -i hosts -b -m dnf -a "name=httpd state=absent"
 ```
 {{% /details %}}
+
+### Task 7
+
+Complete the next steps using ansible ad hoc commands:
+
+* Create a file `/home/ansible/testfile.txt` on node2.
+* Paste some custom text into the file using the `copy` module.
+* Remove the file with an ad hoc command.
 
 {{% details title="Solution Task 7" %}}
 Possible solution 1:
@@ -163,3 +155,8 @@ ansible node2 -i hosts -m copy -a "dest=/home/ansible/testfile.txt content='SOME
 ansible node2 -i hosts -m file -a "path=/home/ansible/testfile.txt state=absent"
 ```
 {{% /details %}}
+
+### All done?
+
+* [Puzzle Ansible Blog](https://www.puzzle.ch/de/blog/categories/technologien/ansible)
+* [Ansible Meetup Bern](https://www.meetup.com/Ansible-Bern/)
