@@ -53,61 +53,6 @@ You can access the nodes using SSH as well. Use your favourite SSH client to con
 * Test if you can connect to the nodes from your controller using SSH. Use their public IPs.
 * Make sure python is installed on your nodes before continuing with the lab.
 
-### Task 2
-
-* Create a SSH key pair for the user `ansible` on the controller host.
-* Don't set a password for the private key! Just hit ENTER at the prompt.
-* Enable SSH key-based login for the user `ansible` on all nodes and the controller by distributing the SSH-public key.
-* Test the login on the nodes.
-
-### Task 3
-
-* Create an inventory file named `hosts` in your working directory with your public IPs:
-
-```bash
-[controller]
-control0 ansible_host=<your-controller-ip>
-
-[web]
-node1 ansible_host=<your-node1-ip>
-
-[db]
-node2 ansible_host=<your-node2-ip>
-```
-
-{{% alert title="Tip" color="info" %}}
-Instead of copying the ssh-id to the controller itself you could set `ansible_connection=local` in the inventory file for host `control0`. Then Ansible would not use SSH to connect to the controller, but use the "local" transport mechanism.
-If you have a valid `/etc/hosts` file containing information about lab hosts, you can omit the `ansible_host=<ip>` parts in the inventory file.
-{{% /alert %}}
-
-* Check if ansible is ready using the `ping` module to ping all hosts in your inventory
-
-### Task 4
-
-{{% alert title="Note" color="primary" %}}
-If you are using the lab servers provided by your teacher, the sudoers configuration is already done. Anyways have a look at it to see how stuff works.
-{{% /alert %}}
-
-* Configure the `ansible` user to have root privilege on all hosts in your inventory file. Also enable login without a password for this user.
-* Test the functionality by running `sudo -v` as user `ansible` on all nodes.
-
-### Task 5
-
-* extend the inventory with a group `nodes` that has the groups `web` and `db` as members
-  {{% alert title="Tip" color="info" %}}
-  Take a look at [Ansible Docs - Inventory Intro](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html) for how to use the `:children` suffix in INI file inventories.
-  {{% /alert %}}
-* ping all servers in the group `nodes`
-
-### All done?
-
-* Have a look at [The Bullhorn newsletter](https://github.com/ansible/community/wiki/News#the-bullhorn)
-* See what inspired the creators of Ansible: [Rocannon's World](https://www.youtube.com/watch?v=X8F3r4_EkW8)
-* Ansible [Configuration File](https://docs.ansible.com/ansible/latest/installation_guide/intro_configuration.html)
-* Easteregg: [Cowsay not found!](https://docs.ansible.com/ansible/latest/notfound)
-
-## Solutions
-
 {{% details title="Solution Task 1" %}}
 Installing Ansible with root privileges (on controller host):
 
@@ -138,6 +83,13 @@ sudo dnf -y install python3 # (or python)
 ```
 
 {{% /details %}}
+
+### Task 2
+
+* Create a SSH key pair for the user `ansible` on the controller host.
+* Don't set a password for the private key! Just hit ENTER at the prompt.
+* Enable SSH key-based login for the user `ansible` on all nodes and the controller by distributing the SSH-public key.
+* Test the login on the nodes.
 
 {{% details title="Solution Task 2" %}}
 ```bash
@@ -174,6 +126,28 @@ ssh <node-ip> hostname
 ```
 {{% /details %}}
 
+### Task 3
+
+* Create an inventory file named `hosts` in your working directory with your public IPs:
+
+```bash
+[controller]
+control0 ansible_host=<your-controller-ip>
+
+[web]
+node1 ansible_host=<your-node1-ip>
+
+[db]
+node2 ansible_host=<your-node2-ip>
+```
+
+{{% alert title="Tip" color="info" %}}
+Instead of copying the ssh-id to the controller itself you could set `ansible_connection=local` in the inventory file for host `control0`. Then Ansible would not use SSH to connect to the controller, but use the "local" transport mechanism.
+If you have a valid `/etc/hosts` file containing information about lab hosts, you can omit the `ansible_host=<ip>` parts in the inventory file.
+{{% /alert %}}
+
+* Check if ansible is ready using the `ping` module to ping all hosts in your inventory
+
 {{% details title="Solution Task 3" %}}
 ```bash
 cd techlab
@@ -189,9 +163,16 @@ ansible all -i hosts -m ping
 ...
 ...
 ```
-
 {{% /details %}}
 
+### Task 4
+
+{{% alert title="Note" color="primary" %}}
+If you are using the lab servers provided by your teacher, the sudoers configuration is already done. Anyways have a look at it to see how stuff works.
+{{% /alert %}}
+
+* Configure the `ansible` user to have root privilege on all hosts in your inventory file. Also enable login without a password for this user.
+* Test the functionality by running `sudo -v` as user `ansible` on all nodes.
 
 {{% details title="Solution Task 4" %}}
 
@@ -229,6 +210,14 @@ sudo -v
 {{% /alert %}}
 
 {{% /details %}}
+
+### Task 5
+
+* extend the inventory with a group `nodes` that has the groups `web` and `db` as members
+  {{% alert title="Tip" color="info" %}}
+  Take a look at [Ansible Docs - Inventory Intro](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html) for how to use the `:children` suffix in INI file inventories.
+  {{% /alert %}}
+* ping all servers in the group `nodes`
 
 {{% details title="Solution Task 5" %}}
 Add `[nodes:children]` to inventory file:
@@ -275,3 +264,10 @@ ansible -i hosts all  --list-hosts
 ```
 {{% /alert %}}
 {{% /details %}}
+
+### All done?
+
+* Have a look at [The Bullhorn newsletter](https://github.com/ansible/community/wiki/News#the-bullhorn)
+* See what inspired the creators of Ansible: [Rocannon's World](https://www.youtube.com/watch?v=X8F3r4_EkW8)
+* Ansible [Configuration File](https://docs.ansible.com/ansible/latest/installation_guide/intro_configuration.html)
+* Easteregg: [Cowsay not found!](https://docs.ansible.com/ansible/latest/notfound)

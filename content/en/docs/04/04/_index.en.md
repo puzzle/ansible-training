@@ -12,6 +12,12 @@ In this lab we’ll have a short glimpse at how ansible-pull works.
 * Look for a way to execute a playbook using ansible-pull
 * Search for an example playbook
 
+{{% details title="Solution Task 1" %}}
+[ansible-pull](https://docs.ansible.com/ansible/latest/cli/ansible-pull.html)
+[Ansible-pull](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html#ansible-pull])
+[GitHub ansible-examples](https://github.com/ansible/ansible-examples/blob/master/language_features/ansible_pull.yml)
+{{% /details %}}
+
 ### Task 2
 
 On node1:
@@ -31,12 +37,30 @@ Note the following:
 
 {{% /alert %}}
 
+{{% details title="Solution Task 2" %}}
+```bash
+sudo dnf install -y ansible
+/usr/bin/ansible-pull -U https://github.com/puzzle/ansible-techlab -i resources/ansible-pull/hosts resources/ansible-pull/local.yml
+cat /etc/motd
+ll #no file here...
+```
+{{% /details %}}
+
 ### Task 3
 
 It's a best practice to use cronjobs to trigger `ansible-pull` run at a regular basis. Do the following on node1:
 
 * Create a cronjob `/etc/cron.d/ansible-pull`. This cronjob should run every minute as user ansible the ansible-pull command from Task 2.
-* Now remove the existing `/etc/motd` file and use the command `watch` to show the content of `/etc/motd` every second. We want to observe that our cronjob runs the `ansible-pull` command again and restore the previously deleted MOTD-file
+* Now remove the existing `/etc/motd` file and use the command `watch` to show the content of `/etc/motd` every second. We want to observe that our cronjob runs the `ansible-pull` command again and restore the previously deleted MOTD-file.
+
+{{% details title="Solution Task 3" %}}
+```bash
+$ sudo vim /etc/cron.d/ansible-pull #create the file with the content ->
+$ cat /etc/cron.d/ansible-pull
+* * * * * ansible /usr/bin/ansible-pull -U https://github.com/puzzle/ansible-techlab -i resources/ansible-pull/hosts resources/ansible-pull/local.yml
+$ sudo rm -f /etc/motd; watch cat /etc/motd
+```
+{{% /details %}}
 
 ### Task 4
 
@@ -47,37 +71,6 @@ This task has nothing to do with `ansible-pull`, we just clean up the ansible-pu
 * empty the file `/etc/motd`
 
 Run the playbook.
-
-### All done?
-
-* [ansible-pull](https://docs.ansible.com/ansible/latest/cli/ansible-pull.html)
-
-
-## Solutions
-
-{{% details title="Solution Task 1" %}}
-[ansible-pull](https://docs.ansible.com/ansible/latest/cli/ansible-pull.html)
-[Ansible-pull](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html#ansible-pull])
-[GitHub ansible-examples](https://github.com/ansible/ansible-examples/blob/master/language_features/ansible_pull.yml)
-{{% /details %}}
-
-{{% details title="Solution Task 2" %}}
-```bash
-sudo dnf install -y ansible
-/usr/bin/ansible-pull -U https://github.com/puzzle/ansible-techlab -i resources/ansible-pull/hosts resources/ansible-pull/local.yml
-cat /etc/motd
-ll #no file here...
-```
-{{% /details %}}
-
-{{% details title="Solution Task 3" %}}
-```bash
-$ sudo vim /etc/cron.d/ansible-pull #create the file with the content ->
-$ cat /etc/cron.d/ansible-pull
-* * * * * ansible /usr/bin/ansible-pull -U https://github.com/puzzle/ansible-techlab -i resources/ansible-pull/hosts resources/ansible-pull/local.yml
-$ sudo rm -f /etc/motd; watch cat /etc/motd
-```
-{{% /details %}}
 
 {{% details title="Solution Task 4" %}}
 ```bash
@@ -102,3 +95,7 @@ $ cat revert_motd.yml
 $ ansible-playbook revert_motd.yml
 ```
 {{% /details %}}
+
+### All done?
+
+* [ansible-pull](https://docs.ansible.com/ansible/latest/cli/ansible-pull.html)
