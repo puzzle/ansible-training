@@ -121,10 +121,10 @@ $ cat roles/base/tasks/main.yml
 ---
 # tasks file for base
 - name: set custom text
-  include: motd.yml
+  include_tasks: motd.yml
   tags: motd
 - name: install packages
-  include: packages.yml
+  include_tasks: packages.yml
   tags: packages
 
 $ cat prod.yml
