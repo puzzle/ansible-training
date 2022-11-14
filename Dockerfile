@@ -8,7 +8,7 @@ FROM nginxinc/nginx-unprivileged:alpine
 
 # prevent nginx from adding ports in redirects
 USER root
-RUN sed -i '/^http {/a \    port_in_redirect off;' /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 USER 101
 
 COPY --from=builder /src/public /usr/share/nginx/html
