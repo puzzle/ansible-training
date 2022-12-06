@@ -1,9 +1,10 @@
 # Ansible Techlab
 ### ansible.puzzle.ch
-<!-- #### Lukas Grimm -->
+#### Lukas Grimm
 <!-- #### Dominik Meisser -->
 #### Lukas Preisig
-#### Philippe Schmid
+<!-- #### Philippe Schmid-->
+#### Rémy Keil
 <!-- .slide: class="master-cover" -->
 
 ----
