@@ -23,9 +23,10 @@
 
 -->
 
-<div class="people">
+<div class="people" style="color: black;">
   <div>
     <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2020/08/Lukas_Grimm_wp-400x300.jpg)" />
+    </div>
   </div>
 
   ### Lukas Grimm
@@ -51,6 +52,7 @@
 <div class="people" style="color: black;">
   <div>
     <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/05/Preisig_Lukas-400x300.jpg)" />
+    </div>
   </div>
 
   ### Lukas Preisig
@@ -62,6 +64,7 @@
 <div class="people" style="color: black;">
   <div>
     <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2018/08/Test-Remy-Keil-Filter_2Option-400x300.jpg)" />
+    </div>
   </div>
 
   ### Rémy Keil
