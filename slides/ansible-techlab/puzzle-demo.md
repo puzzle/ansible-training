@@ -1,13 +1,15 @@
 # Ansible Techlab
 ### ansible.puzzle.ch
-<!-- #### Lukas Grimm -->
+#### Lukas Grimm
 <!-- #### Dominik Meisser -->
 #### Lukas Preisig
-#### Philippe Schmid
+<!-- #### Philippe Schmid-->
+#### Rémy Keil
 <!-- .slide: class="master-cover" -->
 
 ----
 ## Nice to meet you
+<!--
 <div class="people" style="color: black;">
   <div>
     <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/06/Schmid_Philippe-3-400x300.jpg)" />
@@ -17,14 +19,14 @@
   System Engineer
 
   pschmid@puzzle.ch
-</div> 
+</div>
 
-<!--
+-->
 
-<div class="people">
-  <div>
+<div class="people" style="color: black;">
+<div>
     <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2020/08/Lukas_Grimm_wp-400x300.jpg)" />
-  </div>
+    </div>
 
   ### Lukas Grimm
   System Engineer
@@ -32,7 +34,7 @@
   grimm@puzzle.ch
 </div>
 
-
+<!--
 <div class="people">
   <div>
     <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2020/08/Dominik_Meisser_wp-400x300.jpg)" />
@@ -46,10 +48,9 @@
 
 -->
 
-<div class="people" style="color: black;">
-  <div>
+<div>
     <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/05/Preisig_Lukas-400x300.jpg)" />
-  </div>
+    </div>
 
   ### Lukas Preisig
   System Engineer
@@ -57,7 +58,17 @@
   preisig@puzzle.ch
 </div>
 
-<!-- 
+<div>
+    <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2018/08/Test-Remy-Keil-Filter_2Option-400x300.jpg)" />
+  </div>
+
+  ### Rémy Keil
+  System Engineer
+
+  keil@puzzle.ch
+</div>
+
+<!--
 
 <div class="people">
   <div>
@@ -258,6 +269,9 @@ Eure Lab-VMs werden vollautomatisch mit Ansible Deployed und provisioniert
 - Ansible 3.0   -->   Ansible-Core 2.10 + Collections v3
 - Ansible 4.0   -->   Ansible-Core 2.11 + Collections v4
 - Ansible 5.0   -->   Ansible-Core 2.12 + Collections v5
+- Ansible 6.0   -->   Ansible-Core 2.13 + Collections v6
+- Ansible 7.0   -->   Ansible-Core 2.14 + Collections v7 (Current)
+- Ansible 8.0   -->   Ansible-Core 2.15 + Collections v8 (In development; unreleased)
 
 <!-- .slide: class="master-content" > -->
 <!-- .slide: class="master-content" > -->
@@ -288,7 +302,7 @@ Note:
 - run python script
 - delete python script
 - python2 or python3
-  
+
 ***
 
 ## How stuff works?
@@ -933,7 +947,7 @@ Tempates sind dafür da komplexe Files zu erstellen (Variabeln sind möglich und
 <!-- .slide: class="master-content" > -->
 ***
 ## Tags
-Example: 
+Example:
 ```yaml
 - hosts: all
   become: true
@@ -1701,7 +1715,7 @@ Red Hat, Azure, VMWare, Cisco, Checkpoint, F5, IBM, NetApp...
 ***
 ## Collections
 - Name of collection is always like:
-  
+
   "namespace.collectionname"
 
 Example:
@@ -1987,7 +2001,7 @@ Container with:
 1. tool
 2. container and
 3. python library
- 
+
 Goal:
 - stable and consistent interface to Ansible
 
@@ -2004,7 +2018,7 @@ Goal:
   - can be a directory structure
     [ansible runner introduction](https://ansible-runner.readthedocs.io/en/stable/intro/)
     [ansible runner demonstration](https://github.com/ansible/ansible-runner/tree/devel/demo)
-  
+
 <!-- .slide: class="master-content" > -->
 
 ***
@@ -2076,7 +2090,7 @@ New functionality:
 ## ansible-navigator config file
 
 - `ansible-navigator.yml`
-  
+
 Options:
 - https://readthedocs.org/projects/ansible-navigator/ and
 - `ansible-navigator --help`
@@ -2095,7 +2109,7 @@ BEWARE: set `remote_user` when using EE!
 
 Tool to build your own EE
 
-- local config file 
+- local config file
 - creates podman context and runs it
 - uses two other containers:
   ansible-builder and ansible-runner
