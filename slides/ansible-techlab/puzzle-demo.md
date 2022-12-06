@@ -23,7 +23,7 @@
 
 -->
 
-<div class="people">
+<div class="people" style="color: black;">
 <div>
     <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2020/08/Lukas_Grimm_wp-400x300.jpg)" />
     </div>
