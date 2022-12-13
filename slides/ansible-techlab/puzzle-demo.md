@@ -509,9 +509,9 @@ provisioning: local
 
 - Linux: Help yourself!
 - Windows:
-- Cygwin
-- VS Code + Git for Windows
-- WSL
+  - Cygwin
+  - VS Code + Git for Windows
+  - WSL
 
 <img alt="cygwin" src="ansible-techlab/img/cygwin.png" width="52"/> <img alt="vscode" src="ansible-techlab/img/vscode.png" width="52"/> <img alt="gitforwin" src="ansible-techlab/img/gitforwin.png" width="52"/>
 <!-- .slide: class="master-content" > -->
