@@ -516,6 +516,15 @@ provisioning: local
 <img alt="cygwin" src="ansible-techlab/img/cygwin.png" width="52"/> <img alt="vscode" src="ansible-techlab/img/vscode.png" width="52"/> <img alt="gitforwin" src="ansible-techlab/img/gitforwin.png" width="52"/>
 <!-- .slide: class="master-content" > -->
 ***
+## Lab Environment
+
+- Linux: Help yourself!
+- Theia-IDE: Short Introduction
+
+<!-- .slide: class="master-content" > -->
+
+***
+
 # Lab 1: Setting up Ansible
 
 <!-- .slide: class="master-title" > -->
