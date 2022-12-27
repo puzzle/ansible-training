@@ -19,13 +19,6 @@ jobs:
         uses: azure/setup-kubectl@v3
         with:
           version: v1.21.2
-      - 
-        name: Create KUBECONFIG
-        env:
-          KUBE_CONFIG: '${{ secrets.KUBECONFIG_OC_STG }}'
-        run: |
-          mkdir -p $HOME/.kube
-          echo "$KUBE_CONFIG" > $HOME/.kube/config
 
       - name: Delete Tags on Quay
         id: delete_tags
