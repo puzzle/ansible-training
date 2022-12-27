@@ -72,9 +72,6 @@ jobs:
         with:
           version: v1.21.2
       - 
-        name: Get SA Token
-        env:
-      - 
         name: Deploy Helm Release
         env:
           TRAINING_HELM_RELEASE: 'pr-${{ github.event.pull_request.number }}'
