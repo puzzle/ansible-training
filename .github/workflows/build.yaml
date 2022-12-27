@@ -86,8 +86,10 @@ jobs:
         env:
           TRAINING_HELM_RELEASE: 'pr-${{ github.event.pull_request.number }}'
           TRAINING_NAMESPACE: 'pitc-ansible-training-stg'
+          KUBE_TOKEN: '${{ secrets.OPENSHIFT_SA_TOKEN_STG }}'
+          KUBE_URL: '${{ secrets.OPENSHIFT_API_URL }}'
         run: |
-          kubectl rollout restart deployment/$TRAINING_HELM_RELEASE-ansible-puzzle --kubeconfig $HOME/.kube/config --namespace $TRAINING_NAMESPACE
+          kubectl rollout restart deployment/$TRAINING_HELM_RELEASE-ansible-puzzle --kube-apiserver=$KUBE_URL --kube-token=$KUBE_TOKEN --namespace $TRAINING_NAMESPACE
       - 
         name: Comment on PR
         uses: marocchino/sticky-pull-request-comment@v2
