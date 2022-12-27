@@ -80,7 +80,7 @@ jobs:
           KUBE_TOKEN: '${{ secrets.OPENSHIFT_SA_TOKEN_STG }}'
           KUBE_URL: '${{ secrets.OPENSHIFT_API_URL }}'
         run: |
-          helm upgrade $TRAINING_HELM_RELEASE acend-training-chart --debug --install --wait --kube-apiserver=$KUBE_URL --kube-token=$KUBE_TOKEN --namespace=$TRAINING_NAMESPACE --set=app.name=$HELM_RELEASE --set=app.version=$TRAINING_VERSION --repo=https://acend.github.io/helm-charts/ --values=helm-chart/values.yaml --atomic
+          helm upgrade $TRAINING_HELM_RELEASE acend-training-chart --debug --install --wait --kube-apiserver=https://api.ocp.cloudscale.puzzle.ch:6443/ --kube-token=$KUBE_TOKEN --namespace=$TRAINING_NAMESPACE --set=app.name=$HELM_RELEASE --set=app.version=$TRAINING_VERSION --repo=https://acend.github.io/helm-charts/ --values=helm-chart/values.yaml --atomic
       - 
         name: Redeploy Deployments
         env:
