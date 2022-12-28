@@ -16,7 +16,8 @@ COPY slides/ansible-techlab ./ansible-techlab
 COPY slides/index.html.patch .
 
 RUN patch --forward --strip=1 index.html --input=index.html.patch \
- && npm install && npm run build -- css-themes
+ && npm install && npm run build -- css-themes \
+ && sudo chown -R 1002150000:0 "/.npm"
 
 EXPOSE 8000
 
