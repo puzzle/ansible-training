@@ -16,12 +16,11 @@ COPY slides/ansible-techlab ./ansible-techlab
 COPY slides/index.html.patch .
 
 RUN patch --forward --strip=1 index.html --input=index.html.patch \
- && npm install && npm run build -- css-themes \
- && chown -R 1002150000:0 "/.npm"
+ && npm install && npm run build -- css-themes
 
 # Ensure the files are part of the Root-Group
-#RUN chgrp -R 0 ${APP_ROOT} && \
-#    chmod -R g=u ${APP_ROOT}
+RUN chgrp -R 0 "/root/.npm"
+#&& chmod -R g=u ${APP_ROOT}
 
 EXPOSE 8000
 
