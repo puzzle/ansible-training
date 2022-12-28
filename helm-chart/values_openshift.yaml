@@ -10,12 +10,13 @@ acendTraining:
         tag: ""
         tagsuffix: ""
       ingress:
-        annotations: 
-        useDefaultSecret: true
+        labels:
+          public: "true"
+        useDefaultSecret: "true"
         appname: ansible
         domainmain: puzzle.ch
         domain: ocp.cloudscale.puzzle.ch
-        emptyTLS: true
+        emptyTLS: "true"
 
 nameOverride: "ansible"
 fullnameOverride: ""
