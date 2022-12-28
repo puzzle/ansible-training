@@ -15,6 +15,7 @@ acendTraining:
         appname: ansible
         domainmain: puzzle.ch
         domain: ocp.cloudscale.puzzle.ch
+        emptyTLS: true
 
 nameOverride: "ansible"
 fullnameOverride: ""
