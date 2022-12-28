@@ -12,7 +12,6 @@ RUN --mount=type=secret,id=gitlab_pullsecret PULLSECRET=$(cat /run/secrets/gitla
 
 WORKDIR reveal
 
-USER node
 
 COPY slides/ansible-techlab ./ansible-techlab
 COPY slides/index.html.patch .
@@ -20,6 +19,10 @@ COPY slides/index.html.patch .
 RUN patch --forward --strip=1 index.html --input=index.html.patch \
  && npm install && npm run build -- css-themes
 
+# Ensure the files are part of the Root-Group
+RUN chgrp -R 0 . && chmod -R g=u .
+
+USER node
 EXPOSE 8000
 
 CMD ["npm", "start", "--", "--host=0.0.0.0"]
