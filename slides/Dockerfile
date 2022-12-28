@@ -18,9 +18,8 @@ COPY slides/index.html.patch .
 RUN patch --forward --strip=1 index.html --input=index.html.patch \
  && npm install && npm run build -- css-themes
 
-# Ensure the files are part of the Root-Group
-RUN chgrp -R 0 "/root/.npm"
-#&& chmod -R g=u ${APP_ROOT}
+# Ensure the npm files are part of the Root-Group
+RUN chgrp -R 0 "/root/.npm" && chmod -R g=u "/root/.npm"
 
 EXPOSE 8000
 
