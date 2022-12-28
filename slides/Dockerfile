@@ -17,7 +17,7 @@ COPY slides/index.html.patch .
 
 RUN patch --forward --strip=1 index.html --input=index.html.patch \
  && npm install && npm run build -- css-themes \
- && chown -R 1002150000:0 "/root/.npm"
+ && chown -R 1002150000:0 "/.npm"
 
 # Ensure the files are part of the Root-Group
 #RUN chgrp -R 0 ${APP_ROOT} && \
