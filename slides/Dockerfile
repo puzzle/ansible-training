@@ -16,7 +16,7 @@ COPY slides/ansible-techlab ./ansible-techlab
 COPY slides/index.html.patch .
 
 RUN patch --forward --strip=1 index.html --input=index.html.patch \
- && npm install && chgrp -R 0 "/root/.npm" && chmod -R g=u "/root/.npm" && npm run build -- css-themes
+ && npm install && chgrp -R 0 /root/.npm && chmod -R g=u /root/.npm && npm run build -- css-themes
 
 EXPOSE 8000
 
