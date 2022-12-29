@@ -1,15 +1,20 @@
 ﻿kind: Ingress
 apiVersion: networking.k8s.io/v1
 metadata:
-  name: latest-ansible-puzzle
+  name: latest-ansible-puzzle-de
   namespace: pitc-ansible-training-prod
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    route.openshift.io/termination: edge 
   labels:
     app.kubernetes.io/name: ansible-puzzle
     app.kubernetes.io/version: 1.0.0
     public: "true"
 spec:
   tls:
-    - {}
+  - hosts:
+    - ansible.puzzle-itc.de 
+    secretName: ansible-puzzle-itc-de-secret
   rules:
     - host: ansible.puzzle-itc.de
       http:
