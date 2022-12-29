@@ -1,4 +1,4 @@
-name: PRCleanup Slides Test
+name: PRCleanup Slides Stg
 on:
   pull_request:
     types: [closed]
@@ -6,7 +6,7 @@ on:
       - 'slides/**'
 
 jobs:
-  delete-slides-test:
+  delete-slides-stg:
     runs-on: 'ubuntu-latest'
     steps:
       - 
@@ -19,17 +19,10 @@ jobs:
         uses: azure/setup-kubectl@v3
         with:
           version: v1.21.2
-      - 
-        name: Create KUBECONFIG
-        env:
-          KUBE_CONFIG: '${{ secrets.KUBECONFIG_TEST }}'
-        run: |
-          mkdir -p $HOME/.kube
-          echo "$KUBE_CONFIG" > $HOME/.kube/config
 
       - name: Delete Tags on Quay
         id: delete_tags
         env:
           QUAYIO_API_TOKEN: '${{ secrets.QUAYIO_API_TOKEN }}'
         run: |
-          curl -X DELETE -H "Authorization: Bearer ${QUAYIO_API_TOKEN}" https://quay.io/api/v1/repository/puzzle/ansible-training/tag/test
+          curl -X DELETE -H "Authorization: Bearer ${QUAYIO_API_TOKEN}" https://quay.io/api/v1/repository/puzzle/ansible-training/tag/stg
