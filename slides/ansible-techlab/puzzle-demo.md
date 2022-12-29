@@ -2,6 +2,7 @@
 ### ansible.puzzle.ch
 #### Lukas Grimm
 <!-- #### Dominik Meisser -->
+#### Mick Rator
 #### Lukas Preisig
 <!-- #### Philippe Schmid-->
 #### Rémy Keil
