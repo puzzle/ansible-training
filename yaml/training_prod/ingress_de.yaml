@@ -4,7 +4,6 @@ metadata:
   name: latest-ansible-puzzle
   namespace: pitc-ansible-training-prod
   labels:
-    app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: ansible-puzzle
     app.kubernetes.io/version: 1.0.0
     public: "true"
