@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: ansible-slides
-  namespace: pitc-ansible-training-test
+  namespace: pitc-ansible-training-stg
 spec:
   ports:
   - name: http

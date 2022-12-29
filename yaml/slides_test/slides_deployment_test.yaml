@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/instance: slides
     app.kubernetes.io/name: ansible-slides
   name: ansible-slides
-  namespace: pitc-ansible-training-test
+  namespace: pitc-ansible-training-stg
 spec:
   progressDeadlineSeconds: 600
   replicas: 1
