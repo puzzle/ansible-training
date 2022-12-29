@@ -7,7 +7,7 @@ acendTraining:
       image:
         repository: quay.io/puzzle/ansible-training
         pullPolicy: Always
-        tag: ""
+        tag: "schnuedli"
         tagsuffix: ""
       ingress:
         labels:
