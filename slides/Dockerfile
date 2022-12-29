@@ -1,4 +1,4 @@
-FROM node
+FROM node:12-alpine
 
 WORKDIR /app
 
@@ -16,7 +16,7 @@ COPY slides/ansible-techlab ./ansible-techlab
 COPY slides/index.html.patch .
 
 RUN patch --forward --strip=1 index.html --input=index.html.patch \
- && npm install && npm run build -- css-themes && npm cache clean --force
+ && npm install && npm run build -- css-themes
 
 #RUN chown -R node.0 /root/.npm 
 
