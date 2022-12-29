@@ -1,4 +1,4 @@
-FROM node:12-alpine
+FROM node
 
 WORKDIR /app
 
@@ -18,7 +18,7 @@ COPY slides/index.html.patch .
 RUN patch --forward --strip=1 index.html --input=index.html.patch \
  && npm install && npm run build -- css-themes
 
-#RUN chown -R node.0 /root/.npm 
+RUN rm -rf /root/.npm 
 
 #USER node
 EXPOSE 8000
