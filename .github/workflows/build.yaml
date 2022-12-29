@@ -97,4 +97,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           message: |
            PR Environments: 
-           *  puzzle <https://ansible-pr-${{ github.event.pull_request.number }}.puzzle.ch>
+           *  puzzle <https://ansible-pr-${{ github.event.pull_request.number }}.ocp.cloudscale.puzzle.ch>
