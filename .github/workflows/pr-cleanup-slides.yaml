@@ -1,4 +1,4 @@
-name: PRCleanup Slides Test
+name: PRCleanup Slides Stg
 on:
   pull_request:
     types: [closed]
@@ -6,7 +6,7 @@ on:
       - 'slides/**'
 
 jobs:
-  delete-slides-test:
+  delete-slides-stg:
     runs-on: 'ubuntu-latest'
     steps:
       - 
@@ -25,4 +25,4 @@ jobs:
         env:
           QUAYIO_API_TOKEN: '${{ secrets.QUAYIO_API_TOKEN }}'
         run: |
-          curl -X DELETE -H "Authorization: Bearer ${QUAYIO_API_TOKEN}" https://quay.io/api/v1/repository/puzzle/ansible-training/tag/test
+          curl -X DELETE -H "Authorization: Bearer ${QUAYIO_API_TOKEN}" https://quay.io/api/v1/repository/puzzle/ansible-training/tag/stg

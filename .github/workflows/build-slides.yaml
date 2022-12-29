@@ -1,4 +1,4 @@
-name: Build Slides for Training and Publish to Test Env
+name: Build Slides for Training and Publish to Stg Env
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
       - 'slides/**'
 
 jobs:
-  build-slides-test:
+  build-slides-stg:
     runs-on: ubuntu-latest
     steps:
       - 
@@ -28,7 +28,7 @@ jobs:
           username: ${{ secrets.QUAYIO_USERNAME }}
           password: ${{ secrets.QUAYIO_TOKEN }}
       - 
-        name: Build Slides Test
+        name: Build Slides 
         uses: docker/build-push-action@v3
         with:
           context: .
@@ -37,12 +37,12 @@ jobs:
             "gitlab_pullsecret=${{ secrets.GITLAB_PULLSECRET }}"
           push: true
           tags: |
-            quay.io/puzzle/ansible-training-slides:test
+            quay.io/puzzle/ansible-training-slides:stg
       -
         name: Run vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'quay.io/puzzle/ansible-training-slides:test'
+          image-ref: 'quay.io/puzzle/ansible-training-slides:stg'
           format: 'table'
           output: 'trivy-results.txt'
           exit-code: '0'
@@ -61,7 +61,7 @@ jobs:
         with:
           version: v1.21.2
       - 
-        name: Deploy RevealJS Test
+        name: Deploy RevealJS Stg
         env:
           TRAINING_NAMESPACE: 'pitc-ansible-training-stg'
           KUBE_TOKEN: '${{ secrets.OPENSHIFT_SA_TOKEN_STG }}'

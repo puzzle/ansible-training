@@ -9,7 +9,7 @@ metadata:
   namespace: pitc-ansible-training-stg
 spec:
   rules:
-  - host: ansible-slides-test.puzzle.ch
+  - host: ansible-slides-stg.puzzle.ch
     http:
       paths:
       - backend:
