@@ -3,7 +3,6 @@ kind: Ingress
 metadata:
   labels:
     app.kubernetes.io/instance: latest
-    app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: ansible-puzzle
     app.kubernetes.io/version: 1.0.0
     public: true"
