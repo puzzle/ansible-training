@@ -6,7 +6,6 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: ansible-puzzle
     app.kubernetes.io/version: 1.0.0
-    helm.sh/chart: acend-training-chart-0.1.4
     public: true"
   name: latest-ansible-puzzle-itc-de
   namespace: pitc-ansible-training-prod
