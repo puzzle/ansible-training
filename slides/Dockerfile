@@ -1,5 +1,7 @@
 FROM node
 
+ENV NPM_CONFIG_CACHE=/tmp/.npm
+
 WORKDIR /app
 
 RUN --mount=type=secret,id=gitlab_pullsecret PULLSECRET=$(cat /run/secrets/gitlab_pullsecret) \
