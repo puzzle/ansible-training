@@ -1,22 +1,24 @@
-apiVersion: extensions/v1beta1
-kind: Ingress
+﻿kind: Ingress
+apiVersion: networking.k8s.io/v1
 metadata:
+  name: latest-ansible-puzzle
+  namespace: pitc-ansible-training-prod
   labels:
-    app.kubernetes.io/instance: latest
+    app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: ansible-puzzle
     app.kubernetes.io/version: 1.0.0
-    public: true"
-  name: latest-ansible-puzzle-itc-de
-  namespace: pitc-ansible-training-prod
+    public: "true"
 spec:
-  rules:
-  - host: ansible.puzzle-itc.de
-    http:
-      paths:
-      - backend:
-          serviceName: latest-ansible-puzzle
-          servicePort: 8080
-        path: /
-        pathType: ImplementationSpecific
   tls:
     - {}
+  rules:
+    - host: ansible.puzzle-itc.de
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: latest-ansible-puzzle
+                port:
+                  number: 8080
