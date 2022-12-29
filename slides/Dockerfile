@@ -1,5 +1,7 @@
 FROM node
 
+ENV NPM_CONFIG_CACHE=/tmp/.npm
+
 WORKDIR /app
 
 RUN --mount=type=secret,id=gitlab_pullsecret PULLSECRET=$(cat /run/secrets/gitlab_pullsecret) \
@@ -17,8 +19,6 @@ COPY slides/index.html.patch .
 
 RUN patch --forward --strip=1 index.html --input=index.html.patch \
  && npm install && npm run build -- css-themes
-
-RUN rm -rf /root/.npm 
 
 #USER node
 EXPOSE 8000
