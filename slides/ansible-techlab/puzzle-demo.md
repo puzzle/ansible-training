@@ -5,6 +5,7 @@
 #### Lukas Preisig
 <!-- #### Philippe Schmid-->
 #### Rémy Keil
+#### Mick Rator
 <!-- .slide: class="master-cover" -->
 
 ----
