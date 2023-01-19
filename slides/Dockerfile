@@ -21,5 +21,5 @@ RUN patch --forward --strip=1 index.html --input=index.html.patch \
  && npm install && npm run build -- css-themes
 
 EXPOSE 8000
-CMD /bin/sh -c chown -R $(id -u).0 ${NPM_CONFIG_CACHE} && npm start --host=0.0.0.0
+CMD chown -R $(id -u).0 ${NPM_CONFIG_CACHE} && npm start --host=0.0.0.0
 #CMD ["npm", "start", "--", "--host=0.0.0.0"]
