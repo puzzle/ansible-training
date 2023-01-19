@@ -20,8 +20,6 @@ COPY slides/index.html.patch .
 RUN patch --forward --strip=1 index.html --input=index.html.patch \
  && npm install && npm run build -- css-themes
 
-RUN whoami
-RUN chown -R $(id -u).0 ${NPM_CONFIG_CACHE}
-
 EXPOSE 8000
+CMD /bin/sh -c chown -R $(id -u).0 ${NPM_CONFIG_CACHE}
 CMD ["npm", "start", "--", "--host=0.0.0.0"]
