@@ -21,7 +21,7 @@ RUN patch --forward --strip=1 index.html --input=index.html.patch \
  && npm install && npm run build -- css-themes
 
 RUN chgrp -R 0 ${NPM_CONFIG_CACHE} \
- && chmod -r g=u ${NPM_CONFIG_CACHE}
+ && chmod -R g=u ${NPM_CONFIG_CACHE}
 
 EXPOSE 8000
 CMD ["npm", "start", "--", "--host=0.0.0.0"]
