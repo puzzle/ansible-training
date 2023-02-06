@@ -55,7 +55,10 @@ e65e4777caa3791b6b55a61cd5b171a99fad6d0e2b58097ad242b2b8d50e5103
 
 Configure ansible-navigator and ensure the following:
 
-* Use the `ansible.cfg` in your local techlab directory.
+* Use the `ansible.cfg` in your local techlab directory. If you didn't do the labs before, create a config file with `ansible-config init --disabled -t all > ansible.cfg`.
+* Set `remote_user` in `ansible.cfg` to `ansible`.
+* Move the inventory file `hosts` in a folder `inventory/`.
+* Set the inventory file in your `ansible.cfg` to `inventroy/hosts`.
 * Use 20 forks.
 * Enable colorful output.
 * Log to a file `log.txt` in a subfolder `log` with a loglevel of `INFO`.
@@ -65,6 +68,11 @@ Configure ansible-navigator and ensure the following:
 {{% details title="Solution Task 2" %}}
 
 ```bash
+$ cat ansible.cfg
+[defaults]
+remote_user = ansible
+inventory = /home/ansible/techlab/inventory/hosts
+
 $ cat ansible-navigator.yml
 ---
 ansible-navigator:
@@ -90,7 +98,7 @@ ansible-navigator:
 
 ### Task 3
 
-* Create a playbook `site.yml` that contains two plays. The first play is the same as `webservers.yml` from the earlier labs. The second play sets the content of `/etc/motd` on all hosts of the group `db` to `This is a database server`. Be sure to set a `name` keyword for each play. Use "Run tasks on webservers" for the play that runs on the group `web` and "Run tasks on dbservers" for the play that runs on group `db`.
+* Create a playbook `site.yml` that contains two plays. The first play is the same as `webservers.yml` from the earlier labs. The second play sets the content of `/etc/motd` on all hosts of the group `db` to `This is a database server`. Be sure to set a `name` keyword for each play. Use "Run tasks on webservers" as value for the name keyword of the play that runs on the group `web` and "Run tasks on dbservers" for the play that runs on group `db`.
 
 {{% details title="Solution Task 3" %}}
 ```bash
@@ -142,14 +150,14 @@ $ cat site.yml
 $ ansible-navigator run site.yml
 ...
 ```
-Set `remote_user` to `ansible` in the ansible configuration. Otherwise, the EE would use user root to connect to the hosts.
+If you would not have set `remote_user` to `ansible` in the ansible configuration, the EE would use user root to connect to the hosts per default. So in case of problems, check your ansible.cfg:
 ```bash
 $ grep remote_user ansible.cfg 
 remote_user = ansible
 ```
 See the running container:
 ```bash
-$ watch podman container list
+$ watch -n1 podman container list
 
 Every 2.0s: podman container list                                       phippu-controller: Sun Apr  3 08:12:20 2022
 CONTAINER ID  IMAGE                                        COMMAND               CREATED        STATUS
