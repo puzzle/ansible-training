@@ -272,6 +272,7 @@ Because we included the collection `ansible.posix` in our EE earlier, we can run
 
 ```bash
 $ ansible-navigator run site.yml
+
 ```
 
 {{% /details %}}
