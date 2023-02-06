@@ -267,7 +267,7 @@ If you have selinux in enforcing mode, remember to relabel the volumes mounted i
 Remove your `podman`-settings in `env/settings`. Otherwise, `ansible-runner` would try to run Ansible inside the container with `podman` again. This would fail since its not installed inside the `ansible-runner` image.
 {{% /alert %}}
 
-* Use the ee `default-ee` from before or use `quay.io/ansible/ansible-navigator-demo-ee`. Remember, that an ee is always based on the ansible-runner reference image. 
+* Use the ee `default-ee` from before or use `quay.io/ansible/ansible-navigator-demo-ee`. Remember, that an ee is always based on the ansible-runner reference image.
 * How do you specify which playbook to run?
 * Into which directory inside the container do you have to mount your metadata directory?
 * Remove the podman-settings in the file `env/settings`. These settings would cause `ansible-runner` inside the container to try run in podman again. This would fail because podman is not installed inside the ee.
