@@ -274,10 +274,12 @@ Remove your `podman`-settings in `env/settings`. Otherwise, `ansible-runner` wou
 * Run your Ansible project with podman using the ee stated above.
 
 {{% details title="Solution Task 6" %}}
+
 * With the env variable `RUNNER_PLAYBOOK=test.yml`.
 * Into the `/runner` directory.
 * `$ mv env/settings ../`
 * Run it:
+
 ```bash
 $ podman run --rm -e RUNNER_PLAYBOOK=site.yml -v /home/ansible/techlab:/runner:Z default-ee:latest 
 Identity added: /runner/artifacts/cf33c64a-c5cf-41dd-8479-e9c0057d8e8f/ssh_key_data (Created for convenience ahead of techlab)
