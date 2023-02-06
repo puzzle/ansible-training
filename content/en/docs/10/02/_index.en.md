@@ -249,9 +249,9 @@ Now we want to have a look at whats happening in the background while running ou
 {{% details title="Solution Task 5" %}}
 ```bash
 $ ansible-runner start /home/ansible/techlab/ -p site.yml
-
+...
 $ ansible-runner stop /home/ansible/techlab/ -p site.yml
-
+...
 ```
 
 {{% /details %}}
