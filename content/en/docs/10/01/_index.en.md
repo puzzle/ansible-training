@@ -14,12 +14,26 @@ In this lab, we will use `ansible-builder` to build our own execution environmen
 {{% details title="Solution Task 1" %}}
 Since we have no Red Hat Subscription available, we install ansible-builder with pip. We install podman as well to be able to use containers.
 
+Update python if needed:
 ```bash
-$ sudo dnf module install -y python38
-$ sudo dnf module enable python38
-$ sudo dnf remove -y python36
+$ sudo dnf module install -y python39
+$ sudo dnf module enable python39
+$ sudo alternatives --config python3
+
+There are 2 programs which provide 'python3'.
+
+  Selection    Command
+-----------------------------------------------
+*+ 1           /usr/bin/python3.6
+   2           /usr/bin/python3.9
+
+Enter to keep the current selection[+], or type selection number: 2
 $ python3 --version
-Python 3.8.10
+Python 3.9.13
+```
+
+Install `ansible-builder` AFTER you ensured the newer python version to be present.
+```bash
 $ sudo dnf install -y podman python3-pip
 $ pip3 install ansible-builder --user
 ...
@@ -71,7 +85,7 @@ The new EE should:
 * base on the latest stable version of the `ansible-runner` image from `https://quay.io`
 * use the `ansible.cfg` in the `techlab` folder
 * contain the `pyfiglet` python3 module
-* contain the collection `containers.podman`
+* contain the collection `containers.podman` and `ansible.posix`
 
 {{% details title="Solution Task 3" %}}
 ```bash
@@ -84,18 +98,21 @@ ansible_config: 'ansible.cfg'
 dependencies:
     python: requirements.txt
     galaxy: requirements.yml
+
 $ cat requirements.txt 
 pyfiglet
+
 $ cat requirements.yml 
 collections:
   - containers.podman
+  - ansible.posix
 ```
 {{% /details %}}
 
 ### Task 4
 
-* Build the new exection environment with the files from the last task. The resulting image should have a name of `default-ee`.
-* With the option for very verbose (`-v3`) set, you can observe what `ansible-builder` does in the background (this will take a few minutes).
+* Build the new exection environment with the files from the last task. The resulting image should have a name of `default-ee`. This will take a few minutes.
+* With the option for very verbose (`-v3`) set, you can observe what `ansible-builder` does in the background.
 
 If you are interested in the details about how the execution environment is built:
 
@@ -161,7 +178,7 @@ RUN /output/install-from-bindep && rm -rf /output/wheels
 ### Task 5
 
 * Inspect the image of your new EE with `ansible-navigator`.
-* Check the included ansible version and verify that the colletion `containers.podman`is present.
+* Check the included ansible version and verify that the colletions `containers.podman` and `ansible.posix` are present.
 
 {{% details title="Solution Task 5" %}}
 ```bash
@@ -185,13 +202,14 @@ Choose `2`:
 Choose `2`:
 ```bash
 DEFAULT-EE:LATEST (INFORMATION ABOUT ANSIBLE AND ANSIBLE COLLECTIONS)                                            
-0│---
+│---
 1│ansible:
 2│  collections:
 3│    details:
-4│  containers.podman: 1.9.3
-5│  version:
-6│    details: core 2.12.4.post0
+4│	ansible.posix: 1.5.1
+5│	containers.podman: 1.10.1
+6│  version:
+7│    details: core 2.12.5.post0
 ```
 {{% /details %}}
 
@@ -250,7 +268,11 @@ quay.io/bitnami/mariadb  latest      c6cb896c1070  11 hours ago  93.5 MB
 ```
 Note that if you pulled the image as user `root` on the `db` servers, you will not see it in the output of `podman images` unless it's run as user `root` as well.
 
-You would need to include the collection `ansible.posix` in your EE in order to be able to use the `firewalld` module.
+Because we included the collection `ansible.posix` in our EE earlier, we can run tasks with the `firewalld` module. Therefore running the playbook `site.yml` from the ansible-navigator lab would work as well!
+
+```bash
+$ ansible-navigator run site.yml
+```
 
 {{% /details %}}
 
