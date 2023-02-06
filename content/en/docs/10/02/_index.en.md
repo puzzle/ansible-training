@@ -119,7 +119,7 @@ $ cat 82b7743d-72db-4760-b163-e24257a5ff78/fact_cache/node1
 
 ```
 $ cat artifacts/82b7743d-72db-4760-b163-e24257a5ff78/job_events/1-54889cf9-5ceb-4541-930f-73fe24d4a08a.json
-
+...
 ```
 
 ```
@@ -156,7 +156,6 @@ ok: [node2]
 PLAY RECAP *********************************************************************
 node1                      : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 node2                      : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
-[ansible@teacher-controller techlab]$
 
 ```
 {{% /details %}}

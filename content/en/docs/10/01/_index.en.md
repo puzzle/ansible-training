@@ -206,8 +206,8 @@ DEFAULT-EE:LATEST (INFORMATION ABOUT ANSIBLE AND ANSIBLE COLLECTIONS)
 1│ansible:
 2│  collections:
 3│    details:
-4│	ansible.posix: 1.5.1
-5│	containers.podman: 1.10.1
+4│      ansible.posix: 1.5.1
+5│      containers.podman: 1.10.1
 6│  version:
 7│    details: core 2.12.5.post0
 ```
@@ -272,7 +272,7 @@ Because we included the collection `ansible.posix` in our EE earlier, we can run
 
 ```bash
 $ ansible-navigator run site.yml
-
+...
 ```
 
 {{% /details %}}
