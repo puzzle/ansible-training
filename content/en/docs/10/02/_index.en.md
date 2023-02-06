@@ -119,6 +119,7 @@ $ cat 82b7743d-72db-4760-b163-e24257a5ff78/fact_cache/node1
 
 ```
 $ cat artifacts/82b7743d-72db-4760-b163-e24257a5ff78/job_events/1-54889cf9-5ceb-4541-930f-73fe24d4a08a.json
+
 ```
 
 ```
@@ -236,8 +237,6 @@ Not defining `process_isolation_executable: podman` in `env/settings` would lead
 
 {{% /details %}}
 
-
-
 ### Task 5
 
 Now we want to have a look at whats happening in the background while running our playbook with `ansible-runner` inside an ee.
@@ -250,7 +249,9 @@ Now we want to have a look at whats happening in the background while running ou
 {{% details title="Solution Task 5" %}}
 ```bash
 $ ansible-runner start /home/ansible/techlab/ -p site.yml
+
 $ ansible-runner stop /home/ansible/techlab/ -p site.yml
+
 ```
 
 {{% /details %}}
@@ -337,7 +338,6 @@ ANSIBLE-RUNNER:LATEST (INFORMATION ABOUT ANSIBLE AND ANSIBLE COLLECTIONS)
 8│    details: core 2.12.5.post0
 ```
 See the [ansible-navigator lab](https://ansible.puzzle.ch/docs/10/#task-10) about how to get there!
-
 
 {{% /details %}}
 
