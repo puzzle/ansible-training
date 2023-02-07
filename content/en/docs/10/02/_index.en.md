@@ -351,7 +351,7 @@ Now we want to run our playbook directly by using the python module `ansible-run
 * The script should use `/home/ansible/techlab/` as the ansible metadata directory.
 * Make the script executable.
 * Run the script.
-* After the Ansible run completed successfully, change things to run it inside an ee. 
+* After the Ansible run completed successfully, change things to run it inside an ee.
 
 {{% details title="Solution Task 8" %}}
 ```bash
