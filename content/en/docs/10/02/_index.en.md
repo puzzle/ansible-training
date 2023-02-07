@@ -282,7 +282,8 @@ Remove your `podman`-settings in `env/settings`. Otherwise, `ansible-runner` wou
 
 ```bash
 $ podman run --rm -e RUNNER_PLAYBOOK=site.yml -v /home/ansible/techlab:/runner:Z default-ee:latest 
-Identity added: /runner/artifacts/cf33c64a-c5cf-41dd-8479-e9c0057d8e8f/ssh_key_data (Created for convenience ahead of techlab)
+Identity added: /runner/artifacts/cf33c64a-c5cf-41dd-8479-e9c0057d8e8f/ssh_key_data
+(Created for convenience ahead of techlab)
 
 PLAY [Run tasks on webservers] *************************************************
 
@@ -342,13 +343,15 @@ See the [ansible-navigator lab](https://ansible.puzzle.ch/docs/10/#task-10) abou
 
 ### Task 8
 
-Now we want to run our playbook directly by using the python module `ansible-runner`
+Now we want to run our playbook directly by using the python module `ansible-runner`.
 
-* Install the python module `ansible-runner`
-* Create a python script `run_ansible_run.py` that runs your playbook `site.yml`
-* The script should use `/home/ansible/techlab/` as the ansible metadata directory
-* Make the script executable
-* Run the script
+* Install the python module `ansible-runner`.
+* Create a python script `run_ansible_run.py` that runs your playbook `site.yml` with `ansible-runner`.
+* `Ansible-runner` should not use an ee yet.
+* The script should use `/home/ansible/techlab/` as the ansible metadata directory.
+* Make the script executable.
+* Run the script.
+* After the Ansible run completed successfully, change things to run it inside an ee. 
 
 {{% details title="Solution Task 8" %}}
 ```bash
@@ -364,7 +367,8 @@ ansible_runner.run(
 $ chmod +x run_ansible_run.py
 
 $ ./run_ansible_run.py
-Identity added: /home/ansible/techlab/artifacts/5e703775-5234-491c-b958-09bf0bd2e756/ssh_key_data (Created for convenience ahead of techlab)
+Identity added: /home/ansible/techlab/artifacts/5e703775-5234-491c-b958-09bf0bd2e756/ssh_key_data
+(Created for convenience ahead of techlab)
 
 PLAY [Run tasks on webservers] *************************************************
 
@@ -398,8 +402,20 @@ PLAY RECAP *********************************************************************
 node1                      : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 node2                      : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 $
-
 ```
+
+For running `ansible-runner` from the python script inside an ee, just ensure that the `settings` file is present in the `env` folder.
+
+```bash
+$ cat env/settings 
+---
+container_image: default-ee
+process_isolation_executable: podman
+process_isolation: true
+```
+
+Now, when you start the `run_ansible_run.py` script again, Ansible is run inside the defined ee. You can check this with `$ watch -n1 podman ps -a` while running the script.
+
 {{% /details %}}
 
 ### All done?
