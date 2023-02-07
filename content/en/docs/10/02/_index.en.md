@@ -422,3 +422,4 @@ Now, when you start the `run_ansible_run.py` script again, Ansible is run inside
 
 * Have a look at the [ansible-runner github page](https://github.com/ansible/ansible-runner)
 * Have a look at the [docs of the latest version of ansible-runner](https://ansible-runner.readthedocs.io/en/latest/)
+* Have a look at the [documentation of the python module](https://ansible-runner.readthedocs.io/en/stable/python_interface/) and see what the library is capable of.
