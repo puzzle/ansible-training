@@ -31,7 +31,7 @@ $ time ansible node1 -B 10 -P 30 -a "/usr/bin/sleep 1000"
 node1 | FAILED | rc=-1 >>
 async task did not complete within the requested time - 10s
 
-real  0m32.625s #<- more than the polling intervall
+real  0m32.625s #<- more than the polling interval
 user  0m5.541s
 sys 0m0.684s
 $
@@ -83,7 +83,7 @@ $
 
 In the playbook `async.yml` do the following:
 
-* Put the task above in the background and change the values of the sleepduration, polling intervall ans async time to reasonable values.
+* Put the task above in the background and change the values of the sleepduration, polling interval and async time to reasonable values.
 * Check back with an `async_status` task if the sleep-task has finished.
 * Run the playbook.
 

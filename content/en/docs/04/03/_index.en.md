@@ -68,7 +68,7 @@ Example `output.yml`:
 * Solve this task by searching for files ending with `.bak` and registering the result to a variable. Then do tasks only if certain conditions are met.
 
 {{% alert title="Tip" color="info" %}}
-Have a look at the documentation about the command modul: [Ansible Docs - command](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html)
+Have a look at the documentation about the command module: [Ansible Docs - command](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html)
 {{% /alert %}}
 
 {{% details title="Solution Task 3" %}}
