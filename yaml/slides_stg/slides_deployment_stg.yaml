@@ -24,6 +24,7 @@ spec:
   template:
     metadata:
       annotations:
+        puzzle.ch/logtenant: general
       labels:
         app.kubernetes.io/instance: slides
         app.kubernetes.io/name: ansible-slides
