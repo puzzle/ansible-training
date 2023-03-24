@@ -1,7 +1,7 @@
 acendTraining:
   servicePort: 8080
   deployments:
-    - 
+    -
       name: puzzle
       replicaCount: 2
       image:
@@ -9,6 +9,8 @@ acendTraining:
         pullPolicy: Always
         tag: ""
         tagsuffix: ""
+      podAnnotations:
+        puzzle.ch/logtenant: general
       ingress:
         labels:
           public: "true"
