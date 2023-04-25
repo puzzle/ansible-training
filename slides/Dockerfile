@@ -23,7 +23,7 @@ RUN patch --forward --strip=1 index.html --input=index.html.patch \
 RUN chgrp -R 0 ${NPM_CONFIG_CACHE} \
  && chmod -R g=u ${NPM_CONFIG_CACHE}
  
-RUN find . -type d -name ".git" -delete
+RUN find . -type d -name ".git" -exec rm -rf "{}" \;
 
 EXPOSE 8000
 CMD ["npm", "start", "--", "--host=0.0.0.0"]
