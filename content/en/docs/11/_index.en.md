@@ -12,7 +12,7 @@ Note, that as of Mai 2023, EDA is still in developer preview state. Documentatio
 
 ### Task 2
 
-* Point your webbrowser to the official documentation of 'ansible-rulebook'.
+* Point your webbrowser to the official documentation of `ansible-rulebook`.
 * Install and configure everything needed to run ansible-rulebook and source plugins.
 * Check version of 'ansible-rulebook'
 
@@ -31,7 +31,7 @@ ansible-galaxy collection install ansible.eda
 ### Task 2
 
 * Write a playbook `webserver.yml` that installs the servers in group `web` as webservers. See Lab 4.0 for guidelines.
-* Ensure, that the inventory file `hosts` in the folder inventory has the group `web` with `node1` and `node2` as members.
+* Ensure that the inventory file `hosts` in the folder inventory has the group `web` with `node1` and `node2` as members.
 * Run the playbook `webserver.yml` and check that the webservers are up and running.
 
 {{% details title="Solution Task 2" %}}
@@ -106,7 +106,7 @@ $ cat webserver_rulebook.yml`
         delay: 10
   rules:
     - name: check if site down and rebuild
-      condition: event.status == "down"
+      condition: event.url_check.status == "down"
       action:
         run_playbook:
           name: webserver.yml
@@ -116,7 +116,7 @@ $ cat webserver_rulebook.yml`
 ### Task 4
 
 * Start `webserver_rulebook.yml` in verbose mode.
-* Stop the httpd service on `node1` from another terminal on `control0` and see how the playbook `webserver.yml` is re-run.
+* Stop the httpd service on `node1` with ansible from another terminal on `control0` and see how the playbook `webserver.yml` is re-run. (You could also just stop the service directly on `node1`.)
 
 {{% details title="Solution Task 4" %}}
 ```bash
@@ -129,7 +129,7 @@ ansible node1 -i inventory/hosts -b -m service -a "name=httpd state=stopped"
 ### Task 5
 
 * Write the rulebook `webhook_rulebook.yml` that opens a webhook on port 5000 of the control node `control0`.
-* The rulebook should re-run the playbook `webserver.yml` if the webhook receives a message with the content "webservers down".
+* The rulebook should re-run the playbook `webserver.yml` if the webhook receives a message "webservers down".
 * Use `webhook` from the `ansible.eda` collection as the source plugin in your rulebook.
 
 {{% details title="Solution Task 5" %}}
@@ -155,11 +155,10 @@ $ cat webhook_rulebook.yml
 ### Task 6
 
 * Run the rulebook `webhook_rulebook.yml` in verbose mode.
-* Send a message the the webhook containing the message "webservers running"
+* Send the string "webservers running" to the webhook.
 * You can do this by issuing: `curl -H 'Content-Type: application/json' -d "{\"message\": \"webservers running\"}" 127.0.0.1:5000/endpoint`
 * See how the message is received, processed, but no actions are taken since the message doesn't match the condition defined.
 * Now send the message "webservers down" to the webhook. See how the playbook `webserver.yml` is run.
-
 
 {{% details title="Solution Task 6" %}}
 ```bash
@@ -182,4 +181,4 @@ curl -H 'Content-Type: application/json' -d "{\"message\": \"webservers down\"}"
 ### All done?
 
 * [Ansible-rulebook documentation](https://ansible-rulebook.readthedocs.io/en/stable/)
-* [AnsibleAutomates Yourtube channel for more examples](https://www.youtube.com/@AnsibleAutomation/videos)
+* [AnsibleAutomates Youtube channel for more examples](https://www.youtube.com/@AnsibleAutomation/videos)
