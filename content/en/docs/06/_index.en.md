@@ -1,6 +1,6 @@
 ---
 title: 6. Managing Secrets with Ansible Vault
-weight: 6
+weight: 60
 sectionnumber: 6
 ---
 

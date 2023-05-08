@@ -1,6 +1,6 @@
 ---
 title: 7. Ansible Galaxy and more
-weight: 7
+weight: 70
 sectionnumber: 7
 ---
 

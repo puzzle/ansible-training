@@ -1,6 +1,6 @@
 ---
 title: 9. AWX/Ansible Tower
-weight: 92
+weight: 90
 sectionnumber: 9.2
 ---
 
