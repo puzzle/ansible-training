@@ -1,6 +1,6 @@
 ---
 title: 1. Setting up Ansible
-weight: 1
+weight: 10
 sectionnumber: 1
 ---
 

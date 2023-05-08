@@ -1,6 +1,6 @@
 ---
 title: 8. Ansible Collections
-weight: 8
+weight: 80
 sectionnumber: 8
 ---
 
