@@ -1,0 +1,185 @@
+---
+title: 11. Event Driven Ansible
+weight: 11
+sectionnumber: 11
+---
+
+In this lab we are going to learn how to use Event Driven Ansible. For the following tasks, server 'node1' and 'node2' act as webservers. You can use Lab 4.0 as a guideline.
+
+{{% alert title="Note" color="primary" %}}
+Note, that as of Mai 2023, EDA is still in developer preview state. Documentation and all content is work in progress!
+{{% /alert %}}
+
+### Task 2
+
+* Point your webbrowser to the official documentation of 'ansible-rulebook'.
+* Install and configure everything needed to run ansible-rulebook and source plugins.
+* Check version of 'ansible-rulebook'
+
+{{% details title="Solution Task 1" %}}
+
+[https://ansible-rulebook.readthedocs.io/en/stable/index.html](https://ansible-rulebook.readthedocs.io/en/stable/index.html)
+
+```bash
+sudo dnf --assumeyes install java-17-openjdk python3-pip
+export JAVA_HOME=/usr/lib/jvm/jre-17-openjdk
+pip install ansible ansible-rulebook
+ansible-galaxy collection install ansible.eda
+```
+{{% /details %}}
+
+### Task 2
+
+* Write a playbook `webserver.yml` that installs the servers in group `web` as webservers. See Lab 4.0 for guidelines.
+* Ensure, that the inventory file `hosts` in the folder inventory has the group `web` with `node1` and `node2` as members.
+* Run the playbook `webserver.yml` and check that the webservers are up and running.
+
+{{% details title="Solution Task 2" %}}
+
+```bash
+$ cat webserver.yml`
+---
+- hosts: web
+  become: true
+  tasks:
+    - name: install httpd
+      ansible.builtin.dnf:
+        name:
+          - httpd
+          - firewalld
+        state: installed
+    - name: start and enable httpd
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: yes
+    - name: start and enable firewalld
+      ansible.builtin.service:
+        name: firewalld
+        state: started
+        enabled: yes
+    - name: open firewall for http
+      firewalld:
+        service: http
+        state: enabled
+        permanent: yes
+        immediate: yes
+
+$ cat inventory/hosts 
+[controller]
+control0 ansible_host=<ip-of-control0>
+
+[web]
+node1 ansible_host=<ip-of-node1>
+node2 ansible_host=<ip-of-node2>
+
+$ ansible-playbook -i inventory/hosts webserver.yml
+$ dnf install -y lynx
+$ lynx http://<ip-of-node1>
+$ lynx http://<ip-of-node2>
+
+```
+{{% /details %}}
+
+### Task 3
+
+* Write a rulebook `webserver_rulebook.yml` that checks if the webpages on `node1` and `node2` are up and running.
+* If the webpages are not available anymore, the `webserver.yml` playbook should be re-run.
+* Use `url_check` from the `ansible.eda` collection as the source plugin in your rulebook.
+
+{{% alert title="Note" color="primary" %}}
+If you don't have the `ansible.eda` collection installed yet, `ansible-rulebook` would start, but fail because the `url_check` source plugin cannot be found.
+{{% /alert %}}
+
+{{% details title="Solution Task 3" %}}
+```bash
+$ cat webserver_rulebook.yml`
+---
+- name: rebuild webservers if site down
+  hosts: web
+  sources:
+    - name: check webserver
+      ansible.eda.url_check:
+        urls:
+          - http://<ip-of-node1>:80/
+          - http://<ip-of-node2>:80/
+        delay: 10
+  rules:
+    - name: check if site down and rebuild
+      condition: event.status == "down"
+      action:
+        run_playbook:
+          name: webserver.yml
+```
+{{% /details %}}
+
+### Task 4
+
+* Start `webserver_rulebook.yml` in verbose mode.
+* Stop the httpd service on `node1` from another terminal on `control0` and see how the playbook `webserver.yml` is re-run.
+
+{{% details title="Solution Task 4" %}}
+```bash
+ansible-rulebook --rulebook webserver_rulebook.yml -i inventory/hosts --verbose
+
+ansible node1 -i inventory/hosts -b -m service -a "name=httpd state=stopped"
+```
+{{% /details %}}
+
+### Task 5
+
+* Write the rulebook `webhook_rulebook.yml` that opens a webhook on port 5000 of the control node `control0`.
+* The rulebook should re-run the playbook `webserver.yml` if the webhook receives a message with the content "webservers down".
+* Use `webhook` from the `ansible.eda` collection as the source plugin in your rulebook.
+
+{{% details title="Solution Task 5" %}}
+```bash
+$ cat webhook_rulebook.yml 
+---
+- name: rebuild webserver if webhook receives message that matches rule condition
+  hosts: web
+  sources:
+    - name: start webhook and listen for messages
+      ansible.eda.webhook:
+        host: 0.0.0.0
+        port: 5000
+  rules:
+    - name: rebuild webserver if monitoring tool sends alert
+      condition: event.payload.message == "webservers down"
+      action:
+        run_playbook:
+          name: webserver.yml
+```
+{{% /details %}}
+
+### Task 6
+
+* Run the rulebook `webhook_rulebook.yml` in verbose mode.
+* Send a message the the webhook containing the message "webservers running"
+* You can do this by issuing: `curl -H 'Content-Type: application/json' -d "{\"message\": \"webservers running\"}" 127.0.0.1:5000/endpoint`
+* See how the message is received, processed, but no actions are taken since the message doesn't match the condition defined.
+* Now send the message "webservers down" to the webhook. See how the playbook `webserver.yml` is run.
+
+
+{{% details title="Solution Task 6" %}}
+```bash
+ansible-rulebook --rulebook webhook_rulebook.yml -i inventory/hosts --verbose
+
+curl -H 'Content-Type: application/json' -d "{\"message\": \"webservers running\"}" 127.0.0.1:5000/endpoint
+
+curl -H 'Content-Type: application/json' -d "{\"message\": \"webservers down\"}" 127.0.0.1:5000/endpoint
+```
+{{% /details %}}
+
+### Task 7
+
+* What source plugins are available in the `ansible.eda` collection?
+
+{{% details title="Solution Task 7" %}}
+[Event Driven Ansible on Github](https://github.com/ansible/event-driven-ansible/tree/main/extensions/eda/plugins/event_source)
+{{% /details %}}
+
+### All done?
+
+* [Ansible-rulebook documentation](https://ansible-rulebook.readthedocs.io/en/stable/)
+* [AnsibleAutomates Yourtube channel for more examples](https://www.youtube.com/@AnsibleAutomation/videos)
