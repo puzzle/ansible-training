@@ -4,10 +4,11 @@ weight: 110
 sectionnumber: 11
 ---
 
-In this lab we are going to learn how to use Event Driven Ansible. For the following tasks, server 'node1' and 'node2' act as webservers. You can use Lab 4.0 as a guideline.
+In this lab we are going to learn how to use Event Driven Ansible. For the following tasks, server `node1` and `node2` act as webservers. You can use Lab 4.0 as a guideline.
 
 {{% alert title="Note" color="primary" %}}
 Note, that as of Mai 2023, EDA is still in developer preview state. Documentation and all content is work in progress!
+The installation of `ansible-rulebook` and the `ansible.eda` collection works fine on newer Fedora Systems. At present times, you could have a harder time on other operating systems. Be warned...
 {{% /alert %}}
 
 ### Task 2
@@ -86,6 +87,7 @@ $ lynx http://<ip-of-node2>
 * Write a rulebook `webserver_rulebook.yml` that checks if the webpages on `node1` and `node2` are up and running.
 * If the webpages are not available anymore, the `webserver.yml` playbook should be re-run.
 * Use `url_check` from the `ansible.eda` collection as the source plugin in your rulebook.
+* Check the availability of the websites every 8 seconds.
 
 {{% alert title="Note" color="primary" %}}
 If you don't have the `ansible.eda` collection installed yet, `ansible-rulebook` would start, but fail because the `url_check` source plugin cannot be found.
@@ -103,7 +105,7 @@ $ cat webserver_rulebook.yml`
         urls:
           - http://<ip-of-node1>:80/
           - http://<ip-of-node2>:80/
-        delay: 10
+        delay: 8
   rules:
     - name: check if site down and rebuild
       condition: event.url_check.status == "down"
@@ -129,7 +131,7 @@ ansible node1 -i inventory/hosts -b -m service -a "name=httpd state=stopped"
 ### Task 5
 
 * Write the rulebook `webhook_rulebook.yml` that opens a webhook on port 5000 of the control node `control0`.
-* The rulebook should re-run the playbook `webserver.yml` if the webhook receives a message "webservers down".
+* The rulebook should re-run the playbook `webserver.yml` if the webhook receives a message matching exactly the string "webservers down".
 * Use `webhook` from the `ansible.eda` collection as the source plugin in your rulebook.
 
 {{% details title="Solution Task 5" %}}
@@ -172,9 +174,57 @@ curl -H 'Content-Type: application/json' -d "{\"message\": \"webservers down\"}"
 
 ### Task 7
 
-* What source plugins are available in the `ansible.eda` collection?
+* Write the rulebook `complex_rulebook.yml`. It has to meet the following requirements:
+* It should check for three things:
+  * check if the website on one of the two webservers is down. (Same as Task 3 above)
+  * check if the message matches exactly the string "webservers down" (Same as Task 5 above)
+  * check if the message contains the string "ERROR"
+* If one of the criterias above are met, do two things:
+  1. run the ansible shell module to print the string "WEBSERVER ISSUES, REMEDIATION IN PROGRESS." into the journald log. (The command to do so is "systemd-cat echo "WEBSERVER ISSUES, REMEDIATION IN PROGRESS.")
+  2. run playbook `webservers.yml`
+* Start the rulebook `complex_rulebook.yml` and do the same test as in Task 4 and Task 6.
 
 {{% details title="Solution Task 7" %}}
+```bash
+$ cat complex_rulebook.yml
+---
+- name: rebuild webserver if webhook receives message that matches rule condition
+  hosts: web
+  sources:
+    - name: check webserver
+      ansible.eda.url_check:
+        urls:
+          - http://<ip-of-node1>:80/
+          - http://<ip-of-node2>:80/
+        delay: 8
+    - name: start webhook and listen for messages
+      ansible.eda.webhook:
+        host: 0.0.0.0
+        port: 5000
+  rules:
+    - name: rebuild webserver if any source reports an alert
+      condition:
+        any:
+          - event.url_check.status == "down"
+          - event.payload.message == "webservers down"
+          - event.payload.message is search("ERROR",ignorecase=true)
+      actions:
+        - run_module:
+            name: ansible.builtin.shell
+            module_args:
+              cmd: "logger \"WEBSERVER ISSUES, STARTING REMEDIATION NEXT.\""
+        - run_playbook:
+            name: webserver.yml
+
+$ ansible-rulebook --rulebook complex_rulebook.yml -i inventory/hosts --verbose
+```
+{{% /details %}}
+
+### Task 8
+
+* What source plugins are available in the `ansible.eda` collection?
+
+{{% details title="Solution Task 8" %}}
 [Event Driven Ansible on Github](https://github.com/ansible/event-driven-ansible/tree/main/extensions/eda/plugins/event_source)
 {{% /details %}}
 
