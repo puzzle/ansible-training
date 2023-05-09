@@ -212,7 +212,7 @@ $ cat complex_rulebook.yml
         - run_module:
             name: ansible.builtin.shell
             module_args:
-              cmd: "logger \"WEBSERVER ISSUES, STARTING REMEDIATION NEXT.\""
+              cmd: "systemd-cat echo \"WEBSERVER ISSUES, STARTING REMEDIATION NEXT.\""
         - run_playbook:
             name: webserver.yml
 
