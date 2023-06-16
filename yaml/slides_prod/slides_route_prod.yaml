@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/instance: slides
     app.kubernetes.io/name: ansible-slides
     public: "true"
-  name: ansible-slides-9rxmd
+  name: ansible-slides
   namespace: pitc-ansible-training-prod
 spec:
   host: ansible-slides.puzzle.ch
