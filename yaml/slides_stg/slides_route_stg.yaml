@@ -1,0 +1,24 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    haproxy.router.openshift.io/hsts_header: max-age=31536000;includeSubDomains;preload     
+  labels:
+    app.kubernetes.io/instance: slides
+    app.kubernetes.io/name: ansible-slides
+    public: "true"
+  name: ansible-slides
+  namespace: pitc-ansible-training-stg
+spec:
+  host: ansible-slides-stg.puzzle.ch
+  path: /
+  port:
+    targetPort: http
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: ansible-slides
+    weight: 100
+  wildcardPolicy: None
