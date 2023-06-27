@@ -258,6 +258,7 @@ Note, that you would have to open port 5000 on the firewall if the curl command 
 {{% /details %}}
 
 ### Task 9
+
 * What source plugins are available in the `ansible.eda` collection?
 
 {{% details title="Solution Task 10" %}}
