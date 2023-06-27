@@ -201,6 +201,63 @@ curl -H 'Content-Type: application/json' -d "{\"message\": \"webservers down\"}"
 {{% /details %}}
 
 ### Task 7
+
+* Write the rulebook `complex_rulebook.yml`. It has to meet the following requirements:
+* It should check for three things:
+  * check if the website on one of the two webservers is down. (Same as Task 3 above)
+  * check if the message matches exactly the string "webservers down" (Same as Task 5 above)
+  * check if the message contains the string "ERROR"
+* If one of the criterias above are met, do two things:
+  1. run the ansible shell module to print the string "WEBSERVER ISSUES, REMEDIATION IN PROGRESS." into the journald log. (The command to do so is "systemd-cat echo "WEBSERVER ISSUES, REMEDIATION IN PROGRESS.")
+  2. run playbook `webservers.yml`
+* Start the rulebook `complex_rulebook.yml` and do the same test as in Task 4 and Task 6.
+
+{{% details title="Solution Task 7" %}}
+
+```bash
+cat complex_rulebook.yml
+```
+```bash
+---
+- name: rebuild webserver if webhook receives message that matches rule condition
+  hosts: web
+  sources:
+    - name: check webserver
+      ansible.eda.url_check:
+        urls:
+          - http://<ip-of-node1>:80/
+          - http://<ip-of-node2>:80/
+        delay: 8
+    - name: start webhook and listen for messages
+      ansible.eda.webhook:
+        host: 0.0.0.0
+        port: 5000
+  rules:
+    - name: rebuild webserver if any source reports an alert
+      condition:
+        any:
+          - event.url_check.status == "down"
+          - event.payload.message == "webservers down"
+          - event.payload.message is search("ERROR",ignorecase=true)
+      actions:
+        - run_module:
+            name: ansible.builtin.shell
+            module_args:
+              cmd: "systemd-cat echo \"WEBSERVER ISSUES, STARTING REMEDIATION NEXT.\""
+        - run_playbook:
+            name: webserver.yml
+```
+
+```bash
+ansible-rulebook --rulebook complex_rulebook.yml -i inventory/hosts --verbose
+```
+```bash
+curl -H 'Content-Type: application/json' -d "{\"message\": \"webservers down\"}" 127.0.0.1:5000/endpoint
+```
+Note, that you would have to open port 5000 on the firewall if the curl command is not send from the controller itself.
+{{% /details %}}
+
+### Task 9
 * What source plugins are available in the `ansible.eda` collection?
 
 {{% details title="Solution Task 10" %}}
