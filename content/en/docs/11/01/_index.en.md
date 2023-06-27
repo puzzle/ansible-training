@@ -130,20 +130,6 @@ node1                      : ok=3    changed=0    unreachable=0    failed=0    s
 ```
 {{% /details %}}
 
-### Task 3
-
-* 
-
-{{% alert title="Note" color="primary" %}}
-
-{{% /alert %}}
-
-{{% details title="Solution Task 3" %}}
-
-{{% /details %}}
-
-
-
 ### All done?
 
 * [Preview of AAP EDA-Controller GUI](https://www.youtube.com/watch?v=7i_EzHyrKQc&t=178s)
