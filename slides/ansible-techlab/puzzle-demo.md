@@ -1,14 +1,27 @@
 # Ansible Techlab
+
 ### ansible.puzzle.ch
+
 #### Lukas Grimm
+
 <!-- #### Dominik Meisser -->
+
 #### Lukas Preisig
-<!-- #### Philippe Schmid-->
-#### Rémy Keil
+
+#### Philippe Schmid
+
+<!-- #### Rémy Keil -->
+
+<!-- #### Daniel Kobras -->
+
+<!-- #### Mark Pröhl -->
+
 <!-- .slide: class="master-cover" -->
 
-----
+---
+
 ## Nice to meet you
+
 <!--
 <div class="people" style="color: black;">
   <div>
@@ -58,18 +71,29 @@
   preisig@puzzle.ch
 </div>
 
+<!--
 <div>
     <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2018/08/Test-Remy-Keil-Filter_2Option-400x300.jpg)" />
-  </div>
+    </div>
 
   ### Rémy Keil
   System Engineer
 
   keil@puzzle.ch
 </div>
+-->
+
+<div>
+    <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2022/06/Schmid_Philippe_wp.jpg)" />
+    </div>
+
+  ### Philippe Schmid
+  System Engineer
+
+  pschmid@puzzle.ch
+</div>
 
 <!--
-
 <div class="people">
   <div>
     <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/06/Kobras_Daniel1-400x300.jpg)" />
@@ -2244,20 +2268,161 @@ Some configs from ansible.cfg not taken!
 
 <!-- .slide: class="master-content" > -->
 
-
-***
-# Lab 8. Ansible Collections
+----
+# Event Driven Ansible
 
 <!-- .slide: class="master-title" > -->
 
-----
+***
+## History
 
+- Feb 2022: ansible-rulebook on Github
+- Dec 2022: Dev Preview RH
+- Mai 2023: Part of AWX/AAP 2.4
+
+<!-- .slide: class="master-content" > -->
+
+***
+## Basics
+
+- if-then logic
+- cli component of EDA: ansible-rulebook
+
+<!-- .slide: class="master-content" > -->
+
+***
+## Playbook vs Rulebook
+
+- ansible-runner, ansible-playbok
+  - starts when defined by user
+- ansible-rulebook
+  - daemon, waits for event
+
+<!-- .slide: class="master-content" > -->
+
+***
+## Getting Info
+
+- https://ansible-rulebook.readthedocs.io
+- https://www.redhat.com/en/interactive-labs/
+- https://www.ansible.com/blog
+- https://ansible.puzzle.ch
+
+<!-- .slide: class="master-content" > -->
+
+***
+## Glossary
+
+- Rulebook: one ore many Rulesets
+- Ruleset:  Source(s), Rule(s)
+- Rule:     Condition(s) (IF), Action(s) (THEN)
+
+<!-- .slide: class="master-content" > -->
+
+***
+## Sources
+
+- alertmanager, zabbix, sensu
+- Paolo Alto, F5, Cisco
+- Azure, GCP, AWS
+- many more to come...
+
+<!-- .slide: class="master-content" > -->
+
+***
+## Conditions
+
+"if-part"
+- int, strings, bools, floats, null
+- regexp
+
+<!-- .slide: class="master-content" > -->
+
+***
+## Actions
+
+"then-part"
+- run_playbook
+- run_job_template
+- debug, set_fact, run_module,...
+
+<!-- .slide: class="master-content" > -->
+
+***
+## Getting Info
+
+- https://ansible-rulebook.readthedocs.io
+- https://www.redhat.com/en/interactive-labs/
+- https://www.ansible.com/blog
+- https://ansible.puzzle.ch
+
+<!-- .slide: class="master-content" > -->
+
+***
+## Installation
+
+- ansible-rulebook (python package)
+- ansible.eda (collection)
+- java17 / drools
+
+<!-- .slide: class="master-content" > -->
+
+***
+## How to use it
+
+ansible-rulebook --rulebook my_rb.yml -i hosts
+
+<!-- .slide: class="master-content" > -->
+
+***
+## Sample Rulebook
+
+- name: rebuild webservers if site down
+  hosts: web
+  sources:
+    - ansible.eda.url_check:
+        urls:
+          - http://<servername>:80/       
+  rules:
+    - condition: event.url_check.status == "down"
+      action:
+        run_playbook:
+
+<!-- .slide: class="master-content" > -->
+
+***
+## Event-Source Information
+
+- events -> json
+- accessible inside playbook with:
+  "{{ ansible_eda.event(s) }}" 
+
+<!-- .slide: class="master-content" > -->
+
+***
+## Events vs Facts
+
+- technically the same
+- events are discarded right after condition met
+- facts are longlived events
+
+<!-- .slide: class="master-content" > -->
+
+***
+## Facts
+
+- set with set_facts action
+- retracted with retract_facts action
+- only valid per ruleset (!!!)
+
+<!-- .slide: class="master-content" > -->
+
+----
 # Best Practices
 
 <!-- .slide: class="master-title" > -->
 
 ***
-
 ## Ansible Docs:
 - Have a look at the EXAMPLE section in the module documentation
 - Very interesting tips:
