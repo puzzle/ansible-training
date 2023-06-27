@@ -120,7 +120,7 @@ If you don't have the `ansible.eda` collection installed yet, `ansible-rulebook`
 
 {{% details title="Solution Task 3" %}}
 ```bash
-$ cat webserver_rulebook.yml`
+$ cat webserver_rulebook.yml
 ---
 - name: rebuild webservers if site down
   hosts: web
