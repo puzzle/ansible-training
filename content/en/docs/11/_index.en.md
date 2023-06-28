@@ -7,7 +7,7 @@ sectionnumber: 11
 In this lab we are going to learn how to use Event Driven Ansible. For the following tasks, server `node1` and `node2` act as webservers. You can use Lab 4.0 as a guideline.
 
 {{% alert title="Note" color="primary" %}}
-Note, that as of June 2023, EDA is still in developer preview state. Documentation and all content is work in progress!
+Note, that as of June 2023, EDA is still in a developer preview state. Documentation and all content is work in progress!
 The installation of `ansible-rulebook` and the `ansible.eda` collection works fine on newer Fedora Systems as well as RHEL / Rocky Linux 9. At present times, you could have a harder time on other operating systems. Be warned...
 {{% /alert %}}
 
