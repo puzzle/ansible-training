@@ -47,6 +47,18 @@ sudo dnf install python3-devel
 pip install -r  ~/.ansible/collections/ansible_collections/ansible/eda/requirements.txt
 ```
 
+```bash
+ansible-rulebook --version
+```
+Output on EL9:
+```bash
+version__ = '1.0.0'
+Executable location = /home/ansible/python/bin/ansible-rulebook
+Drools_jpy version = 0.3.4
+Java home = /usr/lib/jvm/java-17-openjdk-17.0.7.0.7-3.el9.x86_64
+Java version = 17.0.7
+Python version = 3.9.16 (main, Dec  8 2022, 00:00:00) [GCC 11.3.1 20221121 (Red Hat 11.3.1-4)]
+```
 {{% /details %}}
 
 ### Task 2
