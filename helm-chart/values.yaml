@@ -12,6 +12,7 @@ acendTraining:
       podAnnotations:
         puzzle.ch/logtenant: general
       ingress:
+        ingressClassName: openshift-public
         labels:
           public: "true"
         useDefaultSecret: true
