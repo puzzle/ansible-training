@@ -6,16 +6,11 @@ sectionnumber: 11
 
 In this lab we are going to learn how to use Event Driven Ansible. For the following tasks, server `node1` and `node2` act as webservers. You can use Lab 4.0 as a guideline.
 
-{{% alert title="Note" color="primary" %}}
-Note, that as of June 2023, EDA is still in a developer preview state. Documentation and all content is work in progress!
-The installation of `ansible-rulebook` and the `ansible.eda` collection works fine on newer Fedora Systems as well as RHEL / Rocky Linux 9. At present times, you could have a harder time on other operating systems. Be warned...
-{{% /alert %}}
-
 ### Task 1
 
 * Point your webbrowser to the official documentation of `ansible-rulebook`.
 * Install and configure everything needed to run ansible-rulebook and source plugins.
-* Check version of 'ansible-rulebook'
+* Check the version of `ansible-rulebook`
 
 {{% details title="Solution Task 1" %}}
 
@@ -64,6 +59,7 @@ Python version = 3.9.16 (main, Dec  8 2022, 00:00:00) [GCC 11.3.1 20221121 (Red 
 ### Task 2
 
 * Write a playbook `webserver.yml` that installs the servers in group `web` as webservers. See Lab 4.0 for guidelines.
+* Ensure that the playbook also sets a webpage at `/var/www/html/index.html`.
 * Ensure that the inventory file `hosts` in the folder inventory has the group `web` with `node1` and `node2` as members.
 * Run the playbook `webserver.yml` and check that the webservers are up and running.
 
@@ -88,6 +84,12 @@ cat webserver.yml
         name: httpd
         state: started
         enabled: yes
+     - name: put default webpage
+      ansible.builtin.copy:
+        content: "Ansible Labs by Puzzle ITC"
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
     - name: start and enable firewalld
       ansible.builtin.service:
         name: firewalld
@@ -113,7 +115,7 @@ node2 ansible_host=<ip-of-node2>
 ```
 ```bash
 ansible-playbook -i inventory/hosts webserver.yml
-dnf install -y lynx
+sudo dnf install -y lynx
 lynx http://<ip-of-node1>
 lynx http://<ip-of-node2>
 ```
@@ -132,7 +134,9 @@ If you don't have the `ansible.eda` collection installed yet, `ansible-rulebook`
 
 {{% details title="Solution Task 3" %}}
 ```bash
-$ cat webserver_rulebook.yml
+cat webserver_rulebook.yml
+```
+```bash
 ---
 - name: rebuild webservers if site down
   hosts: web
@@ -174,7 +178,9 @@ ansible node1 -i inventory/hosts -b -m service -a "name=httpd state=stopped"
 
 {{% details title="Solution Task 5" %}}
 ```bash
-$ cat webhook_rulebook.yml 
+cat webhook_rulebook.yml 
+```
+```bash
 ---
 - name: rebuild webserver if webhook receives message that matches rule condition
   hosts: web
@@ -220,9 +226,9 @@ curl -H 'Content-Type: application/json' -d "{\"message\": \"webservers down\"}"
   * check if the message matches exactly the string "webservers down" (Same as Task 5 above)
   * check if the message contains the string "ERROR"
 * If one of the criterias above are met, do two things:
-  1. run the ansible shell module to print the string "WEBSERVER ISSUES, REMEDIATION IN PROGRESS." into the journald log. (The command to do so is "systemd-cat echo "WEBSERVER ISSUES, REMEDIATION IN PROGRESS.")
+  1. run the ansible shell module to print the string "WEBSERVER ISSUES, REMEDIATION IN PROGRESS." into the journald log. (Use the command `systemd-cat echo "WEBSERVER ISSUES, REMEDIATION IN PROGRESS."`)
   2. run playbook `webservers.yml`
-* Start the rulebook `complex_rulebook.yml` and do the same test as in Task 4 and Task 6.
+* Start the rulebook `complex_rulebook.yml` and send the message "webservers down" to the webhook again.
 
 {{% details title="Solution Task 7" %}}
 
@@ -266,14 +272,14 @@ ansible-rulebook --rulebook complex_rulebook.yml -i inventory/hosts --verbose
 ```bash
 curl -H 'Content-Type: application/json' -d "{\"message\": \"webservers down\"}" 127.0.0.1:5000/endpoint
 ```
-Note, that you would have to open port 5000 on the firewall if the curl command is not send from the controller itself.
+Note, that you would have to open port 5000 on the firewall if the curl command is not sent from the controller itself.
 {{% /details %}}
 
-### Task 9
+### Task 8
 
-* What source plugins are available in the `ansible.eda` collection?
+* What source plugins are available in the `ansible.eda` collection? [Search the content of event-driven-ansible on github.com](https://github.com/ansible/event-driven-ansible).
 
-{{% details title="Solution Task 10" %}}
+{{% details title="Solution Task 8" %}}
 [Event Driven Ansible on Github](https://github.com/ansible/event-driven-ansible/tree/main/extensions/eda/plugins/event_source)
 {{% /details %}}
 
