@@ -58,7 +58,7 @@ It's a best practice to use cronjobs to trigger `ansible-pull` run at a regular 
 $ sudo vim /etc/cron.d/ansible-pull #create the file with the content ->
 $ cat /etc/cron.d/ansible-pull
 * * * * * ansible /usr/bin/ansible-pull -U https://github.com/puzzle/ansible-techlab -i resources/ansible-pull/hosts resources/ansible-pull/local.yml
-$ sudo rm -f /etc/motd; watch cat /etc/motd
+$ sudo rm -f /etc/motd; watch -n 1 cat /etc/motd
 ```
 {{% /details %}}
 
