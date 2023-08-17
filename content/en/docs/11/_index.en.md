@@ -180,7 +180,7 @@ ansible node1 -i inventory/hosts -b -m service -a "name=httpd state=stopped"
 ```bash
 cat webhook_rulebook.yml 
 ```
-```bash
+```yaml
 ---
 - name: rebuild webserver if webhook receives message that matches rule condition
   hosts: web
