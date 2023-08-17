@@ -16,25 +16,25 @@ In this lab we learn about task control.
 
 {{% details title="Solution Task 1" %}}
 ```bash
-$ ansible node1 -B 10 -a "/usr/bin/sleep 1000"
+$ ansible node1 -B 10  -a "/usr/bin/sleep 1000"
 node1 | FAILED | rc=-1 >>
-async task did not complete within the requested time - 10s
-$
-$ time ansible node1 -B 10 -a "/usr/bin/sleep 1000"
-node1 | FAILED | rc=-1 >>
-async task did not complete within the requested time - 10s
+Timeout exceeded
 
-real  0m17.626s #<- a bit more than 10 seconds
-user  0m3.603s
-sys 0m0.510s
+$ time ansible node1 -B 10  -a "/usr/bin/sleep 1000"
+node1 | FAILED | rc=-1 >>
+Timeout exceeded
+
+real    0m17.461s
+user    0m1.564s
+sys     0m0.253s
+
 $ time ansible node1 -B 10 -P 30 -a "/usr/bin/sleep 1000"
 node1 | FAILED | rc=-1 >>
-async task did not complete within the requested time - 10s
+Timeout exceeded
 
 real  0m32.625s #<- more than the polling interval
 user  0m5.541s
 sys 0m0.684s
-$
 ```
 Setting the poll parameter without the async parameter results in the job not beeing put in background.
 ```bash
