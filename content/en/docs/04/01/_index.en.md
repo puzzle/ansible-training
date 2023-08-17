@@ -199,7 +199,6 @@ $ cat password_file.yml
 password: "<my_secret_password>"
 
 Create the playbook:
-```bash
 $ cat takemehome.yml
 ---
 - hosts: localhost
