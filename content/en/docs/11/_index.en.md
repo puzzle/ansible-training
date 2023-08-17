@@ -85,11 +85,11 @@ cat webserver.yml
         state: started
         enabled: yes
      - name: put default webpage
-      ansible.builtin.copy:
-        content: "Ansible Labs by Puzzle ITC"
-        dest: /var/www/html/index.html
-        owner: root
-        group: root
+       ansible.builtin.copy:
+         content: "Ansible Labs by Puzzle ITC"
+         dest: /var/www/html/index.html
+         owner: root
+         group: root
     - name: start and enable firewalld
       ansible.builtin.service:
         name: firewalld
