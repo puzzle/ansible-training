@@ -136,6 +136,7 @@ Look for an option to `ansible-vault` to give the name of the variable while enc
 ansible-vault decrypt secret_vars.yml
 echo "---" > secret_vars.yml
 ansible-vault encrypt_string jamesbond -n var_username >> secret_vars.yml
+echo ''
 ansible-vault encrypt_string miss_moneypenny -n var_password >> secret_vars.yml
 ```
 
