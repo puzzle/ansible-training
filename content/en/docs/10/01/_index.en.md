@@ -8,7 +8,7 @@ In this lab, we will use `ansible-builder` to build our own execution environmen
 
 ### Task 1
 
-* Ensure to have a new version of python installed. `ansible-builder` is developping quickly and chances are, that you cannot run it with a python version that's not rather new.
+* Ensure to have a new version of python installed. `ansible-builder` is developing quickly and chances are that you cannot run it with a python version that's not rather new.
 * Install all packages needed to use `ansible-builder` on the controller host.
 
 {{% details title="Solution Task 1" %}}
@@ -43,8 +43,8 @@ $ pip3 install ansible-builder --user
 ### Task 2
 
 * Create a playbook `container.yml` that installs `podman` and pulls the image `docker.io/bitnami/mariadb` on all `db` servers.
-* Run this playbook and see how it fails because the collection `containers.podman` is not available in the demo EE `ansible-navigator-demo-ee`.
-* In the remainder of this lab, we build our own execution environment containing the collection `containers.podman`.
+* Run this playbook and observe how it fails because the collection `containers.podman` is not available in the demo EE `ansible-navigator-demo-ee`.
+* For the remainder of this lab, we build our own execution environment containing the collection `containers.podman`.
 
 {{% details title="Solution Task 2" %}}
 ```bash
@@ -82,7 +82,7 @@ Create a new execution environment with the name `default-ee`. You can find info
 
 The new EE should:
 
-* base on the latest stable version of the `ansible-runner` image from `https://quay.io`
+* be based on the latest stable version of the `ansible-runner` image from `https://quay.io`
 * use the `ansible.cfg` in the `techlab` folder
 * contain the `pyfiglet` python3 module
 * contain the collection `containers.podman` and `ansible.posix`
