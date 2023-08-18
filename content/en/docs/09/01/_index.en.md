@@ -129,7 +129,24 @@ $ cat prepare_for_awx.yml
 * Change directry to `/home/ansible/techlab/awx/installer`
 * Optional: Edit the file `inventory` and change the values of `admin_user` and `admin_password` (or keep the defaults: "admin" and "password").
 * Run the installer: `ansible-playbook -i inventory install.yml`
+  * Before running the installer, ensure nothing is running on port 80: `sudo ss -tunap | grep :80`
+    Otherwise, the `awx_web` container is unable to come up.
 * With your Web Browser connect to `http://<IP of control0>`. You should see a login form and be able to log in.
+
+{{% details title="If the installer fails due to a docker_service module` %}}
+The installer might fail because a role still uses the `docker_service` module.  
+In such a case, you will see the following output:
+```
+ERROR! [DEPRECATED]: community.general.docker_service has been removed. Use community.docker.docker_compose instead.
+This feature was removed from community.general in version 2.0.0. Please update your playbooks.
+```
+
+To rectify this issue, replace the `docker_service` module with `docker_compose` in the affected role:
+```bash
+$ FILE=/home/ansible/techlab/awx/installer/roles/local_docker/tasks/upgrade_postgres.yml
+$ sed -i 's/docker_service/docker_compose/' $FILE 
+```
+{{% /details %}}
 
 {{% details title="Solution Task 5" %}}
 ```bash
