@@ -63,7 +63,6 @@ name: ansible_techlab2
 
 $ ansible-galaxy collection build puzzle/ansible_techlab/
 Created collection for newpuzzle.ansible_techlab2 at /home/ansible/techlab/newpuzzle-ansible_techlab2-1.0.0.tar.gz
-$
 ```
 {{% /details %}}
 
@@ -118,7 +117,6 @@ Installing 'puzzle.ansible_techlab:1.0.0' to '/home/ansible/techlab/collections/
 $ ansible-config dump | grep -i galaxy_server
 GALAXY_SERVER(default) = https://galaxy.ansible.com
 GALAXY_SERVER_LIST(default) = None
-$
 ```
 Add the following block to your `/home/ansible/techlab/ansible.cfg`:
 ```
@@ -146,16 +144,15 @@ $ ansible-galaxy collection install nginxinc.nginx_controller
 Process install dependency map
 Starting collection install process
 Installing 'nginxinc.nginx_controller:3.7.5' to '/home/ansible/techlab/collections/ansible_collections/nginxinc/nginx_controller'
-$
+
 $ cat requirements.yml 
 collections:
 - name: cloudscale_ch.cloud
-$
+
 $ ansible-galaxy collection install -r requirements.yml 
 Process install dependency map
 Starting collection install process
 Installing 'cloudscale_ch.cloud:1.0.0' to '/home/ansible/techlab/collections/ansible_collections/cloudscale_ch/cloud'
-$
 ```
 {{% /details %}}
 
@@ -173,7 +170,7 @@ $ ansible-galaxy collection install containers.podman
 Process install dependency map
 Starting collection install process
 Installing 'containers.podman:1.1.4' to '/home/ansible/techlab/collections/ansible_collections/containers/podman'
-$
+
 $ cat collections.yml 
 ---
 - name: example for using modules from a collection
@@ -199,7 +196,6 @@ $ cat collections.yml
         state: present
         publish:
           - '8080'
-$
 ```
 OR:
 ```bash
@@ -226,7 +222,6 @@ $ cat collections.yml
         state: present
         publish:
           - '8080'
-$
 ```
 This would not work, since the module `podman_container` is only content of the collection and not part of the ansible-base installation:
 ```bash
@@ -253,7 +248,7 @@ $ cat collections.yml
         state: present
         publish:
           - '8080'
-$
+
 $ ansible-playbook -i hosts collections.yml 
 ERROR! couldn't resolve module/action 'podman_container'. This often indicates a misspelling, missing collection, or incorrect module path.
 
@@ -265,7 +260,6 @@ The offending line appears to be:
 
     - name: Run nginx container
       ^ here
-$
 ```
 
 Check the running container:
@@ -274,13 +268,11 @@ Check the running container:
 $ sudo podman ps -l
 CONTAINER ID  IMAGE                         COMMAND               CREATED             STATUS                 PORTS                                  NAMES
 00783ec12950  quay.io/bitnami/nginx:latest  /opt/bitnami/scri...  About a minute ago  Up About a minute ago  8443/tcp, 0.0.0.0:32771->8080/tcp      my_nginx_container
-$
 ```
 You can even connect to your container using a dynamically assigned port (32771 in the example above) on your host machine. Make sure to adjust the port in the `curl` command-line accordingly:
 ```bash
 $ curl -s http://localhost:32771 | grep title
 <title>Welcome to nginx!</title>
-$
 ```
 {{% /details %}}
 
