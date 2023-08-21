@@ -143,8 +143,8 @@ This feature was removed from community.general in version 2.0.0. Please update 
 
 To rectify this issue, replace the `docker_service` module with `docker_compose` in the affected role:
 ```bash
-$ FILE=/home/ansible/techlab/awx/installer/roles/local_docker/tasks/upgrade_postgres.yml
-$ sed -i 's/docker_service/docker_compose/' $FILE 
+FILE=/home/ansible/techlab/awx/installer/roles/local_docker/tasks/upgrade_postgres.yml
+sed -i 's/docker_service/docker_compose/' $FILE 
 ```
 {{% /details %}}
 
