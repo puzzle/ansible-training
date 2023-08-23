@@ -133,7 +133,7 @@ $ cat prepare_for_awx.yml
     Otherwise, the `awx_web` container is unable to come up.
 * With your Web Browser connect to `http://<IP of control0>`. You should see a login form and be able to log in.
 
-{{% details title="If the installer fails due to a docker_service module` %}}
+{{% details title="If the installer fails due to a docker_service module" %}}
 The installer might fail because a role still uses the `docker_service` module.  
 In such a case, you will see the following output:
 ```
