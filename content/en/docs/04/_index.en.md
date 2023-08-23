@@ -62,6 +62,11 @@ Check `httpd.service` on group `web`:
 ```bash
  ansible -i hosts web -b -a "systemctl status httpd"
 ```
+
+{{% alert title="Hint" color="info" %}}
+The ports for ssh, dhcp and cockpit are opened by default in the firewalld. It is best, especially for documentation, to open the ports explicitly in a basic settings file.
+{{% /alert %}}
+
 {{% /details %}}
 
 ### Task 2
