@@ -33,7 +33,7 @@ $ cat secretservice.yml
         dest: /etc/MI6
 
 $ ansible-playbook secretservice.yml
-$ ansible node1,node2 -b -a "cat /etc/MI6"  #<-- show created files with it's content
+$ ansible node1,node2 -a "cat /etc/MI6"  #<-- show created files with it's content
 ```
 {{% /details %}}
 
@@ -137,7 +137,6 @@ Look for an option to `ansible-vault` to give the name of the variable while enc
 ansible-vault decrypt secret_vars.yml
 echo "---" > secret_vars.yml
 ansible-vault encrypt_string jamesbond -n var_username >> secret_vars.yml
-echo ''
 ansible-vault encrypt_string miss_moneypenny -n var_password >> secret_vars.yml
 ```
 
@@ -171,7 +170,7 @@ ansible-playbook secretservice.yml
 
 {{% details title="Solution Task 6" %}}
 ```bash
-ansible node1,node2 -i inventory/hosts -b -a "rm /etc/MI6"
+ansible node1,node2 -i hosts -b -m file -a "path=/etc/MI6 state=absent"
 ```
 
 {{% alert title="Tip" color="info" %}}
