@@ -3,6 +3,7 @@
 # ensure SSH password login
 $script = <<-SCRIPT
 sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+useradd ansible
 systemctl restart sshd
 SCRIPT
 Vagrant.configure("2") do |config|
