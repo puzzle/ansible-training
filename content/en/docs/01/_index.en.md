@@ -99,10 +99,6 @@ ssh-copy-id <node-ip>
 
 Follow the prompt and enter the `ansible` user password you received from your instructor:
 
-{{% alert title="Note" color="primary" %}}
-  Don’t forget your controller and the second node.
-{{% /alert %}}
-
 ```bash
 usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/home/ansible/.ssh/id_rsa.pub"
 The authenticity of host '5.102.146.128 (5.102.146.128)' can't be established.
@@ -119,11 +115,13 @@ Now try logging into the machine, with:   "ssh '5.102.146.128'"
 and check to make sure that only the key(s) you wanted were added.
 ```
 
-Test it by running the SSH command executed on that node:
+Test it by running the SSH command executed on that node and make sure you're not prompted for a pasword:
 ```bash
-ssh <node-ip> hostname
-[yourusernamehere]-node1
+ssh <node-ip>
 ```
+{{% alert title="Note" color="primary" %}}
+  Don’t forget your controller and the second node.
+{{% /alert %}}
 {{% /details %}}
 
 ### Task 3
