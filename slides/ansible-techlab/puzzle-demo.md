@@ -127,7 +127,6 @@ proehl@puzzle-itc.de
 
 -->
 
-<div class="people">
 <div>
 <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2021/06/Florian_Studer_wp-400x300.jpg)" />
 </div>
