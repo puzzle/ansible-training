@@ -2,19 +2,21 @@
 
 ### ansible.puzzle.ch
 
-#### Lukas Grimm
+<!-- #### Lukas Grimm -->
 
 <!-- #### Dominik Meisser -->
 
 #### Lukas Preisig
 
-#### Philippe Schmid
+<!-- #### Philippe Schmid -->
 
 <!-- #### Rémy Keil -->
 
 <!-- #### Daniel Kobras -->
 
 <!-- #### Mark Pröhl -->
+
+#### Florian Studer
 
 <!-- .slide: class="master-cover" -->
 
@@ -36,6 +38,7 @@
 
 -->
 
+<!--
 <div class="people" style="color: black;">
 <div>
     <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2020/08/Lukas_Grimm_wp-400x300.jpg)" />
@@ -46,6 +49,7 @@
 
   grimm@puzzle.ch
 </div>
+-->
 
 <!--
 <div class="people">
@@ -61,6 +65,7 @@
 
 -->
 
+<div class="people" style="color: black;">
 <div>
     <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/05/Preisig_Lukas-400x300.jpg)" />
     </div>
@@ -83,6 +88,7 @@
 </div>
 -->
 
+<!--
 <div>
     <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2022/06/Schmid_Philippe_wp.jpg)" />
     </div>
@@ -92,6 +98,7 @@
 
   pschmid@puzzle.ch
 </div>
+-->
 
 <!--
 <div class="people">
@@ -107,18 +114,30 @@
 
 
 <div class="people">
-  <div>
-    <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/06/Proehl-Mark-400x300.jpg)" />
-  </div>
+<div>
+<div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/06/Proehl-Mark-400x300.jpg)" />
+</div>
 
-  ### Mark Pröhl
-  Principal Architect
+### Mark Pröhl
+Principal Architect
 
-  proehl@puzzle-itc.de
+proehl@puzzle-itc.de
 
 </div>
 
 -->
+
+<div>
+<div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2021/06/Florian_Studer_wp-400x300.jpg)" />
+</div>
+
+### Florian Studer
+System Engineer
+
+studer@puzzle.ch
+
+</div>
+
 
 <!-- .slide: class="master-top-head" -->
 
@@ -2382,7 +2401,7 @@ ansible-rulebook --rulebook my_rb.yml -i hosts
   sources:
     - ansible.eda.url_check:
         urls:
-          - http://<servername>:80/       
+          - http://<servername>:80/
   rules:
     - condition: event.url_check.status == "down"
       action:
@@ -2395,7 +2414,7 @@ ansible-rulebook --rulebook my_rb.yml -i hosts
 
 - events -> json
 - accessible inside playbook with:
-  "{{ ansible_eda.event(s) }}" 
+  "{{ ansible_eda.event(s) }}"
 
 <!-- .slide: class="master-content" > -->
 
