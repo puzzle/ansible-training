@@ -2504,7 +2504,7 @@ Templates:
 ansible
 
 Files:
-- Use a comment at the beginning of the file to indicate, that the file ist managed by ansible
+- Use a comment at the beginning of the file to indicate, that the file is managed by ansible
 
 <!-- .slide: class="master-content" > -->
 
