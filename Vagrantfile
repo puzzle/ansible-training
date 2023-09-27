@@ -6,26 +6,45 @@ sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_
 systemctl restart sshd
 useradd ansible
 SCRIPT
+
+#TODO why no rocky 9?
+
 Vagrant.configure("2") do |config|
+  # rockylinux/8 is broken does not boot
+    config.vm.box = "bento/rockylinux-8"
+
     config.vm.define "control" do |control|
-        control.vm.box = "rockylinux/8"
         control.vm.hostname = "control"
         control.vm.network "private_network", ip: "192.168.122.30"
         control.vm.provision "shell",
           inline: $script
     end
     config.vm.define "node1" do |node1|
-        node1.vm.box = "rockylinux/8"
         node1.vm.hostname = "node1"
         node1.vm.network "private_network", ip: "192.168.122.31"
         node1.vm.provision "shell",
           inline: $script
     end
     config.vm.define "node2" do |node2|
-        node2.vm.box = "rockylinux/8"
         node2.vm.hostname = "node2"
         node2.vm.network "private_network", ip: "192.168.122.32"
         node2.vm.provision "shell",
           inline: $script
+    end
+  config.vm.provision :ansible do |ansible|
+    ansible.compatibility_mode = "2.0"
+    ansible.become = true
+    ansible.playbook = "setup/base.yml"
+  end
+    config.vm.define "gitserver" do |git_server|
+        git_server.vm.hostname = "git-server"
+        git_server.vm.network "private_network", ip: "192.168.122.33"
+        git_server.vm.provision "shell",
+          inline: $script
+        config.vm.provision :ansible do |ansible|
+          ansible.compatibility_mode = "2.0"
+          ansible.become = true
+          ansible.playbook = "setup/gitea.yml"
+        end
     end
 end

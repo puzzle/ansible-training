@@ -1,0 +1,7 @@
+- name: Webserver play
+  hosts: all
+  tasks:
+    - name: running
+      service:
+        name: httpd
+

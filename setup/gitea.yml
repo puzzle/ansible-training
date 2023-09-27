@@ -1,0 +1,6 @@
+---
+
+- name: Gitea Role
+  hosts: all
+  roles:
+    - gitea

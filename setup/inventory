@@ -1,0 +1,4 @@
+control ansible_address=192.168.122.30
+node1 ansible_address=192.168.122.31
+node2 ansible_address=192.168.122.32
+gitserver ansible_address=192.168.122.33

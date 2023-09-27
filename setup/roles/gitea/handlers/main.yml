@@ -1,0 +1,7 @@
+---
+
+- name: Gitea handler
+  ansible.builtin.systemd_service:
+    name: gitea
+    state: restarted
+    enabled: True

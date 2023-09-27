@@ -1,0 +1,12 @@
+---
+
+gitea_version: 1.20.4
+gitea_arch: linux-amd64
+gitea_bin_path: /usr/local/bin/
+gitea_path: /var/lib/gitea/
+gitea_user: gitea
+gitea_group: gitea
+gitea_server_ip: 192.168.122.33
+
+gitea_admin_user: root
+gitea_admin_password: mypassword10

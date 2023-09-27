@@ -1,0 +1,85 @@
+---
+
+- name: Install sqlite
+  package:
+    name: "{{ item }}"
+  loop:
+    - git
+    - sqlite.x86_64
+    - xz
+
+- name: Create user
+  ansible.builtin.user:
+    name: gitea
+    home: /home/gitea
+
+- name: Download gitea
+  ansible.builtin.get_url:
+    url: "https://dl.gitea.com/gitea/{{ gitea_version }}/gitea-{{ gitea_version }}-{{ gitea_arch }}.xz"
+    dest: "{{ gitea_bin_path }}/gitea-{{ gitea_version }}-{{ gitea_arch }}.xz"
+
+- name: Exract gitea
+  ansible.builtin.shell:
+    cmd: "xz -d {{ gitea_bin_path }}/gitea-{{ gitea_version }}-{{ gitea_arch }}.xz"
+    creates: "{{ gitea_bin_path }}/gitea"
+
+- name: Move gitea
+  ansible.builtin.shell:
+    cmd: "mv {{ gitea_bin_path }}/gitea-{{ gitea_version }}-{{ gitea_arch }} {{ gitea_bin_path }}/gitea"
+    creates: "{{ gitea_bin_path }}/gitea"
+
+- name: Binary file
+  ansible.builtin.file:
+    mode: 0755
+    dest: "{{ gitea_bin_path }}/gitea"
+
+- name: Remove archive gitea
+  ansible.builtin.file:
+    dest: "{{ gitea_bin_path }}/gitea-{{ gitea_version }}-{{ gitea_arch }}.xz"
+    state: absent
+
+- name: Create gitea dirs
+  ansible.builtin.file:
+    state: directory
+    dest: "{{ gitea_path }}/{{ item }}"
+    owner: "{{ gitea_user }}"
+    group: "{{ gitea_group }}"
+    mode: 0750
+  loop:
+    - custom
+    - data
+    - indexers
+    - log
+  notify: Gitea handler
+
+- name: Create gitea etc
+  ansible.builtin.file:
+    state: directory
+    dest: /etc/gitea
+    owner: root
+    group: "{{ gitea_group }}"
+    mode: 0770
+  notify: Gitea handler
+
+- name: App config file
+  ansible.builtin.template:
+    src: templates/app.ini.j2
+    dest: /etc/gitea/app.ini
+  notify: Gitea handler
+
+- name: Systemd service file
+  ansible.builtin.template:
+    src: templates/gitea.service.j2
+    dest: /etc/systemd/system/gitea.service
+  notify: Gitea handler
+
+- name: Start Gitea
+  ansible.builtin.systemd_service:
+    name: gitea
+    state: started
+    enabled: True
+
+- name: Create root user
+  command:
+    cmd: "{{ gitea_bin_path }}/gitea admin user create --admin --username {{ gitea_admin_user }} --email mail@domain.domain --password {{gitea_admin_password }} -c /etc/gitea/app.ini"
+  become_user: "{{ gitea_user }}"
