@@ -1,0 +1,33 @@
+---
+
+- name: Create ansible user
+  ansible.builtin.user:
+    name: ansible
+
+- name: Read id_rsa.pub
+  ansible.builtin.set_fact:
+    ssh_id_rsa_pub: "{{ lookup('ansible.builtin.file',  '~/.ssh/id_rsa.pub') }}"
+  check_mode: no
+
+- name: Read id_ed25519.pub
+  ansible.builtin.set_fact:
+    ssh_id_ed25519_pub: "{{ lookup('ansible.builtin.file', '~/.ssh/id_ed25519.pub') }}"
+  check_mode: no
+
+- name: Copy id_rsa.pub
+  ansible.posix.authorized_key:
+    user: "{{ item }}"
+    key: "{{ ssh_id_rsa_pub }}"
+  when: ssh_id_rsa_pub is defined
+  loop:
+    - root
+    - ansible
+
+- name: Copy id_ed25519.pub
+  ansible.posix.authorized_key:
+    user: "{{ item }}"
+    key: "{{ ssh_id_ed25519_pub }}"
+  when: ssh_id_ed25519_pub is defined
+  loop:
+    - root
+    - ansible
