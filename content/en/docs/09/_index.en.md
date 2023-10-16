@@ -1,9 +1,9 @@
 ---
-title: 9. AWX/Ansible Tower
+title: 9. AWX
 weight: 90
 sectionnumber: 9.2
 ---
 
-AWX ist the upstream/community edition of Ansible Tower, hosted on [GitHub](https://github.com/ansible/awx).
+[AWX](https://github.com/ansible/awx) provides a web-based user interface, REST API, and task engine built on top of Ansible. CIQ's [Ascender](https://ciq.com/products/ascender/) and Red Hat's [AAP](https://www.redhat.com/en/technologies/management/ansible) are based on AWX.
 
-The following Labs will install AWX on the contoller machine of this lab environment.
+Since the installation of Ascender is the most convenient, we use Ascender as the tool to learn about AWX Automation Platform.
