@@ -17,7 +17,7 @@ Get yourself familiar with the installation options for AWX, Ascender and AAP
 {{% details title="Solution Task 1" %}}
 An advantage of Ascender is the handy install script [ascender-install](https://github.com/ctrliq/ascender-install). Another advantage is, that everything is available even without a valid subscription for Ascender.
 
-An advantage of AAP is the availability of an rpm based installation. The downside is, that those rpm's are only available when you have a valid AAP subscription and you are logged in the Red Hat customer backend. 
+An advantage of AAP is the availability of an rpm based installation. The downside is, that those rpm's are only available when you have a valid AAP subscription and you are logged in the Red Hat customer backend.
 {{% /details %}}
 
 ### Task 2
