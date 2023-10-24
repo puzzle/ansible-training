@@ -27,6 +27,7 @@ ansible-galaxy collection install ansible.eda
 Enterprise Linux 9:
 ```bash
 sudo dnf install java-17-openjdk
+export JAVA_HOME=/usr/lib/jvm/jre-17-openjdk
 sudo dnf install python3-pip
 python3 -m venv ~/python
 . ~/python/bin/activate
@@ -35,9 +36,7 @@ pip install ansible ansible-rulebook
 
 ansible-galaxy collection install ansible.eda
 
-sudo dnf install systemd-devel
-sudo dnf install gcc
-sudo dnf install python3-devel
+sudo dnf install systemd-devel gcc python3-devel
 
 pip install -r  ~/.ansible/collections/ansible_collections/ansible/eda/requirements.txt
 ```
@@ -224,7 +223,7 @@ curl -H 'Content-Type: application/json' -d "{\"message\": \"webservers down\"}"
 * It should check for three things:
   * check if the website on one of the two webservers is down. (Same as Task 3 above)
   * check if the message matches exactly the string "webservers down" (Same as Task 5 above)
-  * check if the message contains the string "ERROR"
+  * check if the message contains the string "ERROR" or "error"
 * If one of the criterias above are met, do two things:
   1. run the ansible shell module to print the string "WEBSERVER ISSUES, REMEDIATION IN PROGRESS." into the journald log. (Use the command `systemd-cat echo "WEBSERVER ISSUES, REMEDIATION IN PROGRESS."`)
   2. run playbook `webservers.yml`
