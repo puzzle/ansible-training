@@ -24,7 +24,7 @@ Go to the Ascender Web-GUI
 
 Go to the EDA-Server Web-GUI
 
-* On the left hand side, chose `User Access` and then `Users`
+* On the left-hand side, chose `User Access` and then `Users`
 * On the right, chose user `ansible`
 * Now to to the tab `Controller Tokens`
 * Click on the button `Create controller token`. If you created already one, you have to delete it first to be able to create a new one.
