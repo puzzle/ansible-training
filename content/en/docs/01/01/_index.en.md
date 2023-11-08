@@ -34,7 +34,6 @@ Now we initialize the `/home/ansible/techlab` folder as a local git repository a
 * Create a `README.md` file with a description of your repository
 * Add and commit the file `README.md` with an appropriate commit message.
 * Don't push your changes yet
-* Push your changes to the remote repository on gitea
 
 {{% details title="Solution Task 2" %}}
 
@@ -48,17 +47,16 @@ git remote add origin gitea@<yourname>-controller.workshop.puzzle.ch:ansible/tec
 echo "This is my Ansible Techlab repo" > README.md
 git add README.md
 git commit -m "first commit"
-git push --set-upstream origin main
 ```
 
 {{% /details %}}
 
 ### Task 3
 
-* In Task 2 of Lab 1.0 you created ssh keys for the user ansible
+* In Task 2 of Lab 1.0 you created ssh keys for the user ansible on controller node
 * Show the content of the ssh public key
-* In the Gitea GUI, navigate to the `Settin`s` of your user
-* Then go to the `SSH / GPG Keys` tab of the `Settings`
+* In the Gitea GUI, navigate to the `Settings` of the user `ansible`
+* On the right side chose the `SSH / GPG Keys` tab
 * Click the `Add Key` button
 * Set `ansible@<yourname>-controller` as `Key Name` and paste the content of your public key in the `Content` field of the GUI
 * Click `Add Key`
