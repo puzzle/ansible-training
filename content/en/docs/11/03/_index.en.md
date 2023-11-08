@@ -48,7 +48,7 @@ After creation the status of the project will be `failed` as long as you don't h
 * On the left side navigate to `Resources` and then `Projects`.
 * On the right side click on the `Create project` button.
 * Enter a name, description, leave `SCM Type` as `Git`.
-* As `SCM URL` enter the path to your git repository on your Controller node (https://<yourname>-controller.workshop.puzzle.ch:4000/ansible/techlab). Remember to use port 4000.
+* As `SCM URL` enter the path to your git repository on your Controller node (`https://<yourname>-controller.workshop.puzzle.ch:4000/ansible/techlab`). Remember to use port 4000.
 * Leave the `Credential` field empty.
 * Clink on `Create project` at the bottom of the page.
 
@@ -159,6 +159,7 @@ cat webserver_rulebook.yml
           name: Provision_Webserver
           organization: Techlab
 ```
+
 * On the left side of the EDA-Server GUI, navigate to `Views`, then `Rulebook Activiations`
 * On the right side click `Create rulebook activation`
 * Enter the name `Webserver Provisioning`,  add a description and chose the project `Techlab Repo`.
@@ -209,7 +210,8 @@ Now, we stop the webserver on node1 and see in the logs of the rulebook activati
 
 {{% details title="Solution Task 7" %}}
 
-On <yourname>-node1.workshop.puzzle.ch:
+On `<yourname>-node1.workshop.puzzle.ch`:
+
 ```bash
 sudo systemctl stop httpd
 ```
@@ -228,10 +230,6 @@ In the logs on EDA-Server (see the last task to navigate there):
 2023-11-08 14:34:01,225 - ansible_rulebook.rule_set_runner - INFO - Task action::run_job_template::rebuild webservers if site down::check if site down and rebuild finished, active actions 0
 ```
 
-Check the webpage http://<yourname>-node1.workshop.puzzle.ch/ in your internet browser and ensure the page is available again.
+Check the webpage `http://<yourname>-node1.workshop.puzzle.ch/` in your internet browser and ensure the page is available again.
 
 {{% /details %}}
-
-### All done?
-
-* 
