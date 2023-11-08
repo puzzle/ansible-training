@@ -36,7 +36,7 @@ Go to the EDA-Server Web-GUI
 
 Now we add a git repository with our rulebooks as a project to EDA-Server
 
-* Be sure, your ansible rulebooks are residing in a toplevel folder "rulebooks" inside your git repository
+* Be sure, your ansible rulebooks are residing in a top level folder "rulebooks" inside your git repository
 * Add a Project to EDA-Server pointing to your git repository
 
 {{% alert title="Note" color="primary" %}}
