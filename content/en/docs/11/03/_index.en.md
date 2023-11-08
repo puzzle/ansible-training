@@ -18,7 +18,7 @@ To connect your EDA-Server to your Ansible Controller, you have to create an acc
 Go to the Ascender Web-GUI
 
 * On the left hand side, chose `Access`, then `Users`
-* Click on user `ansible`, then chose the tab `Tokens` and klick on the blue butten `Add`
+* Click on user `ansible`, then chose the tab `Tokens` and click on the blue button `Add`
 * Leave the `Application` field empty, add a description and chose the write scope.
 * Click the `Save` button. Copy the Token from the popup window. This token is shown only once, so remember it.
 
