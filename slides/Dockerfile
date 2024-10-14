@@ -4,8 +4,7 @@ ENV NPM_CONFIG_CACHE=/tmp/.npm
 
 WORKDIR /app
 
-RUN --mount=type=secret,id=gitlab_pullsecret PULLSECRET=$(cat /run/secrets/gitlab_pullsecret) \
- && git clone https://github.com/hakimel/reveal.js.git reveal \
+RUN git clone https://github.com/hakimel/reveal.js.git reveal \
  && git clone https://github.com/puzzle/pitc-revealjs-theme.git puzzle-theme \
  && mv puzzle-theme/css/theme/puzzle.css reveal/css/theme/ \
  && mv puzzle-theme/css/theme/source/puzzle.scss reveal/css/theme/source/ \
