@@ -71,7 +71,7 @@ git commit -m "first commit"
 {{% details title="Solution Task 3" %}}
 
 ```
-cat /home/ansible/.ssh/id_rsa.pub
+cat /home/ansible/.ssh/id_ed25519.pub
 ```
 
 ![Add SSH keys](git_add_sshkey_to_gitea.png)

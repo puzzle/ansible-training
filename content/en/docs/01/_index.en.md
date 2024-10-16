@@ -96,21 +96,21 @@ sudo dnf -y install python3 # (or python)
 
 ### Task 2
 
-* Create an SSH key pair for the user `ansible` on the controller host.
+* Create an SSH key pair (type ed25519) for the user `ansible` on the controller host.
 * Don't set a password for the private key! Just hit ENTER at the prompt.
 * Enable SSH key-based login for the user `ansible` on all nodes and the controller by distributing the SSH-public key.
 * Test the login on the nodes.
 
 {{% details title="Solution Task 2" %}}
 ```bash
-ssh-keygen #(no passphrase, just hit enter until the end)
+ssh-keygen -t ed25519 #(no passphrase, just hit enter until the end)
 ssh-copy-id <node-ip>
 ```
 
 Follow the prompt and enter the `ansible` user password you received from your instructor:
 
 ```bash
-usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/home/ansible/.ssh/id_rsa.pub"
+usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/home/ansible/.ssh/id_ed25519.pub"
 The authenticity of host '5.102.146.128 (5.102.146.128)' can't be established.
 ECDSA key fingerprint is SHA256:5PmNPnSzE2IS309kJ8fAKrAjk0/NZT91qC4zQo0Vwiw.
 ECDSA key fingerprint is MD5:43:5f:9c:e1:ad:b5:76:a1:fa:5d:09:9c:be:5d:c2:7e.
@@ -280,7 +280,7 @@ ansible -i hosts all  --list-hosts
 
 ### All done?
 
-* Have a look at [The Bullhorn newsletter](https://github.com/ansible/community/wiki/News#the-bullhorn)
+* Have a look at [The Bullhorn newsletter](https://forum.ansible.com/c/news/bullhorn/17)
 * See what inspired the creators of Ansible: [Rocannon's World](https://www.youtube.com/watch?v=X8F3r4_EkW8)
 * Ansible [Configuration File](https://docs.ansible.com/ansible/latest/installation_guide/intro_configuration.html)
 * Easter egg: [Cowsay not found!](https://docs.ansible.com/ansible/latest/notfound)

@@ -73,7 +73,7 @@ name of the source plugin used. Be sure to install the appropriate packages so t
 {{% /alert %}}
 
 {{% details title="Solution Task 2" %}}
-See the documentation on how to [throttle event storms](https://ansible.readthedocs.io/projects/rulebook/en/stable/conditions.html#throttle-actions-to-counter-event-storms-reactive).
+See the documentation on how to [throttle event storms](https://ansible.readthedocs.io/projects/rulebook/en/v1.1.6/conditions.html#throttle-actions-to-counter-event-storms-reactive).
 
 ```bash
 cat debug_event_rulebook.yml

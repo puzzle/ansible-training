@@ -103,6 +103,11 @@ base_motd_content: "This is a server\n"
 $ ls roles/base/tasks/
 main.yml      motd.yml      packages.yml
 
+$ cat roles/templates/motd.j2
+{{ motd_content }}
+IP ADDRESS: {{ ansible_default_ipv4.address }}
+OS:         {{ ansible_os_family }}
+
 $ cat roles/base/tasks/motd.yml
 ---
 - name: put motd template

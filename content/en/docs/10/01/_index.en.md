@@ -236,7 +236,7 @@ Be sure to look into the [documentation of the stable version](https://ansible-n
 There's also a [documentation of the latest version](https://ansible-navigator.readthedocs.io/en/latest/) where you can have a glimpse at the upcoming features.
 {{% /alert %}}
 
-* Run the playbook `container.yml` and verify that the image `docker pull quay.io/bitnami/mariadb`
+* Run the playbook `container.yml` and verify that the image `podman pull public.ecr.aws/bitnami/mariadb`
 was pulled on the db servers. Provide a cmdline option to run it in stdout mode.
 * Can you run your previous playbook `site.yml` with the new EE?
 
@@ -279,7 +279,7 @@ node2                      : ok=3    changed=0    unreachable=0    failed=0    s
 $ ansible db -b -a "podman images"
 node2 | CHANGED | rc=0 >>
 REPOSITORY             TAG         IMAGE ID      CREATED       SIZE
-quay.io/bitnami/mariadb  latest      c6cb896c1070  11 hours ago  93.5 MB
+public.ecr.aws/bitnami/mariadb  latest      c6cb896c1070  11 hours ago  93.5 MB
 ```
 Note that if you pulled the image as user `root` on the `db` servers,
 you will not see it in the output of `podman images` unless it's run as user `root` as well.
@@ -299,4 +299,4 @@ $ ansible-navigator run site.yml
 
 * Think about why the container was able to connect to the servers over SSH without providing a password
 * Have a look at the [ansible-builder GitHub page](https://github.com/ansible/ansible-builder)
-* Have a look at the [docs of the latest version of ansible-navigator](https://ansible-navigator.readthedocs.io/en/latest/) to see how the tool will evolve
+* Have a look at the [docs of ansible-navigator](https://ansible-navigator.readthedocs.io/) to see how the tool will evolve
