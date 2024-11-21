@@ -46,7 +46,7 @@ weight = 1
 
 [[Languages.en.menu.main]]
 weight = 3
-name = "Puzzle ITC GmbH"
+name = "Puzzle ITC"
 url = "https://www.puzzle.ch"
 
 [markup]
@@ -62,7 +62,7 @@ url = "https://www.puzzle.ch"
     # guessSyntax = "true"
 
 [params]
-copyright = "Puzzle ITC GmbH"
+copyright = "Puzzle ITC"
 github_repo = "https://github.com/puzzle/ansible-training"
 imagePrefix = "puzzle_"
 enabledModule = "base"
