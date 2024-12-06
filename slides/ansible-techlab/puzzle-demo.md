@@ -2,11 +2,11 @@
 
 ### ansible.puzzle.ch
 
-<!-- #### Lukas Grimm -->
+#### Lukas Grimm
 
 <!-- #### Dominik Meisser -->
 
-#### Lukas Preisig
+<!-- #### Lukas Preisig -->
 
 <!-- #### Philippe Schmid -->
 
@@ -16,7 +16,7 @@
 
 <!-- #### Mark Pröhl -->
 
-#### Florian Studer
+<!-- #### Florian Studer -->
 
 <!-- .slide: class="master-cover" -->
 
@@ -27,7 +27,7 @@
 <!--
 <div class="people" style="color: black;">
   <div>
-    <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/06/Schmid_Philippe-3-400x300.jpg)" />
+    <div class="img" style="background-image: url(https://www.puzzle.ch/img/2024/06/Schmid_Philippe.jpg?w=900&h=900&fit=crop&fm=webp&q=90&sharp=4&s=f27e83a00061d8aa6266f3092b1b289c)" />
   </div>
 
   ### Philippe Schmid
@@ -38,18 +38,12 @@
 
 -->
 
-<!--
-<div class="people" style="color: black;">
-<div>
-    <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2020/08/Lukas_Grimm_wp-400x300.jpg)" />
-    </div>
+![](https://www.puzzle.ch/img/2024/06/Grimm_Lukas.jpg?w=300&h=300&fit=crop&fm=webp&q=90&sharp=4&s=d42398d9832aa48066cb50daa8a895d6)
 
   ### Lukas Grimm
-  System Engineer
+  Lead System Architect
 
   grimm@puzzle.ch
-</div>
--->
 
 <!--
 <div class="people">
@@ -64,7 +58,7 @@
 </div>
 
 -->
-
+<!--
 <div class="people" style="color: black;">
 <div>
     <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/05/Preisig_Lukas-400x300.jpg)" />
@@ -75,7 +69,7 @@
 
   preisig@puzzle.ch
 </div>
-
+-->
 <!--
 <div>
     <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2018/08/Test-Remy-Keil-Filter_2Option-400x300.jpg)" />
@@ -126,7 +120,7 @@ proehl@puzzle-itc.de
 </div>
 
 -->
-
+<!--
 <div>
 <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2021/06/Florian_Studer_wp-400x300.jpg)" />
 </div>
@@ -138,21 +132,16 @@ studer@puzzle.ch
 
 </div>
 
-
+-->
 <!-- .slide: class="master-top-head" -->
 
 ***
 ## Alle Puzzler
 
-<div class="people" style="color: black;">
-  <div>
-    <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2021/06/2006-1024.png)" />
-  </div>
+![](https://www.puzzle.ch/img/2024/06/2024_Gruppenfoto_Puzzle-16x9-1000px-Breit.jpg?w=1000&h=561&fit=crop&fm=webp&q=90&sharp=4&s=5ec79746d78173920f663ca911d9ce86)"
 
   ### Members
   https://www.puzzle.ch/de/team
-
-</div>
 
 <!-- .slide: class="master-top-head" -->
 
@@ -783,6 +772,7 @@ Ein Play ist was, wo wie, gmacht wird
 "Baby-JSON" possible
 
 same as before:
+
 ```yaml
 ---
 - hosts: web
@@ -790,6 +780,7 @@ same as before:
   - name: install httpd
     yum: name=httpd state=installed
 ```
+
 Not Best Practice!
 <!-- .slide: class="master-content" > -->
 
@@ -848,6 +839,7 @@ Why? Where to define variables?
 ***
 ## Where to put variables
 defined in playbook:
+
 ```yaml
 ---
 - hosts: web
@@ -860,12 +852,14 @@ defined in playbook:
       name: "{{ my_package }}"
       state: installed
 ```
+
 <!-- .slide: class="master-content" > -->
 
 ***
 ## Where to put variables
 
 `ansible-playbook myplay.yml --extra-vars my_package="nginx"`
+
 <!-- .slide: class="master-content" > -->
 
 Note:
@@ -933,6 +927,7 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#unde
 Don't Name your Variables after Magic Variables
 
 ***
+
 ## Bonus Level: Loops!
 ```yaml
 - name: start and enable two services
@@ -951,11 +946,15 @@ Note:
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html#migrating-to-loop
 
 <!-- .slide: class="master-content" > -->
+
 ***
+
 # Lab 4.1: Ansible Playbooks - Variables and Loops
 
 <!-- .slide: class="master-title" > -->
+
 ***
+
 ## Templates
 
 - "template" is a module
