@@ -16,33 +16,13 @@ The main part are the labs, which can be found at [content/en/docs](content/en/d
 
 This site is built using the static page generator [Hugo](https://gohugo.io/).
 
-The page uses the [docsy theme](https://github.com/google/docsy) which is included as a Git Submodule.
+The page uses the [docsy theme](https://github.com/google/docsy).
 Docsy is being enhanced using [docsy-plus](https://github.com/acend/docsy-plus/) as well as [docsy-puzzle](https://github.com/puzzle/docsy-puzzle/).
-
-After cloning the main repo, you need to initialize the submodules:
-
-```bash
-git submodule update --init --recursive
-```
-
-In order to update all submodules, run the following command:
-
-```bash
-git pull --recurse-submodules
-```
 
 ### Docsy Theme Usage
 
 * [Official docsy documentation](https://www.docsy.dev/docs/)
 * [Docsy Plus](https://github.com/acend/docsy-plus/)
-
-### Update submodules for theme updates
-
-Run the following command to update all submodules with their newest upstream version:
-
-```bash
-git submodule update --remote
-```
 
 ## Build using Docker
 
