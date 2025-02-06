@@ -80,10 +80,10 @@ Example `output.yml`:
   become: true
   tasks:
     - name:
-      command: "find /etc/postfix -type f -name *.cf"
+      ansible.builtin.command: "find /etc/postfix -type f -name *.cf"
       register: output
     - name: create backup only when no backupfile is present
-      command: "cp {{ item }} {{ item }}.bak"
+      ansible.builtin.command: "cp {{ item }} {{ item }}.bak"
       # only do this if there is no .bak for file: item
       args:
         creates: "{{ item }}.bak"
@@ -98,13 +98,13 @@ Example `output.yml`:
   become: true
   tasks:
     - name:
-      command: "find /etc/postfix -type f -name *.cf.bak"
+      ansible.builtin.command: "find /etc/postfix -type f -name *.cf.bak"
       register: search
     - name:
-      command: "find /etc/postfix -type f -name *.cf"
+      ansible.builtin.command: "find /etc/postfix -type f -name *.cf"
       register: output
     - name: create backup only when no backupfile is present
-      command: "cp {{ item }} {{ item }}.bak"
+      ansible.builtin.command: "cp {{ item }} {{ item }}.bak"
       loop: "{{ output.stdout_lines  }}"
       # only do this if there is no .bak for file: item
       when: search.stdout.find(item) == -1
@@ -116,7 +116,7 @@ Example `output.yml`:
 * Ensure `httpd` is stopped on the group `web` by using an Ansible ad hoc command.
 * Write a play `servicehandler.yml` that does the following:
 * Install `httpd` by using the `dnf` module
-* Start the service `httpd` with the `command` module. Don't use `service` or `systemd` module.
+* Start the service `httpd` with the `ansible.builtin.command` module. Don't use `ansible.builtin.service` or `ansible.builtin.systemd` module.
 * Start the service only if it is not started and running already. (The output of `systemctl status httpd` doesn't contains the string `Active: active (running)`)
 
 {{% alert title="Note" color="primary" %}}
@@ -139,17 +139,17 @@ Content of `servicehandler.yml`:
   become: true
   tasks:
     - name: install httpd
-      dnf:
+      ansible.builtin.dnf:
         name: httpd
         state: present
     - name: check state of service httpd
-      command: 'systemctl status httpd'
+      ansible.builtin.command: 'systemctl status httpd'
       register: status
       ignore_errors: true
     - debug:
         var: status.stdout
     - name: start httpd
-      command: 'systemctl start httpd'
+      ansible.builtin.command: 'systemctl start httpd'
       when: "'Active: active (running)' not in status.stdout"
 ```
 {{% /details %}}
@@ -176,17 +176,17 @@ Example `servicehandler.yml`:
   become: true
   tasks:
     - name: install httpd
-      dnf:
+      ansible.builtin.dnf:
         name: httpd
         state: present
     - name: check state of service httpd
-      command: 'systemctl status httpd'
+      ansible.builtin.command: 'systemctl status httpd'
       register: status
       failed_when: "'failed' in status.stdout"
     - debug:
         var: status.stdout
     - name: start httpd
-      command: 'systemctl start httpd'
+      ansible.builtin.command: 'systemctl start httpd'
       when: "'Active: active (running)' not in status.stdout"
 ```
 
@@ -196,7 +196,7 @@ ansible web -b -m copy -a "content='bli bla blup' dest=/etc/httpd/conf/httpd.con
 Now fix your apache config. You could use the backup of the file created in the previous ad-hoc command.
 
 ```bash
-ansible web -b -m service -a "name=httpd state=restarted"
+ansible web -b -m ansible.builtin.service -a "name=httpd state=restarted"
 ```
 {{% /details %}}
 

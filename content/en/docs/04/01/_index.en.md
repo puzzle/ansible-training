@@ -19,7 +19,7 @@ Remember `loop:` or `with_items:`
 Delete the 2 tasks "start and enable \[httpd,firewalld\]". Add a new task with the following content:
 ```yaml
 - name: start and enable services
-  service:
+  ansible.builtin.service:
     name: "{{ item }}"
     state: started
     enabled: yes
@@ -43,7 +43,7 @@ Older versions of Ansible used `with_items` instead of `loop`
 ```yaml
 tasks:
   - name: install httpd and firewalld
-    dnf:
+    ansible.builtin.dnf:
       name:
         - httpd
         - firewalld

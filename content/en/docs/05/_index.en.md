@@ -36,13 +36,13 @@ $ cat roles/httpd/tasks/main.yml
 ---
 # tasks file for httpd
 - name: install packages
-  dnf:
+  ansible.builtin.dnf:
     name:
       - httpd
       - firewalld
     state: installed
 - name: start services
-  service:
+  ansible.builtin.service:
     name: "{{ item }}"
     state: started
     enabled: yes
@@ -108,7 +108,7 @@ $ cat roles/base/tasks/motd.yml
 $ cat roles/base/tasks/packages.yml
 ---
 - name: install packages
-  dnf:
+  ansible.builtin.dnf:
     name:
       - firewalld
       - yum-utils

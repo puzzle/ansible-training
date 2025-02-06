@@ -10,7 +10,7 @@ In this lab we start to use templates!
 
 * Rewrite your playbook `motd.yml` without using the `copy` module, but rather using the `template` module.
 * Use a Jinja2 template file called `motd.j2` which uses the variable `motd_content`.
-  
+
 {{% details title="Solution Task 1" %}}
 
 Create the file `motd.j2` with the following one liner:
@@ -45,7 +45,7 @@ Run the playbook again.
 * Add information about the installed operating system to the `motd` file as well.
 
 {{% alert title="Tip" color="info" %}}
-  Remember using the `setup` module to get a list of all facts!
+  Remember using the `ansible.builtin.setup` module to get a list of all facts!
 {{% /alert %}}
 
 {{% details title="Solution Task 2" %}}

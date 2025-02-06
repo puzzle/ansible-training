@@ -26,9 +26,9 @@ $ pip3 install ansible-navigator --user
 ```
 
 * Ansible-navigator downloads a default execution environment:
-  
+
 ```bash
-$ ansible-navigator 
+$ ansible-navigator
 ----------------------------------------------------------------------------------
 Execution environment image and pull policy overview
 ----------------------------------------------------------------------------------
@@ -41,9 +41,9 @@ Updating the execution environment
 ----------------------------------------------------------------------------------
 Trying to pull quay.io/ansible/ansible-navigator-demo-ee:0.6.0...
 Getting image source signatures
-Copying blob 7a0437f04f83 done  
+Copying blob 7a0437f04f83 done
 ... <ommitted> ...
-Copying config e65e4777ca done  
+Copying config e65e4777ca done
 Writing manifest to image destination
 Storing signatures
 e65e4777caa3791b6b55a61cd5b171a99fad6d0e2b58097ad242b2b8d50e5103
@@ -102,7 +102,7 @@ ansible-navigator:
 
 {{% details title="Solution Task 3" %}}
 ```bash
-$ cat site.yml 
+$ cat site.yml
 ---
 - name: Run tasks on webservers
   hosts: web
@@ -113,18 +113,18 @@ $ cat site.yml
         name: httpd
         state: installed
     - name: start and enable httpd
-      service:
+      ansible.builtin.service:
         name: httpd
         state: started
         enabled: yes
     - name: start and enable firewalld
-      service:
+      ansible.builtin.service:
         name: firewalld
         state: started
         enabled: yes
     - name: open firewall for http
       firewalld:
-        service: http
+        ansible.builtin.service: http
         state: enabled
         permanent: yes
         immediate: yes
@@ -152,7 +152,7 @@ $ ansible-navigator run site.yml
 ```
 If you would not have set `remote_user` to `ansible` in the ansible configuration, the EE would use user root to connect to the hosts per default. So in case of problems, check your ansible.cfg:
 ```bash
-$ grep remote_user ansible.cfg 
+$ grep remote_user ansible.cfg
 remote_user = ansible
 ```
 See the running container:
@@ -200,7 +200,7 @@ Choose `4` to inspect the task for setting firewall rules
 ```bash
 PLAY [Run tasks on webservers:4] *************************************************************************
 TASK [open firewall for http] ****************************************************************************
-OK: [node1] Permanent and Non-Permanent(immediate) operation                                              
+OK: [node1] Permanent and Non-Permanent(immediate) operation
  0│---
  1│duration: 1.350668
  2│end: '2022-04-03T09:37:20.155703'
@@ -292,7 +292,7 @@ Choose `1`
 ```
 Choose `0`
 ```bash
-[node2]                                                                                                   
+[node2]
 0│---
 1│ansible_host: 5.102.148.164
 2│inventory_hostname: node2
@@ -311,9 +311,9 @@ $ ansible-navigator config
 ```bash
     OPTION                      DEFAULT SOURCE  VIA                         CURRENT VALUE
   0│ACTION_WARNINGS                True default default                     True
-  1│AGNOSTIC_BECOME_PROMPT         True default default                     True                         
-  2│ALLOW_WORLD_READABLE_TMPFILE   True default default                     False                        
-  3│ANSIBLE_CONNECTION_PATH        True default default                     None                         
+  1│AGNOSTIC_BECOME_PROMPT         True default default                     True
+  2│ALLOW_WORLD_READABLE_TMPFILE   True default default                     False
+  3│ANSIBLE_CONNECTION_PATH        True default default                     None
   4│ANSIBLE_COW_ACCEPTLIST         True default default                     ['bud-frogs', 'bunny', 'chees...
   5│ANSIBLE_COW_PATH               True default default                     None
   6│ANSIBLE_COW_SELECTION          True default default                     default
@@ -326,7 +326,7 @@ $ ansible-navigator config
 ```
 Choose `9`
 ```bash
-ANSIBLE NOCOWS (current/default: False)                                                                   
+ANSIBLE NOCOWS (current/default: False)
  0│---
  1│current: false
  2│default: false
@@ -396,17 +396,17 @@ Choose `3`:
  3│application            module    None       False create, update, or dest
  4│controller             inventory None       False Ansible dynamic invento
  5│controller_api         lookup    None       False Search the API for obje
- 6│controller_meta        module    None       False Returns metadata about 
- 7│credential             module    None       False create, update, or dest 
+ 6│controller_meta        module    None       False Returns metadata about
+ 7│credential             module    None       False create, update, or dest
  ...
 ```
 Choose `7`:
 ```bash
 AWX.AWX.CREDENTIAL: create, update, or destroy Automation Platform Controller
-  0│---                                                                     
-  1│additional_information: {}                                              
-  2│collection_info:                                                        
-  3│  authors:                                                              
+  0│---
+  1│additional_information: {}
+  2│collection_info:
+  3│  authors:
   4│  - AWX Project Contributors <awx-project@googlegroups.com>
   5│  dependencies: {}
   ...

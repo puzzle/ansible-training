@@ -80,7 +80,7 @@ $ cat revert_motd.yml
   become: true
   tasks:
     - name: uninstall ansible
-      dnf:
+      ansible.builtin.dnf:
         name: ansible
         state: absent
     - name: ensure cronjob not present

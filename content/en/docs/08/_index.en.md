@@ -57,7 +57,7 @@ Created collection for puzzle.ansible_techlab at /home/ansible/techlab/puzzle-an
 
 $ vim /home/ansible/techlab/puzzle/ansible_techlab/galaxy.yml
 
-$ grep ^name /home/ansible/techlab/puzzle/ansible_techlab/galaxy.yml 
+$ grep ^name /home/ansible/techlab/puzzle/ansible_techlab/galaxy.yml
 namespace: newpuzzle
 name: ansible_techlab2
 
@@ -84,7 +84,7 @@ Note the subfolder `ansible-collections` that was created. This is default ansib
 
 {{% details title="Solution Task 3" %}}
 ```bash
-$ ansible-galaxy collection install puzzle-ansible_techlab-1.0.0.tar.gz 
+$ ansible-galaxy collection install puzzle-ansible_techlab-1.0.0.tar.gz
 Process install dependency map
 Starting collection install process
 Installing 'puzzle.ansible_techlab:1.0.0' to '/home/ansible/.ansible/collections/ansible_collections/puzzle/ansible_techlab'
@@ -93,11 +93,11 @@ $ ansible-config dump | grep COLLECTIONS_PATHS
 COLLECTIONS_PATHS(default) = [u'/home/ansible/.ansible/collections', u'/usr/share/ansible/collections']
 
 $ vim ansible.cfg
-$ grep "\[defaults\]" -A1 ansible.cfg 
+$ grep "\[defaults\]" -A1 ansible.cfg
 [defaults]
 collections_paths = /home/ansible/techlab/collections
 
-$ ansible-galaxy collection install puzzle-ansible_techlab-1.0.0.tar.gz 
+$ ansible-galaxy collection install puzzle-ansible_techlab-1.0.0.tar.gz
 Process install dependency map
 Starting collection install process
 Installing 'puzzle.ansible_techlab:1.0.0' to '/home/ansible/techlab/collections/ansible_collections/puzzle/ansible_techlab'
@@ -145,11 +145,11 @@ Process install dependency map
 Starting collection install process
 Installing 'nginxinc.nginx_controller:3.7.5' to '/home/ansible/techlab/collections/ansible_collections/nginxinc/nginx_controller'
 
-$ cat requirements.yml 
+$ cat requirements.yml
 collections:
 - name: cloudscale_ch.cloud
 
-$ ansible-galaxy collection install -r requirements.yml 
+$ ansible-galaxy collection install -r requirements.yml
 Process install dependency map
 Starting collection install process
 Installing 'cloudscale_ch.cloud:1.0.0' to '/home/ansible/techlab/collections/ansible_collections/cloudscale_ch/cloud'
@@ -171,7 +171,7 @@ Process install dependency map
 Starting collection install process
 Installing 'containers.podman:1.1.4' to '/home/ansible/techlab/collections/ansible_collections/containers/podman'
 
-$ cat collections.yml 
+$ cat collections.yml
 ---
 - name: example for using modules from a collection
   become: true
@@ -180,7 +180,7 @@ $ cat collections.yml
     - containers.podman
   tasks:
     - name: install podman
-      dnf:
+      ansible.builtin.dnf:
         name: podman
         state: installed
 
@@ -199,14 +199,14 @@ $ cat collections.yml
 ```
 OR:
 ```bash
-$ cat collections.yml 
+$ cat collections.yml
 ---
 - name: example for using modules from a collection
   become: true
   hosts: controller
   tasks:
     - name: install podman
-      dnf:
+      ansible.builtin.dnf:
         name: podman
         state: installed
 
@@ -225,14 +225,14 @@ $ cat collections.yml
 ```
 This would not work, since the module `podman_container` is only content of the collection and not part of the ansible-base installation:
 ```bash
-$ cat collections.yml 
+$ cat collections.yml
 ---
 - name: example for using modules from a collection
   become: true
   hosts: controller
   tasks:
     - name: install podman
-      dnf:
+      ansible.builtin.dnf:
         name: podman
         state: installed
 
@@ -249,7 +249,7 @@ $ cat collections.yml
         publish:
           - '8080'
 
-$ ansible-playbook -i hosts collections.yml 
+$ ansible-playbook -i hosts collections.yml
 ERROR! couldn't resolve module/action 'podman_container'. This often indicates a misspelling, missing collection, or incorrect module path.
 
 The error appears to be in '/home/ansible/techlab/collections.yml': line 16, column 7, but may
@@ -282,7 +282,7 @@ $ curl -s http://localhost:32771 | grep title
 
 {{% details title="Solution Task 7" %}}
 ```bash
-ansible localhost -b -m dnf -a"name=podman, state=absent"
+ansible localhost -b -m ansible.builtin.dnf -a"name=podman, state=absent"
 ```
 {{% /details %}}
 
