@@ -303,7 +303,7 @@ Eure Lab-VMs werden vollautomatisch mit Ansible Deployed und provisioniert
 - [..]
 - Ansible 10.0  -->   Ansible-Core 2.17 + Collections v10
 - Ansible 11.0  -->   Ansible-Core 2.18 + Collections v11 (Current, not working with EL8)
-- Ansible 12.0  -->   Ansible-Core 2.19 + Collections v12 (In developmentm, unreleased)
+- Ansible 12.0  -->   Ansible-Core 2.19 + Collections v12 (In development, unreleased)
 
 <!-- .slide: class="master-content" > -->
 <!-- .slide: class="master-content" > -->
