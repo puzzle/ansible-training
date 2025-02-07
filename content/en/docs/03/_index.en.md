@@ -8,15 +8,15 @@ In this lab we’ll continue with our environment setup from [Chapter 1](../01) 
 
 ### Task 1
 
-* Ping all nodes in the inventory file using the ping module.
+* Ping all nodes in the inventory file using the ansible.builtin.ping module.
 
 {{% alert title="Tip" color="info" %}}
-You’ve used the `ping` module in a previous lab.
+You’ve used the `ansible.builtin.ping` module in a previous lab.
 {{% /alert %}}
 
 {{% details title="Solution Task 1" %}}
 ```bash
-$ ansible all -i hosts -m ping
+$ ansible all -i hosts -m ansible.builtin.ping
 5.102.146.128 | SUCCESS => {
     "ansible_facts": {
         "discovered_interpreter_python": "/usr/libexec/platform-python"
@@ -36,8 +36,8 @@ $ ansible all -i hosts -m ping
 
 {{% details title="Solution Task 2" %}}
 ```bash
-$ ansible all -i hosts -m setup # (a lot of green output should be printed)
-$ ansible all -i hosts -m setup -a "filter=ansible_default_ipv4"
+$ ansible all -i hosts -m ansible.builtin.setup # (a lot of green output should be printed)
+$ ansible all -i hosts -m ansible.builtin.setup -a "filter=ansible_default_ipv4"
 5.102.146.204 | SUCCESS => {
     "ansible_facts": {
         "ansible_default_ipv4": {
@@ -118,15 +118,15 @@ Complete the next steps using Ansible ad hoc commands:
 
 {{% details title="Solution Task 6" %}}
 ```bash
-ansible web -i hosts -b -m dnf -a "name=httpd state=installed"
-ansible web -i hosts -b -m service -a "name=httpd state=started enabled=yes"
+ansible web -i hosts -b -m ansible.builtin.dnf -a "name=httpd state=installed"
+ansible web -i hosts -b -m ansible.builtin.service -a "name=httpd state=started enabled=yes"
 ```
 
 Reverting the changes made on the remote hosts:
 
 ```bash
 ansible web -i hosts -b -m service -a "name=httpd state=stopped enabled=no"
-ansible web -i hosts -b -m dnf -a "name=httpd state=absent"
+ansible web -i hosts -b -m ansible.builtin.dnf -a "name=httpd state=absent"
 ```
 {{% /details %}}
 

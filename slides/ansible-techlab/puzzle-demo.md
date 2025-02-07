@@ -300,10 +300,10 @@ Eure Lab-VMs werden vollautomatisch mit Ansible Deployed und provisioniert
 - Ansible 2.11  -->   (not available, naming changes to Ansible 3.0)
 - Ansible 3.0   -->   Ansible-Core 2.10 + Collections v3
 - Ansible 4.0   -->   Ansible-Core 2.11 + Collections v4
-- Ansible 5.0   -->   Ansible-Core 2.12 + Collections v5
-- Ansible 6.0   -->   Ansible-Core 2.13 + Collections v6
-- Ansible 7.0   -->   Ansible-Core 2.14 + Collections v7 (Current)
-- Ansible 8.0   -->   Ansible-Core 2.15 + Collections v8 (In development; unreleased)
+- [..]
+- Ansible 10.0  -->   Ansible-Core 2.17 + Collections v10
+- Ansible 11.0  -->   Ansible-Core 2.18 + Collections v11 (Current, not working with EL8)
+- Ansible 12.0  -->   Ansible-Core 2.19 + Collections v12 (In development, unreleased)
 
 <!-- .slide: class="master-content" > -->
 <!-- .slide: class="master-content" > -->
@@ -420,10 +420,10 @@ pull (Puppet way) vs push (ansible way) --> push braucht weder daemon noch sonst
 ## Commands
 
 What do we use on cmdline?
-- `ansible` (ad hoc)
+- `ansible` (ad hoc execution)
 - `ansible-playbook`
 - `ansible-doc`
-- `ansible-vault` (secrets)
+- `ansible-vault` (secrets management)
 - `ansible-config`
 <!-- .slide: class="master-content" > -->
 
@@ -431,7 +431,7 @@ What do we use on cmdline?
 
 ## Commands (cont.)
 
-- `ansible-galaxy` (roles/collection repo)
+- `ansible-galaxy` (roles/collection management)
 - `ansible-inventory`
 - `ansible-lint` (syntax check)
 - `ansible-pull`
@@ -541,11 +541,10 @@ provisioning: local
 
 - Linux: Help yourself!
 - Windows:
-  - Cygwin
   - VS Code + Git for Windows
   - WSL
 
-<img alt="cygwin" src="ansible-techlab/img/cygwin.png" width="52"/> <img alt="vscode" src="ansible-techlab/img/vscode.png" width="52"/> <img alt="gitforwin" src="ansible-techlab/img/gitforwin.png" width="52"/>
+<img alt="vscode" src="ansible-techlab/img/vscode.png" width="52"/> <img alt="gitforwin" src="ansible-techlab/img/gitforwin.png" width="52"/>
 <!-- .slide: class="master-content" > -->
 ***
 ## Lab Environment
@@ -592,19 +591,20 @@ provisioning: local
 - `ansible-lint` (install via package manager)
 - `ansible-playbook --syntax-check`
 - `ansible-playbook --check`
+- AI -> ChatGPT can fix, but isn't good at writing -> More AI later
 <!-- .slide: class="master-content" > -->
 ***
 ## Common Mistakes
 ### Indentation
 wrong:
 ```yaml
-- yum:
+- ansible.builtin.yum:
   name: httpd
   state: installed
 ```
 right:
 ```yaml
-- yum:
+- ansible.builtin.yum:
     name: httpd
     state: installed
 ```
@@ -615,14 +615,14 @@ right:
 ### quoting of variables or spacing
 wrong:
 ```yaml
-- services:
+- ansible.builtin.services:
     name: {{ item }}
     state: started
   loop: "{{my_services}}"
 ```
 right:
 ```yaml
-- services:
+- ansible.builtin.services:
     name: "{{ item }}"
     state: started
   loop: "{{ my_services }}"
@@ -674,7 +674,7 @@ https://docs.ansible.com/ansible/devel/
 ***
 ## Ad hoc commands
 Examples:
-- `ansible all -m ping`
+- `ansible all -m ansible.builtin.ping`
 - `ansible all -m setup`
 
 setup → get «facts»
@@ -692,8 +692,8 @@ setup → get «facts»
 ***
 ## Ad hoc commands
 Examples:
-- `ansible all -b -m yum -a "name=httpd state=present"`
-- `ansible all -b -m service -a "name=httpd state=started"`
+- `ansible all -b -m ansible.builtin.yum -a "name=httpd state=present"`
+- `ansible all -b -m ansible.builtin.service -a "name=httpd state=started"`
 - `ansible all -a "uptime"`
 
 <!-- .slide: class="master-content" > -->
@@ -757,7 +757,7 @@ Very simple example:
 - hosts: web
   tasks:
   - name: install httpd
-    yum:
+    ansible.builtin.ansible.builtin.yum:
       name: httpd
       state: installed
 ```
@@ -797,11 +797,11 @@ A bit more complex:
   become: true
   tasks:
     - name: install mariadb
-      yum:
+      ansible.builtin.yum:
         name: mariadb
         state: installed
     - name: start mariadb
-      service:
+      ansible.builtin.service:
         name: mariadb
         state: started
 ```
@@ -848,7 +848,7 @@ defined in playbook:
     my_package: nginx
   tasks:
   - name: install nginx
-    yum:
+    ansible.builtin.yum:
       name: "{{ my_package }}"
       state: installed
 ```
@@ -931,7 +931,7 @@ Don't Name your Variables after Magic Variables
 ## Bonus Level: Loops!
 ```yaml
 - name: start and enable two services
-  service:
+  ansible.builtin.service:
     name: "{{ item }}"
     state: started
     enabled: yes
@@ -1004,12 +1004,12 @@ Example:
   become: true
   tasks:
     - name: Install ntp
-      yum:
+      ansible.builtin.yum:
         name: ntp
         state: present
       tags: ntp
     - name: Install figlet
-      yum:
+      ansible.builtin.yum:
         name: figlet
         state: present
       tags: figlet
@@ -1050,7 +1050,7 @@ values `stdout`, `stderr` and more when processing the output
 
 ```yaml
 - name: run command only when...
-  command: "uptime"
+  ansible.builtin.command: "uptime"
   when: ansible_hostname == "servername1"
 ```
 
@@ -1058,7 +1058,7 @@ values `stdout`, `stderr` and more when processing the output
 
 ```yaml
 - name: fails when error in stdout
-  command: "grep -i error /var/log/mylog"
+  ansible.builtin.command: "grep -i error /var/log/mylog"
   register: output
   failed_when: " 'error' in output.stdout"
 ```
@@ -1127,14 +1127,14 @@ Mit Task Kontrolle kann man die definieren wie Ansible auf eure Nodes zugreift.
 Ad-Hoc command:
 
 ```bash
-ansible node1 -i hosts -B 10 -P 2 -m yum -a "name=my_package state=present"
+ansible node1 -i hosts -B 10 -P 2 -m ansible.builtin.yum -a "name=my_package state=present"
 ```
 
 Task:
 
 ```yaml
 - name: fire and forget
-  yum:
+  ansible.builtin.yum:
     name: my_package
     state: installed
   async: 60 #← needed as well
@@ -1186,7 +1186,7 @@ Forks:
 Default: 5 forks
 
 ```bash
-$ ansible all -i hosts -m ping -f 50
+$ ansible all -i hosts -m ansible.builtin.ping -f 50
 ```
 Ansible.cfg:
 
@@ -1280,7 +1280,7 @@ Example (no roles yet):
 - hosts: web
   become: true
   tasks:
-    - yum:
+    - ansible.builtin.yum:
         name: httpd
         state: installed
     - service:
@@ -1499,7 +1499,7 @@ Define failed from output of command:
 
 ```yaml
 - name: my task
-  command: my_status_cmd
+  ansible.builtin.command: my_status_cmd
   register: cmd_result
   failed_when: "'FAILED' in cmd_result.stdout"
 ```
@@ -2531,6 +2531,12 @@ When writing ansible-content in a team:
 - Use file/template instead of lineinfile/blockinfile
 
 <!-- .slide: class="master-content" > -->
+
+***
+## AI and Ansible
+- Copilot is apperantly pretty good in helping you write ansible
+- ChatGPT is good in fixing syntax and logic errors
+- Ansible-Lightspeed -> 60d Trial, after that AAP and IBM watsonx Subscription
 
 ----
 # Do it yourself!

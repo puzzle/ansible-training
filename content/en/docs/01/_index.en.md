@@ -144,13 +144,13 @@ Instead of copying the ssh-id to the controller itself you could set `ansible_co
 If you have a valid `/etc/hosts` file containing information about lab hosts, you can omit the `ansible_host=<ip>` parts in the inventory file.
 {{% /alert %}}
 
-* Check if ansible is ready using the `ping` module to ping all hosts in your inventory
+* Check if ansible is ready using the `ansible.builtin.ping` module to ping all hosts in your inventory
 
 {{% details title="Solution Task 3" %}}
 ```bash
 cd techlab
 vim hosts # (copy & paste inventory data)
-ansible all -i hosts -m ping
+ansible all -i hosts -m ansible.builtin.ping
 5.102.146.128 | SUCCESS => {
     "ansible_facts": {
         "discovered_interpreter_python": "/usr/libexec/platform-python"
@@ -238,7 +238,7 @@ Ping `nodes`:
 
 ```bash
 # Note: hosts is the inventory file you created, either "-i hosts" or "-i ./hosts" works.
-ansible -i hosts nodes -m ping
+ansible -i hosts nodes -m ansible.builtin.ping
 ...
 ```
 {{% alert title="Tip" color="info" %}}

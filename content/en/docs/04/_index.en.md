@@ -30,22 +30,22 @@ Below is a possible solution for your playbook:
   become: true
   tasks:
     - name: install httpd
-      dnf:
+      ansible.builtin.dnf:
         name: httpd
         state: installed
     - name: start and enable httpd
-      service:
+      ansible.builtin.service:
         name: httpd
         state: started
         enabled: yes
     - name: start and enable firewalld
-      service:
+      ansible.builtin.service:
         name: firewalld
         state: started
         enabled: yes
     - name: open firewall for http
       firewalld:
-        service: http
+        ansible.builtin.service: http
         state: enabled
         permanent: yes
         immediate: yes
@@ -125,7 +125,7 @@ Wrong intendation:
   become: true
   tasks:
     - name: install httpd
-      dnf:
+      ansible.builtin.dnf:
       name: httpd        # <-- wrong intendation
       state: installed   # <-- wrong intendation
 ```
@@ -138,7 +138,7 @@ Wrong parameter name:
   become: true
   tasks:
     - name: install httpd
-      dnf:
+      ansible.builtin.dnf:
         name: httpd
         state: installed
         enabled: yes     # <-- doesn't exist for dnf module
