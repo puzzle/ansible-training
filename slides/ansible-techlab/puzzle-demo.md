@@ -1028,7 +1028,7 @@ ansible-playbook -t ntp myplaybook.yml
 Use `register` to put output command into variable
 ```yaml
 - name: output ls -lah to variable
-  command: "ls -lah"
+  ansible.builtin.command: "ls -lah"
   args:
     chdir: /home/ansible
   register: output_var
