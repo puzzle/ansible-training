@@ -1544,9 +1544,9 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html
 Blocks can come in handy to group `when` clauses:
 ```yaml
 - block:
-    - debug:
+    - ansible.builtin.debug:
         msg: 'this task...'
-    - debug:
+    - ansible.builtin.debug:
         msg: '...and this task will run if the host is in the web group'
   when: 'web' in groups
 ```
