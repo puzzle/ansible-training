@@ -961,7 +961,7 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html#migratin
 - Jinja2 → .j2 file ending
 - Easy access of variables: `"{{ my_variable }}"`
 - Access to the same variables as the play itself
-- Easy if-else statements and, for-loops etc.
+- Easy if-else statements, for-loops etc.
 <!-- .slide: class="master-content" > -->
 
 Note:
