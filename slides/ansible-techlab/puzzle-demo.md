@@ -1515,11 +1515,11 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html
 
 ```yaml
 - block:
-  « do stuff »
+    # do stuff 
   rescue:
-  « do this if block failed »
+    # do this if block failed
   always:
-  « do this always »
+    # do this always
 ```
 <!-- .slide: class="master-content" > -->
 ***
