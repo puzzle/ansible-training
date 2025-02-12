@@ -833,7 +833,7 @@ Why? Where to define variables?
 - in playbook
 - group_vars and host_vars
 - default/vars file of role (see later...)
-- starts with letter or number
+- starts with letter or underscore
 <!-- .slide: class="master-content" > -->
 
 ***
