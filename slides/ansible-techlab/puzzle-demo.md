@@ -1841,7 +1841,7 @@ password=<secret_password>
 ```
 
 Note:
-Man zeht sich in der Regel Collection von einem Hub/Github
+Man zieht sich in der Regel Collection von einem Hub/Github
 Red Hat Automation Hub Beispiel
 
 <!-- .slide: class="master-content" > -->
