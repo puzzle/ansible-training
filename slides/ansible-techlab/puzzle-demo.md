@@ -1385,6 +1385,7 @@ Example Playbook:
         src: templates/sshd_config.j2
         path: /etc/ssh/sshd_config
         validate: sshd -t %s
+        mode: "0644"
       notify: restart sshd
   handlers:
     - name: restart sshd
@@ -1404,6 +1405,7 @@ Example Playbook:
         src: templates/sshd_config.j2
         path: /etc/ssh/sshd_config
         validate: sshd -t %s
+        mode: "0644"
       notify: restart sshd
   handlers:
     - name: sshd restart
