@@ -1635,7 +1635,7 @@ mysecret: !vault |
 
 ```yaml
 ansible.builtin.debug:
-  msg: "{{ lookup('hashi_vault',<params>) }}"
+  msg: "{{ lookup('community.hashi_vault.hashi_vault',<params>) }}"
 ```
 vs
 ```yaml
@@ -1658,8 +1658,8 @@ ansible.builtin.debug:
 ## Lookup Plugins Examples
 ```yaml
 vars:
-  file_contents: "{{ lookup('file', 'path/to/file.txt') }}"
-  ipv4: "{{ lookup('dig', 'example.com.')}}"
+  file_contents: "{{ lookup('ansible.builtin.file', 'path/to/file.txt') }}"
+  ipv4: "{{ lookup('community.general.dig', 'example.com.')}}"
 
 ```
 
@@ -1668,8 +1668,8 @@ vars:
 ***
 ## Hashicorp Vault
 ```yaml
-debug:
-  msg: "{{ lookup('hashi_vault', \
+ansible.builtin.debug:
+  msg: "{{ lookup('community.hashi_vault.hashi_vault', \
            'secret=secret/hello:value \
            token=c975b7...0f9b688a5 \
            url=http://myvault:8200' \
