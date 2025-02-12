@@ -2487,7 +2487,7 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 
   Use `true` / `false` (yaml 1.2 supports only this)
 
-- Handlers: use «listen»
+- Handlers: use `listen`
 
 <!-- .slide: class="master-content" > -->
 
