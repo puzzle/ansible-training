@@ -976,7 +976,7 @@ Templates sind dafür da, um komplexe Files zu erstellen (Variabeln sowie `if` /
 ```yaml
 ---
 - name: Building /etc/hosts from template with variables
-  template:
+  ansible.builtin.template:
     src: hosts.j2
     dest: "/etc/hosts"
 ```
