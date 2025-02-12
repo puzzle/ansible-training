@@ -1069,7 +1069,7 @@ values `stdout`, `stderr` and more when processing the output
 <!-- .slide: class="master-content" > -->
 
 Note:
-Nicht nur in Templates sind when Condiations möglich
+Nicht nur in Templates sind `when` Conditions möglich
 
 ***
 
