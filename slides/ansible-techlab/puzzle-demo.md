@@ -381,7 +381,7 @@ pull (Puppet way) vs push (ansible way) --> push braucht weder daemon noch sonst
 
 ## Why Ansible?
 
-- Simple setup (yum install ansible)
+- Simple setup (dnf install ansible)
 - Agentless
 - Standard transport (ssh)
 - Easy (relatively), yaml
@@ -598,13 +598,13 @@ provisioning: local
 ### Indentation
 wrong:
 ```yaml
-- ansible.builtin.yum:
+- ansible.builtin.dnf:
   name: httpd
   state: installed
 ```
 right:
 ```yaml
-- ansible.builtin.yum:
+- ansible.builtin.dnf:
     name: httpd
     state: installed
 ```
@@ -692,7 +692,7 @@ ansible.builtin.setup → get «facts»
 ***
 ## Ad hoc commands
 Examples:
-- `ansible all -b -m ansible.builtin.yum -a "name=httpd state=present"`
+- `ansible all -b -m ansible.builtin.dnf -a "name=httpd state=present"`
 - `ansible all -b -m ansible.builtin.service -a "name=httpd state=started"`
 - `ansible all -a "uptime"`
 
@@ -757,7 +757,7 @@ Very simple example:
 - hosts: web
   tasks:
   - name: install httpd
-    ansible.builtin.yum:
+    ansible.builtin.dnf:
       name: httpd
       state: installed
 ```
@@ -778,7 +778,7 @@ same as before:
 - hosts: web
   tasks:
   - name: install httpd
-    yum: name=httpd state=installed
+    dnf: name=httpd state=installed
 ```
 
 Not Best Practice!
@@ -797,7 +797,7 @@ A bit more complex:
   become: true
   tasks:
     - name: install mariadb
-      ansible.builtin.yum:
+      ansible.builtin.dnf:
         name: mariadb
         state: installed
     - name: start mariadb
@@ -848,7 +848,7 @@ defined in playbook:
     my_package: nginx
   tasks:
   - name: install nginx
-    ansible.builtin.yum:
+    ansible.builtin.dnf:
       name: "{{ my_package }}"
       state: installed
 ```
@@ -1005,12 +1005,12 @@ Example:
   become: true
   tasks:
     - name: Install ntp
-      ansible.builtin.yum:
+      ansible.builtin.dnf:
         name: ntp
         state: present
       tags: ntp
     - name: Install figlet
-      ansible.builtin.yum:
+      ansible.builtin.dnf:
         name: figlet
         state: present
       tags: figlet
@@ -1084,7 +1084,7 @@ Nicht nur in Templates sind `when` Conditions möglich
 - no local config used
 - git repo mandatory
 - no stuff stored locally
-- yum install ansible → ansible-pull
+- dnf install ansible → ansible-pull
 <!-- .slide: class="master-content" > -->
 
 ***
@@ -1128,14 +1128,14 @@ Mit Task Kontrolle kann man definieren, wie Ansible auf die Nodes zugreift.
 Ad-Hoc command:
 
 ```bash
-ansible node1 -i hosts -B 10 -P 2 -m ansible.builtin.yum -a "name=my_package state=present"
+ansible node1 -i hosts -B 10 -P 2 -m ansible.builtin.dnf -a "name=my_package state=present"
 ```
 
 Task:
 
 ```yaml
 - name: fire and forget
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: my_package
     state: installed
   async: 60 #← needed as well
@@ -1281,7 +1281,7 @@ Example (no roles yet):
 - hosts: web
   become: true
   tasks:
-    - ansible.builtin.yum:
+    - ansible.builtin.dnf:
         name: httpd
         state: installed
     - service:
