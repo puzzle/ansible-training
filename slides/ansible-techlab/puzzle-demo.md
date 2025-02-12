@@ -1196,7 +1196,7 @@ Ansible.cfg:
 forks = 30
 ```
 
-But → mind your controllers processing power...
+But → mind your controller's processing power...
 
 <!-- .slide: class="master-content" > -->
 
