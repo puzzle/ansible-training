@@ -44,8 +44,8 @@ Below is a possible solution for your playbook:
         state: started
         enabled: yes
     - name: open firewall for http
-      firewalld:
-        ansible.builtin.service: http
+      ansible.builtin.firewalld:
+        service: http
         state: enabled
         permanent: yes
         immediate: yes
