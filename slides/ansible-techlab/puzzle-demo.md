@@ -2517,7 +2517,7 @@ Files:
 ## Ansible Content:
 
 Ansible-Vault:
--  Use encrypt_string to encrypt each variable seperately and not a complete vars-file.
+-  Use `encrypt_string` to encrypt each variable seperately and not a complete vars-file.
 
    Reason being: You still see which variable has changed in your git repo
 
