@@ -1145,7 +1145,7 @@ Task:
 ***
 
 ## Task control
-Retrieve status of a command that was fired and forgotten → module `async_status`
+Retrieve status of a command that was fired and forgotten → module `ansible.builtin.async_status`
 
 → module docs
 
