@@ -1422,7 +1422,7 @@ Caveat:
 - Are only run once at the end of play-run (not playbook-run) → Use "flush_handlers":
 
 ```yaml
-- meta: flush_handlers
+- ansible.builtin.meta: flush_handlers
 ```
 <!-- .slide: class="master-content" > -->
 ***
