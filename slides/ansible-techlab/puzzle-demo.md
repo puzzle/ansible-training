@@ -1636,10 +1636,9 @@ mysecret: !vault |
 ```yaml
 ansible.builtin.debug:
   msg: "{{ lookup('hashi_vault',<params>) }}"
-
+```
 vs
-
-debug:
+```yaml
 ansible.builtin.debug:
   msg: "{{ my_encrypted_var }}"
 ```
