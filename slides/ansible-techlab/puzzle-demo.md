@@ -942,7 +942,7 @@ Don't name your Variables after Magic Variables
 
 Note:
 
-"with_items" & "loop" possible, new better use loop
+"with_items" & "loop" possible, "with_*" is discouraged in favor of "loop"
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html#migrating-to-loop
 
 <!-- .slide: class="master-content" > -->
