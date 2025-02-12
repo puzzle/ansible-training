@@ -1565,9 +1565,9 @@ But: no loops over `block`. Use loops with `ansible.builtin.include_tasks` inste
 ***
 ## Ansible Vault
 - How to store sensitive stuff?
-- Passwords in git-repo?
-- Private keys?
-- Certificates?
+  - Passwords in git-repo?
+  - Private keys?
+  - Certificates?
 
 → Ansible Vault !
 
