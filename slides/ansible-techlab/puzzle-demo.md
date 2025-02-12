@@ -979,6 +979,7 @@ Templates sind dafür da, um komplexe Files zu erstellen (Variabeln sowie `if` /
   ansible.builtin.template:
     src: hosts.j2
     dest: "/etc/hosts"
+    mode: "0644"
 ```
 
 - `cat hosts.j2`
