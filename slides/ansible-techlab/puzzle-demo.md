@@ -816,7 +816,7 @@ A bit more complex:
 Note:
 
 Play sollten immer in YAML geschrieben werden
-Idempotent: Man sollte es mehrmals aufrühren können und das gleiche dabei rauskommen. Wikipedia:
+Idempotent: Man sollte es mehrmals ausführen können und das gleiche dabei rauskommen. Wikipedia:
 
 Idempotence (UK: /ˌɪdɛmˈpoʊtəns/, US: /ˌaɪdəm-/) is the property of certain operations in mathematics and computer science whereby they can be applied multiple times without changing the result beyond the initial application. The concept of idempotence arises in a number of places in abstract algebra (in particular, in the theory of projectors and closure operators) and functional programming (in which it is connected to the property of referential transparency).
 
@@ -924,7 +924,7 @@ Note:
 variable precedence
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#understanding-variable-precedence
 
-Don't Name your Variables after Magic Variables
+Don't name your Variables after Magic Variables
 
 ***
 
