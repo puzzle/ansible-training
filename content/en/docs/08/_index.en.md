@@ -186,7 +186,7 @@ $ cat collections.yml
 
     - name: Pull an image using the module from the collection
       podman_image:
-        pull: yes
+        pull: true
         name: quay.io/bitnami/nginx
 
     - name: Run nginx container
@@ -212,7 +212,7 @@ $ cat collections.yml
 
     - name: Pull an image using the module from the collection
       containers.podman.podman_image:
-        pull: yes
+        pull: true
         name: quay.io/bitnami/nginx
 
     - name: Run nginx container
@@ -238,7 +238,7 @@ $ cat collections.yml
 
     - name: Pull an image using the module from the collection
       podman_image:
-        pull: yes
+        pull: true
         name: quay.io/bitnami/nginx
 
     - name: Run nginx container

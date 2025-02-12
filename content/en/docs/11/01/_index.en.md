@@ -82,7 +82,7 @@ cat webserver.yml
       ansible.builtin.service:
         name: httpd
         state: started
-        enabled: yes
+        enabled: true
     - name: put default webpage
       ansible.builtin.copy:
         content: "Ansible Labs by Puzzle ITC"
@@ -93,13 +93,13 @@ cat webserver.yml
       ansible.builtin.service:
         name: firewalld
         state: started
-        enabled: yes
+        enabled: true
     - name: open firewall for http
       firewalld:
         service: http
         state: enabled
-        permanent: yes
-        immediate: yes
+        permanent: true
+        immediate: true
 ```
 ```bash
 cat inventory/hosts

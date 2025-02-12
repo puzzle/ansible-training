@@ -934,7 +934,7 @@ Don't name your Variables after Magic Variables
   ansible.builtin.service:
     name: "{{ item }}"
     state: started
-    enabled: yes
+    enabled: true
   loop:
     - nginx
     - firewalld
@@ -1210,17 +1210,17 @@ Fact gathering:
 
 ```yaml
 - hosts: all
-  gather_facts: no
+  gather_facts: false
 ...
 ```
 
 Ansible.cfg:
 
 ```ini
-gathering = implicit (default, bedeutet gather_facts: yes)
+gathering = implicit (default, bedeutet gather_facts: true)
 ```
 
-explicit → gather_facts: no
+explicit → gather_facts: false
 <!-- .slide: class="master-content" > -->
 ***
 # Lab 4.5: Task control
@@ -1489,7 +1489,7 @@ Handlers are triggered after pre_tasks, tasks, post_tasks...
 ## Error-Handling
 Continue even when task failed:
 
-`ignore_errors: yes`
+`ignore_errors: true`
 
 (status is still failed, but run continues)
 

@@ -170,7 +170,7 @@ $ cat userplay.yml
       user:
         name: "{{ item.name }}"
         group: "{{ item.food | default('kebab') }}"
-        append: yes
+        append: true
         shell: "{% if item.name == 'santos' %}/usr/sbin/nologin{% else %}/usr/bin/zsh{% endif %}"
         password: "{{ 'N0t_5o_s3cur3' | password_hash('sha512') }}"
         update_password: on_create

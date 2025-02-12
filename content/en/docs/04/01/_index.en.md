@@ -22,7 +22,7 @@ Delete the 2 tasks "start and enable \[httpd,firewalld\]". Add a new task with t
   ansible.builtin.service:
     name: "{{ item }}"
     state: started
-    enabled: yes
+    enabled: true
   loop:
     - httpd
     - firewalld
