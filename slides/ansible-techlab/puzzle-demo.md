@@ -1710,8 +1710,8 @@ base_root_pw: "{{ lookup('community.hashi_vault.hashi_vault', \
 ***
 ## Collections
 - What is a Collection?
-- different kind of ansible content ( playbooks, roles, modules, plugins...)
-- Well defined structure (see later)
+  - different kind of ansible content ( playbooks, roles, modules, plugins...)
+  - Well defined structure (see later)
 <!-- .slide: class="master-content" > -->
 
 Note:
