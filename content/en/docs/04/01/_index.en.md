@@ -19,7 +19,7 @@ Remember `loop:` or `with_items:`
 Delete the 2 tasks "start and enable \[httpd,firewalld\]". Add a new task with the following content:
 ```yaml
 - name: start and enable services
-  ansible.builtin.service:
+  ansible.builtin.systemd_service:
     name: "{{ item }}"
     state: started
     enabled: true

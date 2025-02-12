@@ -370,7 +370,7 @@ pull (Puppet way) vs push (ansible way) --> push braucht weder daemon noch sonst
 - Transporters:
 `ssh`, `local`, `winrm`, `docker`,...
 - Modules:
-`file`, `template`, `firewalld`, `service`, `yum`,...
+`file`, `template`, `firewalld`, `systemd_service`, `yum`,...
 - Dynamic inventories:
 `vmware`, `cloudscale`, `foreman`, `azure`, `aws`,...
 
@@ -615,14 +615,14 @@ right:
 ### quoting of variables or spacing
 wrong:
 ```yaml
-- ansible.builtin.service:
+- ansible.builtin.systemd_service:
     name: {{ item }}
     state: started
   loop: "{{my_services}}"
 ```
 right:
 ```yaml
-- ansible.builtin.service:
+- ansible.builtin.systemd_service:
     name: "{{ item }}"
     state: started
   loop: "{{ my_services }}"
@@ -801,7 +801,7 @@ A bit more complex:
         name: mariadb
         state: installed
     - name: start mariadb
-      ansible.builtin.service:
+      ansible.builtin.systemd_service:
         name: mariadb
         state: started
 ```
@@ -931,7 +931,7 @@ Don't name your Variables after Magic Variables
 ## Bonus Level: Loops!
 ```yaml
 - name: start and enable two services
-  ansible.builtin.service:
+  ansible.builtin.systemd_service:
     name: "{{ item }}"
     state: started
     enabled: true
@@ -1284,7 +1284,7 @@ Example (no roles yet):
     - ansible.builtin.dnf:
         name: httpd
         state: installed
-    - service:
+    - ansible.builtin.systemd_service:
         name: httpd
         state: started
 ```
@@ -1389,7 +1389,7 @@ Example Playbook:
       notify: restart sshd
   handlers:
     - name: restart sshd
-      ansible.builtin.service:
+      ansible.builtin.systemd_service:
         name: sshd
         state: restarted
 ```
@@ -1410,7 +1410,7 @@ Example Playbook:
       notify: restart sshd
   handlers:
     - name: sshd restart
-      ansible.builtin.service:
+      ansible.builtin.systemd_service:
         name: sshd
         state: restarted
       listen: restart sshd
@@ -1443,11 +1443,11 @@ Only second handler will run when a task notifies `restart web services`
 ```yaml
 handlers:
   - name: restart web services
-    ansible.builtin.service:
+    ansible.builtin.systemd_service:
       name: memcached
       state: restarted
   - name: restart web services
-    ansible.builtin.service:
+    ansible.builtin.systemd_service:
       name: apache
       state: restarted
 ```

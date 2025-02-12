@@ -42,7 +42,7 @@ $ cat roles/httpd/tasks/main.yml
       - firewalld
     state: installed
 - name: start services
-  ansible.builtin.service:
+  ansible.builtin.systemd_service:
     name: "{{ item }}"
     state: started
     enabled: true

@@ -79,7 +79,7 @@ cat webserver.yml
           - firewalld
         state: installed
     - name: start and enable httpd
-      ansible.builtin.service:
+      ansible.builtin.systemd_service:
         name: httpd
         state: started
         enabled: true
@@ -90,7 +90,7 @@ cat webserver.yml
         owner: root
         group: root
     - name: start and enable firewalld
-      ansible.builtin.service:
+      ansible.builtin.systemd_service:
         name: firewalld
         state: started
         enabled: true
@@ -164,7 +164,7 @@ cat webserver_rulebook.yml
 ```bash
 ansible-rulebook --rulebook webserver_rulebook.yml -i inventory/hosts --verbose
 
-ansible node1 -i inventory/hosts -b -m service -a "name=httpd state=stopped"
+ansible node1 -i inventory/hosts -b -m ansible.builtin.systemd_service -a "name=httpd state=stopped"
 ```
 {{% /details %}}
 

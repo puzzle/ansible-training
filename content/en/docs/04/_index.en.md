@@ -34,18 +34,18 @@ Below is a possible solution for your playbook:
         name: httpd
         state: installed
     - name: start and enable httpd
-      ansible.builtin.service:
+      ansible.builtin.systemd_service:
         name: httpd
         state: started
         enabled: true
     - name: start and enable firewalld
-      ansible.builtin.service:
+      ansible.builtin.systemd_service:
         name: firewalld
         state: started
         enabled: true
     - name: open firewall for http
       firewalld:
-        ansible.builtin.service: http
+        ansible.builtin.systemd_service: http
         state: enabled
         permanent: true
         immediate: true
