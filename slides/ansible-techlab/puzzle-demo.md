@@ -1064,7 +1064,7 @@ values `stdout`, `stderr` and more when processing the output
   failed_when: " 'error' in output.stdout"
 ```
 
-- Use `changed_when` to define a as «changed»
+- Use `changed_when` to define a task as «changed»
 
 <!-- .slide: class="master-content" > -->
 
