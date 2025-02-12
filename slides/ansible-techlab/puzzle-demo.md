@@ -615,14 +615,14 @@ right:
 ### quoting of variables or spacing
 wrong:
 ```yaml
-- ansible.builtin.services:
+- ansible.builtin.service:
     name: {{ item }}
     state: started
   loop: "{{my_services}}"
 ```
 right:
 ```yaml
-- ansible.builtin.services:
+- ansible.builtin.service:
     name: "{{ item }}"
     state: started
   loop: "{{ my_services }}"
