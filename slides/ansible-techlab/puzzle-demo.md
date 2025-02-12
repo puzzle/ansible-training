@@ -1715,7 +1715,7 @@ base_root_pw: "{{ lookup('community.hashi_vault.hashi_vault', \
 <!-- .slide: class="master-content" > -->
 
 Note:
-Ist eine Zusammenzug von verschiedenen Ansible komponenten
+Ist ein Zusammenzug von verschiedenen Ansible komponenten
 
 ***
 
