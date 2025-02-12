@@ -1113,7 +1113,7 @@ Pull kehrt einfach die Logik um. Man holt sich die Befehle und schickt sie nicht
 ## Task control
 
 - «async»: define how long to wait at max for a task to finish. (ad hoc → -B)
-- «poll»: Intervall at which ansible checks back if task has finished. Default: 10sec (ad hoc → -P)
+- «poll»: Interval at which ansible checks back if task has finished. Default: 10sec (ad hoc → -P)
 -  Fire and forget: «async = x » AND «poll = 0»
 
 <!-- .slide: class="master-content" > -->
