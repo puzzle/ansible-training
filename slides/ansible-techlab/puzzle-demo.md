@@ -1400,7 +1400,7 @@ Example Playbook:
 - hosts: all
   tasks:
     - name: put configuration file
-      template:
+      ansible.builtin.template:
         src: templates/sshd_config.j2
         path: /etc/ssh/sshd_config
         validate: sshd -t %s
