@@ -1119,7 +1119,7 @@ Pull kehrt einfach die Logik um. Man holt sich die Befehle und schickt sie nicht
 <!-- .slide: class="master-content" > -->
 
 Note:
-Mit Task Kontrolle kann man die definieren wie Ansible auf eure Nodes zugreift.
+Mit Task Kontrolle kann man definieren, wie Ansible auf die Nodes zugreift.
 
 ***
 
