@@ -1528,14 +1528,14 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html
 ```yaml
 - block:
     - name: i force a failure
-      command: /bin/false
-    - debug:
+      ansible.builtin.command: /bin/false
+    - ansible.builtin.debug:
         msg: i will not run because false before
   rescue:
-    - debug:
+    - ansible.builtin.debug:
         msg: i will run
   always:
-    - debug:
+    - ansible.builtin.debug:
         msg: i will always run
 ```
 <!-- .slide: class="master-content" > -->
