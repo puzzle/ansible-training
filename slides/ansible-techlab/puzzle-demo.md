@@ -1390,7 +1390,8 @@ Example Playbook:
   handlers:
     - name: restart sshd
       ansible.builtin.service:
-        name=sshd state=restarted
+        name: sshd
+        state: restarted
 ```
 <!-- .slide: class="master-content" > -->
 ***
@@ -1410,7 +1411,8 @@ Example Playbook:
   handlers:
     - name: sshd restart
       ansible.builtin.service:
-        name=sshd state=restarted
+        name: sshd
+        state: restarted
       listen: restart sshd
 ```
 <!-- .slide: class="master-content" > -->
