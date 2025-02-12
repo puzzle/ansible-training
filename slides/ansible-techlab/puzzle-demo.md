@@ -1101,7 +1101,7 @@ default playbook: `local.yml`
 <!-- .slide: class="master-content" > -->
 
 Note:
-Pull kehr einfach die Logik um. Man holt sich die Befehle und schickt sie nicht.
+Pull kehrt einfach die Logik um. Man holt sich die Befehle und schickt sie nicht.
 
 ***
 
