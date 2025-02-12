@@ -1541,7 +1541,7 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html
 <!-- .slide: class="master-content" > -->
 ***
 ## Bonus Level: Blocks!
-Blocks can come in handy to group when clauses:
+Blocks can come in handy to group `when` clauses:
 ```yaml
 - block:
     - debug:
