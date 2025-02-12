@@ -2534,7 +2534,7 @@ When writing ansible-content in a team:
 ***
 ## Ansible Content:
 - Always set file permissions explicitly
-- Use file/template instead of lineinfile/blockinfile
+- Use `file`/`template` instead of `lineinfile`/`blockinfile`
 
 <!-- .slide: class="master-content" > -->
 
