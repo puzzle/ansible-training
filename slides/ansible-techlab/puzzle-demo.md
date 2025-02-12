@@ -1634,12 +1634,13 @@ mysecret: !vault |
 - python library needed: `hvac`
 
 ```yaml
-debug:
+ansible.builtin.debug:
   msg: "{{ lookup('hashi_vault',<params>) }}"
 
 vs
 
 debug:
+ansible.builtin.debug:
   msg: "{{ my_encrypted_var }}"
 ```
 
