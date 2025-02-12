@@ -785,7 +785,7 @@ Not Best Practice!
 <!-- .slide: class="master-content" > -->
 
 Note:
-Syntax ist anders als bei Ad-Hoc Befehl, also Best Practise kein Baby Json
+Syntax ist anders als bei Ad-Hoc Befehl, also Best Practice kein Baby Json
 
 ***
 ## Plays
