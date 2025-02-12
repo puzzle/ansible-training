@@ -1231,7 +1231,7 @@ explicit → gather_facts: no
 ## Bonus Level: Ansible on Windows
 - No Windows as ansible control host! cygwin etc not supported...
 - But: Works on WSL...
--  Maaaaaany modules for win
+- Maaaaaany modules for win
   - win_service
   - win_updates
   - win_chocolatey
