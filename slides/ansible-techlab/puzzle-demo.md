@@ -1389,7 +1389,7 @@ Example Playbook:
       notify: restart sshd
   handlers:
     - name: restart sshd
-      service:
+      ansible.builtin.service:
         name=sshd state=restarted
 ```
 <!-- .slide: class="master-content" > -->
@@ -1409,7 +1409,7 @@ Example Playbook:
       notify: restart sshd
   handlers:
     - name: sshd restart
-      service:
+      ansible.builtin.service:
         name=sshd state=restarted
       listen: restart sshd
 ```
