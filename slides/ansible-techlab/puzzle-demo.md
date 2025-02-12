@@ -2497,18 +2497,19 @@ Roles:
 - Prefix all variables of a role with its role-name (possible exception: base role)
 - Put all used variables in your defaults-folder , even if not yet defined
 - Use `ansible.builtin.meta: flush_handler` at the end of a role to be sure all role-related stuff is run even if a later applied role fails.
-- when many import_tasks: prefix name with filename
+- when many `ansible.builtin.import_tasks`: prefix name with filename
 
 <!-- .slide: class="master-content" > -->
 
 ***
 ## Ansible Content:
 Templates:
-- Use `{{ ansible_managed | comment }}` at the beginning of the template to indicate, that the file is managed by
-ansible
+- Use `{{ ansible_managed | comment }}` at the beginning of the template to indicate 
+  that the file is managed by ansible
 
 Files:
-- Use a comment at the beginning of the file to indicate, that the file is managed by ansible
+- Use a comment at the beginning of the file to indicate 
+  that the file is managed by ansible
 
 <!-- .slide: class="master-content" > -->
 
