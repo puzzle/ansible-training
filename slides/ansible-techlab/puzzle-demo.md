@@ -1047,7 +1047,7 @@ values `stdout`, `stderr` and more when processing the output
 ***
 ## Conditionals
 
-- Use «when» to run a task only on certain conditions
+- Use `when` to run a task only on certain conditions
 
 ```yaml
 - name: run command only when...
