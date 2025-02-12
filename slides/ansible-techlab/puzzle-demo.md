@@ -2334,7 +2334,7 @@ Some configs from ansible.cfg not taken!
 ***
 ## Glossary
 
-- Rulebook: one ore many Rulesets
+- Rulebook: one or many Rulesets
 - Ruleset:  Source(s), Rule(s)
 - Rule:     Condition(s) (IF), Action(s) (THEN)
 
@@ -2344,7 +2344,7 @@ Some configs from ansible.cfg not taken!
 ## Sources
 
 - alertmanager, zabbix, sensu
-- Paolo Alto, F5, Cisco
+- Palo Alto, F5, Cisco
 - Azure, GCP, AWS
 - many more to come...
 
@@ -2464,8 +2464,8 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 ***
 ## Infrastructure:
 - Start doing config changes only through ansible, limit root access to servers if possible
-- Use controllers to run ansible on your infrastructure, dont run from your laptop
-- Use a tool like Ansible Controller, AWX, Jenkins, GitLab, Github...
+- Use controllers to run ansible on your infrastructure, don't run from your laptop
+- Use a tool like Ansible Controller, AWX, Jenkins, GitLab, GitHub...
 
 <!-- .slide: class="master-content" > -->
 
@@ -2473,7 +2473,9 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 ## Migration to Ansible (from Puppet?):
 - You can run both tools at the same time if people fear they are not ready yet
 - Keep puppet infrastructure working but disable it
-- Migrate the puppet-modules to ansible-roles step by step. You DONT have to have ALL content ready from start (it probably not realistic)
+- Migrate the puppet-modules to ansible-roles step by step.
+
+  You DON'T have to have ALL content ready from start (it is probably not realistic)
 
 <!-- .slide: class="master-content" > -->
 
