@@ -757,7 +757,7 @@ Very simple example:
 - hosts: web
   tasks:
   - name: install httpd
-    ansible.builtin.ansible.builtin.yum:
+    ansible.builtin.yum:
       name: httpd
       state: installed
 ```
