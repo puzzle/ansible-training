@@ -1551,7 +1551,7 @@ Blocks can come in handy to group `when` clauses:
   when: 'web' in groups
 ```
 
-But: no loops over `block`. Use loops with `include_task` instead
+But: no loops over `block`. Use loops with `ansible.builtin.include_tasks` instead
 <!-- .slide: class="master-content" > -->
 ***
 # Lab 5.1: Ansible Roles - Handlers and Blocks
