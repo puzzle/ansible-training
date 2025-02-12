@@ -1916,17 +1916,15 @@ Use collection in playbook:
     - name: use my module
       my_module:
         option: bliblub
-...
-
+```
 OR:
-
+```yaml
 ---
 - hosts: puzzle_nodes
   tasks:
     - name: use my module
       puzzle.puzzle_collection.my_module:
         option: bliblub
-...
 ```
 
 <!-- .slide: class="master-content" > -->
