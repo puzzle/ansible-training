@@ -1055,7 +1055,7 @@ values `stdout`, `stderr` and more when processing the output
   when: ansible_hostname == "servername1"
 ```
 
-- Use «failed_when» to define a task as «failed»
+- Use `failed_when` to define a task as «failed»
 
 ```yaml
 - name: fails when error in stdout
@@ -1064,7 +1064,7 @@ values `stdout`, `stderr` and more when processing the output
   failed_when: " 'error' in output.stdout"
 ```
 
-- Use «changed_when» to define a as «changed»
+- Use `changed_when` to define a as «changed»
 
 <!-- .slide: class="master-content" > -->
 
