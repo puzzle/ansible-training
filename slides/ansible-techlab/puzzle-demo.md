@@ -765,7 +765,7 @@ To use `name` is a best practice
 <!-- .slide: class="master-content" > -->
 
 Note:
-Ein Play ist was, wo wie, gmacht wird
+Ein Play ist was, wo, wie gmacht wird
 
 ***
 ## Plays
