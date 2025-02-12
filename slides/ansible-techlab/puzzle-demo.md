@@ -965,7 +965,7 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html#migratin
 <!-- .slide: class="master-content" > -->
 
 Note:
-Templates sind dafür da, um komplexe Files zu erstellen (Variabeln sind möglich und if / else / for)
+Templates sind dafür da, um komplexe Files zu erstellen (Variabeln sowie `if` / `else` / `for` sind möglich)
 
 ***
 
