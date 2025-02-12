@@ -1038,10 +1038,10 @@ Show content of variable using debug. Note that you can use return
 values `stdout`, `stderr` and more when processing the output
 
 ```yaml
-- debug:
-  var: output_var
-- debug:
-  msg: "{{ output_var.stdout }}"
+- ansible.builtin.debug:
+    var: output_var
+- ansible.builtin.debug:
+    msg: "{{ output_var.stdout }}"
 ```
 <!-- .slide: class="master-content" > -->
 ***
