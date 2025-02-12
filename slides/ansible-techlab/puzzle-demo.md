@@ -615,14 +615,14 @@ right:
 ### quoting of variables or spacing
 wrong:
 ```yaml
-- ansible.builtin.services:
+- ansible.builtin.service:
     name: {{ item }}
     state: started
   loop: "{{my_services}}"
 ```
 right:
 ```yaml
-- ansible.builtin.services:
+- ansible.builtin.service:
     name: "{{ item }}"
     state: started
   loop: "{{ my_services }}"
@@ -675,9 +675,9 @@ https://docs.ansible.com/ansible/devel/
 ## Ad hoc commands
 Examples:
 - `ansible all -m ansible.builtin.ping`
-- `ansible all -m setup`
+- `ansible all -m ansible.builtin.setup`
 
-setup → get «facts»
+ansible.builtin.setup → get «facts»
 <!-- .slide: class="master-content" > -->
 ***
 ## Ad hoc flags
@@ -720,7 +720,7 @@ node[3:99]
 - Static inventory (file)
 - Dynamic inventory (get info from azure, vmware, foreman... )
 - Can be folder with multiple inv-files (static & dynamic)
-- location can be defined in `ansible.cfg`
+- Location can be defined in `ansible.cfg`
 <!-- .slide: class="master-content" > -->
 
 ***
@@ -757,7 +757,7 @@ Very simple example:
 - hosts: web
   tasks:
   - name: install httpd
-    ansible.builtin.ansible.builtin.yum:
+    ansible.builtin.yum:
       name: httpd
       state: installed
 ```
@@ -765,7 +765,7 @@ To use `name` is a best practice
 <!-- .slide: class="master-content" > -->
 
 Note:
-Ein Play ist was, wo wie, gmacht wird
+Ein Play ist was, wo, wie gmacht wird
 
 ***
 ## Plays
@@ -785,7 +785,7 @@ Not Best Practice!
 <!-- .slide: class="master-content" > -->
 
 Note:
-Syntax ist anders als bei Ad-Hoc Befehl, also Best Practise kein Baby Json
+Syntax ist anders als bei Ad-Hoc Befehl, also Best Practice kein Baby Json
 
 ***
 ## Plays
@@ -816,7 +816,7 @@ A bit more complex:
 Note:
 
 Play sollten immer in YAML geschrieben werden
-Idempotent: Man sollte es mehrmals aufrühren können und das gleiche dabei rauskommen. Wikipedia:
+Idempotent: Man sollte es mehrmals ausführen können und das gleiche dabei rauskommen. Wikipedia:
 
 Idempotence (UK: /ˌɪdɛmˈpoʊtəns/, US: /ˌaɪdəm-/) is the property of certain operations in mathematics and computer science whereby they can be applied multiple times without changing the result beyond the initial application. The concept of idempotence arises in a number of places in abstract algebra (in particular, in the theory of projectors and closure operators) and functional programming (in which it is connected to the property of referential transparency).
 
@@ -924,7 +924,7 @@ Note:
 variable precedence
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#understanding-variable-precedence
 
-Don't Name your Variables after Magic Variables
+Don't name your Variables after Magic Variables
 
 ***
 
@@ -942,7 +942,7 @@ Don't Name your Variables after Magic Variables
 
 Note:
 
-"with_items" & "loop" possible, new better use loop
+"with_items" & "loop" possible, "with_*" is discouraged in favor of "loop"
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html#migrating-to-loop
 
 <!-- .slide: class="master-content" > -->
@@ -961,11 +961,11 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html#migratin
 - Jinja2 → .j2 file ending
 - Easy access of variables: `"{{ my_variable }}"`
 - Access to the same variables as the play itself
-- Easy if-else statements and, for-loops etc.
+- Easy if-else statements, for-loops etc.
 <!-- .slide: class="master-content" > -->
 
 Note:
-Tempates sind dafür da komplexe Files zu erstellen (Variabeln sind möglich und if / else / for
+Templates sind dafür da, um komplexe Files zu erstellen (Variabeln sowie `if` / `else` / `for` sind möglich)
 
 ***
 
@@ -976,9 +976,10 @@ Tempates sind dafür da komplexe Files zu erstellen (Variabeln sind möglich und
 ```yaml
 ---
 - name: Building /etc/hosts from template with variables
-  template:
+  ansible.builtin.template:
     src: hosts.j2
     dest: "/etc/hosts"
+    mode: "0644"
 ```
 
 - `cat hosts.j2`
@@ -1027,8 +1028,8 @@ ansible-playbook -t ntp myplaybook.yml
 Use `register` to put output command into variable
 ```yaml
 - name: output ls -lah to variable
-  command: "ls -lah"
-  args:
+  ansible.builtin.command: 
+    cmd: "ls -lah"
     chdir: /home/ansible
   register: output_var
 ```
@@ -1037,16 +1038,16 @@ Show content of variable using debug. Note that you can use return
 values `stdout`, `stderr` and more when processing the output
 
 ```yaml
-- debug:
-  var: output_var
-- debug:
-  msg: "{{ output_var.stdout }}"
+- ansible.builtin.debug:
+    var: output_var
+- ansible.builtin.debug:
+    msg: "{{ output_var.stdout }}"
 ```
 <!-- .slide: class="master-content" > -->
 ***
 ## Conditionals
 
-- Use «when» to run a task only on certain conditions
+- Use `when` to run a task only on certain conditions
 
 ```yaml
 - name: run command only when...
@@ -1054,7 +1055,7 @@ values `stdout`, `stderr` and more when processing the output
   when: ansible_hostname == "servername1"
 ```
 
-- Use «failed_when» to define a task as «failed»
+- Use `failed_when` to define a task as «failed»
 
 ```yaml
 - name: fails when error in stdout
@@ -1063,12 +1064,12 @@ values `stdout`, `stderr` and more when processing the output
   failed_when: " 'error' in output.stdout"
 ```
 
-- Use «changed_when» to define a as «changed»
+- Use `changed_when` to define a task as «changed»
 
 <!-- .slide: class="master-content" > -->
 
 Note:
-Nicht nur in Templates sind when Condiations möglich
+Nicht nur in Templates sind `when` Conditions möglich
 
 ***
 
@@ -1100,7 +1101,7 @@ default playbook: `local.yml`
 <!-- .slide: class="master-content" > -->
 
 Note:
-Pull kehr einfach die Logik um. Man holt sich die Befehle und schickt sie nicht.
+Pull kehrt einfach die Logik um. Man holt sich die Befehle und schickt sie nicht.
 
 ***
 
@@ -1112,13 +1113,13 @@ Pull kehr einfach die Logik um. Man holt sich die Befehle und schickt sie nicht.
 ## Task control
 
 - «async»: define how long to wait at max for a task to finish. (ad hoc → -B)
-- «poll»: Intervall at which ansible checks back if task has finished. Default: 10sec (ad hoc → -P)
+- «poll»: Interval at which ansible checks back if task has finished. Default: 10sec (ad hoc → -P)
 -  Fire and forget: «async = x » AND «poll = 0»
 
 <!-- .slide: class="master-content" > -->
 
 Note:
-Mit Task Kontrolle kann man die definieren wie Ansible auf eure Nodes zugreift.
+Mit Task Kontrolle kann man definieren, wie Ansible auf die Nodes zugreift.
 
 ***
 

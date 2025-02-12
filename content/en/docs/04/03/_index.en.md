@@ -116,7 +116,7 @@ Example `output.yml`:
 * Ensure `httpd` is stopped on the group `web` by using an Ansible ad hoc command.
 * Write a play `servicehandler.yml` that does the following:
 * Install `httpd` by using the `dnf` module
-* Start the service `httpd` with the `ansible.builtin.command` module. Don't use `ansible.builtin.service` or `ansible.builtin.systemd` module.
+* Start the service `httpd` with the `ansible.builtin.command` module. Don't use `ansible.builtin.service` or `ansible.builtin.systemd_service` module.
 * Start the service only if it is not started and running already. (The output of `systemctl status httpd` doesn't contains the string `Active: active (running)`)
 
 {{% alert title="Note" color="primary" %}}
