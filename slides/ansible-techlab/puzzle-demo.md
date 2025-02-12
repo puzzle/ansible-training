@@ -2540,8 +2540,8 @@ When writing ansible-content in a team:
 
 ***
 ## AI and Ansible
-- Copilot is apperantly pretty good in helping you write ansible
-- ChatGPT is good in fixing syntax and logic errors
+- Copilot is apparently pretty good at helping you write ansible
+- ChatGPT is good at fixing syntax and logic errors
 - Ansible-Lightspeed -> 60d Trial, after that AAP and IBM watsonx Subscription
 
 ----
