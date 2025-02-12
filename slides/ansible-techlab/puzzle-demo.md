@@ -720,7 +720,7 @@ node[3:99]
 - Static inventory (file)
 - Dynamic inventory (get info from azure, vmware, foreman... )
 - Can be folder with multiple inv-files (static & dynamic)
-- location can be defined in `ansible.cfg`
+- Location can be defined in `ansible.cfg`
 <!-- .slide: class="master-content" > -->
 
 ***
