@@ -675,9 +675,9 @@ https://docs.ansible.com/ansible/devel/
 ## Ad hoc commands
 Examples:
 - `ansible all -m ansible.builtin.ping`
-- `ansible all -m setup`
+- `ansible all -m ansible.builtin.setup`
 
-setup → get «facts»
+ansible.builtin.setup → get «facts»
 <!-- .slide: class="master-content" > -->
 ***
 ## Ad hoc flags
