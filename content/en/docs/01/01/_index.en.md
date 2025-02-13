@@ -20,7 +20,7 @@ Login to gitea at `https://<yourname>-controller.workshop.puzzle.ch:4000` and cr
 * Navigate your webbrowser to `https://<yourname>-controller.workshop.puzzle.ch:4000` . Be sure to use port 4000.
 * In the upper right corner click on `Sign In`.
 * Enter your username and password provided by the teacher. Then click the green button `Sign In`.
-* Klick on the `+` sign to the right of `Repostories`.
+* Click on the `+` sign to the right of `Repostories`.
 * Enter `techlab` as repository name and click `create repository`.
 
 {{% /details %}}
@@ -36,7 +36,7 @@ We also do some basic git configurations.
 * Config your name and email
 * Init a git repo in the `/home/ansible/techlab` folder
 * Add your gitea repository as an ssh-remote
-( the remote ssh user is gitea, so `gitea@<yourname>-controller.workshop.puzzle.ch:ansible/techlab.git`
+(the remote ssh user is gitea, so `gitea@<yourname>-controller.workshop.puzzle.ch:ansible/techlab.git`
 is what you have to set as a remote).
 * Create a `README.md` file with a description of your repository
 * Add and commit the file `README.md` with an appropriate commit message.
@@ -60,7 +60,7 @@ git commit -m "first commit"
 
 ### Task 3
 
-* In Task 2 of Lab 1.0 you created ssh keys for the user ansible on controller node
+* In Task 2 of Lab 1.0 you created SSH keys for the user ansible on controller node
 * Show the content of the ssh public key
 * In the Gitea GUI, navigate to the `Settings` of the user `ansible`
 * On the right side chose the `SSH / GPG Keys` tab
@@ -81,7 +81,7 @@ cat /home/ansible/.ssh/id_rsa.pub
 ### Task 4
 
 * Push your changes and set the upstream to `origin main`
-* In the Gitea GUI, check, that your changes have been pushed to the remote.
+* In the Gitea GUI, check that your changes have been pushed to the remote.
 
 {{% details title="Solution Task 4" %}}
 
