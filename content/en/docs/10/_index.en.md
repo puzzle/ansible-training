@@ -124,7 +124,7 @@ $ cat site.yml
         enabled: true
     - name: open firewall for http
       ansible.builtin.firewalld:
-        ansible.builtin.systemd_service: http
+        service: http
         state: enabled
         permanent: true
         immediate: true
