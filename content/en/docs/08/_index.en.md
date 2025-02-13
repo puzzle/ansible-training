@@ -190,7 +190,7 @@ $ cat collections.yml
         name: quay.io/bitnami/nginx
 
     - name: Run nginx container
-      podman_container:
+      containers.podman.podman_container:
         name: my_nginx_container
         image: nginx
         state: present
