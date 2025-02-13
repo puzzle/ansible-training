@@ -12,7 +12,7 @@ sectionnumber: 2
 Don’t be rattled about the massive amount of modules you’ll see in your terminal.
 {{% /alert %}}
 
-* Print out information about the Ansible module `file` in your terminal.
+* Print out information about the Ansible module `ansible.builtin.file` in your terminal.
 
 {{% details title="Solution Task 1" %}}
 ```bash
@@ -76,4 +76,4 @@ ls -lahr /usr/share/doc/ | grep jinja2
 ### All done?
 
 * [Red Hat Ansible Blog](https://www.ansible.com/blog)
-* [Red Hat Ansible Youtube](https://www.youtube.com/c/AnsibleAutomation/videos)
+* [Red Hat Ansible YouTube](https://www.youtube.com/c/AnsibleAutomation/videos)

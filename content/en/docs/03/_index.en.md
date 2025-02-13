@@ -8,7 +8,7 @@ In this lab we’ll continue with our environment setup from [Chapter 1](../01) 
 
 ### Task 1
 
-* Ping all nodes in the inventory file using the ansible.builtin.ping module.
+* Ping all nodes in the inventory file using the `ansible.builtin.ping` module.
 
 {{% alert title="Tip" color="info" %}}
 You’ve used the `ansible.builtin.ping` module in a previous lab.
@@ -95,7 +95,7 @@ $ ansible-doc -s hostname
       name:                  # (required) Name of the host
 ```
 
-* We will need root privileges and therefore we have to use the become option `-b`
+* We will need root privileges, and therefore we have to use the become option `-b`
 
 {{% /details %}}
 
@@ -122,13 +122,13 @@ Complete the next steps using Ansible ad hoc commands:
 {{% details title="Solution Task 6" %}}
 ```bash
 ansible web -i hosts -b -m ansible.builtin.dnf -a "name=httpd state=installed"
-ansible web -i hosts -b -m ansible.builtin.systemd_service -a "name=httpd state=started enabled=yes"
+ansible web -i hosts -b -m ansible.builtin.systemd_service -a "name=httpd state=started enabled=true"
 ```
 
 Reverting the changes made on the remote hosts:
 
 ```bash
-ansible web -i hosts -b -m systemd_service -a "name=httpd state=stopped enabled=no"
+ansible web -i hosts -b -m systemd_service -a "name=httpd state=stopped enabled=false"
 ansible web -i hosts -b -m ansible.builtin.dnf -a "name=httpd state=absent"
 ```
 {{% /details %}}
