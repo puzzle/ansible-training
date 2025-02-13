@@ -237,7 +237,7 @@ $ cat collections.yml
         state: installed
 
     - name: Pull an image using the module from the collection
-      podman_image:
+      containers.podman.podman_image:
         pull: true
         name: quay.io/bitnami/nginx
 
