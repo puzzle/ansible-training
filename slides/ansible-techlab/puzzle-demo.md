@@ -1217,7 +1217,7 @@ Fact gathering:
 Ansible.cfg:
 
 ```ini
-gathering = implicit (default, bedeutet gather_facts: true)
+gathering = implicit (default, means gather_facts: true)
 ```
 
 explicit → gather_facts: false
