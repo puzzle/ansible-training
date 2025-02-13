@@ -56,7 +56,8 @@ ansible-rulebook --rulebook debug_event_rulebook.yml -i inventory/hosts -vv
 
 * Rewrite the rulebook `debug_event_rulebook.yml`:
 * Use a `run_playbook` action to start a playbook named `sos.yml`
-* The playbook `sos.yml` should create an unattended sos report labeled with the fully qualified collection name of the source plugin used. Be sure to install the appropriate packages so that the sos report can be created.
+* The playbook `sos.yml` should create an unattended sos report labeled with the fully qualified collection
+name of the source plugin used. Be sure to install the appropriate packages so that the sos report can be created.
 * The name of the source plugin should be taken from the json output as a variable.
 * The creation of the sos report takes quite some time.
 * Ensure that the condition is throttled to run the action once within 5 minutes at most.
@@ -65,7 +66,10 @@ ansible-rulebook --rulebook debug_event_rulebook.yml -i inventory/hosts -vv
 
 
 {{% alert title="Note" color="primary" %}}
-There are good onlinetools to convert [one-line json to multiline json](https://jsonformatter.curiousconcept.com) as well as [json to yaml converters](https://jsonformatter.org/json-to-yaml). Note: The json copied from the output has sometimes single quotes, RFC 8259 demands double quotes. Be sure that your converter fixes this as well. These converters can come in handy for easier reading of the output.
+ There are good onlinetools to convert [one-line json to multiline json](https://jsonformatter.curiousconcept.com) as well as [json to yaml converters](https://jsonformatter.org/json-to-yaml).
+ Note: The json copied from the output has sometimes single quotes, RFC 8259 demands double quotes.
+ Be sure that your converter fixes this as well.
+ These converters can come in handy for easier reading of the output.
 {{% /alert %}}
 
 {{% details title="Solution Task 2" %}}

@@ -34,7 +34,9 @@ ansible-doc -s file
 * visit [Ansible Docs - Modules by category](https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html)
 
 {{% alert title="Note" color="primary" %}}
-Starting from Ansible > 2.10 modules are shipped via collections. We will have a look at collections in [Chapter 8](../08). You'll find an overview of the most used collections on [Ansible Docs - Collection Index](https://docs.ansible.com/ansible/latest/collections/index.html)
+Starting from Ansible > 2.10 modules are shipped via collections.
+We will have a look at collections in [Chapter 8](../08).
+You'll find an overview of the most used collections on [Ansible Docs - Collection Index](https://docs.ansible.com/ansible/latest/collections/index.html)
 
 {{% /alert %}}
 

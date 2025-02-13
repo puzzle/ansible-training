@@ -4,11 +4,15 @@ weight: 60
 sectionnumber: 6
 ---
 
-In this lab we are going to practice encryption in Ansible playbooks. It assumes your working directory is always `/home/ansible/techlab/`.
+In this lab we are going to practice encryption in Ansible playbooks.
+It assumes your working directory is always `/home/ansible/techlab/`.
 
 ### Task 1
 
-* Create a simple playbook called `secretservice.yml` which creates a file `MI6` in the `/etc/` directory on `node1` and `node2`. Use the `template` module and a template named `mi6.j2`. Don’t encrypt anything yet and use the inventory hosts from the earlier labs.
+* Create a simple playbook called `secretservice.yml` which creates a file
+`MI6` in the `/etc/` directory on `node1` and `node2`.
+Use the `template` module and a template named `mi6.j2`.
+Don’t encrypt anything yet and use the inventory hosts from the earlier labs.
 * The content of the file `MI6` should be:
   ```
     username: jamesbond
@@ -88,7 +92,9 @@ You don’t have to set a label when encrypting the file.
 * Rerun the playbook providing the password for decrypting `secret_vars.yml` from the file `vaultpassword`.
 
 {{% alert title="Tip" color="info" %}}
-Since the password is in clear text in the file `vaultpassword`, you should never ever push it to a git repository or similar. Also double check that only the necessary permissions are set.
+Since the password is in clear text in the file `vaultpassword`,
+you should never ever push it to a git repository or similar.
+Also double check that only the necessary permissions are set.
 {{% /alert %}}
 
 {{% details title="Solution Task 3" %}}
@@ -128,7 +134,8 @@ $ ansible-playbook secretservice.yml
 * Encrypt the values of the variables `username` and `password` and put them into the `secret_vars.yml` file.
 
 {{% alert title="Note" color="primary" %}}
-Look for an option to `ansible-vault` to give the name of the variable while encrypting the value. This makes it easier to copy-paste the output later!
+Look for an option to `ansible-vault` to give the name of the variable while encrypting the value.
+This makes it easier to copy-paste the output later!
 {{% /alert %}}
 
 {{% details title="Solution Task 5" %}}
@@ -197,7 +204,14 @@ Note that the `command` module is the `default` module and therefore has not to 
 ansible-vault encrypt secret_vars2.yml
 ```
 
-Be sure to use `rekey` with `--new-vault-id`. By using `--vault-id`, `ansible-vault` would use the value from `vaultpasswordfile` and not the one asked for by using `@prompt`. This could be quite misleading... You can check the same unexpected behavior when trying to view an encrypted file with providing a wrong password at command line. Giving a wrong password after `ansible-vault view secret_vars2.yml --vault-id @prompt` still results in showing the decrypted content of the file when `ansible.cfg` points to the correct `vaultpasswordfile`.
+Be sure to use `rekey` with `--new-vault-id`.
+By using `--vault-id`, `ansible-vault` would use the value from `vaultpasswordfile`
+and not the one asked for by using `@prompt`.
+This could be quite misleading...
+You can check the same unexpected behavior when trying to view an encrypted file
+with providing a wrong password at command line.
+Giving a wrong password after `ansible-vault view secret_vars2.yml --vault-id @prompt`
+still results in showing the decrypted content of the file when `ansible.cfg` points to the correct `vaultpasswordfile`.
 
 There is an open [issue](https://github.com/ansible/ansible/issues/33831) about this topic on github.
 

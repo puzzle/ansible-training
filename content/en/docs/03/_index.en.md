@@ -64,19 +64,22 @@ $ ansible all -i hosts -m ansible.builtin.setup -a "filter=ansible_default_ipv4"
 ### Task 3
 
 * Search through the online documentation for special (magical) variables.
-* Which special variable could you use to set the `hostname` on each of the servers using the information in the `inventory` file?
+* Which special variable could you use to set the `hostname` on each of the servers using
+the information in the `inventory` file?
 
 {{% details title="Solution Task 3" %}}
 
 * See Ansible docs for special variables: [Special Variables](https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html)
-* `inventory_hostname` contains the name of the managed host from the inventory file and can be used to set the hostname on the servers.
+* `inventory_hostname` contains the name of the managed host from the inventory file and can be used
+to set the hostname on the servers.
 
 {{% /details %}}
 
 ### Task 4
 
 * Try to find an appropriate Ansible module to complete Task 3. Find out what parameters the module accepts.
-* This module will try to make changes to the `/etc/hostname` file. What options should you use with the `ansible` command to make that work?
+* This module will try to make changes to the `/etc/hostname` file.
+What options should you use with the `ansible` command to make that work?
 
 {{% details title="Solution Task 4" %}}
 

@@ -23,17 +23,23 @@ In this lab we’ll have a short glimpse at how ansible-pull works.
 On node1:
 
 * Install all needed packages to use ansible-pull
-* Use an `ansible-pull` command that uses the resources in the folder `resources/ansible-pull/` of our github repository located at `https://github.com/puzzle/ansible-techlab`. This command should do the following:
-* Apply the playbook `local.yml` located at the `resource/ansible-pull` folder and run it on all hosts in the inventory file `hosts`
-* Show the content of `/etc/motd` and verify, that the file was copied using ansible-pull
-* Also verify, that no content of the git repository was copied to the local folder.
+* Use an `ansible-pull` command that uses the resources in the folder `resources/ansible-pull/`
+of our github repository located at `https://github.com/puzzle/ansible-techlab`.
+This command should do the following:
+  * Apply the playbook `local.yml` located at the `resource/ansible-pull` folder
+  and run it on all hosts in the inventory file `hosts`
+  * Show the content of `/etc/motd` and verify, that the file was copied using ansible-pull
+  * Also verify, that no content of the git repository was copied to the local folder.
 
 {{% alert title="Tip" color="info" %}}
 Note the following:
 
 * If no playbook is specified, ansible-pull looks for a playbook `local.yml`.
-* The location of files given as parameters to the ansible-pull command are always relative to the top level of the git repository.
-* All information to run the ansible-pull command is taken from the git repository (playbook, inventory, MOTD-file to be copied). No local configuration is used!
+* The location of files given as parameters to the ansible-pull command are always relative to the top level
+of the git repository.
+* All information to run the ansible-pull command is taken from the git repository
+(playbook, inventory, MOTD-file to be copied).
+No local configuration is used!
 
 {{% /alert %}}
 
@@ -50,8 +56,10 @@ ll #no file here...
 
 It's a best practice to use cronjobs to trigger `ansible-pull` run at a regular basis. Do the following on node1:
 
-* Create a cronjob `/etc/cron.d/ansible-pull`. This cronjob should run every minute as user ansible the ansible-pull command from Task 2.
-* Now remove the existing `/etc/motd` file and use the command `watch` to show the content of `/etc/motd` every second. We want to observe that our cronjob runs the `ansible-pull` command again and restore the previously deleted MOTD-file.
+* Create a cronjob `/etc/cron.d/ansible-pull`.
+This cronjob should run every minute as user ansible the ansible-pull command from Task 2.
+* Now remove the existing `/etc/motd` file and use the command `watch` to show the content of `/etc/motd` every second.
+We want to observe that our cronjob runs the `ansible-pull` command again and restore the previously deleted MOTD-file.
 
 {{% details title="Solution Task 3" %}}
 ```bash
@@ -64,7 +72,8 @@ $ sudo rm -f /etc/motd; watch -n 1 cat /etc/motd
 
 ### Task 4
 
-This task has nothing to do with `ansible-pull`, we just clean up the ansible-pull configurations. Create a playbook `revert_motd.yml` that runs on node1. It should:
+This task has nothing to do with `ansible-pull`, we just clean up the ansible-pull configurations.
+Create a playbook `revert_motd.yml` that runs on node1. It should:
 
 * uninstall ansible
 * remove the cronjob `/etc/cron.d/ansible-pull`

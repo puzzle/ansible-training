@@ -91,10 +91,17 @@ Create a playbook `userplay.yml` doing the following and running on `node1` and 
   ```
   <name_of_user> <food_for_user>
   ```
-* On `node1`: There should be a entry in the file `/etc/dinner.txt` for each user in the variable `users`. Use a for loop in the template.
-* On `node1`: If a user has no food specified, use "kebab". Look for `filters` in the online docs. You should be familiar with searching the online docs by now.
-* On `node2`: The same playbook `userplay.yml` should create a (Linux) group for every different food specified in the variable `users`. If a user has no food defined, create the group "kebab" instead.
-* On `node2`: Create a user for every entry in the `users` variable. Ensure that this user is also in the group with the same name as his food. Again, if no food is defined for this user, add group "kebab".
+* On `node1`: There should be a entry in the file `/etc/dinner.txt` for each user in the variable `users`.
+Use a for loop in the template.
+* On `node1`: If a user has no food specified, use "kebab".
+Look for `filters` in the online docs.
+You should be familiar with searching the online docs by now.
+* On `node2`: The same playbook `userplay.yml` should create a (Linux) group
+for every different food specified in the variable `users`.
+If a user has no food defined, create the group "kebab" instead.
+* On `node2`: Create a user for every entry in the `users` variable.
+Ensure that this user is also in the group with the same name as his food.
+Again, if no food is defined for this user, add group "kebab".
 
 #### Bonus 1
 
@@ -102,7 +109,9 @@ Create a playbook `userplay.yml` doing the following and running on `node1` and 
 
 #### Bonus 2
 
-* On `node2`: If (and only if) the user is "santos", disable login. Do this by setting santos's login shell to `/usr/sbin/nologin`. Use an if/else statement in the template for that purpose.
+* On `node2`: If (and only if) the user is "santos", disable login.
+Do this by setting santos's login shell to `/usr/sbin/nologin`.
+Use an if/else statement in the template for that purpose.
 
 #### Bonus 3
 
@@ -114,7 +123,9 @@ Create a playbook `userplay.yml` doing the following and running on `node1` and 
 * Verify that you are able to login as one of the users via SSH providing the password.
 
 {{% alert title="Warning" color="warning" %}}
-Be aware that it is NOT a good idea to set passwords in clear text. We will learn in the lab about `ansible-vault` how to handle this in a better way. Never ever do this in a productive environment.
+Be aware that it is NOT a good idea to set passwords in clear text.
+We will learn in the lab about `ansible-vault` how to handle this in a better way.
+Never ever do this in a productive environment.
 {{% /alert %}}
 
 {{% details title="Solution Task 3" %}}
@@ -183,7 +194,12 @@ $ cat user_template.j2
 ```
 
 {{% alert title="Tip" color="info" %}}
-See the `user` module for how to set the password and search for a link to additional documentation about how to set passwords in Ansible. Note, that it would be even better to create a hash of the password before and then set the hash in the task above and not create it in the task itself. Reason being the above would result in a state `changed` everytime it runs and is therefore not idempotent. You can find in the documentation mentioned how to get the hash before.
+ See the `user` module for how to set the password and search for a link to additional documentation
+ about how to set passwords in Ansible.
+ Note, that it would be even better to create a hash of the password before
+ and then set the hash in the task above and not create it in the task itself.
+ Reason being the above would result in a state `changed` everytime it runs and is therefore not idempotent.
+ You can find in the documentation mentioned how to get the hash before.
 {{% /alert %}}
 
 Run the playbook, then check on `node1` (as user `root`) if everthing is as expected:
@@ -232,7 +248,8 @@ Create a playbook `serverinfo.yml` that does the following:
 ```
 
 * Replace `hostname`, `operating system`, `IP address` and `hardware type` with a reasonable fact.
-* Run your playbook and check on all servers by using an `ansible` ad hoc command if the content of the file `/root/serverinfo.txt` is as expected.
+* Run your playbook and check on all servers by using an `ansible` ad hoc command
+if the content of the file `/root/serverinfo.txt` is as expected.
 
 * Are you an Ansible Maester already? Solve the solution once by using a template and once without using a template!
 
@@ -255,7 +272,9 @@ $ cat serverinfo.yml
         dest: /root/serverinfo.txt
 ```
 {{% alert title="Note" color="primary" %}}
-Have a good look at where to set quotes and where not! `hostvars[host]` without the quotes around `host` is not really intuitive. More about that in the [F.A.Q.](https://docs.ansible.com/ansible/latest/reference_appendices/faq.html#how-do-i-loop-over-a-list-of-hosts-in-a-group-inside-of-a-template).
+ Have a good look at where to set quotes and where not!
+ `hostvars[host]` without the quotes around `host` is not really intuitive.
+ More about that in the [F.A.Q.](https://docs.ansible.com/ansible/latest/reference_appendices/faq.html#how-do-i-loop-over-a-list-of-hosts-in-a-group-inside-of-a-template).
 {{% /alert %}}
 
 Possible solution 2:

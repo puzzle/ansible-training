@@ -81,8 +81,12 @@ $ ansible-playbook webserver.yml
 
 ### Task 4
 
-* Create a new role called `base`. Its file `tasks/main.yml` should import the files `motd.yml` and `packages.yml`. (Create both files under `tasks/`).
-* `motd.yml` should do the following: Use the variable `motd_content` to change the `/etc/motd` content to "This is a server\\n". Remember to move the template as well as the variable to a correct location in the `roles` folder.
+* Create a new role called `base`.
+Its file `tasks/main.yml` should import the files `motd.yml` and `packages.yml`.
+(Create both files under `tasks/`).
+* `motd.yml` should do the following: Use the variable `motd_content` to change the `/etc/motd` content to
+"This is a server\\n".
+Remember to move the template as well as the variable to a correct location in the `roles` folder.
 * `packages.yml` should install the packages `firewalld`, `yum-utils`, `dos2unix`, `emacs` and `vim`
 * Write a playbook `prod.yml` that applies the role `base` to all servers and the role `httpd` only to the group `web`.
 
@@ -148,8 +152,10 @@ Take notice of the different content of `/etc/motd` on the control node!
 
 ### Task 5
 
-* Rewrite the `httpd` role to apply the `base` role each time it is used in a playbook. Use a dependency in the `meta/main.yml` file.
-* Remove the play to run `base` role on all hosts in the `prod.yml` playbook. Run the playbook and see if role `base` was applied on hosts in the `web` group as well.
+* Rewrite the `httpd` role to apply the `base` role each time it is used in a playbook.
+Use a dependency in the `meta/main.yml` file.
+* Remove the play to run `base` role on all hosts in the `prod.yml` playbook.
+Run the playbook and see if role `base` was applied on hosts in the `web` group as well.
 
 {{% details title="Solution Task 5" %}}
 

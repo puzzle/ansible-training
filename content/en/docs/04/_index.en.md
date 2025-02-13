@@ -64,7 +64,8 @@ Check `httpd.service` on group `web`:
 ```
 
 {{% alert title="Hint" color="info" %}}
-The ports for ssh, dhcp and cockpit are opened by default in the firewalld. It is best, especially for documentation, to open the ports explicitly in a basic settings file.
+ The ports for ssh, dhcp and cockpit are opened by default in the firewalld.
+ It is best, especially for documentation, to open the ports explicitly in a basic settings file.
 {{% /alert %}}
 
 {{% /details %}}
@@ -72,7 +73,8 @@ The ports for ssh, dhcp and cockpit are opened by default in the firewalld. It i
 ### Task 2
 
 * Create a folder `inventory` and move your inventory `hosts` there.
-* Configure Ansible to use `/home/ansible/techlab/inventory/hosts` as the default inventory. Do this using a configuration file in the `/home/ansible/techlab/` directory.
+* Configure Ansible to use `/home/ansible/techlab/inventory/hosts` as the default inventory.
+Do this using a configuration file in the `/home/ansible/techlab/` directory.
 * Run the playbook again without using the `-i` flag to see if the configuration works.
 
 {{% details title="Solution Task 2" %}}
@@ -109,7 +111,8 @@ ok: [node1]
 
 ### Task 3
 
-* Intentionally add errors to your playbook and have a look at the output. You should get a feeling for Ansible's error messages:
+* Intentionally add errors to your playbook and have a look at the output.
+You should get a feeling for Ansible's error messages:
   * Add a wrong indentation. Remember that this is a common mistake!
   * Use a tab character for identation. Some editors do that automatically.
   * Add a wrong parameter name.
@@ -149,14 +152,16 @@ Wrong parameter name:
 ### Task 4
 
 * Create a playbook `tempfolder.yml`
-* The playbook `tempfolder.yml` should create a temporary folder `/var/tempfolder` on all servers except those in the group `db`.
+* The playbook `tempfolder.yml` should create a temporary folder `/var/tempfolder` on all servers
+except those in the group `db`.
 
 {{% alert title="Tip" color="info" %}}
-Take a look at the user guide and find out how to use more complex inventory patterns.
-See [Ansible Docs - User Guide](https://docs.ansible.com/ansible/latest/user_guide/intro_patterns.html#common-patterns)
+ Take a look at the user guide and find out how to use more complex inventory patterns.
+ See [Ansible Docs - User Guide](https://docs.ansible.com/ansible/latest/user_guide/intro_patterns.html#common-patterns)
 {{% /alert %}}
 
-* The folder has to have the sticky bit set, so that only the owner (set owner/group to `ansible`) of the content (or root) can delete the files.
+* The folder has to have the sticky bit set, so that only the owner (set owner/group to `ansible`) of the
+content (or root) can delete the files.
 * Run the playbook and then check if the sticky bit was set using an ad hoc command.
 
 {{% details title="Solution Task 4" %}}
@@ -178,7 +183,8 @@ $ ansible-playbook tempfolder.yml
 $ ansible web,controller -b -a "ls -ld /var/tempfolder"
 ```
 {{% alert title="Note" color="primary" %}}
-`ansible-doc file` doesn't provide any information about setting special permissions like sticky bit (`man chmod` will help you though). Remember to use a leading 0 before the actual permissions.
+ `ansible-doc file` doesn't provide any information about setting special permissions like sticky bit
+ (`man chmod` will help you though). Remember to use a leading 0 before the actual permissions.
 {{% /alert %}}
 
 {{% /details %}}

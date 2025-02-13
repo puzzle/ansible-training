@@ -23,7 +23,8 @@ ansible controller -m archive -a "path=/home/ansible/techlab/roles/nginxinc.ngin
 ### Task 2
 
 * Remove the nginx role using `ansible-galaxy`.
-* Create a file `requirements.yml` in the folder `/home/ansible/techlab/roles/`. The file should contain the information to install the role packed in `nginx.tar.gz` as `mynginx`.
+* Create a file `requirements.yml` in the folder `/home/ansible/techlab/roles/`.
+The file should contain the information to install the role packed in `nginx.tar.gz` as `mynginx`.
 * Install the role by using an appropriate `ansible-galaxy` command and the `requirements.yml` file.
 * Remove the role `mynginx` using `ansible-galaxy`.
 * Remove the file `nginx.tar.gz` and `roles/requirements.yml` by using an ad hoc command for each.
@@ -38,7 +39,8 @@ cat roles/requirements.yml
   name: mynginx
 ```
 {{% alert title="Note" color="primary" %}}
-You can also install roles from git repositories, URL's or other archive formats. Have a look at the documentation [Ansible Docs - Installing Roles](https://docs.ansible.com/ansible/latest/galaxy/user_guide.html#installing-roles).
+You can also install roles from git repositories, URL's or other archive formats.
+Have a look at the documentation [Ansible Docs - Installing Roles](https://docs.ansible.com/ansible/latest/galaxy/user_guide.html#installing-roles).
 Note as well, that the order of the roles to be installed in the `requirements.yml` file could matter.
 {{% /alert %}}
 
@@ -75,7 +77,9 @@ repoquery -l rhel-system-roles #<-- repoquery is provided by the package `yum-ut
 * Run the playbook.
 
 {{% alert title="Note" color="primary" %}}
-You have to have a reasonable fresh version of Ansible in order to get this working. On older systems you could get an error message containing strings like `template error while templating string: no test named 'version'`.
+ You have to have a reasonable fresh version of Ansible in order to get this working.
+ On older systems you could get an error message containing strings like
+ `template error while templating string: no test named 'version'`.
 {{% /alert %}}
 
 {{% details title="Solution Task 4" %}}

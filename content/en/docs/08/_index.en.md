@@ -23,13 +23,13 @@ $ tree
 ├── collections.yml
 ├── hosts
 ├── puzzle
-│   └── ansible_techlab
-│       ├── docs
-│       ├── galaxy.yml
-│       ├── plugins
-│       │   └── README.md
-│       ├── README.md
-│       └── roles
+│   └── ansible_techlab
+│       ├── docs
+│       ├── galaxy.yml
+│       ├── plugins
+│       │   └── README.md
+│       ├── README.md
+│       └── roles
 └── requirements.yml
 
 5 directories, 7 files
@@ -72,7 +72,8 @@ Created collection for newpuzzle.ansible_techlab2 at /home/ansible/techlab/newpu
 * Have a look at the ansible configuration and figure out why it was installed there.
 
 {{% alert title="Tip" color="info" %}}
-With `ansible-config dump` you can even see the default configuration values not explicitly set in the `ansible.cfg` file. Look for `COLLECTIONS_PATHS`.
+With `ansible-config dump` you can even see the default configuration values not explicitly set 
+in the `ansible.cfg` file. Look for `COLLECTIONS_PATHS`.
 {{% /alert %}}
 
 * Change the ansible configuration so that the collection gets installed at `/home/ansible/techlab/collections`.
@@ -135,8 +136,10 @@ GALAXY_SERVER_LIST(/home/ansible/techlab/ansible.cfg) = ['puzzle_galaxy']
 
 ### Task 5
 
-* Install the collection `nginx_controller`, provided by the company NGINX (`nginxinc.nginx_controller`) using the `ansible-galaxy` command.
-* Write a requirements file `requirements.yml` that ensures the collection `cloud` from `cloudscale_ch` is installed. Install the collection by using this requirements file.
+* Install the collection `nginx_controller`,
+provided by the company NGINX (`nginxinc.nginx_controller`) using the `ansible-galaxy` command.
+* Write a requirements file `requirements.yml` that ensures the collection `cloud` from `cloudscale_ch` is installed.
+Install the collection by using this requirements file.
 
 {{% details title="Solution Task 5" %}}
 ```bash
@@ -159,8 +162,10 @@ Installing 'cloudscale_ch.cloud:1.0.0' to '/home/ansible/techlab/collections/ans
 ### Task 6
 
 * Install the collection `podman` from namespace `containers` using any of the methods you know.
-* Write a playbook `collection.yml` that runs only on the controller and uses the `podman` collection from the namespace `containers`.
-* The playbook should install podman on the controller and pull any podman image. Be sure to escalate privileges if needed. (Use the image `quay.io/bitnami/nginx` if unsure).
+* Write a playbook `collection.yml` that runs only on the controller and uses the `podman`
+collection from the namespace `containers`.
+* The playbook should install podman on the controller and pull any podman image.
+Be sure to escalate privileges if needed. (Use the image `quay.io/bitnami/nginx` if unsure).
 * Use the module `podman_container` to start a container from the previously pulled image.
 * Confirm the container is up and running using `sudo podman ps -l`.
 
@@ -223,7 +228,8 @@ $ cat collections.yml
         publish:
           - '8080'
 ```
-This would not work, since the module `podman_container` is only content of the collection and not part of the ansible-base installation:
+This would not work, since the module `podman_container`
+is only content of the collection and not part of the ansible-base installation:
 ```bash
 $ cat collections.yml
 ---
@@ -250,7 +256,8 @@ $ cat collections.yml
           - '8080'
 
 $ ansible-playbook -i hosts collections.yml
-ERROR! couldn't resolve module/action 'podman_container'. This often indicates a misspelling, missing collection, or incorrect module path.
+ERROR! couldn't resolve module/action 'podman_container'.
+This often indicates a misspelling, missing collection, or incorrect module path.
 
 The error appears to be in '/home/ansible/techlab/collections.yml': line 16, column 7, but may
 be elsewhere in the file depending on the exact syntax problem.
@@ -269,7 +276,8 @@ $ sudo podman ps -l
 CONTAINER ID  IMAGE                         COMMAND               CREATED             STATUS                 PORTS                                  NAMES
 00783ec12950  quay.io/bitnami/nginx:latest  /opt/bitnami/scri...  About a minute ago  Up About a minute ago  8443/tcp, 0.0.0.0:32771->8080/tcp      my_nginx_container
 ```
-You can even connect to your container using a dynamically assigned port (32771 in the example above) on your host machine. Make sure to adjust the port in the `curl` command-line accordingly:
+You can even connect to your container using a dynamically assigned port
+(32771 in the example above) on your host machine. Make sure to adjust the port in the `curl` command-line accordingly:
 ```bash
 $ curl -s http://localhost:32771 | grep title
 <title>Welcome to nginx!</title>

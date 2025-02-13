@@ -15,14 +15,18 @@ Get yourself familiar with the installation options for AWX, Ascender and AAP
 * What is one of the advantages when installing Ascender?
 * What is one of the advantages when installing AAP?
 {{% details title="Solution Task 1" %}}
-An advantage of Ascender is the handy install script [ascender-install](https://github.com/ctrliq/ascender-install). Another advantage is, that everything is available even without a valid subscription for Ascender.
+An advantage of Ascender is the handy install script [ascender-install](https://github.com/ctrliq/ascender-install).
+Another advantage is, that everything is available even without a valid subscription for Ascender.
 
-An advantage of AAP is the availability of an rpm based installation. The downside is, that those rpm's are only available when you have a valid AAP subscription and you are logged in the Red Hat customer backend.
+An advantage of AAP is the availability of an rpm based installation.
+The downside is, that those rpm's are only available when you have a valid AAP subscription
+and you are logged in the Red Hat customer backend.
 {{% /details %}}
 
 ### Task 2
 
-* Now, we want to install Ascender locally using k3s. The [ascender-install](https://github.com/ctrliq/ascender-install) repository from Github is checked out to the folder `/home/ansible/ascender-install` on your ascender server.
+* Now, we want to install Ascender locally using k3s. The [ascender-install](https://github.com/ctrliq/ascender-install)
+repository from Github is checked out to the folder `/home/ansible/ascender-install` on your ascender server.
 * Which file contains the configuration parameters for your installation?
 
 {{% details title="Solution Task 2" %}}
