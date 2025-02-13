@@ -24,7 +24,7 @@ On node1:
 
 * Install all needed packages to use ansible-pull
 * Use an `ansible-pull` command that uses the resources in the folder `resources/ansible-pull/`
-of our github repository located at `https://github.com/puzzle/ansible-techlab`.
+of our GitHub repository located at `https://github.com/puzzle/ansible-techlab`.
 This command should do the following:
   * Apply the playbook `local.yml` located at the `resource/ansible-pull` folder
   and run it on all hosts in the inventory file `hosts`
@@ -93,13 +93,15 @@ $ cat revert_motd.yml
         name: ansible
         state: absent
     - name: ensure cronjob not present
-      file:
+      ansible.builtin.file:
         path: /etc/cron.d/ansible-pull
         state: absent
+        mode: "0640"
     - name: ensure MOTD file empty
-      copy:
+      ansible.builtin.copy:
         content: ""
         dest: /etc/motd
+        mode: "0640"
 
 $ ansible-playbook revert_motd.yml
 ```

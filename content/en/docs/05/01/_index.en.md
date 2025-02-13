@@ -32,17 +32,19 @@ $ ansible-galaxy init roles/handlerrole
 $ cat roles/handlerrole/tasks/main.yml
 ---
 - name: create directory
-  file:
+  ansible.builtin.file:
     path: /home/ansible/newdir
     state: directory
+    mode: "0755"
   notify: timestamp
 
 $ cat roles/handlerrole/handlers/main.yml
 ---
 - name: create readme with timestamp 
-  copy:
+  ansible.builtin.copy:
     dest: /home/ansible/newdir/README.TXT
-    content: "This folder was created at {{ ansible_date_time.iso8601 }}"    
+    content: "This folder was created at {{ ansible_date_time.iso8601 }}"
+    mode: "0644"    
   listen: timestamp
 
 $ ansible-playbook myhandler.yml #<-- some changes when run the first time
@@ -58,8 +60,10 @@ $ ansible-playbook myhandler.yml #<-- no changes here, idempotent!
 * The role should be able to handle errors.
 Let it write the message _"Download failed!"_ to standard output if the download task failed.
 The playbook must keep on running and shall not exit after this message.
-* In all cases, output a message at the end of the play informing that the download attempt has finished.
+* Regardless of download success,
+output a message at the end of the play informing that the download attempt has finished.
 * Use a `block:` to do these tasks.
+* Add another `ansible.builtin.debug` task after the block to confirm the run continues even after a download fail.
 * Run the playbook `download.yml`.
 
 {{% details title="Solution Task 2" %}}
@@ -79,16 +83,22 @@ $ $ cat roles/downloader/tasks/main.yml
 # tasks file for roles/downloader
 - block:
     - name: Download things from the internet
-      get_url:
-        url: http://www.not_existing_url.com/not_existing_file
+      ansible.builtin.get_url:
+        url: https://www.not_existing_url.com/not_existing_file
         dest: /tmp/
+        mode: "0400"
   rescue:
-    - debug:
+    - name: "Print an error message"
+      ansible.builtin.debug:
         msg: "Download failed!"
   always:
-    - debug:
+    - name: "Print confirmation"
+      ansible.builtin.debug:
         msg: "Download attempt finished."
 
+- name: "A task after the block"
+  ansible.builtin.debug:
+    msg: "This gets executed after the block"
 
 $ ansible-playbook download.yml
 ```

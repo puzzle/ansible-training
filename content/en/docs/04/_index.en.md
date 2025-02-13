@@ -15,7 +15,7 @@ Create a playbook `webserver.yml` which does the following:
 * Ensure port 80 is open on the firewall.
 
 {{% alert title="Tip" color="info" %}}
-Check what the options `immediate` and `permanent` of the `firewalld` module mean and do.
+Check what the options `immediate` and `permanent` of the `ansible.posix.firewalld` module mean and do.
 {{% /alert %}}
 
 * Run the playbook. After completion, test if the `httpd.service` is running and enabled on `node1`.
@@ -44,8 +44,8 @@ Below is a possible solution for your playbook:
         state: started
         enabled: true
     - name: open firewall for http
-      firewalld:
-        ansible.builtin.systemd_service: http
+      ansible.posix.firewalld:
+        service: http
         state: enabled
         permanent: true
         immediate: true
@@ -87,7 +87,7 @@ mv /home/ansible/techlab/hosts /home/ansible/techlab/inventory/
 cp /etc/ansible/ansible.cfg /home/ansible/techlab/
 ```
 
-Edit your `ansible.cfg` file. Uncomment and edit the "inventory" entry to use your file:
+Edit your `ansible.cfg` file. Uncomment and edit the `inventory` entry to use your file:
 
 ```
 [defaults]
@@ -114,13 +114,13 @@ ok: [node1]
 * Intentionally add errors to your playbook and have a look at the output.
 You should get a feeling for Ansible's error messages:
   * Add a wrong indentation. Remember that this is a common mistake!
-  * Use a tab character for identation. Some editors do that automatically.
+  * Use a tab character for indentation. Some editors do that automatically.
   * Add a wrong parameter name.
   * Remove the mistakes.
 
 {{% details title="Solution Task 3" %}}
 
-Wrong intendation:
+Wrong indentation:
 
 ```yaml
 ---
@@ -129,8 +129,8 @@ Wrong intendation:
   tasks:
     - name: install httpd
       ansible.builtin.dnf:
-      name: httpd        # <-- wrong intendation
-      state: installed   # <-- wrong intendation
+      name: httpd        # <-- wrong indentation
+      state: installed   # <-- wrong indentation
 ```
 
 Wrong parameter name:
@@ -172,7 +172,7 @@ $ cat tempfolder.yml
   become: true
   tasks:
     - name: create temp folder with sticky bit set
-      file:
+      ansible.builtin.file:
         dest: /var/tempfolder
         mode: "01755"
         owner: ansible

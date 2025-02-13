@@ -117,7 +117,7 @@ $ ansible-playbook secretservice.yml --vault-id vaultpassword
 
 {{% details title="Solution Task 4" %}}
 
-Make sure you recieve the following output in your terminal:
+Make sure you receive the following output in your terminal:
 
 ```bash
 $ grep ^vault /home/ansible/techlab/ansible.cfg
@@ -213,7 +213,7 @@ with providing a wrong password at command line.
 Giving a wrong password after `ansible-vault view secret_vars2.yml --vault-id @prompt`
 still results in showing the decrypted content of the file when `ansible.cfg` points to the correct `vaultpasswordfile`.
 
-There is an open [issue](https://github.com/ansible/ansible/issues/33831) about this topic on github.
+There is an open [issue](https://github.com/ansible/ansible/issues/33831) about this topic on GitHub.
 
 ```bash
 ansible-vault rekey secret_vars2.yml --new-vault-id @prompt
