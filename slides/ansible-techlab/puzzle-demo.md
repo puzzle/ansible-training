@@ -370,7 +370,7 @@ pull (Puppet way) vs push (ansible way) --> push braucht weder daemon noch sonst
 - Transporters:
 `ssh`, `local`, `winrm`, `docker`,...
 - Modules:
-`file`, `template`, `firewalld`, `service`, `yum`,...
+`file`, `template`, `firewalld`, `systemd_service`, `yum`,...
 - Dynamic inventories:
 `vmware`, `cloudscale`, `foreman`, `azure`, `aws`,...
 
@@ -381,7 +381,7 @@ pull (Puppet way) vs push (ansible way) --> push braucht weder daemon noch sonst
 
 ## Why Ansible?
 
-- Simple setup (yum install ansible)
+- Simple setup (dnf install ansible)
 - Agentless
 - Standard transport (ssh)
 - Easy (relatively), yaml
@@ -598,13 +598,13 @@ provisioning: local
 ### Indentation
 wrong:
 ```yaml
-- ansible.builtin.yum:
+- ansible.builtin.dnf:
   name: httpd
   state: installed
 ```
 right:
 ```yaml
-- ansible.builtin.yum:
+- ansible.builtin.dnf:
     name: httpd
     state: installed
 ```
@@ -615,14 +615,14 @@ right:
 ### quoting of variables or spacing
 wrong:
 ```yaml
-- ansible.builtin.service:
+- ansible.builtin.systemd_service:
     name: {{ item }}
     state: started
   loop: "{{my_services}}"
 ```
 right:
 ```yaml
-- ansible.builtin.service:
+- ansible.builtin.systemd_service:
     name: "{{ item }}"
     state: started
   loop: "{{ my_services }}"
@@ -692,7 +692,7 @@ ansible.builtin.setup → get «facts»
 ***
 ## Ad hoc commands
 Examples:
-- `ansible all -b -m ansible.builtin.yum -a "name=httpd state=present"`
+- `ansible all -b -m ansible.builtin.dnf -a "name=httpd state=present"`
 - `ansible all -b -m ansible.builtin.service -a "name=httpd state=started"`
 - `ansible all -a "uptime"`
 
@@ -757,7 +757,7 @@ Very simple example:
 - hosts: web
   tasks:
   - name: install httpd
-    ansible.builtin.yum:
+    ansible.builtin.dnf:
       name: httpd
       state: installed
 ```
@@ -778,7 +778,7 @@ same as before:
 - hosts: web
   tasks:
   - name: install httpd
-    yum: name=httpd state=installed
+    dnf: name=httpd state=installed
 ```
 
 Not Best Practice!
@@ -797,11 +797,11 @@ A bit more complex:
   become: true
   tasks:
     - name: install mariadb
-      ansible.builtin.yum:
+      ansible.builtin.dnf:
         name: mariadb
         state: installed
     - name: start mariadb
-      ansible.builtin.service:
+      ansible.builtin.systemd_service:
         name: mariadb
         state: started
 ```
@@ -833,7 +833,7 @@ Why? Where to define variables?
 - in playbook
 - group_vars and host_vars
 - default/vars file of role (see later...)
-- starts with letter or number
+- starts with letter or underscore
 <!-- .slide: class="master-content" > -->
 
 ***
@@ -848,7 +848,7 @@ defined in playbook:
     my_package: nginx
   tasks:
   - name: install nginx
-    ansible.builtin.yum:
+    ansible.builtin.dnf:
       name: "{{ my_package }}"
       state: installed
 ```
@@ -931,10 +931,10 @@ Don't name your Variables after Magic Variables
 ## Bonus Level: Loops!
 ```yaml
 - name: start and enable two services
-  ansible.builtin.service:
+  ansible.builtin.systemd_service:
     name: "{{ item }}"
     state: started
-    enabled: yes
+    enabled: true
   loop:
     - nginx
     - firewalld
@@ -1005,12 +1005,12 @@ Example:
   become: true
   tasks:
     - name: Install ntp
-      ansible.builtin.yum:
+      ansible.builtin.dnf:
         name: ntp
         state: present
       tags: ntp
     - name: Install figlet
-      ansible.builtin.yum:
+      ansible.builtin.dnf:
         name: figlet
         state: present
       tags: figlet
@@ -1084,7 +1084,7 @@ Nicht nur in Templates sind `when` Conditions möglich
 - no local config used
 - git repo mandatory
 - no stuff stored locally
-- yum install ansible → ansible-pull
+- dnf install ansible → ansible-pull
 <!-- .slide: class="master-content" > -->
 
 ***
@@ -1128,14 +1128,14 @@ Mit Task Kontrolle kann man definieren, wie Ansible auf die Nodes zugreift.
 Ad-Hoc command:
 
 ```bash
-ansible node1 -i hosts -B 10 -P 2 -m ansible.builtin.yum -a "name=my_package state=present"
+ansible node1 -i hosts -B 10 -P 2 -m ansible.builtin.dnf -a "name=my_package state=present"
 ```
 
 Task:
 
 ```yaml
 - name: fire and forget
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: my_package
     state: installed
   async: 60 #← needed as well
@@ -1145,7 +1145,7 @@ Task:
 ***
 
 ## Task control
-Retrieve status of a command that was fired and forgotten → module `async_status`
+Retrieve status of a command that was fired and forgotten → module `ansible.builtin.async_status`
 
 → module docs
 
@@ -1196,7 +1196,7 @@ Ansible.cfg:
 forks = 30
 ```
 
-But → mind your controllers processing power...
+But → mind your controller's processing power...
 
 <!-- .slide: class="master-content" > -->
 
@@ -1210,17 +1210,17 @@ Fact gathering:
 
 ```yaml
 - hosts: all
-  gather_facts: no
+  gather_facts: false
 ...
 ```
 
 Ansible.cfg:
 
 ```ini
-gathering = implicit (default, bedeutet gather_facts: yes)
+gathering = implicit (default, means gather_facts: true)
 ```
 
-explicit → gather_facts: no
+explicit → gather_facts: false
 <!-- .slide: class="master-content" > -->
 ***
 # Lab 4.5: Task control
@@ -1231,7 +1231,7 @@ explicit → gather_facts: no
 ## Bonus Level: Ansible on Windows
 - No Windows as ansible control host! cygwin etc not supported...
 - But: Works on WSL...
--  Maaaaaany modules for win
+- Maaaaaany modules for win
   - win_service
   - win_updates
   - win_chocolatey
@@ -1281,10 +1281,10 @@ Example (no roles yet):
 - hosts: web
   become: true
   tasks:
-    - ansible.builtin.yum:
+    - ansible.builtin.dnf:
         name: httpd
         state: installed
-    - service:
+    - ansible.builtin.systemd_service:
         name: httpd
         state: started
 ```
@@ -1381,15 +1381,17 @@ Example Playbook:
 - hosts: all
   tasks:
     - name: put configuration file
-      template:
+      ansible.builtin.template:
         src: templates/sshd_config.j2
         path: /etc/ssh/sshd_config
         validate: sshd -t %s
+        mode: "0644"
       notify: restart sshd
   handlers:
     - name: restart sshd
-      service:
-        name=sshd state=restarted
+      ansible.builtin.systemd_service:
+        name: sshd
+        state: restarted
 ```
 <!-- .slide: class="master-content" > -->
 ***
@@ -1400,15 +1402,17 @@ Example Playbook:
 - hosts: all
   tasks:
     - name: put configuration file
-      template:
+      ansible.builtin.template:
         src: templates/sshd_config.j2
         path: /etc/ssh/sshd_config
         validate: sshd -t %s
+        mode: "0644"
       notify: restart sshd
   handlers:
     - name: sshd restart
-      service:
-        name=sshd state=restarted
+      ansible.builtin.systemd_service:
+        name: sshd
+        state: restarted
       listen: restart sshd
 ```
 <!-- .slide: class="master-content" > -->
@@ -1418,7 +1422,7 @@ Caveat:
 - Are only run once at the end of play-run (not playbook-run) → Use "flush_handlers":
 
 ```yaml
-- meta: flush_handlers
+- ansible.builtin.meta: flush_handlers
 ```
 <!-- .slide: class="master-content" > -->
 ***
@@ -1439,11 +1443,11 @@ Only second handler will run when a task notifies `restart web services`
 ```yaml
 handlers:
   - name: restart web services
-    ansible.builtin.service:
+    ansible.builtin.systemd_service:
       name: memcached
       state: restarted
   - name: restart web services
-    ansible.builtin.service:
+    ansible.builtin.systemd_service:
       name: apache
       state: restarted
 ```
@@ -1485,7 +1489,7 @@ Handlers are triggered after pre_tasks, tasks, post_tasks...
 ## Error-Handling
 Continue even when task failed:
 
-`ignore_errors: yes`
+`ignore_errors: true`
 
 (status is still failed, but run continues)
 
@@ -1511,11 +1515,11 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html
 
 ```yaml
 - block:
-  « do stuff »
+    # do stuff 
   rescue:
-  « do this if block failed »
+    # do this if block failed
   always:
-  « do this always »
+    # do this always
 ```
 <!-- .slide: class="master-content" > -->
 ***
@@ -1524,30 +1528,30 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html
 ```yaml
 - block:
     - name: i force a failure
-      command: /bin/false
-    - debug:
+      ansible.builtin.command: /bin/false
+    - ansible.builtin.debug:
         msg: i will not run because false before
   rescue:
-    - debug:
+    - ansible.builtin.debug:
         msg: i will run
   always:
-    - debug:
+    - ansible.builtin.debug:
         msg: i will always run
 ```
 <!-- .slide: class="master-content" > -->
 ***
 ## Bonus Level: Blocks!
-Blocks can come in handy to group when clauses:
+Blocks can come in handy to group `when` clauses:
 ```yaml
 - block:
-    - debug:
+    - ansible.builtin.debug:
         msg: 'this task...'
-    - debug:
+    - ansible.builtin.debug:
         msg: '...and this task will run if the host is in the web group'
   when: 'web' in groups
 ```
 
-But: no loops over `block`. Use loops with `include_task` instead
+But: no loops over `block`. Use loops with `ansible.builtin.include_tasks` instead
 <!-- .slide: class="master-content" > -->
 ***
 # Lab 5.1: Ansible Roles - Handlers and Blocks
@@ -1561,9 +1565,9 @@ But: no loops over `block`. Use loops with `include_task` instead
 ***
 ## Ansible Vault
 - How to store sensitive stuff?
-- Passwords in git-repo?
-- Private keys?
-- Certificates?
+  - Passwords in git-repo?
+  - Private keys?
+  - Certificates?
 
 → Ansible Vault !
 
@@ -1630,12 +1634,12 @@ mysecret: !vault |
 - python library needed: `hvac`
 
 ```yaml
-debug:
-  msg: "{{ lookup('hashi_vault',<params>) }}"
-
+ansible.builtin.debug:
+  msg: "{{ lookup('community.hashi_vault.hashi_vault',<params>) }}"
+```
 vs
-
-debug:
+```yaml
+ansible.builtin.debug:
   msg: "{{ my_encrypted_var }}"
 ```
 
@@ -1654,8 +1658,8 @@ debug:
 ## Lookup Plugins Examples
 ```yaml
 vars:
-  file_contents: "{{ lookup('file', 'path/to/file.txt') }}"
-  ipv4: "{{ lookup('dig', 'example.com.')}}"
+  file_contents: "{{ lookup('ansible.builtin.file', 'path/to/file.txt') }}"
+  ipv4: "{{ lookup('community.general.dig', 'example.com.')}}"
 
 ```
 
@@ -1664,8 +1668,8 @@ vars:
 ***
 ## Hashicorp Vault
 ```yaml
-debug:
-  msg: "{{ lookup('hashi_vault', \
+ansible.builtin.debug:
+  msg: "{{ lookup('community.hashi_vault.hashi_vault', \
            'secret=secret/hello:value \
            token=c975b7...0f9b688a5 \
            url=http://myvault:8200' \
@@ -1706,12 +1710,12 @@ base_root_pw: "{{ lookup('community.hashi_vault.hashi_vault', \
 ***
 ## Collections
 - What is a Collection?
-- different kind of ansible content ( playbooks, roles, modules, plugins...)
-- Well defined structure (see later)
+  - different kind of ansible content ( playbooks, roles, modules, plugins...)
+  - Well defined structure (see later)
 <!-- .slide: class="master-content" > -->
 
 Note:
-Ist eine Zusammenzug von verschiedenen Ansible komponenten
+Ist ein Zusammenzug von verschiedenen Ansible komponenten
 
 ***
 
@@ -1837,7 +1841,7 @@ password=<secret_password>
 ```
 
 Note:
-Man zeht sich in der Regel Collection von einem Hub/Github
+Man zieht sich in der Regel Collection von einem Hub/Github
 Red Hat Automation Hub Beispiel
 
 <!-- .slide: class="master-content" > -->
@@ -1912,17 +1916,15 @@ Use collection in playbook:
     - name: use my module
       my_module:
         option: bliblub
-...
-
+```
 OR:
-
+```yaml
 ---
 - hosts: puzzle_nodes
   tasks:
     - name: use my module
       puzzle.puzzle_collection.my_module:
         option: bliblub
-...
 ```
 
 <!-- .slide: class="master-content" > -->
@@ -2332,7 +2334,7 @@ Some configs from ansible.cfg not taken!
 ***
 ## Glossary
 
-- Rulebook: one ore many Rulesets
+- Rulebook: one or many Rulesets
 - Ruleset:  Source(s), Rule(s)
 - Rule:     Condition(s) (IF), Action(s) (THEN)
 
@@ -2342,7 +2344,7 @@ Some configs from ansible.cfg not taken!
 ## Sources
 
 - alertmanager, zabbix, sensu
-- Paolo Alto, F5, Cisco
+- Palo Alto, F5, Cisco
 - Azure, GCP, AWS
 - many more to come...
 
@@ -2462,8 +2464,8 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 ***
 ## Infrastructure:
 - Start doing config changes only through ansible, limit root access to servers if possible
-- Use controllers to run ansible on your infrastructure, dont run from your laptop
-- Use a tool like Ansible Controller, AWX, Jenkins, GitLab, Github...
+- Use controllers to run ansible on your infrastructure, don't run from your laptop
+- Use a tool like Ansible Controller, AWX, Jenkins, GitLab, GitHub...
 
 <!-- .slide: class="master-content" > -->
 
@@ -2471,7 +2473,9 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 ## Migration to Ansible (from Puppet?):
 - You can run both tools at the same time if people fear they are not ready yet
 - Keep puppet infrastructure working but disable it
-- Migrate the puppet-modules to ansible-roles step by step. You DONT have to have ALL content ready from start (it probably not realistic)
+- Migrate the puppet-modules to ansible-roles step by step.
+
+  You DON'T have to have ALL content ready from start (it is probably not realistic)
 
 <!-- .slide: class="master-content" > -->
 
@@ -2483,7 +2487,7 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 
   Use `true` / `false` (yaml 1.2 supports only this)
 
-- Handlers: use «listen»
+- Handlers: use `listen`
 
 <!-- .slide: class="master-content" > -->
 
@@ -2492,19 +2496,20 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 Roles:
 - Prefix all variables of a role with its role-name (possible exception: base role)
 - Put all used variables in your defaults-folder , even if not yet defined
-- Use «meta: flush_handler» at the end of a role to be sure all role-related stuff is run even if a later applied role fails.
-- when many import_tasks: prefix name with filename
+- Use `ansible.builtin.meta: flush_handler` at the end of a role to be sure all role-related stuff is run even if a later applied role fails.
+- when many `ansible.builtin.import_tasks`: prefix name with filename
 
 <!-- .slide: class="master-content" > -->
 
 ***
 ## Ansible Content:
 Templates:
-- Use `{{ ansible_managed | comment }}` at the beginning of the template to indicate, that the file is managed by
-ansible
+- Use `{{ ansible_managed | comment }}` at the beginning of the template to indicate 
+  that the file is managed by ansible
 
 Files:
-- Use a comment at the beginning of the file to indicate, that the file is managed by ansible
+- Use a comment at the beginning of the file to indicate 
+  that the file is managed by ansible
 
 <!-- .slide: class="master-content" > -->
 
@@ -2512,7 +2517,7 @@ Files:
 ## Ansible Content:
 
 Ansible-Vault:
--  Use encrypt_string to encrypt each variable seperately and not a complete vars-file.
+-  Use `encrypt_string` to encrypt each variable seperately and not a complete vars-file.
 
    Reason being: You still see which variable has changed in your git repo
 
@@ -2529,14 +2534,14 @@ When writing ansible-content in a team:
 ***
 ## Ansible Content:
 - Always set file permissions explicitly
-- Use file/template instead of lineinfile/blockinfile
+- Use `file`/`template` instead of `lineinfile`/`blockinfile`
 
 <!-- .slide: class="master-content" > -->
 
 ***
 ## AI and Ansible
-- Copilot is apperantly pretty good in helping you write ansible
-- ChatGPT is good in fixing syntax and logic errors
+- Copilot is apparently pretty good at helping you write ansible
+- ChatGPT is good at fixing syntax and logic errors
 - Ansible-Lightspeed -> 60d Trial, after that AAP and IBM watsonx Subscription
 
 ----

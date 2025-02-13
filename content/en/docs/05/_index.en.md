@@ -42,10 +42,10 @@ $ cat roles/httpd/tasks/main.yml
       - firewalld
     state: installed
 - name: start services
-  ansible.builtin.service:
+  ansible.builtin.systemd_service:
     name: "{{ item }}"
     state: started
-    enabled: yes
+    enabled: true
   loop:
     - httpd
     - firewalld
@@ -53,7 +53,7 @@ $ cat roles/httpd/tasks/main.yml
   firewalld:
     service: "{{ item }}"
     state: enabled
-    immediate: yes
+    immediate: true
     permanent: true
   loop:
     - http

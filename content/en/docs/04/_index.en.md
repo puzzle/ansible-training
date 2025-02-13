@@ -34,21 +34,21 @@ Below is a possible solution for your playbook:
         name: httpd
         state: installed
     - name: start and enable httpd
-      ansible.builtin.service:
+      ansible.builtin.systemd_service:
         name: httpd
         state: started
-        enabled: yes
+        enabled: true
     - name: start and enable firewalld
-      ansible.builtin.service:
+      ansible.builtin.systemd_service:
         name: firewalld
         state: started
-        enabled: yes
+        enabled: true
     - name: open firewall for http
       firewalld:
-        ansible.builtin.service: http
+        ansible.builtin.systemd_service: http
         state: enabled
-        permanent: yes
-        immediate: yes
+        permanent: true
+        immediate: true
 ```
 
 Run your playbook with:
@@ -141,7 +141,7 @@ Wrong parameter name:
       ansible.builtin.dnf:
         name: httpd
         state: installed
-        enabled: yes     # <-- doesn't exist for dnf module
+        enabled: true     # <-- doesn't exist for dnf module
 ```
 
 {{% /details %}}

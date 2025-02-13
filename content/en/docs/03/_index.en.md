@@ -119,13 +119,13 @@ Complete the next steps using Ansible ad hoc commands:
 {{% details title="Solution Task 6" %}}
 ```bash
 ansible web -i hosts -b -m ansible.builtin.dnf -a "name=httpd state=installed"
-ansible web -i hosts -b -m ansible.builtin.service -a "name=httpd state=started enabled=yes"
+ansible web -i hosts -b -m ansible.builtin.systemd_service -a "name=httpd state=started enabled=yes"
 ```
 
 Reverting the changes made on the remote hosts:
 
 ```bash
-ansible web -i hosts -b -m service -a "name=httpd state=stopped enabled=no"
+ansible web -i hosts -b -m systemd_service -a "name=httpd state=stopped enabled=no"
 ansible web -i hosts -b -m ansible.builtin.dnf -a "name=httpd state=absent"
 ```
 {{% /details %}}

@@ -113,21 +113,21 @@ $ cat site.yml
         name: httpd
         state: installed
     - name: start and enable httpd
-      ansible.builtin.service:
+      ansible.builtin.systemd_service:
         name: httpd
         state: started
-        enabled: yes
+        enabled: true
     - name: start and enable firewalld
-      ansible.builtin.service:
+      ansible.builtin.systemd_service:
         name: firewalld
         state: started
-        enabled: yes
+        enabled: true
     - name: open firewall for http
-      firewalld:
-        ansible.builtin.service: http
+      ansible.builtin.firewalld:
+        service: http
         state: enabled
-        permanent: yes
-        immediate: yes
+        permanent: true
+        immediate: true
 - name: Run tasks on dbservers
   hosts: db
   become: true

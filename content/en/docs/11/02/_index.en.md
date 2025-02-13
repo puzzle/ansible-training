@@ -37,7 +37,7 @@ cat debug_event_rulebook.yml
           var: event
 ```
 ```bash
-ansible node1 -i inventory/hosts -b -m service -a "name=httpd state=stopped"
+ansible node1 -i inventory/hosts -b -m ansible.builtin.systemd_service -a "name=httpd state=stopped"
 ```
 ```bash
 ansible-rulebook --rulebook debug_event_rulebook.yml -i inventory/hosts -vv

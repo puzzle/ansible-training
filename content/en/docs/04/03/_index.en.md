@@ -196,7 +196,7 @@ ansible web -b -m copy -a "content='bli bla blup' dest=/etc/httpd/conf/httpd.con
 Now fix your apache config. You could use the backup of the file created in the previous ad-hoc command.
 
 ```bash
-ansible web -b -m ansible.builtin.service -a "name=httpd state=restarted"
+ansible web -b -m ansible.builtin.systemd_service -a "name=httpd state=restarted"
 ```
 {{% /details %}}
 
