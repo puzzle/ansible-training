@@ -208,7 +208,7 @@ studer@puzzle.ch
 <div>
 
 - The labs get harder quickly!
-- You dont need to do all labs to understand the content
+- You don't need to do all labs to understand the content
 - Some labs are **HARD**!
 - See "All done?" for more content
 </div>
@@ -223,7 +223,7 @@ studer@puzzle.ch
 </div>
 <div>
 
-- Connect with ssh to servers
+- Connect with SSH to servers
 - Theia-IDE on controller: https://<dns-name>
 - `ineedhelp` → tmux session and gotty
 
@@ -257,7 +257,7 @@ Note:
 Automatisierung unserer monatlichen Updates/Restart
 SLOG Cluster Automatisierung
 Migration von RZ in die Cloud mit Wechsel von Puppet auf Ansible
-Eure Lab-VMs werden vollautomatisch mit Ansible Deployed und provisioniert
+Eure Lab-VMs werden vollautomatisch mit Ansible deployed und provisioniert
 
 ***
 <div class="small">
@@ -283,7 +283,10 @@ Eure Lab-VMs werden vollautomatisch mit Ansible Deployed und provisioniert
 
 ## Rocannon's World
 
-“You remember the ansible, the big machine I showed you in the ship, which can speak instantly to other worlds, with no loss of years—it was that that they were after, I expect. It was only bad luck that my friends were all at the ship with it. Without it I can do nothing.”
+> You remember the ansible, the big machine I showed you in the ship, which can speak instantly to other worlds,
+with no loss of years—it was that that they were after, I expect.
+It was only bad luck that my friends were all at the ship with it.
+Without it I can do nothing.
 </div>
 <div>
 
@@ -329,10 +332,10 @@ Eure Lab-VMs werden vollautomatisch mit Ansible Deployed und provisioniert
 <!-- .slide: class="master-content" > -->
 
 Note:
-- ssh to client
-- copy python script (/tmp)
-- run python script
-- delete python script
+- SSH to client
+- Copy python script (/tmp)
+- Run python script
+- Delete python script
 - python2 or python3
 
 ***
@@ -342,23 +345,23 @@ Note:
 - Common Setup
   - One control node
   - One or many nodes to configure
-  - (pull vs push)
+  - (`pull` vs `push`)
 
 <!-- .slide: class="master-content" > -->
 
 Note:
-Zentraler Controlnode erleichtert das auswerten von Logs im Team
-pull (Puppet way) vs push (ansible way) --> push braucht weder daemon noch sonst was
+Zentraler Control-node erleichtert das auswerten von Logs im Team
+`pull` (Puppet way) vs `push` (ansible way) --> push braucht weder daemon noch sonst was
 
 ***
 
 ## Requirements
 
 - Control Node
-  - ansible installed (newer versions via «pip»)
+  - Ansible installed (newer versions via «pip»)
   - Nice to have: AWX / AAP / CI/CD-Pipeline
 - Client
-  - ssh, python
+  - SSH, python
 
 
 <!-- .slide: class="master-content" > -->
@@ -370,7 +373,7 @@ pull (Puppet way) vs push (ansible way) --> push braucht weder daemon noch sonst
 - Transporters:
 `ssh`, `local`, `winrm`, `docker`,...
 - Modules:
-`file`, `template`, `firewalld`, `systemd_service`, `yum`,...
+`file`, `template`, `firewalld`, `systemd_service`, `dnf`,...
 - Dynamic inventories:
 `vmware`, `cloudscale`, `foreman`, `azure`, `aws`,...
 
@@ -381,9 +384,9 @@ pull (Puppet way) vs push (ansible way) --> push braucht weder daemon noch sonst
 
 ## Why Ansible?
 
-- Simple setup (dnf install ansible)
+- Simple setup (`dnf install ansible`)
 - Agentless
-- Standard transport (ssh)
+- Standard transport (SSH)
 - Easy (relatively), yaml
 - Many modules (~~2834~~, ~~3387~~, ~~4573~~, ∞ )
 <!-- .slide: class="master-content" > -->
@@ -406,12 +409,12 @@ pull (Puppet way) vs push (ansible way) --> push braucht weder daemon noch sonst
 
 ## Why cows?
 
-- programm "cowsay"
-- was default configuration
+- Programm "cowsay"
+- Pas default configuration
 - → Ansibull → The Bullhorn, ansibullbot
-- still can be enabled:
+- Still can be enabled:
 
-"$ ANSIBLE_NOCOWS=0 ansible-playbook plays/site.yml"
+`$ ANSIBLE_NOCOWS=0 ansible-playbook plays/site.yml`
 
 <!-- .slide: class="master-content" > -->
 
@@ -442,9 +445,9 @@ What do we use on cmdline?
 ## Important Parts
 - inventory
 - ansible.cfg
-- ssh-keys
-- best practice:
-`user ansible + sudo`
+- SSH keys
+- Best practice:
+user `ansible` + `sudo`
 
 <!-- .slide: class="master-content" > -->
 
@@ -474,7 +477,7 @@ scenarios:
   yaml_example:
     retrieve-resources: false
     requests:
-      - http://example.com/
+      - https://example.com/
 
 reporting:
 - module: final-stats
@@ -577,7 +580,7 @@ provisioning: local
 <!-- .slide: class="master-content"> -->
 ***
 ## Documentation Example
-  - part of ansible-doc
+  - Part of ansible-doc
 
   `ansible-doc <module> | grep -A20 EXA`
 - `/usr/share/doc`
@@ -596,15 +599,17 @@ provisioning: local
 ***
 ## Common Mistakes
 ### Indentation
-wrong:
+Wrong:
 ```yaml
-- ansible.builtin.dnf:
+- name: Install apache
+  ansible.builtin.dnf:
   name: httpd
   state: installed
 ```
-right:
+Right:
 ```yaml
-- ansible.builtin.dnf:
+- name: Install apache
+  ansible.builtin.dnf:
     name: httpd
     state: installed
 ```
@@ -612,17 +617,19 @@ right:
 <!-- .slide: class="master-content" > -->
 ***
 ## Common Mistakes
-### quoting of variables or spacing
+### Quoting of variables or spacing
 wrong:
 ```yaml
-- ansible.builtin.systemd_service:
+- name: Start all services
+  ansible.builtin.systemd_service:
     name: {{ item }}
     state: started
   loop: "{{my_services}}"
 ```
 right:
 ```yaml
-- ansible.builtin.systemd_service:
+- name: Start all services
+  ansible.builtin.systemd_service:
     name: "{{ item }}"
     state: started
   loop: "{{ my_services }}"
@@ -694,7 +701,7 @@ ansible.builtin.setup → get «facts»
 Examples:
 - `ansible all -b -m ansible.builtin.dnf -a "name=httpd state=present"`
 - `ansible all -b -m ansible.builtin.service -a "name=httpd state=started"`
-- `ansible all -a "uptime"`
+- `ansible all -a "uptime"` <-- using the default module `ansible.builtin.command`
 
 <!-- .slide: class="master-content" > -->
 ***
@@ -736,13 +743,14 @@ node[3:99]
 ***
 ## Plays / Playbook
 
-playbook → collection of plays
+A playbook is a collection of plays
 
 <img alt='playbook' src='ansible-techlab/img/playbook.png' width="200em" />
 <!-- .slide: class="master-content" > -->
 
 Note:
 Kommt aus dem Eishockey: Spielablauf
+
 Das gleiche bei Ansible
 
 ***
@@ -756,7 +764,7 @@ Very simple example:
 ---
 - hosts: web
   tasks:
-  - name: install httpd
+  - name: install webserver
     ansible.builtin.dnf:
       name: httpd
       state: installed
@@ -765,7 +773,7 @@ To use `name` is a best practice
 <!-- .slide: class="master-content" > -->
 
 Note:
-Ein Play ist was, wo, wie gmacht wird
+Ein Play sagt was, wo, wie gemacht wird
 
 ***
 ## Plays
@@ -777,7 +785,7 @@ same as before:
 ---
 - hosts: web
   tasks:
-  - name: install httpd
+  - name: install webserver
     dnf: name=httpd state=installed
 ```
 
@@ -815,12 +823,20 @@ A bit more complex:
 
 Note:
 
-Play sollten immer in YAML geschrieben werden
-Idempotent: Man sollte es mehrmals ausführen können und das gleiche dabei rauskommen. Wikipedia:
+Plays sollten immer in YAML geschrieben werden
 
-Idempotence (UK: /ˌɪdɛmˈpoʊtəns/, US: /ˌaɪdəm-/) is the property of certain operations in mathematics and computer science whereby they can be applied multiple times without changing the result beyond the initial application. The concept of idempotence arises in a number of places in abstract algebra (in particular, in the theory of projectors and closure operators) and functional programming (in which it is connected to the property of referential transparency).
+Idempotent: Man sollte es mehrmals ausführen können und das gleiche dabei herauskommen.
 
-The term was introduced by Benjamin Peirce in the context of elements of algebras that remain invariant when raised to a positive integer power, and literally means "(the quality of having) the same power", from idem + potence (same + power).
+Wikipedia:
+
+> Idempotence (UK: /ˌɪdɛmˈpoʊtəns/, US: /ˌaɪdəm-/) is the property of certain operations in 
+mathematics and computer science whereby they can be applied multiple times without changing the result
+beyond the initial application.
+The concept of idempotence arises in a number of places in abstract algebra
+(in particular, in the theory of projectors and closure operators) and functional programming
+(in which it is connected to the property of referential transparency).
+The term was introduced by Benjamin Peirce in the context of elements of algebras that remain invariant when raised to 
+a positive integer power, and literally means "(the quality of having) the same power", from idem + potence (same + power).
 
 ***
 # Lab 4.0: Ansible Playbooks - Basics
@@ -829,16 +845,16 @@ The term was introduced by Benjamin Peirce in the context of elements of algebra
 ***
 ## Variables
 Why? Where to define variables?
-- on cmdline
-- in playbook
-- group_vars and host_vars
-- default/vars file of role (see later...)
-- starts with letter or underscore
+- On the command line
+- In playbook
+- `group_vars` and `host_vars`
+- `defaults`/`vars` file within roles (see later...)
+- Must start with a letter or underscore
 <!-- .slide: class="master-content" > -->
 
 ***
 ## Where to put variables
-defined in playbook:
+Defined in playbook:
 
 ```yaml
 ---
@@ -847,7 +863,7 @@ defined in playbook:
   vars:
     my_package: nginx
   tasks:
-  - name: install nginx
+  - name: install package(s)
     ansible.builtin.dnf:
       name: "{{ my_package }}"
       state: installed
@@ -864,11 +880,11 @@ defined in playbook:
 
 Note:
 
--- extra-vars für Command "vars", always win precedence
+`-- extra-vars` für Command "vars", always win precedence
 
 ***
 ## Where to put variables
-group_vars and host_vars
+`group_vars` and `host_vars`
 ```
 inventory/
 ├── group_vars/
@@ -877,13 +893,13 @@ inventory/
 └── host_vars/
   └── node2.yml
 ```
-Name of file in group_vars / host_vars
-**MUST** match name of group / host in
-inventory!
+Name of file in `group_vars`/`host_vars`
+**MUST** match name of the group / host in inventory!
 <!-- .slide: class="master-content" > -->
 
 Note:
-die vars-Ordner müssen im selben Ordner liegen wie das Inventory
+
+Die `*_vars`-Ordner müssen im selben Ordner liegen wie das Inventory
 
 ***
 ## Variables
@@ -911,20 +927,19 @@ Complex variables possible!
 ***
 ## Magic Variables
 
-- special variables:
-    - google «ansible special variables»
-- inventory_hostname
-(The inventory name for the ‘current’ host
+- Special variables:
+    - Google «ansible special variables»
+- `inventory_hostname` (The inventory name for the ‘current’ host
 being iterated over in the play)
-- group_names
+- `group_names`
 (List of groups the current host is part of)
 <!-- .slide: class="master-content" > -->
 
 Note:
-variable precedence
+Variable precedence
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#understanding-variable-precedence
 
-Don't name your Variables after Magic Variables
+Don't name your Variables after magic variables
 
 ***
 
@@ -942,7 +957,7 @@ Don't name your Variables after Magic Variables
 
 Note:
 
-"with_items" & "loop" possible, "with_*" is discouraged in favor of "loop"
+While both `with_items` & `loop` are allowed, `with_*` is discouraged in favor of `loop`
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html#migrating-to-loop
 
 <!-- .slide: class="master-content" > -->
@@ -957,21 +972,21 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html#migratin
 
 ## Templates
 
-- "template" is a module
+- `ansible.builtin.template` is a module
 - Jinja2 → .j2 file ending
-- Easy access of variables: `"{{ my_variable }}"`
+- Easy access to variables: `"{{ my_variable }}"`
 - Access to the same variables as the play itself
-- Easy if-else statements, for-loops etc.
+- Easy `if`-`else` statements, `for`-loops etc.
 <!-- .slide: class="master-content" > -->
 
 Note:
-Templates sind dafür da, um komplexe Files zu erstellen (Variabeln sowie `if` / `else` / `for` sind möglich)
+Templates sind dazu da, um komplexe Files zu erstellen (Variabeln sowie `if` / `else` / `for` sind möglich)
 
 ***
 
 ## Templates
 
-- template task hosts.yml
+- Template task hosts.yml
 
 ```yaml
 ---
@@ -993,7 +1008,7 @@ Templates sind dafür da, um komplexe Files zu erstellen (Variabeln sowie `if` /
 ***
 
 ## Tags
-- run only specific parts of a playbook
+- Run only specific parts of a playbook
 - https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html
 
 <!-- .slide: class="master-content" > -->
@@ -1015,7 +1030,7 @@ Example:
         state: present
       tags: figlet
 ```
-ansible-playbook -t ntp myplaybook.yml
+`ansible-playbook -t ntp myplaybook.yml`
 
 <!-- .slide: class="master-content" > -->
 ***
@@ -1025,46 +1040,48 @@ ansible-playbook -t ntp myplaybook.yml
 ***
 ## Registering output into variable
 
-Use `register` to put output command into variable
+Use `register` to save the output of a command into a variable
 ```yaml
-- name: output ls -lah to variable
+- name: Save ls -lah to variable
   ansible.builtin.command: 
     cmd: "ls -lah"
     chdir: /home/ansible
   register: output_var
 ```
 
-Show content of variable using debug. Note that you can use return
+Show content of a variable using `ansible.builtin.debug`. Note that you can use return
 values `stdout`, `stderr` and more when processing the output
 
 ```yaml
-- ansible.builtin.debug:
+- name: Print the variable with the 'var' argument
+  ansible.builtin.debug:
     var: output_var
-- ansible.builtin.debug:
+- name: Print the variable with the 'msg' argument
+  ansible.builtin.debug:
     msg: "{{ output_var.stdout }}"
 ```
 <!-- .slide: class="master-content" > -->
 ***
 ## Conditionals
 
-- Use `when` to run a task only on certain conditions
+- Use `when` to run a task only in certain conditions
 
 ```yaml
-- name: run command only when...
+- name: run command only on 'servername1'
   ansible.builtin.command: "uptime"
-  when: ansible_hostname == "servername1"
+  when: ansible_hostname == "servername1" <-- No jinja-braces in 'when' conditionals!
 ```
 
-- Use `failed_when` to define a task as «failed»
+- Use `failed_when` to mark a task as «failed»
 
 ```yaml
-- name: fails when error in stdout
+- name: fails when 'error' in stdout
   ansible.builtin.command: "grep -i error /var/log/mylog"
   register: output
-  failed_when: " 'error' in output.stdout"
+  failed_when: "'error' in output.stdout"
 ```
 
-- Use `changed_when` to define a task as «changed»
+- Use `changed_when` to mark a task as «changed»
 
 <!-- .slide: class="master-content" > -->
 
@@ -1080,11 +1097,11 @@ Nicht nur in Templates sind `when` Conditions möglich
 
 ## Ansible-pull
 - Inverted Architecture:
-- pull playbook and inventory from git repo and apply it
-- no local config used
-- git repo mandatory
-- no stuff stored locally
-- dnf install ansible → ansible-pull
+- Pull playbook and inventory from git repo and apply it
+- No local config used
+- Git repo mandatory
+- No stuff stored locally
+- `dnf install ansible` → `ansible-pull`
 <!-- .slide: class="master-content" > -->
 
 ***
@@ -1097,11 +1114,11 @@ $ ansible-pull \
 -i <inventory> \
 <playbookname.yml>
 ```
-default playbook: `local.yml`
+Default playbook: `local.yml`
 <!-- .slide: class="master-content" > -->
 
 Note:
-Pull kehrt einfach die Logik um. Man holt sich die Befehle und schickt sie nicht.
+`pull` kehrt einfach die Logik um. Man holt sich die Befehle und schickt sie nicht.
 
 ***
 
@@ -1114,7 +1131,7 @@ Pull kehrt einfach die Logik um. Man holt sich die Befehle und schickt sie nicht
 
 - «async»: define how long to wait at max for a task to finish. (ad hoc → -B)
 - «poll»: Interval at which ansible checks back if task has finished. Default: 10sec (ad hoc → -P)
--  Fire and forget: «async = x » AND «poll = 0»
+- Fire and forget: «async = x » AND «poll = 0»
 
 <!-- .slide: class="master-content" > -->
 
@@ -1161,9 +1178,9 @@ Define batch size in play:
   serial: 5
 - hosts: all
   serial:
-    - 1
-    - 10
-    - 100%
+    - 1 # <- First, do one host
+    - 10 # <- After the first has completed, do ten more hosts
+    - 100% # <- After the first eleven hosts, do the remaining ones
 ```
 <!-- .slide: class="master-content" > -->
 ***
@@ -1229,7 +1246,7 @@ explicit → gather_facts: false
 ----
 
 ## Bonus Level: Ansible on Windows
-- No Windows as ansible control host! cygwin etc not supported...
+- No Windows as ansible control host! cygwin etc. not supported...
 - But: Works on WSL...
 - Maaaaaany modules for win
   - win_service
@@ -1250,8 +1267,8 @@ Set-Service -Name sshd -StartupType 'Automatic'
 <!-- .slide: class="master-content" > -->
 ***
 ## Bonus Level: Ansible on Network Devices
-- Many vendors supported ( 490... «ios» modules)
-- ssh connection still needed...
+- Many vendors supported ( > 490 «ios» modules)
+- SSH connection still needed
 ----
 # Roles
 
@@ -1263,14 +1280,14 @@ Set-Service -Name sshd -StartupType 'Automatic'
 ## Roles
 
 - Why?
-  - bundle tasks, reuse stuff
-  - Make «tasks» independent from inventory
-  - info in playbooks:
-- what (roles) is run where (inventory)
+  - Bundle tasks, reuse stuff
+  - Separation of concerns:
+    - Roles contain the actual logic
+    - Playbooks define which roles are run on which hosts
   - Example roles:
-  - base
-  - httpd
-  - mariadb
+    - base
+    - httpd
+    - mariadb
 
 <!-- .slide: class="master-content" > -->
 ***
@@ -1281,10 +1298,12 @@ Example (no roles yet):
 - hosts: web
   become: true
   tasks:
-    - ansible.builtin.dnf:
+    - name: Install Apache
+      ansible.builtin.dnf:
         name: httpd
         state: installed
-    - ansible.builtin.systemd_service:
+    - name: Start Apache
+      ansible.builtin.systemd_service:
         name: httpd
         state: started
 ```
@@ -1303,16 +1322,14 @@ Example:
 <!-- .slide: class="master-content" > -->
 ***
 ## Roles
-- roles_path in ansible.cfg (default /etc/ansible/roles)
-- Well defined structure (see later)
+- `roles_path` in ansible.cfg (default /etc/ansible/roles)
+- Well-defined structure (see later)
 - Use only parts of the structure you really need!
-- ansible-galaxy:
 
-online collection of roles (and more)
-
-https://galaxy.ansible.com/
-
-(github as well!)
+ansible-galaxy:
+- online collection of roles (and more)
+- https://galaxy.ansible.com/
+- (GitHub as well!)
 <!-- .slide: class="master-content" > -->
 ***
 ## Roles
@@ -1321,7 +1338,7 @@ Quite handy:
 ansible-galaxy role init <rolename>
 ```
 
-→ creates default folder-structure
+→ Creates default folder-structure
 <!-- .slide: class="master-content" > -->
 ***
 ## Roles
@@ -1349,10 +1366,10 @@ Remember: only use folders/files you really need!
 <!-- .slide: class="master-content" > -->
 ***
 ## Roles
-- defaults/ default values of vars if not defined somewhere else
-- meta/ additional information (f.e. dependencies to other roles)
-- test/ testing your roles against a «test» inventory
-- vars/ variables (precedence over group_vars / host_vars)
+- `defaults/`: default values of vars if not defined somewhere else
+- `meta/`: additional information (f.e. dependencies to other roles)
+- `test/`:  testing your roles against a «test» inventory
+- `vars/`: variables (precedence over group_vars / host_vars)
 <!-- .slide: class="master-content" > -->
 ***
 ## Lab 5: Ansible Roles - Basics
@@ -1361,12 +1378,12 @@ Remember: only use folders/files you really need!
 
 ## Handlers
 
-Do stuff when state changed after task...
+Do stuff when a task reports a changed state
 
-Example:
-- restart service after change of config file...
-- custom scripts after software upgrade...
-- Handler is not a roles feature. Can be used in playbooks as well.
+Examples:
+- Restart service after change of config file
+- Custom scripts after software upgrade
+- Handlers are not a roles feature. They can be used in playbooks as well.
 <!-- .slide: class="master-content" > -->
 ***
 ## Handlers
@@ -1380,7 +1397,7 @@ Example Playbook:
 ```yaml [1|2-8|9-12]
 - hosts: all
   tasks:
-    - name: put configuration file
+    - name: Write configuration file
       ansible.builtin.template:
         src: templates/sshd_config.j2
         path: /etc/ssh/sshd_config
@@ -1422,23 +1439,22 @@ Caveat:
 - Are only run once at the end of play-run (not playbook-run) → Use "flush_handlers":
 
 ```yaml
-- ansible.builtin.meta: flush_handlers
+- name: Run all handlers that have been triggered
+  ansible.builtin.meta: flush_handlers
 ```
 <!-- .slide: class="master-content" > -->
 ***
 ## Handlers
 Caveat:
 
-- If multiple handlers have the same name:
+- If multiple handlers have the same name, only the last will be run
+- But: Every handler that has a matching `listen` is triggered
 
-only the last will be run
-- But: each handler that has a matching «listen» is triggered
-
-→ best practice: use «listen»
+→ best practice: use `listen`
 <!-- .slide: class="master-content" > -->
 ***
 ## Handlers
-Only second handler will run when a task notifies `restart web services`
+Only the second handler will run when a task notifies `restart web services`
 
 ```yaml
 handlers:
@@ -1455,7 +1471,7 @@ handlers:
 ***
 ## Handlers
 Both handlers are run when a task notifies `restart web services`
-```yaml[6,11]
+```yaml [6,11]
 handlers:
   - name: Restart memcached
     ansible.builtin.service:
@@ -1486,16 +1502,16 @@ Last slide not entirely true...
 Handlers are triggered after pre_tasks, tasks, post_tasks...
 <!-- .slide: class="master-content" > -->
 ***
-## Error-Handling
+## Error Handling
 Continue even when task failed:
 
 `ignore_errors: true`
 
 (status is still failed, but run continues)
 
-`failed_when: true`
+`failed_when: false`
 
-(status always failed)
+(status never failed)
 
 <!-- .slide: class="master-content" > -->
 ***
@@ -1503,8 +1519,9 @@ Continue even when task failed:
 Define failed from output of command:
 
 ```yaml
-- name: my task
-  ansible.builtin.command: my_status_cmd
+- name: See if my service is running
+  ansible.builtin.command: 
+    cmd: systemctl status my_service
   register: cmd_result
   failed_when: "'FAILED' in cmd_result.stdout"
 ```
@@ -1526,32 +1543,41 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html
 ## Bonus Level: Blocks!
 
 ```yaml
-- block:
+- name: Demonstrating error handling in blocks
+  block:
     - name: i force a failure
-      ansible.builtin.command: /bin/false
-    - ansible.builtin.debug:
-        msg: i will not run because false before
+      ansible.builtin.command: 
+        cmd: /bin/false
+    - name: Print some text to stdout
+      ansible.builtin.debug:
+        msg: I will never run because block execution does not continue after a task fails
   rescue:
-    - ansible.builtin.debug:
-        msg: i will run
+    - name: Print some more text to stdout
+      ansible.builtin.debug:
+        msg: I will run
   always:
-    - ansible.builtin.debug:
-        msg: i will always run
+    - name: Print even more text to stdout
+      ansible.builtin.debug:
+        msg: I will always run
 ```
 <!-- .slide: class="master-content" > -->
 ***
 ## Bonus Level: Blocks!
 Blocks can come in handy to group `when` clauses:
 ```yaml
-- block:
+- name: Grouping two debugs together
+  when: 'web' in groups <- 'when'-statement before 'block' for better readability
+  block:
     - ansible.builtin.debug:
         msg: 'this task...'
     - ansible.builtin.debug:
         msg: '...and this task will run if the host is in the web group'
-  when: 'web' in groups
+
 ```
 
-But: no loops over `block`. Use loops with `ansible.builtin.include_tasks` instead
+But: You cannot loop over a `block`. 
+
+Use loops with `ansible.builtin.include_tasks` instead
 <!-- .slide: class="master-content" > -->
 ***
 # Lab 5.1: Ansible Roles - Handlers and Blocks
@@ -1565,7 +1591,7 @@ But: no loops over `block`. Use loops with `ansible.builtin.include_tasks` inste
 ***
 ## Ansible Vault
 - How to store sensitive stuff?
-  - Passwords in git-repo?
+  - Passwords in git repo?
   - Private keys?
   - Certificates?
 
@@ -1574,17 +1600,17 @@ But: no loops over `block`. Use loops with `ansible.builtin.include_tasks` inste
 <!-- .slide: class="master-content" > -->
 ***
 ## Ansible Vault
-- command: `ansible-vault`
-- options:
-  - encrypt, encrypt-string, decrypt
-  - view, edit, rekey
-- also tasks, handlers can be encrypted...
+- Command: `ansible-vault`
+- Options:
+  - Encrypt, encrypt-string, decrypt
+  - View, edit, rekey
+- Also tasks, handlers can be encrypted...
 <!-- .slide: class="master-content" > -->
 ***
 ## Ansible Vault
-- via input
-- uses a password(-file)
-- via location of file in ansible.cfg
+- Via input
+- Uses a password(-file)
+- Via location of file in ansible.cfg
 <!-- .slide: class="master-content" > -->
 ***
 ## Ansible Vault
@@ -1612,7 +1638,7 @@ mysecret: !vault |
 ***
 ## Ansible Vault
 - Attention: Password in Output?
-- Use `no_log: true` !
+- Use `no_log: true`!
 <!-- .slide: class="master-content" > -->
 ***
 # Lab 6: Managing Secrets with Ansible Vault
@@ -1621,35 +1647,37 @@ mysecret: !vault |
 
 ***
 ## Hashicorp Vault
-- high availability
-- different permissions for different users and groups
-- centralized place to store secrets
+- High availability
+- Different permissions for different users and groups
+- Centralized place to store secrets
 
 <img alt='hashivault' src='ansible-techlab/img/hashivault.png' height="100em" />
 
 <!-- .slide: class="master-content" > -->
 ***
 ## Hashicorp Vault
-- ansible can use Hashicorp vault secrets
-- python library needed: `hvac`
+- Ansible can use Hashicorp vault secrets
+- Python library needed: `hvac`
 
 ```yaml
-ansible.builtin.debug:
-  msg: "{{ lookup('community.hashi_vault.hashi_vault',<params>) }}"
+- name: Looking up a secret from the hashi vault
+  ansible.builtin.debug:
+    msg: "{{ lookup('community.hashi_vault.hashi_vault',<params>) }}"
 ```
 vs
 ```yaml
-ansible.builtin.debug:
-  msg: "{{ my_encrypted_var }}"
+- name: Printing a variable from the vault
+  ansible.builtin.debug:
+    msg: "{{ my_encrypted_var }}"
 ```
 
 <!-- .slide: class="master-content" > -->
 
 ***
 ## Lookup Plugins
-- access data from outside sources
-- files, databases, key/value stores, APIs, Password-Managers, etc.
-- ansible-doc -t lookup -l
+- Access data from outside sources
+- Files, databases, key/value stores, APIs, Password-Managers, etc.
+- `ansible-doc -t lookup -l`
 - https://docs.ansible.com/ansible/latest/plugins/lookup.html
 
 
@@ -1659,7 +1687,7 @@ ansible.builtin.debug:
 ```yaml
 vars:
   file_contents: "{{ lookup('ansible.builtin.file', 'path/to/file.txt') }}"
-  ipv4: "{{ lookup('community.general.dig', 'example.com.')}}"
+  ipv4: "{{ lookup('community.general.dig', 'example.com')}}"
 
 ```
 
@@ -1668,12 +1696,15 @@ vars:
 ***
 ## Hashicorp Vault
 ```yaml
-ansible.builtin.debug:
-  msg: "{{ lookup('community.hashi_vault.hashi_vault', \
-           'secret=secret/hello:value \
-           token=c975b7...0f9b688a5 \
-           url=http://myvault:8200' \
-        )}}"
+- name: Looking up a secret from the hashi vault
+  ansible.builtin.debug:
+    msg: >
+      {{ 
+      lookup('community.hashi_vault.hashi_vault',
+      'secret=secret/hello:value
+       token=c975b7...0f9b688a5
+       url=http://myvault:8200'
+      ) }}
 ```
 
 <!-- .slide: class="master-content" > -->
@@ -1689,9 +1720,12 @@ VAULT_TOKEN=<your token>
 <!-- .slide: class="master-content" > -->
 ***
 ## Hashicorp Vault
-```
-base_root_pw: "{{ lookup('community.hashi_vault.hashi_vault', \
-                  'secret=kv/data/spaces/company/prod/root:rootpw_crypted') }}"
+```yaml
+base_root_pw: >
+  {{
+  lookup('community.hashi_vault.hashi_vault',
+  'secret=kv/data/spaces/company/prod/root:rootpw_crypted'
+  ) }}
 ```
 
 <!-- .slide: class="master-content" > -->
@@ -1710,8 +1744,8 @@ base_root_pw: "{{ lookup('community.hashi_vault.hashi_vault', \
 ***
 ## Collections
 - What is a Collection?
-  - different kind of ansible content ( playbooks, roles, modules, plugins...)
-  - Well defined structure (see later)
+  - Different kind of ansible content (playbooks, roles, modules, plugins...)
+  - Well-defined structure (see later)
 <!-- .slide: class="master-content" > -->
 
 Note:
@@ -1743,7 +1777,7 @@ Solution:
 <!-- .slide: class="master-content" > -->
 
 Note:
-Bei 2.9 nur Techpreview dann ab 2.10 Bestanteil
+Bei 2.9 nur Techpreview dann ab 2.10 Bestandteil
 
 ***
 ## Collections
@@ -1756,12 +1790,11 @@ Bei 2.9 nur Techpreview dann ab 2.10 Bestanteil
 <!-- .slide: class="master-content" > -->
 
 Note:
-Version Chaos
-Bei Enterprise OS habt ihr ziemlich sicher 2.9
+Versions-Chaos → Bei Enterprise OS habt ihr ziemlich sicher 2.9
 
 ***
 ## Collections
--  companies offer support for their collections:
+-  Companies offer support for their collections:
 
 Red Hat, Azure, VMWare, Cisco, Checkpoint, F5, IBM, NetApp...
 
@@ -1770,23 +1803,24 @@ Red Hat, Azure, VMWare, Cisco, Checkpoint, F5, IBM, NetApp...
 
 ***
 ## Collections
-- Name of collection is always like:
+- Name of collection is always of the form:
 
   "namespace.collectionname"
 
-Example:
+Examples:
 - `community.kubernetes`
 - `puzzle.puzzle_collection`
-  -> FQCN
+
+-> FQCN
 
 <!-- .slide: class="master-content" > -->
 
 ***
 ## Collections
 -  Creation of Namespace:
-  - first login into Galaxy with GitHub credentials →
-  - namespace created automatically (username)
-- Github issues for other namespaces
+  - First login into Galaxy with GitHub credentials →
+  - Namespace created automatically (username)
+- GitHub issues for other namespaces
 
 <!-- .slide: class="master-content" > -->
 
@@ -1794,7 +1828,7 @@ Example:
 ## Collections
 
 Example structure:
-```
+```bash
 $ ansible-galaxy collection init puzzle.puzzle_collection
 puzzle
 └── puzzle_collection
@@ -1896,7 +1930,7 @@ Tower:
 collections/requirements.yml
 
 → needed for Tower to download collections
-→ AAP uses EE's
+→ AAP uses execution environments
 
 <!-- .slide: class="master-content" > -->
 
@@ -1980,13 +2014,10 @@ galaxy.yml!
 ***
 ## Automation Hub
 
-official location to discover and download supported (by RH) collections
-
-part of the Red Hat Ansible Automation Platform subscription
-
-https://cloud.redhat.com/api/automation-hub/ (token required)
-
-Red Hat Ansible Automation Platform subscription ≃ Red Hat Ansible Tower subscription
+- Official location to discover and download supported (by RH) collections 
+- Part of the Red Hat Ansible Automation Platform subscription
+- https://cloud.redhat.com/api/automation-hub/ (token required)
+- Red Hat Ansible Automation Platform subscription ≃ Red Hat Ansible Tower subscription
 
 <!-- .slide: class="master-content" > -->
 
@@ -2005,7 +2036,7 @@ Red Hat Ansible Automation Platform subscription ≃ Red Hat Ansible Tower subsc
 
 ## New terms
 
-- execution environment
+- Execution environment
 - ansible-runner
 - ansible-navigator
 - ansible-builder
@@ -2015,11 +2046,10 @@ Red Hat Ansible Automation Platform subscription ≃ Red Hat Ansible Tower subsc
 ***
 ## Execution Environments
 
-- it's a container!
-- place where ansible is run
+- It's a container!
+- Place where ansible is run
   (vs. local python)
-- Advantage:
-  it's a container!
+- Advantage: it's a container!
 
 <!-- .slide: class="master-content" > -->
 
@@ -2029,20 +2059,20 @@ Red Hat Ansible Automation Platform subscription ≃ Red Hat Ansible Tower subsc
 ## Execution Environments
 
 Container with:
-- ansible
-- ansible collections
-- python
-- python modules
-- binaries
+- Ansible
+- Ansible collections
+- Python
+- Python modules
+- Binaries
 
 <!-- .slide: class="master-content" > -->
 
 ***
 ## Execution Environments
 
-- built with ansible-builder
+- Built with ansible-builder
 - (uses different containers)
-- beware of transparent proxy :-/
+- Beware of transparent proxy :-/
 
 <!-- .slide: class="master-content" > -->
 
@@ -2052,12 +2082,12 @@ Container with:
 
 3 things:
 
-1. tool
-2. container and
-3. python library
+1. Tool
+2. Container and
+3. Python library
 
 Goal:
-- stable and consistent interface to Ansible
+- Stable and consistent interface to Ansible
 
 
 <!-- .slide: class="master-content" > -->
@@ -2067,11 +2097,11 @@ Goal:
 ## ansible-runner
 
 - Interface accepts multiple kinds of input:
-  - python module parameters
-  - cmdline arguments (like ansible-playbook)
-  - can be a directory structure
-    [ansible runner introduction](https://ansible-runner.readthedocs.io/en/stable/intro/)
-    [ansible runner demonstration](https://github.com/ansible/ansible-runner/tree/devel/demo)
+  - Python module parameters
+  - Commandline arguments (like ansible-playbook)
+  - Can be a directory structure
+    - [ansible runner introduction](https://ansible-runner.readthedocs.io/en/stable/intro/)
+    - [ansible runner demonstration](https://github.com/ansible/ansible-runner/tree/devel/demo)
 
 <!-- .slide: class="master-content" > -->
 
@@ -2079,8 +2109,8 @@ Goal:
 
 ## ansible-runner
 
-- runs ansible and ansible-playbook tasks
-- gathers information of ansible runs
+- Runs ansible and ansible-playbook tasks
+- Gathers information of ansible runs
 
 <!-- .slide: class="master-content" > -->
 
@@ -2103,18 +2133,18 @@ Goal:
 
 It's a text-based user interface (TUI)!
 
-- wraps old functionality
-- adds new stuff
+- Wraps old functionality
+- Adds new stuff
 
 <!-- .slide: class="master-content" > -->
 
 ***
 ## ansible-navigator
 
-- available through Red Hat subscription (repo) or pip
-- needs `podman` (default) or `docker`
-- initial download of demo Execution Environment (EE)
-- configuration per project possible
+- Available through Red Hat subscription (repo) or pip
+- Needs `podman` (default) or `docker`
+- Initial download of demo Execution Environment (EE)
+- Configuration per project possible
 
 <!-- .slide: class="master-content" > -->
 ***
@@ -2163,9 +2193,9 @@ BEWARE: set `remote_user` when using EE!
 
 Tool to build your own EE
 
-- local config file
-- creates podman context and runs it
-- uses two other containers:
+- Local config file
+- Creates podman context and runs it
+- Uses two other containers:
   ansible-builder and ansible-runner
 
 <!-- .slide: class="master-content" > -->
@@ -2173,13 +2203,12 @@ Tool to build your own EE
 
 ## ansible-builder config files
 
-- your-ee.yml for your ee
-- requirements.txt for python
-- requirements.yml for collections
-- bindep.txt for system binaries
-- ansible.cfg
-- additional_build_steps
-
+- `your-ee.yml` for your ee
+  - `additional_build_steps`
+- `requirements.txt` for python
+- `requirements.yml` for collections
+- `bindep.txt` for system binaries
+- `ansible.cfg`
 
 <!-- .slide: class="master-content" > -->
 ***
@@ -2223,7 +2252,7 @@ Tool to build your own EE
 ## Ansible Controller
 Watch out:
 
-Some configs from ansible.cfg not taken!
+Some configs from `ansible.cfg` not taken!
 
 <!-- .slide: class="master-content" > -->
 
@@ -2231,15 +2260,15 @@ Some configs from ansible.cfg not taken!
 
 ## Ansible Controller
 - Pros:
-  - «who run what job where?» vs «root access»
-  - scheduling, notifications
+  - «who runs which job where?» vs «root access»
+  - Scheduling, notifications
   - Execution Environments (vs. pipenv)
-  - teams with different permissions
-  - teams can use credentials without knowing them
+  - Teams with different permissions
+  - Teams can use credentials without knowing them
   - Controller can be configured using ansible modules :-)
     (awx.awx)
 - Cons:
-  - price?
+  - Price?
 
 <!-- .slide: class="master-content" > -->
 
@@ -2247,10 +2276,9 @@ Some configs from ansible.cfg not taken!
 
 ## Ansible Controller
 
-- why no AWX?
-
-- Install somewhat complicated
-- Upgrade Paths available
+- Why no AWX?
+  - Install somewhat complicated
+  - Upgrade Paths available
 
 
 <!-- .slide: class="master-content" > -->
@@ -2297,7 +2325,7 @@ Some configs from ansible.cfg not taken!
 ***
 ## History
 
-- Feb 2022: ansible-rulebook on Github
+- Feb 2022: ansible-rulebook on GitHub
 - Dec 2022: Dev Preview RH
 - Mai 2023: Part of AWX/AAP 2.4
 
@@ -2306,17 +2334,17 @@ Some configs from ansible.cfg not taken!
 ***
 ## Basics
 
-- if-then logic
-- cli component of EDA: ansible-rulebook
+- `if`-`then` logic
+- cli component of EDA: `ansible-rulebook`
 
 <!-- .slide: class="master-content" > -->
 
 ***
 ## Playbook vs Rulebook
 
-- ansible-runner, ansible-playbok
+- `ansible-runner`, `ansible-playbook`
   - starts when defined by user
-- ansible-rulebook
+- `ansible-rulebook`
   - daemon, waits for event
 
 <!-- .slide: class="master-content" > -->
@@ -2353,7 +2381,7 @@ Some configs from ansible.cfg not taken!
 ***
 ## Conditions
 
-"if-part"
+"`if`-part"
 - int, strings, bools, floats, null
 - regexp
 
@@ -2362,7 +2390,7 @@ Some configs from ansible.cfg not taken!
 ***
 ## Actions
 
-"then-part"
+"`then`-part"
 - run_playbook
 - run_job_template
 - debug, set_fact, run_module,...
@@ -2414,8 +2442,8 @@ ansible-rulebook --rulebook my_rb.yml -i hosts
 ***
 ## Event-Source Information
 
-- events -> json
-- accessible inside playbook with:
+- Events -> json
+- Accessible inside playbook with:
   "{{ ansible_eda.event(s) }}"
 
 <!-- .slide: class="master-content" > -->
@@ -2423,18 +2451,18 @@ ansible-rulebook --rulebook my_rb.yml -i hosts
 ***
 ## Events vs Facts
 
-- technically the same
-- events are discarded right after condition met
-- facts are longlived events
+- Technically the same
+- Events are discarded right after condition met
+- Facts are long-lived events
 
 <!-- .slide: class="master-content" > -->
 
 ***
 ## Facts
 
-- set with set_facts action
-- retracted with retract_facts action
-- only valid per ruleset (!!!)
+- Set with set_facts action
+- Retracted with retract_facts action
+- Only valid per ruleset (!!!)
 
 <!-- .slide: class="master-content" > -->
 
@@ -2447,17 +2475,16 @@ ansible-rulebook --rulebook my_rb.yml -i hosts
 ## Ansible Docs:
 - Have a look at the EXAMPLE section in the module documentation
 - Very interesting tips:
-
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 
 <!-- .slide: class="master-content" > -->
 
 ***
 ## Infrastructure:
-- install ansible from package manager, not pip (because of virtenv)
-- keep your ansible-stuff in a git repository
-- Use ssh connection to clients, use ssh-keys
-- Connect as user ansible, use sudo for privilege escalation
+- Install ansible from package manager, not pip (because of virtenv)
+- Keep your ansible-stuff in a git repository
+- Use SSH connection to clients, use SSH keys
+- Connect as user `ansible`, use sudo for privilege escalation
 
 <!-- .slide: class="master-content" > -->
 
@@ -2475,29 +2502,31 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 - Keep puppet infrastructure working but disable it
 - Migrate the puppet-modules to ansible-roles step by step.
 
-  You DON'T have to have ALL content ready from start (it is probably not realistic)
+You DON'T have to have ALL content ready from start (it is probably not realistic)
 
 <!-- .slide: class="master-content" > -->
 
 ***
 ## Ansible Content:
 
-- Use `name` in all your tasks! Be specific enough...
-- Booleans:
+Use `name` in all your tasks!
+- Explain _why_ you are doing something instead of _what_ you are doing.
 
-  Use `true` / `false` (yaml 1.2 supports only this)
+Booleans:
+- Use `true` / `false` (yaml 1.2 supports only this)
 
-- Handlers: use `listen`
+Handlers: 
+- Use `listen`
 
 <!-- .slide: class="master-content" > -->
 
 ***
 ## Ansible Content:
 Roles:
-- Prefix all variables of a role with its role-name (possible exception: base role)
-- Put all used variables in your defaults-folder , even if not yet defined
-- Use `ansible.builtin.meta: flush_handler` at the end of a role to be sure all role-related stuff is run even if a later applied role fails.
-- when many `ansible.builtin.import_tasks`: prefix name with filename
+- Prefix all variables of a role with its role name (possible exception: `base` role)
+- Put all used variables in your `defaults` folder , even if not yet defined
+- Use `ansible.builtin.meta: flush_handler` at the end of a role to be sure all role-related stuff is run even if a subsequent role fails.
+- When using many `ansible.builtin.import_tasks`: prefix name with filename
 
 <!-- .slide: class="master-content" > -->
 
@@ -2517,17 +2546,17 @@ Files:
 ## Ansible Content:
 
 Ansible-Vault:
--  Use `encrypt_string` to encrypt each variable seperately and not a complete vars-file.
+-  Use `encrypt_string` to encrypt each variable separately and not a complete vars-file.
 
-   Reason being: You still see which variable has changed in your git repo
+   Reason: You still see which variable has changed in your git repo
 
 <!-- .slide: class="master-content" > -->
 
 ***
 ## Ansible Content:
-When writing ansible-content in a team:
+When writing Ansible content in a team:
 - Define some standards (role-prefixed variables, snake_case for variables/handlers ...)
-- **But**: dont discuss too much about how a problem is solved. There are simply different kind of views.
+- **But**: Don't spend too much time discussing how a problem is solved. There are simply many different views.
 
 <!-- .slide: class="master-content" > -->
 

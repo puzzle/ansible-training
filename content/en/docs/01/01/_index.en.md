@@ -36,7 +36,7 @@ We also do some basic git configurations.
 * Config your name and email
 * Init a git repo in the `/home/ansible/techlab` folder
 * Add your gitea repository as an ssh-remote
-(the remote ssh user is gitea, so `gitea@<yourname>-controller.workshop.puzzle.ch:ansible/techlab.git`
+(the remote SSH user is gitea, so `gitea@<yourname>-controller.workshop.puzzle.ch:ansible/techlab.git`
 is what you have to set as a remote).
 * Create a `README.md` file with a description of your repository
 * Add and commit the file `README.md` with an appropriate commit message.
@@ -61,7 +61,7 @@ git commit -m "first commit"
 ### Task 3
 
 * In Task 2 of Lab 1.0 you created SSH keys for the user ansible on controller node
-* Show the content of the ssh public key
+* Show the content of the SSH public key
 * In the Gitea GUI, navigate to the `Settings` of the user `ansible`
 * On the right side chose the `SSH / GPG Keys` tab
 * Click the `Add Key` button
@@ -74,7 +74,7 @@ git commit -m "first commit"
 cat /home/ansible/.ssh/id_rsa.pub
 ```
 
-![Add ssh keys](git_add_sshkey_to_gitea.png)
+![Add SSH keys](git_add_sshkey_to_gitea.png)
 
 {{% /details %}}
 

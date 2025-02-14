@@ -64,7 +64,7 @@ Check `httpd.service` on group `web`:
 ```
 
 {{% alert title="Hint" color="info" %}}
- The ports for ssh, dhcp and cockpit are opened by default in the firewalld.
+ The ports for SSH, DHCP and cockpit are opened by default in the firewalld.
  It is best, especially for documentation, to open the ports explicitly in a basic settings file.
 {{% /alert %}}
 
