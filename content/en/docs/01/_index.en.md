@@ -4,7 +4,7 @@ weight: 10
 sectionnumber: 1
 ---
 
-During this lab you will configure Ansible. You will be able to use Ansible on the controller node and 
+During this lab you will configure Ansible. You will be able to use Ansible on the controller node and
 run your first commands on the ansible nodes (managed nodes).
 
 You have the IP addresses of the controller node and managed nodes (given by your instructor).
@@ -20,7 +20,7 @@ Unless otherwise specified, your working directory for all labs should be `/home
 Some good advice:
 
 * Always read all the tasks first. Some tasks might not be clear until you get the whole scope of the lab.
-* Open a terminal that you use only for `ansible-doc` (see later) and 
+* Open a terminal that you use only for `ansible-doc` (see later) and
 another terminal that you use for ad hoc commands (see later) to check the result of your plays.
 * When possible use copy & paste for filenames and file content. You'll make fewer mistakes.
 
@@ -55,8 +55,8 @@ Use your favourite SSH client to connect to the IP address of your controller ho
 * Install all packages needed to use Ansible on the controller host.
 
 {{% alert title="Tip" color="info" %}}
-  Use `sudo` to elevate your privilege to those of `root`. 
-  Be sure to only use root privileges for installing the packages, 
+  Use `sudo` to elevate your privilege to those of `root`.
+  Be sure to only use root privileges for installing the packages,
   you should perform the rest of the lab as user `ansible`.
 {{% /alert %}}
 
@@ -178,7 +178,7 @@ ansible all -i hosts -m ansible.builtin.ping
 ### Task 4
 
 {{% alert title="Note" color="primary" %}}
-  If you are using the lab servers provided by your teacher, the sudoers configuration is already done. 
+  If you are using the lab servers provided by your teacher, the sudoers configuration is already done.
   Nevertheless, have a look at it to see how stuff works.
 {{% /alert %}}
 

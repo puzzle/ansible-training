@@ -88,7 +88,7 @@ Its file `tasks/main.yml` should import the files `motd.yml` and `packages.yml`.
 "This is a server\\n".
 Remember to move the template as well as the variable to a correct location in the `roles` folder.
 * `packages.yml` should install the packages `firewalld`, `yum-utils`, `dos2unix`, `emacs` and `vim`
-* Write a playbook `prod.yml` that applies the role `base` to all servers 
+* Write a playbook `prod.yml` that applies the role `base` to all servers
 and the role `httpd` only to the group `web`.
 
 {{% details title="Solution Task 4" %}}

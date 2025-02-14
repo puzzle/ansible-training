@@ -244,7 +244,7 @@ jim@192.168.122.31's password:
 
 Create a playbook `serverinfo.yml` that does the following:
 
-* On all nodes: Place a file `/root/serverinfo.txt` with a line like the following repeated for 
+* On all nodes: Place a file `/root/serverinfo.txt` with a line like the following repeated for
 each and every server in the inventory:
 
 ```

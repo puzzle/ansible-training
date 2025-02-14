@@ -72,7 +72,7 @@ Created collection for newpuzzle.ansible_techlab2 at /home/ansible/techlab/newpu
 * Have a look at the ansible configuration and figure out why it was installed there.
 
 {{% alert title="Tip" color="info" %}}
-With `ansible-config dump` you can even see the default configuration values not explicitly set 
+With `ansible-config dump` you can even see the default configuration values not explicitly set
 in the `ansible.cfg` file. Look for `COLLECTIONS_PATHS`.
 {{% /alert %}}
 

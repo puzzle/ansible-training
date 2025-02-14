@@ -14,10 +14,12 @@ It assumes your working directory is always `/home/ansible/techlab/`.
 Use the `template` module and a template named `mi6.j2`.
 Don’t encrypt anything yet and use the inventory hosts from the earlier labs.
 * The content of the file `MI6` should be:
+
 ```yaml
 username: jamesbond
 password: miss_moneypenny
 ```
+
 * Run the playbook and check if the file `/etc/MI6` has been deployed on the nodes.
 
 {{% details title="Solution Task 1" %}}
@@ -45,10 +47,12 @@ $ ansible node1,node2 -a "cat /etc/MI6"  #<-- show created files with it's conte
 ### Task 2
 
 * Make the playbook `secretservice.yml` use a variable file named `secret_vars.yml` with the content:
+
 ```yaml
 var_username: jamesbond
 var_password: miss_moneypenny
 ```
+
 * Rewrite the `mi6.j2` template to use the variables from the `secret_vars.yml` file. Nothing is encrypted yet.
 * Rerun the playbook and remember nothing has been encrypted yet.
 
@@ -212,7 +216,7 @@ with providing a wrong password at command line.
 Giving a wrong password after `ansible-vault view secret_vars2.yml --vault-id @prompt`
 still results in showing the decrypted content of the file when `ansible.cfg` points to the correct `vaultpasswordfile`.
 
-There is an open [issue](https://github.com/ansible/ansible/issues/33831) about this topic on GitHub. 
+There is an open [issue](https://github.com/ansible/ansible/issues/33831) about this topic on GitHub.
 <!-- TODO: See if this still applies, since the GH issue has been closed -->,
 
 ```bash

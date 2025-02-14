@@ -217,7 +217,7 @@ Output filed of the activation:
 
 ### Task 7
 
-Now, we stop the webserver on node1 and see in the logs of the rulebook activation 
+Now, we stop the webserver on node1 and see in the logs of the rulebook activation
 how the rule triggers the action to start the job template on ascender and rebuild the webservers.
 
 {{% details title="Solution Task 7" %}}

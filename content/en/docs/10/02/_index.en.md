@@ -242,7 +242,7 @@ $
 ```
 
 {{% alert title="Warning" color="warn" %}}
- Not defining `process_isolation_executable: podman` in `env/settings` would lead to `ansible-runner` 
+ Not defining `process_isolation_executable: podman` in `env/settings` would lead to `ansible-runner`
  running our playbook NOT inside an ee. The output however looks almost the same.
 {{% /alert %}}
 
@@ -250,7 +250,7 @@ $
 
 ### Task 5
 
-Now we want to have a look at what's happening in the background while running our playbook with 
+Now we want to have a look at what's happening in the background while running our playbook with
 `ansible-runner` inside an ee.
 
 * Start your playbook in the background. Use `ansible-runner --help` to see which option you can use.
@@ -270,7 +270,7 @@ $ ansible-runner stop /home/ansible/techlab/ -p site.yml
 
 ### Task 6
 
-Now we want to run our playbook `site.yml` by starting an execution environment with podman and 
+Now we want to run our playbook `site.yml` by starting an execution environment with podman and
 mounting our metadata folder into the correct location inside the ee. Have a look at the [documentation](https://ansible-runner.readthedocs.io/en/stable/container/#using-runner-as-a-container-interface-to-ansible) for help.
 
 {{% alert title="Tip" color="info" %}}
