@@ -90,13 +90,14 @@ cat webserver.yml
         dest: /var/www/html/index.html
         owner: root
         group: root
+        mode: "0644"
     - name: start and enable firewalld
       ansible.builtin.systemd_service:
         name: firewalld
         state: started
         enabled: true
     - name: open firewall for http
-      firewalld:
+      ansible.posix.firewalld:
         service: http
         state: enabled
         permanent: true
@@ -230,7 +231,7 @@ curl -H 'Content-Type: application/json' -d "{\"message\": \"webservers down\"}"
   * check if the website on one of the two webservers is down. (Same as Task 3 above)
   * check if the message matches exactly the string "webservers down" (Same as Task 5 above)
   * check if the message contains the string "ERROR" or "error"
-* If one of the criterias above are met, do two things:
+* If one of the criteria above are met, do two things:
   1. run the ansible shell module to print the string "WEBSERVER ISSUES, REMEDIATION IN PROGRESS."
   into the journald log. (Use the command `systemd-cat echo "WEBSERVER ISSUES, REMEDIATION IN PROGRESS."`)
   2. run playbook `webservers.yml`
@@ -284,13 +285,13 @@ Note, that you would have to open port 5000 on the firewall if the curl command 
 ### Task 8
 
 * What source plugins are available in the `ansible.eda` collection?
-[Search the content of event-driven-ansible on github.com](https://github.com/ansible/event-driven-ansible).
+[Search the content of event-driven-ansible on GitHub.com](https://github.com/ansible/event-driven-ansible).
 
 {{% details title="Solution Task 8" %}}
-[Event Driven Ansible on Github](https://github.com/ansible/event-driven-ansible/tree/main/extensions/eda/plugins/event_source)
+[Event Driven Ansible on GitHub](https://github.com/ansible/event-driven-ansible/tree/main/extensions/eda/plugins/event_source)
 {{% /details %}}
 
 ### All done?
 
 * [Ansible-rulebook documentation](https://ansible-rulebook.readthedocs.io/en/stable/)
-* [AnsibleAutomates Youtube channel for more examples](https://www.youtube.com/@AnsibleAutomation/videos)
+* [AnsibleAutomates YouTube channel for more examples](https://www.youtube.com/@AnsibleAutomation/videos)

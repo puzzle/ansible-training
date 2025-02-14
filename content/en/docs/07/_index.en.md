@@ -58,7 +58,7 @@ $ ansible localhost -m file -a "dest=/home/ansible/techlab/roles/requirements.ym
 
 ### Task 3 (CentOS/RHEL only)
 
-* Search your Dnf repositories for packages containing the string `roles`.
+* Search your DNF repositories for packages containing the string `roles`.
 * Install the package providing Ansible roles for system management.
 * See what files where installed with this package.
 

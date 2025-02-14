@@ -14,10 +14,10 @@ It assumes your working directory is always `/home/ansible/techlab/`.
 Use the `template` module and a template named `mi6.j2`.
 Don’t encrypt anything yet and use the inventory hosts from the earlier labs.
 * The content of the file `MI6` should be:
-  ```
-    username: jamesbond
-    password: miss_moneypenny
-  ```
+```yaml
+username: jamesbond
+password: miss_moneypenny
+```
 * Run the playbook and check if the file `/etc/MI6` has been deployed on the nodes.
 
 {{% details title="Solution Task 1" %}}
@@ -31,10 +31,11 @@ $ cat secretservice.yml
 - hosts: node1, node2
   become: true
   tasks:
-    - name: put template
-      template:
+    - name: Copy the secrets to the server
+      ansible.biltin.template:
         src: mi6.j2
         dest: /etc/MI6
+        mode: "0644"
 
 $ ansible-playbook secretservice.yml
 $ ansible node1,node2 -a "cat /etc/MI6"  #<-- show created files with it's content
@@ -44,10 +45,10 @@ $ ansible node1,node2 -a "cat /etc/MI6"  #<-- show created files with it's conte
 ### Task 2
 
 * Make the playbook `secretservice.yml` use a variable file named `secret_vars.yml` with the content:
-  ```
-    var_username: jamesbond
-    var_password: miss_moneypenny
-  ```
+```yaml
+var_username: jamesbond
+var_password: miss_moneypenny
+```
 * Rewrite the `mi6.j2` template to use the variables from the `secret_vars.yml` file. Nothing is encrypted yet.
 * Rerun the playbook and remember nothing has been encrypted yet.
 
@@ -70,10 +71,11 @@ $ cat secretservice.yml
   vars_files:
     - secret_vars.yml
   tasks:
-    - name: put template
-      template:
+    - name: Copy the secrets to the server
+      ansible.builtin.template:
         src: mi6.j2
         dest: /etc/MI6
+        mode: "0644"
 
 $ ansible-playbook secretservice.yml
 ```
@@ -92,9 +94,10 @@ You don’t have to set a label when encrypting the file.
 * Rerun the playbook providing the password for decrypting `secret_vars.yml` from the file `vaultpassword`.
 
 {{% alert title="Tip" color="info" %}}
-Since the password is in clear text in the file `vaultpassword`,
-you should never ever push it to a git repository or similar.
-Also double check that only the necessary permissions are set.
+    Since the password is in clear text in the file `vaultpassword`,
+    you should never ever commit it to a git repository or similar.
+    So if you have created a git repo, make sure to add the `vaultpassword` file to `.gitignore`.
+    Also double check that only the necessary permissions are set.
 {{% /alert %}}
 
 {{% details title="Solution Task 3" %}}
@@ -177,12 +180,8 @@ ansible-playbook secretservice.yml
 
 {{% details title="Solution Task 6" %}}
 ```bash
-ansible node1,node2 -i hosts -b -m file -a "path=/etc/MI6 state=absent"
+ansible node1,node2 -i hosts -b -m ansible.builtin.file -a "path=/etc/MI6 state=absent"
 ```
-
-{{% alert title="Tip" color="info" %}}
-Note that the `command` module is the `default` module and therefore has not to be specified here.
-{{% /alert %}}
 
 {{% /details %}}
 
@@ -192,7 +191,7 @@ Note that the `command` module is the `default` module and therefore has not to 
 * Change the encryption of the file: encrypt it with another password provided at the command line.
 
 {{% alert title="Note" color="primary" %}}
- Don't do this by decrypting & reencrypting but rather by using the `rekey` option.
+ Don't do this by decrypting & re-encrypting but rather by using the `rekey` option.
  There's a trap hidden here. Double check if everything worked as you expected.
 {{% /alert %}}
 
@@ -213,7 +212,8 @@ with providing a wrong password at command line.
 Giving a wrong password after `ansible-vault view secret_vars2.yml --vault-id @prompt`
 still results in showing the decrypted content of the file when `ansible.cfg` points to the correct `vaultpasswordfile`.
 
-There is an open [issue](https://github.com/ansible/ansible/issues/33831) about this topic on GitHub.
+There is an open [issue](https://github.com/ansible/ansible/issues/33831) about this topic on GitHub. 
+<!-- TODO: See if this still applies, since the GH issue has been closed -->,
 
 ```bash
 ansible-vault rekey secret_vars2.yml --new-vault-id @prompt

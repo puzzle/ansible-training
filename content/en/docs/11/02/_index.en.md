@@ -116,8 +116,8 @@ cat sos.yml
         state: installed
 
     - name: create a sos report unattended containing no sensitive information
-      ansible.builtin.command: |
-        "sos report --clean --batch --label {{ ansible_eda.event.meta.source.type }}"
+      ansible.builtin.command: 
+        cmd: "sos report --clean --batch --label {{ ansible_eda.event.meta.source.type }}"
 ```
 
 ```bash

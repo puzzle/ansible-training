@@ -166,7 +166,7 @@ Installing 'cloudscale_ch.cloud:1.0.0' to '/home/ansible/techlab/collections/ans
 collection from the namespace `containers`.
 * The playbook should install podman on the controller and pull any podman image.
 Be sure to escalate privileges if needed. (Use the image `quay.io/bitnami/nginx` if unsure).
-* Use the module `podman_container` to start a container from the previously pulled image.
+* Use the module `containers.podman.podman_container` to start a container from the previously pulled image.
 * Confirm the container is up and running using `sudo podman ps -l`.
 
 {{% details title="Solution Task 6" %}}
@@ -248,7 +248,7 @@ $ cat collections.yml
         name: quay.io/bitnami/nginx
 
     - name: Run nginx container
-      podman_container:
+      podman_container: # Intentionally without the FQCN to provoke an error
         name: my_nginx_container
         image: nginx
         state: present
@@ -290,7 +290,7 @@ $ curl -s http://localhost:32771 | grep title
 
 {{% details title="Solution Task 7" %}}
 ```bash
-ansible localhost -b -m ansible.builtin.dnf -a"name=podman, state=absent"
+ansible localhost -b -m ansible.builtin.dnf -a "name=podman, state=absent"
 ```
 {{% /details %}}
 

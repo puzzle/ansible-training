@@ -17,7 +17,7 @@ a python version that's not rather new.
 Since we have no Red Hat Subscription available, we install ansible-builder with pip.
 We install podman as well to be able to use containers.
 
-Update python if needed:
+Update python if needed: <!-- TODO: Maybe we should install something newer than python 3.9? -->
 ```bash
 $ sudo dnf module install -y python39
 $ sudo dnf module enable python39
@@ -60,7 +60,7 @@ $ cat container.yml
   become: true
   tasks:
   - name: Install podman
-    dnf:
+    ansible.builtin.dnf:
       name: podman
       state: present
   - name: Pull an image
@@ -118,7 +118,7 @@ collections:
 
 ### Task 4
 
-* Build the new exection environment with the files from the last task.
+* Build the new execution environment with the files from the last task.
 The resulting image should have a name of `default-ee`. This will take a few minutes.
 * With the option for very verbose (`-v3`) set, you can observe what `ansible-builder` does in the background.
 
@@ -188,7 +188,7 @@ RUN /output/install-from-bindep && rm -rf /output/wheels
 ### Task 5
 
 * Inspect the image of your new EE with `ansible-navigator`.
-* Check the included ansible version and verify that the colletions `containers.podman` and `ansible.posix` are present.
+* Check the included ansible version and verify that the collections `containers.podman` and `ansible.posix` are present.
 
 {{% details title="Solution Task 5" %}}
 ```bash
@@ -285,8 +285,8 @@ Note that if you pulled the image as user `root` on the `db` servers,
 you will not see it in the output of `podman images` unless it's run as user `root` as well.
 
 Because we included the collection `ansible.posix` in our EE earlier,
-we can run tasks with the `firewalld` module.
-Therefore running the playbook `site.yml` from the ansible-navigator lab would work as well!
+we can run tasks with the `ansible.posix.firewalld` module.
+Therefore, running the playbook `site.yml` from the ansible-navigator lab would work as well!
 
 ```bash
 $ ansible-navigator run site.yml
@@ -298,5 +298,5 @@ $ ansible-navigator run site.yml
 ### All done?
 
 * Think about why the container was able to connect to the servers over ssh without providing a password
-* Have a look at the [ansible-builder github page](https://github.com/ansible/ansible-builder)
+* Have a look at the [ansible-builder GitHub page](https://github.com/ansible/ansible-builder)
 * Have a look at the [docs of the latest version of ansible-navigator](https://ansible-navigator.readthedocs.io/en/latest/) to see how the tool will evolve

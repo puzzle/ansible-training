@@ -10,7 +10,7 @@ the component of AAP Controller / AWX that actually runs Ansible playbooks.
 ### Task 1
 
 * Install all packages needed to use `ansible-runner` command line tool on the controller host.
-(In case of python problems, [have a look at the ansible-builder lab](https://ansible.puzzle.ch/docs/10/01/#task-1).
+(In case of python problems, [have a look at the ansible-builder lab](https://ansible.puzzle.ch/docs/10/01/#task-1)).
 * Show the help context of the `ansible-runner` command.
 
 {{% details title="Solution Task 1" %}}
@@ -68,8 +68,8 @@ node2                      : ok=2    changed=0    unreachable=0    failed=0    s
 $ cat site.yml
 ...
 - name: Sleep for 120 seconds
-  ansible.builtin.wait_for:
-    timeout: 120
+  ansible.builtin.pause:
+    seconds: 120
 ...
 $ ansible-runner start /home/ansible/techlab/ -p site.yml
 $ tree
@@ -168,14 +168,14 @@ node2                      : ok=2    changed=0    unreachable=0    failed=0    s
 
 Use `ansible-runner` cli to run the playbook `site.yml` inside an execution environment (ee).
 If you did the `ansible-builder` labs, you can use the ee you created then.
-Otherwise use `quay.io/ansible/ansible-navigator-demo-ee`.
+Otherwise, use `quay.io/ansible/ansible-navigator-demo-ee`.
 We want to use `podman` to execute the ee and also use process isolation.
 See `ansible-runner run --help` for which options you have to use.
 
 Since it is run inside a container, we have to specify with which user we want to run Ansible.
 Default would be the root user which is not a best practice.
 Also, we add a working ssh_key to the correct location in our directory.
-This is needed in order to open an ssh-connetion from inside the ee to the managed nodes.
+This is needed in order to open an ssh-connection from inside the ee to the managed nodes.
 
 {{% alert title="Tip" color="warn" %}}
 If the ee you choose is not present yet, podman will first pull it when running `ansible-runner`. This can take some time.
@@ -242,18 +242,19 @@ $
 ```
 
 {{% alert title="Warning" color="warn" %}}
-Not defining `process_isolation_executable: podman` in `env/settings` would lead to `ansible-runner` run our playbook NOT inside an ee. The output however looks almost the same.
+ Not defining `process_isolation_executable: podman` in `env/settings` would lead to `ansible-runner` 
+ running our playbook NOT inside an ee. The output however looks almost the same.
 {{% /alert %}}
 
 {{% /details %}}
 
 ### Task 5
 
-Now we want to have a look at whats happening in the background while running our playbook with 
+Now we want to have a look at what's happening in the background while running our playbook with 
 `ansible-runner` inside an ee.
 
 * Start your playbook in the background. Use `ansible-runner --help` to see which option you can use.
-* While the playbook runs, have look at the running processes with `watch -n1 'ps -ef | grep ansible- | grep -v grep'`
+* While the playbook runs, have a look at the running processes with `watch -n1 'ps -ef | grep ansible- | grep -v grep'`
 * Also while the playbook runs, have a look at the running containers with `watch -n1 podman ps -a`
 * While the playbook still runs, stop it with corresponding option and see how the processes are terminated and the running container stopped.
 
@@ -279,7 +280,7 @@ If you have selinux in enforcing mode, remember to relabel the volumes mounted i
 {{% alert title="Warning" color="warn" %}}
 Remove your `podman`-settings in `env/settings`.
 Otherwise, `ansible-runner` would try to run Ansible inside the container with `podman` again.
-This would fail since its not installed inside the `ansible-runner` image.
+This would fail since it's not installed inside the `ansible-runner` image.
 {{% /alert %}}
 
 * Use the ee `default-ee` from before or use `quay.io/ansible/ansible-navigator-demo-ee`.
@@ -287,7 +288,7 @@ Remember, that an ee is always based on the ansible-runner reference image.
 * How do you specify which playbook to run?
 * Into which directory inside the container do you have to mount your metadata directory?
 * Remove the podman-settings in the file `env/settings`.
-These settings would cause `ansible-runner` inside the container to try run in podman again.
+These settings would cause `ansible-runner` inside the container trying to run in podman again.
 This would fail because podman is not installed inside the ee.
 * Run your Ansible project with podman using the ee stated above.
 
@@ -442,6 +443,6 @@ You can check this with `$ watch -n1 podman ps -a` while running the script.
 
 ### All done?
 
-* Have a look at the [ansible-runner github page](https://github.com/ansible/ansible-runner)
+* Have a look at the [ansible-runner GitHub page](https://github.com/ansible/ansible-runner)
 * Have a look at the [docs of the latest version of ansible-runner](https://ansible-runner.readthedocs.io/en/latest/)
 * Have a look at the [documentation of the python module](https://ansible-runner.readthedocs.io/en/stable/python_interface/) and see what the library is capable of.

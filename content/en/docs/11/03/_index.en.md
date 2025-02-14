@@ -11,7 +11,7 @@ In this lab we will learn how to use EDA-Server to run our rulebooks. Some tasks
 To connect your EDA-Server to your Ansible Controller,
 you have to create an access token on Ascender and add it to EDA-Server
 
-* On Ascender, create an access token for the user Ansible. Be sure to chose the write scope
+* On Ascender, create an access token for the user Ansible. Be sure to choose the write scope
 * On EDA-Server add this controller token to the user Ansible
 
 {{% details title="Solution Task 1" %}}
@@ -66,7 +66,9 @@ The last step needed to be able to run rulebooks is creating a Decision Environm
 * Install `ansible-builder` with pip on your `<yourname>-edaserver`.
 Be sure to install `podman` as well since it's the default container engine for `ansible-builder`.
 * Prepare a yaml file `techlab-de.yml` with the definition for your Decision Environment.
-Take the [blueprint from the ansible-rulebook Github project](https://github.com/ansible/ansible-rulebook/blob/main/minimal-decision-environment.yml) as your base.
+Take the blueprint from
+[the ansible-rulebook GitHub project](https://github.com/ansible/ansible-rulebook/blob/main/minimal-decision-environment.yml)
+as your base.
 * Build the Decision Environment, name the image `techlab-de.yml` and tag it with `latest`.
 * Push it to the container registry provided by your teacher.
 
@@ -134,7 +136,7 @@ podman push techlab-de:latest <registry_url>/techlab-de:latest
 
 ### Task 5
 
-Now have everything ready to run a ansible-rulebook.
+Now have everything ready to run an ansible-rulebook.
 Ensure you have a job template `Provision_Webserver` in the Organization `Techlab` of your Ascender server.
 See the Ascender labs to set it up.
 
