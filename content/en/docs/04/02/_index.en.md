@@ -8,12 +8,13 @@ In this lab we start to use templates!
 
 ### Task 1
 
-* Rewrite your playbook `motd.yml` without using the `copy` module, but rather using the `template` module.
+* Rewrite your playbook `motd.yml` without using the `ansible.builtin.copy` module,
+but rather using the `ansbile.builtin.template` module.
 * Use a Jinja2 template file called `motd.j2` which uses the variable `motd_content`.
 
 {{% details title="Solution Task 1" %}}
 
-Create the file `motd.j2` with the following one liner:
+Create the file `motd.j2` with the following one-liner:
 
 ```bash
 $ cat motd.j2
@@ -28,9 +29,10 @@ Edit your `motd.yml` playbook to something like this:
   become: true
   tasks:
     - name: set content of /etc/motd
-      template:
+      ansible.builtin.template:
         src: motd.j2
         dest: /etc/motd
+        mode: "0644"
 ```
 
 Run the playbook again.
@@ -87,14 +89,21 @@ Put the variable in an appropriate place of your choice.
 
 Create a playbook `userplay.yml` doing the following and running on `node1` and `node2`:
 
-* On `node1`: Create a file `/etc/dinner.txt` with the content below by using the `template` module:
+* On `node1`: Create a file `/etc/dinner.txt` with the content below by using the `ansible.builtin.template` module:
   ```
   <name_of_user> <food_for_user>
   ```
-* On `node1`: There should be a entry in the file `/etc/dinner.txt` for each user in the variable `users`. Use a for loop in the template.
-* On `node1`: If a user has no food specified, use "kebab". Look for `filters` in the online docs. You should be familiar with searching the online docs by now.
-* On `node2`: The same playbook `userplay.yml` should create a (Linux) group for every different food specified in the variable `users`. If a user has no food defined, create the group "kebab" instead.
-* On `node2`: Create a user for every entry in the `users` variable. Ensure that this user is also in the group with the same name as his food. Again, if no food is defined for this user, add group "kebab".
+* On `node1`: There should be an entry in the file `/etc/dinner.txt` for each user in the variable `users`.
+Use a for loop in the template.
+* On `node1`: If a user has no food specified, use "kebab".
+Look for `filters` in the online docs.
+You should be familiar with searching the online docs by now.
+* On `node2`: The same playbook `userplay.yml` should create a (Linux) group
+for every different food specified in the variable `users`.
+If a user has no food defined, create the group "kebab" instead.
+* On `node2`: Create a user for every entry in the `users` variable.
+Ensure that this user is also in the group with the same name as his food.
+Again, if no food is defined for this user, add group "kebab".
 
 #### Bonus 1
 
@@ -102,19 +111,23 @@ Create a playbook `userplay.yml` doing the following and running on `node1` and 
 
 #### Bonus 2
 
-* On `node2`: If (and only if) the user is "santos", disable login. Do this by setting santos's login shell to `/usr/sbin/nologin`. Use an if/else statement in the template for that purpose.
+* On `node2`: If (and only if) the user is "santos", disable login.
+Do this by setting santos' login shell to `/usr/sbin/nologin`.
+Use an if/else statement in the template for that purpose.
 
 #### Bonus 3
 
 * All on `node2`:
-* Set the default password for all of the newly created users to "`N0t_5o_s3cur3`"
-* Once the password has been set, your playbook should not set it again. Not even when it got changed.
-* Hash the password using the sha512 algorithm.
-* Don’t define a salt for the password.
-* Verify that you are able to login as one of the users via SSH providing the password.
+  * Set the default password for all the newly created users to "`N0t_5o_s3cur3`"
+  * Once the password has been set, your playbook should not set it again. Not even when it got changed.
+  * Hash the password using the sha512 algorithm.
+  * Don’t define a salt for the password.
+  * Verify that you are able to log in as one of the users via SSH providing the password.
 
 {{% alert title="Warning" color="warning" %}}
-Be aware that it is NOT a good idea to set passwords in clear text. We will learn in the lab about `ansible-vault` how to handle this in a better way. Never ever do this in a productive environment.
+Be aware that it is NOT a good idea to set passwords in clear text.
+We will learn in the lab about `ansible-vault` how to handle this in a better way.
+Never ever do this in a productive environment.
 {{% /alert %}}
 
 {{% details title="Solution Task 3" %}}
@@ -149,9 +162,10 @@ $ cat userplay.yml
     - uservars.yml
   tasks:
     - name: put template
-      template:
+      ansible.builtin.template:
         src: user_template.j2
         dest: /etc/dinner.txt
+        mode: "0644"
 
 - hosts: node2
   become: true
@@ -159,15 +173,15 @@ $ cat userplay.yml
     - uservars.yml
   tasks:
     - name: create groups
-      group:
+      ansible.builtin.group:
         name: "{{ item.food | default('kebab') }}"
       loop: "{{ users }}"
     - name: ensure zsh is installed
-      dnf:
+      ansible.builtin.dnf:
         name: zsh
         state: installed
     - name: create users
-      user:
+      ansible.builtin.user:
         name: "{{ item.name }}"
         group: "{{ item.food | default('kebab') }}"
         append: true
@@ -183,10 +197,15 @@ $ cat user_template.j2
 ```
 
 {{% alert title="Tip" color="info" %}}
-See the `user` module for how to set the password and search for a link to additional documentation about how to set passwords in Ansible. Note, that it would be even better to create a hash of the password before and then set the hash in the task above and not create it in the task itself. Reason being the above would result in a state `changed` everytime it runs and is therefore not idempotent. You can find in the documentation mentioned how to get the hash before.
+ See the `ansible.builtin.user` module for how to set the password and search for a link to additional documentation
+ about how to set passwords in Ansible.
+ Note, that it would be even better to create a hash of the password beforehand
+ and then set the hash in the task above and not create it in the task itself.
+ Reason being the above would result in a state `changed` everytime it runs and is therefore not idempotent.
+ You can find in the documentation mentioned how to get the hash in advance.
 {{% /alert %}}
 
-Run the playbook, then check on `node1` (as user `root`) if everthing is as expected:
+Run the playbook, then check on `node1` (as user `root`) if everything is as expected:
 
 ```bash
 # cat /etc/dinner.txt
@@ -225,14 +244,16 @@ jim@192.168.122.31's password:
 
 Create a playbook `serverinfo.yml` that does the following:
 
-* On all nodes: Place a file `/root/serverinfo.txt` with a line like follows for each and every server in the inventory:
+* On all nodes: Place a file `/root/serverinfo.txt` with a line like the following repeated for
+each and every server in the inventory:
 
 ```
 <hostname>: OS: <operating system> IP: <IP address> Virtualization Role: <hardware type>
 ```
 
 * Replace `hostname`, `operating system`, `IP address` and `hardware type` with a reasonable fact.
-* Run your playbook and check on all servers by using an `ansible` ad hoc command if the content of the file `/root/serverinfo.txt` is as expected.
+* Run your playbook and check on all servers by using an `ansible` ad hoc command
+if the content of the file `/root/serverinfo.txt` is as expected.
 
 * Are you an Ansible Maester already? Solve the solution once by using a template and once without using a template!
 
@@ -250,12 +271,15 @@ $ cat serverinfo.yml
   become: true
   tasks:
     - name: put serverinfo.txt
-      template:
+      ansible.builtin.template:
         src: serverinfo.txt.j2
         dest: /root/serverinfo.txt
+        mode: "0640"
 ```
 {{% alert title="Note" color="primary" %}}
-Have a good look at where to set quotes and where not! `hostvars[host]` without the quotes around `host` is not really intuitive. More about that in the [F.A.Q.](https://docs.ansible.com/ansible/latest/reference_appendices/faq.html#how-do-i-loop-over-a-list-of-hosts-in-a-group-inside-of-a-template).
+ Have a good look at where to set quotes and where not!
+ `hostvars[host]` without the quotes around `host` is not really intuitive.
+ More about that in the [FAQ](https://docs.ansible.com/ansible/latest/reference_appendices/faq.html#how-do-i-loop-over-a-list-of-hosts-in-a-group-inside-of-a-template).
 {{% /alert %}}
 
 Possible solution 2:
@@ -265,14 +289,15 @@ $ cat serverinfo.yml
 - hosts: localhost
   tasks:
     - name: create the serverinfo file to be distributed later
-      file:
+      ansible.builtin.file:
         path: /home/ansible/techlab/serverinfo.txt
         state: touch
+        mode: "0644"
 
 - hosts: all
   tasks:
     - name: fill in stuff to local serverinfo.txt
-      lineinfile:
+      ansible.builtin.lineinfile:
         path: /home/ansible/techlab/serverinfo.txt
         regexp: "^{{ ansible_hostname }}"
         line: "{{ ansible_hostname }}: OS: {{ ansible_os_family }} IP: {{ ansible_default_ipv4.address }} Virtualization Role: {{ ansible_virtualization_role }}"
@@ -282,9 +307,10 @@ $ cat serverinfo.yml
   become: true
   tasks:
     - name: place the file serverinfo.txt
-      copy:
+      ansible.builtin.copy:
         src: /home/ansible/techlab/serverinfo.txt
         dest: /root/serverinfo.txt
+        mode: "0640"
 
 $ ansible-playbook serverinfo.yml
 $ ansible all -b -a "cat /root/serverinfo.txt"

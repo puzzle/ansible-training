@@ -4,7 +4,8 @@ weight: 111
 sectionnumber: 11
 ---
 
-In this lab we are going to learn how to use Event Driven Ansible. For the following tasks, server `node1` and `node2` act as webservers. You can use Lab 4.0 as a guideline.
+In this lab we are going to learn how to use Event Driven Ansible.
+For the following tasks, server `node1` and `node2` act as webservers. You can use Lab 4.0 as a guideline.
 
 ### Task 1
 
@@ -89,13 +90,14 @@ cat webserver.yml
         dest: /var/www/html/index.html
         owner: root
         group: root
+        mode: "0644"
     - name: start and enable firewalld
       ansible.builtin.systemd_service:
         name: firewalld
         state: started
         enabled: true
     - name: open firewall for http
-      firewalld:
+      ansible.posix.firewalld:
         service: http
         state: enabled
         permanent: true
@@ -128,7 +130,8 @@ lynx http://<ip-of-node2>
 * Check the availability of the websites every 8 seconds.
 
 {{% alert title="Note" color="primary" %}}
-If you don't have the `ansible.eda` collection installed yet, `ansible-rulebook` would start, but fail because the `url_check` source plugin cannot be found.
+If you don't have the `ansible.eda` collection installed yet,
+`ansible-rulebook` would start, but fail because the `url_check` source plugin cannot be found.
 {{% /alert %}}
 
 {{% details title="Solution Task 3" %}}
@@ -158,7 +161,9 @@ cat webserver_rulebook.yml
 ### Task 4
 
 * Start `webserver_rulebook.yml` in verbose mode.
-* Stop the httpd service on `node1` with ansible from another terminal on `control0` and see how the playbook `webserver.yml` is re-run. (You could also just stop the service directly on `node1`.)
+* Stop the httpd service on `node1` with ansible from another terminal on `control0`
+and see how the playbook `webserver.yml` is re-run.
+(You could also just stop the service directly on `node1`.)
 
 {{% details title="Solution Task 4" %}}
 ```bash
@@ -172,7 +177,8 @@ ansible node1 -i inventory/hosts -b -m ansible.builtin.systemd_service -a "name=
 ### Task 5
 
 * Write the rulebook `webhook_rulebook.yml` that opens a webhook on port 5000 of the control node `control0`.
-* The rulebook should re-run the playbook `webserver.yml` if the webhook receives a message matching exactly the string "webservers down".
+* The rulebook should re-run the playbook `webserver.yml`
+if the webhook receives a message matching exactly the string "webservers down".
 * Use `webhook` from the `ansible.eda` collection as the source plugin in your rulebook.
 
 {{% details title="Solution Task 5" %}}
@@ -201,7 +207,8 @@ cat webhook_rulebook.yml
 
 * Run the rulebook `webhook_rulebook.yml` in verbose mode.
 * Send the string "webservers running" to the webhook.
-* You can do this by issuing: `curl -H 'Content-Type: application/json' -d "{\"message\": \"webservers running\"}" 127.0.0.1:5000/endpoint`
+* You can do this by issuing:
+`curl -H 'Content-Type: application/json' -d "{\"message\": \"webservers running\"}" 127.0.0.1:5000/endpoint`
 * See how the message is received, processed, but no actions are taken since the message doesn't match the condition defined.
 * Now send the message "webservers down" to the webhook. See how the playbook `webserver.yml` is run.
 
@@ -224,8 +231,9 @@ curl -H 'Content-Type: application/json' -d "{\"message\": \"webservers down\"}"
   * check if the website on one of the two webservers is down. (Same as Task 3 above)
   * check if the message matches exactly the string "webservers down" (Same as Task 5 above)
   * check if the message contains the string "ERROR" or "error"
-* If one of the criterias above are met, do two things:
-  1. run the ansible shell module to print the string "WEBSERVER ISSUES, REMEDIATION IN PROGRESS." into the journald log. (Use the command `systemd-cat echo "WEBSERVER ISSUES, REMEDIATION IN PROGRESS."`)
+* If one of the criteria above are met, do two things:
+  1. run the ansible shell module to print the string "WEBSERVER ISSUES, REMEDIATION IN PROGRESS."
+  into the journald log. (Use the command `systemd-cat echo "WEBSERVER ISSUES, REMEDIATION IN PROGRESS."`)
   2. run playbook `webservers.yml`
 * Start the rulebook `complex_rulebook.yml` and send the message "webservers down" to the webhook again.
 
@@ -276,13 +284,14 @@ Note, that you would have to open port 5000 on the firewall if the curl command 
 
 ### Task 8
 
-* What source plugins are available in the `ansible.eda` collection? [Search the content of event-driven-ansible on github.com](https://github.com/ansible/event-driven-ansible).
+* What source plugins are available in the `ansible.eda` collection?
+[Search the content of event-driven-ansible on GitHub.com](https://github.com/ansible/event-driven-ansible).
 
 {{% details title="Solution Task 8" %}}
-[Event Driven Ansible on Github](https://github.com/ansible/event-driven-ansible/tree/main/extensions/eda/plugins/event_source)
+[Event Driven Ansible on GitHub](https://github.com/ansible/event-driven-ansible/tree/main/extensions/eda/plugins/event_source)
 {{% /details %}}
 
 ### All done?
 
 * [Ansible-rulebook documentation](https://ansible-rulebook.readthedocs.io/en/stable/)
-* [AnsibleAutomates Youtube channel for more examples](https://www.youtube.com/@AnsibleAutomation/videos)
+* [AnsibleAutomates YouTube channel for more examples](https://www.youtube.com/@AnsibleAutomation/videos)

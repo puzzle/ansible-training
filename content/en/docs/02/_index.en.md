@@ -12,7 +12,7 @@ sectionnumber: 2
 Don’t be rattled about the massive amount of modules you’ll see in your terminal.
 {{% /alert %}}
 
-* Print out information about the Ansible module `file` in your terminal.
+* Print out information about the Ansible module `ansible.builtin.file` in your terminal.
 
 {{% details title="Solution Task 1" %}}
 ```bash
@@ -34,7 +34,9 @@ ansible-doc -s file
 * visit [Ansible Docs - Modules by category](https://docs.ansible.com/ansible/2.9/modules/modules_by_category.html)
 
 {{% alert title="Note" color="primary" %}}
-Starting from Ansible > 2.10 modules are shipped via collections. We will have a look at collections in [Chapter 8](../08). You'll find an overview of the most used collections on [Ansible Docs - Collection Index](https://docs.ansible.com/ansible/latest/collections/index.html)
+Starting from Ansible > 2.10 modules are shipped via collections.
+We will have a look at collections in [Chapter 8](../08).
+You'll find an overview of the most used collections on [Ansible Docs - Collection Index](https://docs.ansible.com/ansible/latest/collections/index.html)
 
 {{% /alert %}}
 
@@ -74,4 +76,4 @@ ls -lahr /usr/share/doc/ | grep jinja2
 ### All done?
 
 * [Red Hat Ansible Blog](https://www.ansible.com/blog)
-* [Red Hat Ansible Youtube](https://www.youtube.com/c/AnsibleAutomation/videos)
+* [Red Hat Ansible YouTube](https://www.youtube.com/c/AnsibleAutomation/videos)

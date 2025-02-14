@@ -8,9 +8,10 @@ In this lab we will learn how to use EDA-Server to run our rulebooks. Some tasks
 
 ### Task 1
 
-To connect your EDA-Server to your Ansible Controller, you have to create an access token on Ascender and add it to EDA-Server
+To connect your EDA-Server to your Ansible Controller,
+you have to create an access token on Ascender and add it to EDA-Server
 
-* On Ascender, create an access token for the user Ansible. Be sure to chose the write scope
+* On Ascender, create an access token for the user Ansible. Be sure to choose the write scope
 * On EDA-Server add this controller token to the user Ansible
 
 {{% details title="Solution Task 1" %}}
@@ -27,7 +28,8 @@ Go to the EDA-Server Web-GUI
 * On the left-hand side, chose `User Access` and then `Users`
 * On the right, chose user `ansible`
 * Now to the tab `Controller Tokens`
-* Click on the button `Create controller token`. If you created already one, you have to delete it first to be able to create a new one.
+* Click on the button `Create controller token`.
+If you created already one, you have to delete it first to be able to create a new one.
 * Enter a name, a description and paste in the token from Ascender in the `Token` field
 
 {{% /details %}}
@@ -40,7 +42,8 @@ Now we add a git repository with our rulebooks as a project to EDA-Server
 * Add a Project to EDA-Server pointing to your git repository
 
 {{% alert title="Note" color="primary" %}}
-After creation the status of the project will be `failed` as long as you don't have a directory `extensions/eda/rulebooks` or `rulebooks` (relative to the root of the repository) present.
+ After creation the status of the project will be `failed` as long as you don't have a directory
+ `extensions/eda/rulebooks` or `rulebooks` (relative to the root of the repository) present.
 {{% /alert %}}
 
 {{% details title="Solution Task 2" %}}
@@ -48,7 +51,8 @@ After creation the status of the project will be `failed` as long as you don't h
 * On the left side navigate to `Resources` and then `Projects`.
 * On the right side click on the `Create project` button.
 * Enter a name, description, leave `SCM Type` as `Git`.
-* As `SCM URL` enter the path to your git repository on your Controller node (`https://<yourname>-controller.workshop.puzzle.ch:4000/ansible/techlab`). Remember to use port 4000.
+* As `SCM URL` enter the path to your git repository on your Controller node
+(`https://<yourname>-controller.workshop.puzzle.ch:4000/ansible/techlab`). Remember to use port 4000.
 * Leave the `Credential` field empty.
 * Clink on `Create project` at the bottom of the page.
 
@@ -59,8 +63,12 @@ After creation the status of the project will be `failed` as long as you don't h
 
 The last step needed to be able to run rulebooks is creating a Decision Environment.
 
-* Install `ansible-builder` with pip on your `<yourname>-edaserver`. Be sure to install `podman` as well since it's the default container engine for `ansible-builder`.
-* Prepare a yaml file `techlab-de.yml` with the definition for your Decision Environment. Take the [blueprint from the ansible-rulebook Github project](https://github.com/ansible/ansible-rulebook/blob/main/minimal-decision-environment.yml) as your base.
+* Install `ansible-builder` with pip on your `<yourname>-edaserver`.
+Be sure to install `podman` as well since it's the default container engine for `ansible-builder`.
+* Prepare a yaml file `techlab-de.yml` with the definition for your Decision Environment.
+Take the blueprint from
+[the ansible-rulebook GitHub project](https://github.com/ansible/ansible-rulebook/blob/main/minimal-decision-environment.yml)
+as your base.
 * Build the Decision Environment, name the image `techlab-de.yml` and tag it with `latest`.
 * Push it to the container registry provided by your teacher.
 
@@ -128,7 +136,9 @@ podman push techlab-de:latest <registry_url>/techlab-de:latest
 
 ### Task 5
 
-Now have everything ready to run a ansible-rulebook. Ensure you have a job template `Provision_Webserver` in the Organization `Techlab` of your Ascender server. See the Ascender labs to set it up.
+Now have everything ready to run an ansible-rulebook.
+Ensure you have a job template `Provision_Webserver` in the Organization `Techlab` of your Ascender server.
+See the Ascender labs to set it up.
 
 Make the following changes to your `webserver_rulebook.yml` rulebook (Lab 11.1):
 
@@ -175,7 +185,8 @@ cat webserver_rulebook.yml
 
 After a successful creation of the `Rulebook Activation` you can follow its logs
 
-* Navigate to `Views`, then `Rulebook Activations` on the left side and then click on your `Webserver Provisioning` Rulebook Activation.
+* Navigate to `Views`, then `Rulebook Activations` on the left side
+and then click on your `Webserver Provisioning` Rulebook Activation.
 * Click on the `History` tab.
 * Now click on the running instance ot the activation.
 * In the `Output` field have a look at the logs
@@ -206,7 +217,8 @@ Output filed of the activation:
 
 ### Task 7
 
-Now, we stop the webserver on node1 and see in the logs of the rulebook activation how the rule triggers the action to start the job template on ascender and rebuild the webservers.
+Now, we stop the webserver on node1 and see in the logs of the rulebook activation
+how the rule triggers the action to start the job template on ascender and rebuild the webservers.
 
 {{% details title="Solution Task 7" %}}
 
@@ -230,6 +242,7 @@ In the logs on EDA-Server (see the last task to navigate there):
 2023-11-08 14:34:01,225 - ansible_rulebook.rule_set_runner - INFO - Task action::run_job_template::rebuild webservers if site down::check if site down and rebuild finished, active actions 0
 ```
 
-Check the webpage `http://<yourname>-node1.workshop.puzzle.ch/` in your internet browser and ensure the page is available again.
+Check the webpage `http://<yourname>-node1.workshop.puzzle.ch/` in your internet browser
+and ensure the page is available again.
 
 {{% /details %}}

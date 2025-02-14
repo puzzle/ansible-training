@@ -11,13 +11,14 @@ During this lab you will get to know `ansible-navigator`.
 * Install all packages needed to use `ansible-navigator` on the controller host.
 
 {{% alert title="Tip" color="info" %}}
-It doesn't matter which container engine you use. Anyways we use podman since its the default.
+It doesn't matter which container engine you use. We use podman since it's the default.
 {{% /alert %}}
 
-* After installing, start `ansible-navigator` and closely observe whats happening. What does the output show you?
+* After installing, start `ansible-navigator` and closely observe what's happening. What does the output show you?
 
 {{% details title="Solution Task 1" %}}
-Since we have no Red Hat Subscription available, we install ansible-navigator with pip. We install podman as well to be able to use containers.
+Since we have no Red Hat Subscription available, we install ansible-navigator with pip.
+We install podman as well to be able to use containers.
 
 ```bash
 $ sudo dnf install -y podman python3-pip
@@ -55,7 +56,8 @@ e65e4777caa3791b6b55a61cd5b171a99fad6d0e2b58097ad242b2b8d50e5103
 
 Configure ansible-navigator and ensure the following:
 
-* Use the `ansible.cfg` in your local techlab directory. If you didn't do the labs before, create a config file with `ansible-config init --disabled -t all > ansible.cfg`.
+* Use the `ansible.cfg` in your local techlab directory.
+If you didn't do the preceding labs , create a config file with `ansible-config init --disabled -t all > ansible.cfg`.
 * Set `remote_user` in `ansible.cfg` to `ansible`.
 * Move the inventory file `hosts` in a folder `inventory/`.
 * Set the inventory file in your `ansible.cfg` to `inventroy/hosts`.
@@ -63,7 +65,8 @@ Configure ansible-navigator and ensure the following:
 * Enable colorful output.
 * Log to a file `log.txt` in a subfolder `log` with a loglevel of `INFO`.
 * Use the demo execution environment previously downloaded when running a playbook.
-* Create artifacts when running a playbook with `ansible-navigator` and put them in a subfolder `artifacts`. Prefix the name of the artifact-file with the name of the actual playbook.
+* Create artifacts when running a playbook with `ansible-navigator` and put them in a subfolder `artifacts`.
+Prefix the name of the artifact-file with the name of the actual playbook.
 
 {{% details title="Solution Task 2" %}}
 
@@ -98,7 +101,12 @@ ansible-navigator:
 
 ### Task 3
 
-* Create a playbook `site.yml` that contains two plays. The first play is the same as `webservers.yml` from the earlier labs. The second play sets the content of `/etc/motd` on all hosts of the group `db` to `This is a database server`. Be sure to set a `name` keyword for each play. Use "Run tasks on webservers" as value for the name keyword of the play that runs on the group `web` and "Run tasks on dbservers" for the play that runs on group `db`.
+* Create a playbook `site.yml` that contains two plays.
+The first play is the same as `webservers.yml` from the earlier labs.
+The second play sets the content of `/etc/motd` on all hosts of the group `db` to `This is a database server`.
+Be sure to set a `name` keyword for each play.
+Use "Run tasks on webservers" as value for the name keyword of the play that runs on the group `web`
+and "Run tasks on dbservers" for the play that runs on group `db`.
 
 {{% details title="Solution Task 3" %}}
 ```bash
@@ -109,7 +117,7 @@ $ cat site.yml
   become: true
   tasks:
     - name: install httpd
-      dnf:
+      ansible.builtin.dnf:
         name: httpd
         state: installed
     - name: start and enable httpd
@@ -123,7 +131,7 @@ $ cat site.yml
         state: started
         enabled: true
     - name: open firewall for http
-      ansible.builtin.firewalld:
+      ansible.posix.firewalld:
         service: http
         state: enabled
         permanent: true
@@ -133,9 +141,10 @@ $ cat site.yml
   become: true
   tasks:
     - name: prepare motd
-      copy:
+      ansible.builtin.copy:
         dest: /etc/motd
         content: "This is a database server"
+        mode: "0644"
 ```
 {{% /details %}}
 
@@ -143,14 +152,17 @@ $ cat site.yml
 
 * Run the playbook `site.yml` by using ansible-navigator and the configuration from Task 2.
 * What additional config parameter has to be set in your `ansible.cfg`? If unsure, run the playbook and debug the error.
-* While running the playbook, check in another terminal window if the container gets startet and stopped. You can do this by issuing `watch podman container list`.
+* While running the playbook, check in another terminal window if the container gets startet and stopped.
+You can do this by issuing `watch podman container list`.
 
 {{% details title="Solution Task 4" %}}
 ```bash
 $ ansible-navigator run site.yml
 ...
 ```
-If you would not have set `remote_user` to `ansible` in the ansible configuration, the EE would use user root to connect to the hosts per default. So in case of problems, check your ansible.cfg:
+If you had not set `remote_user` to `ansible` in the ansible configuration,
+the EE would use user root to connect to the hosts per default.
+So in case of problems, check your ansible.cfg:
 ```bash
 $ grep remote_user ansible.cfg
 remote_user = ansible
@@ -169,7 +181,9 @@ o              ansible_runner_afb92a4e-3281-4928-986a-cbb84c999be7
 
 ### Task 5
 
-* After a successful run of your playbook, we play around with the TUI. Be sure to not let ansible-navigator run in interactive mode and not stdout mode (-m stdout). Since interactive is the default, you shouldn't have any problems with that.
+* After a successful run of your playbook, we play around with the TUI.
+Be sure to not let ansible-navigator run in interactive mode and not stdout mode (-m stdout).
+Since interactive is the default, you shouldn't have any problems with that.
 * Inspect the output in the TUI. Navigate to the task in "open firewall for http".
 
 {{% details title="Solution Task 5" %}}
@@ -178,7 +192,8 @@ o              ansible_runner_afb92a4e-3281-4928-986a-cbb84c999be7
 $ ansible-navigator run site.yml -m interactive
 ...
 ```
-Note that `-m interactive` is not needed unless you configured the mode to `stdout` explicitly in your `ansible-navigator.yml` config file.
+Note that `-m interactive` is not needed unless you configured the mode to `stdout` explicitly in your
+`ansible-navigator.yml` config file.
 
 ```bash
   PLAY NAME               OK CHANGED UNREACHABLE FAILED SKIPPED IGNORED IN PROGRESS TASK COUNT   PROGRESS
@@ -238,7 +253,9 @@ OK: [node1] Permanent and Non-Permanent(immediate) operation
 34│task_args: ''
 35│task_path: /home/ansible/techlab/site.yml:20
 ```
-Here you can find a lot of details about the task. Note that you can switch between tasks when pressing the number equal to the indicated line number from the play summary. In this case this would be the numbers from `0` to `4`.
+Here you can find a lot of details about the task.
+Note that you can switch between tasks when pressing the number equal to the indicated line number from the play summary.
+In this case this would be the numbers from `0` to `4`.
 
 {{% /details %}}
 
@@ -251,7 +268,8 @@ Use `ansible-navigator` to see the documentation of:
 
 {{% details title="Solution Task 6" %}}
 
-Attention! Be sure to use an EE that contains the needed documentation. If that's not the case, just switch to not using any EE with the option `--ee false`.
+Attention! Be sure to use an EE that contains the needed documentation.
+If that's not the case, just switch to not using any EE with the option `--ee false`.
 ```bash
 $ ansible-navigator doc file
 $ ansible-navigator doc -t lookup dig --ee false
@@ -270,7 +288,8 @@ Note that when inspecting an inventory you have to name it explicitly even when 
 $ ansible-navigator inventory -i inventory/hosts
 ...
 ```
-Navigate trough the inventory and see what information you can find. For example show all information about the hosts in group `db`:
+Navigate through the inventory and see what information you can find.
+For example show all information about the hosts in group `db`:
 
 ```bash
   TITLE                DESCRIPTION
@@ -314,7 +333,7 @@ $ ansible-navigator config
   1│AGNOSTIC_BECOME_PROMPT         True default default                     True
   2│ALLOW_WORLD_READABLE_TMPFILE   True default default                     False
   3│ANSIBLE_CONNECTION_PATH        True default default                     None
-  4│ANSIBLE_COW_ACCEPTLIST         True default default                     ['bud-frogs', 'bunny', 'chees...
+  4│ANSIBLE_COW_ACCEPTLIST         True default default                     ['bud-frogs', 'bunny', 'cheese...
   5│ANSIBLE_COW_PATH               True default default                     None
   6│ANSIBLE_COW_SELECTION          True default default                     default
   7│ANSIBLE_FORCE_COLOR            True default default                     False
@@ -350,7 +369,7 @@ ANSIBLE NOCOWS (current/default: False)
 ### Task 9
 
 * The run of `site.yml` should have created an artifact file in the folder `artifacts/`.
-* Replay the this run by using `ansible-navigator` with the corresponding option.
+* Replay the run by using `ansible-navigator` with the corresponding option.
 
 {{% details title="Solution Task 9" %}}
 ```bash
@@ -416,4 +435,4 @@ AWX.AWX.CREDENTIAL: create, update, or destroy Automation Platform Controller
 
 ### All done?
 
-* Have a look at the [ansible-navigator github page](https://github.com/ansible/ansible-navigator).
+* Have a look at the [ansible-navigator GitHub page](https://github.com/ansible/ansible-navigator).

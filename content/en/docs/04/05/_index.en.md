@@ -12,7 +12,8 @@ In this lab we learn about task control.
 * Ensure that the command times out after 10 seconds if not completed by then. Run the task.
 * Use the `time` command to see how long your ad-hoc command had to run. Use `man time` to see how `time` works.
 * Now add a polling interval of 30 seconds. Run the task, and ensure with the `time` command, that it had a longer runtime.
-* See what happens if you only specify the polling interval but no async timeout. Tip: set a sleep duration of only 10 seconds.
+* See what happens if you only specify the polling interval but no async timeout.
+Tip: set a sleep duration of only 10 seconds.
 
 {{% details title="Solution Task 1" %}}
 ```bash
@@ -63,15 +64,15 @@ $ cat async.yml
 
 $ ansible-playbook async.yml
 
-PLAY [node1] **************************************************************************************************************************************************************************************************
+PLAY [node1] **********************************************************************************************************
 
-TASK [Gathering Facts] ****************************************************************************************************************************************************************************************
+TASK [Gathering Facts] ************************************************************************************************
 ok: [node1]
 
-TASK [sleeping beauty] ****************************************************************************************************************************************************************************************
+TASK [sleeping beauty] ************************************************************************************************
 fatal: [node1]: FAILED! => {"changed": false, "msg": "async task did not complete within the requested time - 10s"}
 
-PLAY RECAP ****************************************************************************************************************************************************************************************************
+PLAY RECAP ************************************************************************************************************
 node1                      : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
 
 $
@@ -83,7 +84,8 @@ $
 
 In the playbook `async.yml` do the following:
 
-* Put the task above in the background and change the values of the sleepduration, polling interval and async time to reasonable values.
+* Put the task above in the background and change the values of the sleepduration,
+polling interval and async time to reasonable values.
 * Check back with an `async_status` task if the sleep-task has finished.
 * Run the playbook.
 
@@ -112,15 +114,14 @@ $ cat async.yml
 
 $ ansible-playbook async.yml
 
-PLAY [node1] **************************************************************************************************************************************************************************************************
-
-TASK [Gathering Facts] ****************************************************************************************************************************************************************************************
+PLAY [node1] **********************************************************************************************************
+TASK [Gathering Facts] ************************************************************************************************
 ok: [node1]
 
-TASK [sleeping beauty] ****************************************************************************************************************************************************************************************
+TASK [sleeping beauty] ************************************************************************************************
 changed: [node1]
 
-TASK [check back if task in background has finished] **********************************************************************************************************************************************************
+TASK [check back if task in background has finished] ******************************************************************
 FAILED - RETRYING: check back if task in background has finished (50 retries left).
 FAILED - RETRYING: check back if task in background has finished (49 retries left).
 FAILED - RETRYING: check back if task in background has finished (48 retries left).
@@ -129,7 +130,7 @@ FAILED - RETRYING: check back if task in background has finished (46 retries lef
 FAILED - RETRYING: check back if task in background has finished (45 retries left).
 changed: [node1]
 
-PLAY RECAP ****************************************************************************************************************************************************************************************************
+PLAY RECAP ************************************************************************************************************
 node1                      : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 
 $

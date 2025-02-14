@@ -37,7 +37,9 @@ password: vagrant
 
 {{% alert title="Info" color="primary" %}}
 On Linux we use the libvirt provider for vagrant.
-Using Libvirt in user session is quite troublesome: the vagrant vms fail to use the default NAT network, but in user session you can not create a new one. This is why we have to use sudo a lot in the follwing setup.
+Using Libvirt in user session is quite troublesome:
+the vagrant vms fail to use the default NAT network, but in user session you can not create a new one.
+This is why we have to use sudo a lot in the follwing setup.
 {{% /alert %}}
 
 #### Techlab Installation and Startup

@@ -8,7 +8,7 @@ In this lab we’ll continue with our environment setup from [Chapter 1](../01) 
 
 ### Task 1
 
-* Ping all nodes in the inventory file using the ansible.builtin.ping module.
+* Ping all nodes in the inventory file using the `ansible.builtin.ping` module.
 
 {{% alert title="Tip" color="info" %}}
 You’ve used the `ansible.builtin.ping` module in a previous lab.
@@ -64,19 +64,22 @@ $ ansible all -i hosts -m ansible.builtin.setup -a "filter=ansible_default_ipv4"
 ### Task 3
 
 * Search through the online documentation for special (magical) variables.
-* Which special variable could you use to set the `hostname` on each of the servers using the information in the `inventory` file?
+* Which special variable could you use to set the `hostname` on each of the servers using
+the information in the `inventory` file?
 
 {{% details title="Solution Task 3" %}}
 
 * See Ansible docs for special variables: [Special Variables](https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html)
-* `inventory_hostname` contains the name of the managed host from the inventory file and can be used to set the hostname on the servers.
+* `inventory_hostname` contains the name of the managed host from the inventory file and can be used
+to set the hostname on the servers.
 
 {{% /details %}}
 
 ### Task 4
 
 * Try to find an appropriate Ansible module to complete Task 3. Find out what parameters the module accepts.
-* This module will try to make changes to the `/etc/hostname` file. What options should you use with the `ansible` command to make that work?
+* This module will try to make changes to the `/etc/hostname` file.
+What options should you use with the `ansible` command to make that work?
 
 {{% details title="Solution Task 4" %}}
 
@@ -92,7 +95,7 @@ $ ansible-doc -s hostname
       name:                  # (required) Name of the host
 ```
 
-* We will need root privileges and therefore we have to use the become option `-b`
+* We will need root privileges, and therefore we have to use the become option `-b`
 
 {{% /details %}}
 
@@ -119,13 +122,13 @@ Complete the next steps using Ansible ad hoc commands:
 {{% details title="Solution Task 6" %}}
 ```bash
 ansible web -i hosts -b -m ansible.builtin.dnf -a "name=httpd state=installed"
-ansible web -i hosts -b -m ansible.builtin.systemd_service -a "name=httpd state=started enabled=yes"
+ansible web -i hosts -b -m ansible.builtin.systemd_service -a "name=httpd state=started enabled=true"
 ```
 
 Reverting the changes made on the remote hosts:
 
 ```bash
-ansible web -i hosts -b -m systemd_service -a "name=httpd state=stopped enabled=no"
+ansible web -i hosts -b -m systemd_service -a "name=httpd state=stopped enabled=false"
 ansible web -i hosts -b -m ansible.builtin.dnf -a "name=httpd state=absent"
 ```
 {{% /details %}}

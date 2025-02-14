@@ -50,7 +50,7 @@ $ cat roles/httpd/tasks/main.yml
     - httpd
     - firewalld
 - name: open firewall for http and https
-  firewalld:
+  ansible.posix.firewalld:
     service: "{{ item }}"
     state: enabled
     immediate: true
@@ -81,10 +81,15 @@ $ ansible-playbook webserver.yml
 
 ### Task 4
 
-* Create a new role called `base`. Its file `tasks/main.yml` should import the files `motd.yml` and `packages.yml`. (Create both files under `tasks/`).
-* `motd.yml` should do the following: Use the variable `motd_content` to change the `/etc/motd` content to "This is a server\\n". Remember to move the template as well as the variable to a correct location in the `roles` folder.
+* Create a new role called `base`.
+Its file `tasks/main.yml` should import the files `motd.yml` and `packages.yml`.
+(Create both files under `tasks/`).
+* `motd.yml` should do the following: Use the variable `base_motd_content` to change the `/etc/motd` content to
+"This is a server\\n".
+Remember to move the template as well as the variable to a correct location in the `roles` folder.
 * `packages.yml` should install the packages `firewalld`, `yum-utils`, `dos2unix`, `emacs` and `vim`
-* Write a playbook `prod.yml` that applies the role `base` to all servers and the role `httpd` only to the group `web`.
+* Write a playbook `prod.yml` that applies the role `base` to all servers
+and the role `httpd` only to the group `web`.
 
 {{% details title="Solution Task 4" %}}
 ```bash
@@ -93,7 +98,7 @@ $ cd roles/; ansible-galaxy init base;
 $ cat roles/base/defaults/main.yml
 ---
 # defaults file for base
-motd_content: "This is a server\n"
+base_motd_content: "This is a server\n"
 
 $ ls roles/base/tasks/
 main.yml      motd.yml      packages.yml
@@ -101,9 +106,10 @@ main.yml      motd.yml      packages.yml
 $ cat roles/base/tasks/motd.yml
 ---
 - name: put motd template
-  template:
+  ansible.builtin.template:
     src: templates/motd.j2
     dest: /etc/motd
+    mode: "0644"
 
 $ cat roles/base/tasks/packages.yml
 ---
@@ -121,10 +127,10 @@ $ cat roles/base/tasks/main.yml
 ---
 # tasks file for base
 - name: set custom text
-  include_tasks: motd.yml
+  ansible.builtin.include_tasks: motd.yml
   tags: motd
 - name: install packages
-  include_tasks: packages.yml
+  ansible.builtin.include_tasks: packages.yml
   tags: packages
 
 $ cat prod.yml
@@ -148,8 +154,10 @@ Take notice of the different content of `/etc/motd` on the control node!
 
 ### Task 5
 
-* Rewrite the `httpd` role to apply the `base` role each time it is used in a playbook. Use a dependency in the `meta/main.yml` file.
-* Remove the play to run `base` role on all hosts in the `prod.yml` playbook. Run the playbook and see if role `base` was applied on hosts in the `web` group as well.
+* Rewrite the `httpd` role to apply the `base` role each time it is used in a playbook.
+Use a dependency in the `meta/main.yml` file.
+* Remove the play to run `base` role on all hosts in the `prod.yml` playbook.
+Run the playbook and see if role `base` was applied on hosts in the `web` group as well.
 
 {{% details title="Solution Task 5" %}}
 
