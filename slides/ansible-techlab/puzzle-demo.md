@@ -2481,7 +2481,7 @@ ansible-rulebook --rulebook my_rb.yml -i hosts
 
 Note:
 Gründe für automatisierte tests:
-  - sicherstellen, dass Rolle mit unterschiedlichen Distros oder neuen Versionen funktionieren
+  - sicherstellen, dass Rollen mit unterschiedlichen Distros oder neuen Versionen funktionieren
   - Idempotenz prüfen
 
 <!-- .slide: class="master-content" > -->
@@ -2495,7 +2495,7 @@ Gründe für automatisierte tests:
 Note:
 - Driver erweitern die Funktionalität und starten die nötigen VMs oder Container.
 - Anstelle der driver können auch in separaten files `create.yml` und `destroy.yml` die nötigen Ansible Tasks van Hand erstellt werden, um die nötigen Ressourcen zu provisionieren.
-- Scenarios fassen zusammengehörige tests zusammen.
+- Szenarien sind Test-Setups für Ansible-Automatisierungen. Szenarien testen Ansible-Rollen automatisiert, indem sie Testumgebungen erstellen, die Rolle anwenden und die Ergebnisse überprüfen.
 - Fürs Testen einer Rolle wird meist nur ein einziges Scenario verwendet, da meiste alles innerhalb einer Rolle zusammengehört.
 
 <!-- .slide: class="master-content" > -->
