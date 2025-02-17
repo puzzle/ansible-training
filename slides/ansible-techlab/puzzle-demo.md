@@ -2467,6 +2467,157 @@ ansible-rulebook --rulebook my_rb.yml -i hosts
 <!-- .slide: class="master-content" > -->
 
 ----
+# Automated testing
+
+### using molecule
+
+<!-- .slide: class="master-title" > -->
+
+***
+## Overview:
+- Automated testing of roles and/or collections
+- Test against multiple os families or versions
+- Test against podman/docker containers or VMs (both local and cloud)
+
+Note:
+Gründe für automatisierte tests:
+  - sicherstellen, dass Rolle mit unterschiedlichen Distros oder neuen Versionen funktionieren
+  - Idempotenz prüfen
+
+<!-- .slide: class="master-content" > -->
+
+***
+## Terminology:
+- **driver** backend to manage target VMs or containers
+- **scenario** tasks which include the role or tasks to test
+- **verifier** tasks which verify the results of the run
+
+Note:
+- Driver erweitern die Funktionalität und starten die nötigen VMs oder Container.
+- Anstelle der driver können auch in separaten files `create.yml` und `destroy.yml` die nötigen Ansible Tasks van Hand erstellt werden, um die nötigen Ressourcen zu provisionieren.
+- Scenarios fassen zusammengehörige tests zusammen.
+- Fürs Testen einer Rolle wird meist nur ein einziges Scenario verwendet, da meiste alles innerhalb einer Rolle zusammengehört.
+
+<!-- .slide: class="master-content" > -->
+
+***
+## Getting started:
+- `pip install molecule molecule-podman`
+- Initialize molecule files in your role using `molecule init scenario`
+
+The container drivers (podman or docker) work for many use cases, however systemd related tasks are a challenge.
+
+Note:
+Systemd Befehle wie `systemctl restart` funktionieren in Containern nicht out of the box. Wenn man solche tasks testen möchte, sollte man eher zu VMs greifen.
+
+<!-- .slide: class="master-content" > -->
+
+***
+## molecule.yml:
+- Configure target platforms and driver
+
+```yaml
+platforms:
+  - name: rocky-9
+    image: rockylinux:9
+driver:
+  name: podman
+provisioner:
+  name: ansible
+verifier:
+  name: ansible
+```
+
+<!-- .slide: class="master-content" > -->
+
+***
+## converge.yml:
+```yaml
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Test demo_role"
+      ansible.builtin.include_role:
+        name: "../../../demo_role"
+```
+
+This role contains the following task:
+
+```yaml
+- ansible.builtin.copy:
+    content: "ansible tests using molecule!"
+    dest: /tmp/test
+    owner: root
+    group: root
+    mode: '0600'
+```
+
+Note:
+Der relative include der Rolle ist nötig, weil der Molecule Befehl zum Testen später im Verzeichnis der Rolle ausgeführt wird und nicht wie `ansible-playbook` im "Hauptverzeichnis"
+
+<!-- .slide: class="master-content" > -->
+
+***
+## verify.yml:
+```yaml
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Get stats of a file
+      ansible.builtin.stat:
+        path: /tmp/test
+      register: file_stat
+
+    - ansible.builtin.assert:
+        that:
+          - file_stat.stat.exists
+```
+
+<!-- .slide: class="master-content" > -->
+
+Note:
+Die Tasks im `verify.yml` sollten so gewählt werden, dass möglichst alle Funktionen der Rolle getestet werden. Beispiel
+- Läuft Service XY
+- Wurde das config file erstellt
+- Es können auch "End-to-End" tests gebauten werden (z.B. in einer Apache Rolle antwortet der Webserver etc.)
+
+***
+## run the test:
+```bash
+molecule test
+# steps to prepare the container
+# ...
+# run the tests
+INFO     Running Ansible Verifier
+
+PLAY [Verify] ******************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [rocky-9]
+
+TASK [Get stats of a file] *****************************************************
+ok: [rocky-9]
+
+TASK [ansible.builtin.assert] **************************************************
+ok: [rocky-9] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+PLAY RECAP *********************************************************************
+rocky-9: ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
+<!-- .slide: class="master-content" > -->
+
+***
+## Good to know:
+- Molecule runs the converge tasks twice to check for idempotency issues.
+- By default, none idempotent tasks will cause the tests to fail.
+- Additional steps can be added (e.g. linting).
+
+<!-- .slide: class="master-content" > -->
+
+----
 # Best Practices
 
 <!-- .slide: class="master-title" > -->
