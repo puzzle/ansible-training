@@ -100,11 +100,12 @@ pipenv, version 2024.1.0
 
 ### Task 3
 
-Let's create a new project with a dedicated virtual environment.
+Let's create a new project with a dedicated virtual environment. The project should reside in the folder `/home/ansible/techlab/ansible-module-development`.
 
-1. **Navigate to your project directory:**
+1. **Create your project directory and navigate there:**
 
    ```bash
+   mkdir -p /home/ansible/techlab/ansible-module-development
    cd /home/ansible/techlab/ansible-module-development
    ```
 
@@ -118,7 +119,7 @@ Let's create a new project with a dedicated virtual environment.
 {{% details title="Solution Task 3" %}}
 
 * It created a `Pipfile` and a `Pipfile.lock` in the current directory.
-* A virtual environment has been created at `pipenv --venv`
+* A virtual environment has been created at `pipenv --venv`.
   {{% /details %}}
 
 ### Task 4
