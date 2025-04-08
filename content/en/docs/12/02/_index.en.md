@@ -94,7 +94,7 @@ The output may look like this
 
 ```bash
  $ pipenv --version
-pipenv, version 2024.1.0
+pipenv, version 2024.4.1
 ```
 
 {{% /details %}}
