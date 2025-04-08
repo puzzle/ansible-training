@@ -77,6 +77,7 @@ If you don't have pipenv installed yet, you can install it globally using `pip` 
 Python distribution):
 
 ```bash
+dnf install python3-pip
 pip install pipenv
 ```
 
