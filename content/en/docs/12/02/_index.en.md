@@ -1,5 +1,5 @@
 ---
-title: 12.2 Ansible Module Development - Environment Setup
+title: 12.2 Environment Setup
 weight: 122
 sectionnumber: 12
 ---
@@ -72,13 +72,16 @@ Here's a breakdown of the key packages included:
 {{% /details %}}
 
 ### Task 2
-
-If you don't have pipenv installed yet, you can install it globally using `pip` (which is usually installed with your
-Python distribution):
+First of all, lets make sure we have a more recent python version installed with pip on our lab controller node:
 
 ```bash
-dnf install python3-pip
-pip install pipenv
+sudo dnf install python3.12 python3.12-pip
+```
+
+Now let's proceed and install pipenv globally as a python3.12 package (While at it let's also upgrade pip):
+
+```bash
+python3.12 -m pip install -U pip pipenv
 ```
 
 Can you tell what pipenv version has been installed on your system?
@@ -113,7 +116,7 @@ Let's create a new project with a dedicated virtual environment. The project sho
 2. **Create the virtual environment:**
    To create the virtual environment run:
    ```bash
-   pipenv install
+   pipenv --python 3.12
    ```
    What happened with this command?
 
@@ -125,13 +128,13 @@ Let's create a new project with a dedicated virtual environment. The project sho
 
 ### Task 4
 
-In this techlab we rely on the version 25.2.1 of the `ansible-dev-tools` package.
+In this techlab we rely on the version 25.5.1 of the `ansible-dev-tools` package.
 Can you find out how to install it in your new pipenv?
 
 {{% details title="Solution Task 4" %}}
 
 ```bash
-pipenv install ansible-dev-tools==25.2.1
+pipenv install ansible-dev-tools==25.5.1
 ```
 
 * This will add `ansible-dev-tools` to your `Pipfile` and install it within the project's virtual environment.
@@ -141,7 +144,7 @@ pipenv install ansible-dev-tools==25.2.1
 
 {{% alert title="Note on Version-Specific Dependency Installation" color="warning" %}}
 When installing dependencies with pipenv, it's highly recommended to specify the exact version you need, like this:
-`pipenv install ansible-dev-tools==25.2.1`, instead of just `pipenv install ansible-dev-tools`.
+`pipenv install ansible-dev-tools==25.5.1`, instead of just `pipenv install ansible-dev-tools`.
 This ensures version locking, reproducible builds, prevents unexpected breakage, ensures an explicit dependency and
 compatibility.
 In short, always be explicit about the version you want to install.
