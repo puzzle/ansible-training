@@ -72,6 +72,7 @@ Here's a breakdown of the key packages included:
 {{% /details %}}
 
 ### Task 2
+
 First of all, lets make sure we have a more recent python version installed with pip on our lab controller node:
 
 ```bash
