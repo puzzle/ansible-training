@@ -9,6 +9,7 @@ In this lab we are going to learn how Ansible uses modules and where to find inf
 ### Task 1
 
 * In which language has a module to be written?
+* Point your webbrowser to the official documentation about Ansible module architecture.
 * Point your webbrowser to the official documentation about developing modules.
 * Point your webbrowser to the official documentation about developing modules best practices.
 * Point your webbrowser to the official documentation about developing collections.
@@ -18,6 +19,7 @@ In this lab we are going to learn how Ansible uses modules and where to find inf
 {{% details title="Solution Task 1" %}}
 
 * either Pyhon (Linux) or Powershell (Windows)
+* [https://docs.ansible.com/ansible/latest/dev_guide/developing_program_flow_modules.html](https://docs.ansible.com/ansible/latest/dev_guide/developing_program_flow_modules.html)
 * [https://docs.ansible.com/ansible/latest/dev_guide/developing_modules_general.html](https://docs.ansible.com/ansible/latest/dev_guide/developing_modules_general.html)
 * [https://docs.ansible.com/ansible/latest/dev_guide/developing_modules_best_practices.html#developing-modules-best-practices](https://docs.ansible.com/ansible/latest/dev_guide/developing_modules_best_practices.html#developing-modules-best-practices)
 * [https://docs.ansible.com/ansible/latest/dev_guide/developing_collections.html#developing-collections](https://docs.ansible.com/ansible/latest/dev_guide/developing_collections.html#developing-collections)
