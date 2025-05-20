@@ -5,7 +5,7 @@ sectionnumber: 12
 ---
 Ansible modules are packaged and published inside Ansible collections in order to be used.
 Therefore, we will start by learning how to initialize a collection.
-Since we have already our python environment set up in the previous lab, we can start right away inside our current Python environment.
+Since we have already set up our Python environment in the previous lab, we can start right away.
 
 ### Task 1 - Creating the Collection
 
@@ -14,6 +14,7 @@ Create the `training.labs` collection in the current project directory `/home/an
 {{% details title="Solution Task 1" %}}
 
 ```bash
+pipenv shell
 ansible-creator init collection training.labs ./training.labs
 ```
 {{% /details %}}
