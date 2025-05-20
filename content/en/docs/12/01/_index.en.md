@@ -28,14 +28,13 @@ In this lab we are going to learn how Ansible uses modules and where to find inf
 
 ### Task 2
 
-* for possible content of the `my_module.py` file, see the [official documentation](https://docs.ansible.com/ansible/latest/dev_guide/developing_modules_general.html#creating-a-module) 
-* 
+* for possible content of the `my_module.py` file, see the [official documentation](https://docs.ansible.com/ansible/latest/dev_guide/developing_modules_general.html#creating-a-module)
 
 {{% details title="Solution Task 2" %}}
 
 ```bash
-$ mkdir /home/ansible/techlab/library/
-$ touch /home/ansible/techlab/library/my_module.py
+mkdir /home/ansible/techlab/library/
+touch /home/ansible/techlab/library/my_module.py
 ```
 {{% /details %}}
 
