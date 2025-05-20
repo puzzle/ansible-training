@@ -9,9 +9,10 @@ Most likely you will encounter use-cases that will not justify the overhead of m
 In those cases it is still possible to create a local module and use it in your playbooks in a much easier and more appropriate way.
 
 ## Setup
+
 To do so, we need to configure Ansible to look for our custom modules at a specified location.
 
-We can tell Ansible where to look for custom modules by either setting the `ANSIBLE_LIBRARY` 
+We can tell Ansible where to look for custom modules by either setting the `ANSIBLE_LIBRARY`
 environment variable or by setting the `library` option in the `defaults` section of the  `ansible.cfg` file.
 
 Let's use the `ansible.cfg` approach for this and set the `library` option to a local folder `./library`.
@@ -38,7 +39,7 @@ mkdir -p ./library
 Let's have a look at the example module of the [official documentation](https://docs.ansible.com/ansible/latest/dev_guide/developing_modules_general.html#codecell0).
 From the code of the `my_test.py` module we can identify the key elements required to write a module:
 
-#### 1. Some boilerplate code
+### 1. Some boilerplate code
 
 Ansible modules must start with this boilerplate code.
 
@@ -53,23 +54,23 @@ __metaclass__ = type
 
 This ensures that the module can be executed as a standalone module using python 2 and 3.
 
-#### 2. The `DOCUMENTATION` block
+### 2. The `DOCUMENTATION` block
 
 This block contains information about the module and its arguments.
 Ansible tooling uses this information to generate documentation for the `ansible-doc` output and the `antsibull-doc` HTML pages.
 For this reason this block must adhere to a specific format, which is thoroughly documented in the [official documentation](https://docs.ansible.com/ansible/latest/dev_guide/developing_modules_documenting.html#documentation-block).
 
-#### 3. The `EXAMPLES` block
+### 3. The `EXAMPLES` block
 
 This block contains examples of how to use the module. Just like the `DOCUMENTATION` block, this block must adhere to a specific format.
 The specification is documented in the [official documentation](https://docs.ansible.com/ansible/latest/dev_guide/developing_modules_documenting.html#examples-block) as well.
 
-#### 4. The `RETURN` block
+### 4. The `RETURN` block
 
 Finally, the `RETURN` block contains information about the return values of the module. Again, this block must adhere to a specific format.
 The specification is documented in the [official documentation](https://docs.ansible.com/ansible/latest/dev_guide/developing_modules_documenting.html#return-block).
 
-#### 5. The main function
+### 5. The main function
 
 The main function contains the code of the module. There are only a few rules to keep in mind:
 
@@ -85,7 +86,7 @@ def main() -> None:
 ```
 
 
-#### 6. The main guard
+### 6. The main guard
 
 This is the last part and is the entry point of the module.
 It contains the code call that is executed when the module is called, either by Ansible when it executes the module on the target host
