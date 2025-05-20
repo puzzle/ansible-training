@@ -20,6 +20,7 @@ ansible-creator init collection training.labs ./training.labs
 {{% /details %}}
 
 ### Task 2 - Set up the ansible development environment
+
 With the collection created we can start working with its ansible development environment (`ade`).
 This tool installs our newly created collection inside our virtual environment in such a way that ansible can use it.
 
@@ -42,6 +43,7 @@ If you installed it in any other way, use `ade uninstall training.labs` and repe
 {{% /details %}}
 
 ### Task 3 - Verify the collection installation
+
 How can you verify that the new collection is installed and can be used by ansible?
 
 The newly created collection comes with a few sample plugins out of the box which for now we will use to verify the collection installation.
@@ -51,6 +53,7 @@ The newly created collection comes with a few sample plugins out of the box whic
 
 
 You can check the installation of your collection in the following ways:
+
 1. Using the `ade list` command you should see your collection in the list.
 2. Using the `ansible-doc --list` command you should see the sample modules that come with the collection (e.g. `training.labs.sample_module`).
 3. Most important you should see the collection in the `pipenv --venv` folder (inside the `lib/python3.1*/site-packages` folder):
@@ -63,4 +66,5 @@ You can check the installation of your collection in the following ways:
 {{% /details %}}
 
 ### All done?
- - Have a look at the file structure of the newly created collection in the `training.labs` folder. Try to understand the structure, you can use the [Ansible Collection structure documentation ](https://docs.ansible.com/ansible/latest/dev_guide/developing_collections_structure.html#collection-structure) to learn more about the structure.
+
+* Have a look at the file structure of the newly created collection in the `training.labs` folder. Try to understand the structure, you can use the [Ansible Collection structure documentation](https://docs.ansible.com/ansible/latest/dev_guide/developing_collections_structure.html#collection-structure) to learn more about the structure.
