@@ -10,13 +10,14 @@ For that the ansible tooling has a set of modules to help us with different kind
 Ansible content should be tested in three ways:
 
 1. Sanity Testing - Mainly static code analysis of different kinds
-2. Unit Testing - Testing the logic of you code 
+2. Unit Testing - Testing the logic of you code
 3. Integration Testing - Testing how you ansible content behaves when integrated with other ansible content
 
 We will have a look at how to set up and create these kind of tests.
 But first let's have a look on how these tests are executed.
 
 ### Task 1 - tox-ansible
+
 To perform tests on Ansible content `tox` alongside with the tox plugin `tox-ansible` is used.
 `tox` is a Python test-automation framework, which allows you to run tests in different environments.
 When we created the collection using the `ansible-creator` tool, it created a `tox-ansible.ini` file which we can use as a tox configuration.
@@ -52,7 +53,7 @@ Try to solve the following tasks:
       libyaml = True
 
    ```
-   
+
 3. You can configure tox-ansible to use your local Python and Ansible versions by skipping all versions that do not match your local Python and Ansible versions. The following lines should do the trick:
 
    ```ini
@@ -100,6 +101,7 @@ rm plugins/action/sample_*.py
 {{% /details %}}
 
 ### Task 3 - Unit Testing our collection
+
 Unit tests can be run similarly to sanity tests but with the `unit` environment:
 
 ```bash
@@ -129,6 +131,7 @@ For now, we will start by creating a test file for the `schroedingers_cat` modul
 In this lab we will use pytest style test cases.
 
 Can you implement the following unit test cases?
+
 1. The module should always return a `cat_state` on exit.
 2. The module should always return a cat state of `dead and alive` when the `force_box_open` argument is set to `False` (default).
 3. The module should always return a cat state of `alive` or `dead` when the `force_box_open` argument is set to `True`.
