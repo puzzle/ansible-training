@@ -243,6 +243,65 @@ tests/unit/plugins/modules/test_schroedingers_cat.py::test_schroedingers_cat_ret
 {{% /details %}}
 
 
+### Task 4 - Integration Tests
+
+As you saw in the available tox environments we have `integration-py3.12-2.18` environment.
+Let's have a look at what this environment is doing.
+
+Looking inside the `tests` directory we can see that besides the `unit` directory that we saw earlier there is a `integration` directory.
+In this directory we have a subdirectory `targets` in which we can write our integration tests in form of ansible roles.
+`tox` will then use these roles to run them inside molecule test scenarios. `molecule` is a test framework for Ansible content.
+
+So we might go ahead and write a role in the `targets` directory called `schroedingers_cat`.
+In this role we will write our integration tests by calling our module, registering its output and inspecting the result using the assert module.
+
+Try to test the following cases:
+
+1. Calling the module with `force_box_open` set to `False` (default) should result in a cat state of `dead and alive`.
+2. Calling the module with `force_box_open` set to `True` should result in a cat state of `alive` or `dead`.
+
+Try to verify that by running the role in the `integration-py3.12-2.18` environment.
+While doing so you might at first encounter an error regarding an `integration_hello_world` test failing.
+Can you figure out how to set up molecule in the `extensions` directory to make run your new test instead of the `hello_world` test?
+
+{{% details title="Solution Task 4" %}}
+
+First you need to create a molecule scenario in the `extensions/molecule` directory.
+You can do that by renaming the `integration_hello_world` scenario to `integration_schroedingers_cat`.
+
+Next you need to create a role in the `targets` directory called `schroedingers_cat`.
+Inside this role you can create a file called `tasks/main.yml` and add write the test cases, for example:
+
+```yaml
+- name: Test schroedingers_cat without force open box
+  block:
+    - name: Test schroedingers_cat without force open box
+      training.labs.schroedingers_cat:
+      register: no_force_result
+
+    - name: Assert that the cat state is 'dead and alive'
+      ansible.builtin.assert:
+        that:
+          - no_force_result.cat_state == 'dead and alive'
+
+- name: Test schroedingers_cat with force open box
+  block:
+    - name: Test schroedingers_cat with force open box
+      training.labs.schroedingers_cat:
+        force_box_open: true
+      register: force_result
+
+    - name: Assert that the cat state is 'dead' or 'alive'
+      ansible.builtin.assert:
+        that:
+          - force_result.cat_state in ['dead', 'alive']
+```
+
+Run the role in the `integration-py3.12-2.18` environment and verify that the tests pass.
+
+{{% /details %}}
+
+
 ### All done?
 
-* Can you test your module in any other way?
+* Try reading up on molecule. What is a scenario? What is a test sequence? What is being configured in the molecule.yml? 
