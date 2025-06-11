@@ -65,6 +65,27 @@ You can check the installation of your collection in the following ways:
 
 {{% /details %}}
 
+
+### Task 4 - Adding a new module
+
+We will now proceed to add the `schroedingers_cat` module from the previous chapter to the collection.
+
+Can you add it to the collection such that you can use it with the `ansible-doc` command using its fully qualified name `training.labs.schroedingers_cat`?
+
+{{% details title="Solution Task 4" %}}
+
+We must place the module inside the `plugins/modules` folder of the collection:
+```bash
+cp ~/techlab/ansible-module-development/library/schroedingers_cat.py ./training.labs/plugins/modules/schroedingers_cat.py
+```
+
+Now we can proceed to verify it:
+```bash
+ansible-doc training.labs.schroedingers_cat
+```
+
+{{% /details %}}
+
 ### All done?
 
 * Have a look at the file structure of the newly created collection in the `training.labs` folder. Try to understand the structure, you can use the [Ansible Collection structure documentation](https://docs.ansible.com/ansible/latest/dev_guide/developing_collections_structure.html#collection-structure) to learn more about the structure.

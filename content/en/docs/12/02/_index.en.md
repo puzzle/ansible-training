@@ -30,7 +30,7 @@ chosen environment.
 streamlines the process of:
 
 * **Creating and managing virtual environments:** `pipenv` automatically creates a virtual environment for your project
-  in the current directory or a specified location and handles all activiation for you.
+  in the current directory or a specified location and handles all activation for you.
 * **Managing dependencies:** It uses a `Pipfile` to track your project's dependencies and a `Pipfile.lock` to ensure
   reproducible builds.
 * **Simplified workflow:** It offers intuitive commands for installing, uninstalling, and updating packages.
