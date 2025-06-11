@@ -70,7 +70,7 @@ You can check the installation of your collection in the following ways:
 
 We will now proceed to add the `schroedingers_cat` module from the previous chapter to the collection.
 
-Can you add id such that you can use it with the `ansible-doc` command using its fully qualified name `training.labs.schroedingers_cat`?
+Can you add it to the collection such that you can use it with the `ansible-doc` command using its fully qualified name `training.labs.schroedingers_cat`?
 
 {{% details title="Solution Task 4" %}}
 

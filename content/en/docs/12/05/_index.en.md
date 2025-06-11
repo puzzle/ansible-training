@@ -22,9 +22,9 @@ To perform tests on Ansible content `tox` alongside with the tox plugin `tox-ans
 `tox` is a Python test-automation framework, which allows you to run tests in different environments.
 When we created the collection using the `ansible-creator` tool, it created a `tox-ansible.ini` file which we can use as a tox configuration.
 
-In this file, we can configure what Python versions and Ansible versions to preform test against.
+In this file, we can configure what Python versions and Ansible versions to perform test against.
 This can be very powerful especially when running extensive CI pipelines.
-We will focus however, on our local Python and Ansible versions for now.
+However, we will focus on our local Python and Ansible versions for now.
 Try to solve the following tasks:
 
 1. Can you list all available tests?
@@ -76,7 +76,7 @@ Try to solve the following tasks:
 Let's try to run sanity tests against our collection.
 List the available sanity tests again and choose to run the sanity tests.
 
-In the test output you will some issues regarding the sample plugins, feel free to either remove these plugins or ignore them.
+In the test output you will encounter some issues regarding the sample plugins, feel free to either remove these plugins or ignore them.
 
 Does the `schroedingers_cat` plugin pass the sanity tests?
 
@@ -149,7 +149,7 @@ touch tests/unit/plugins/modules/test_schroedingers_cat.py
 ```
 
 To write isolated unit tests we will need some of the utilities introduced in the Ansible Community Documentation.
-First we need to address the question how can i control with what arguments my module will be called in the unit test.
+First we need to address the question of how we can control which arguments our module will be called with in the unit test.
 
 The `set_module_args` function from the documentation can be used to set the arguments that will be passed to the module:
 
@@ -167,8 +167,8 @@ With this approach we leverage a global variable which ansible uses to store the
 Then we can set the arguments to the module by calling the `set_module_args` function in the test cases.
 
 The second issue we need to address is to verify the termination status of the module.
-It either will call the exit_json function or the fail_json function.
-Using pytest fixtrues to mock the AnsibleModule functions is a good approach to test the module:
+It either will call the `exit_json` function or the `fail_json` function.
+Using pytest fixtures, we can mock the AnsibleModule functions:
 
 ```python
 from unittest.mock import patch, MagicMock
