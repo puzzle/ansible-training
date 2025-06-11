@@ -1,5 +1,5 @@
 ---
-title: 12.5 Testing your module
+title: 12.5 Testing Your Module
 weight: 125
 sectionnumber: 12
 ---
@@ -304,4 +304,4 @@ Run the role in the `integration-py3.12-2.18` environment and verify that the te
 
 ### All done?
 
-* Try reading up on molecule. What is a scenario? What is a test sequence? What is being configured in the molecule.yml? 
+* Try reading up on molecule. What is a scenario? What is a test sequence? What is being configured in the molecule.yml?
