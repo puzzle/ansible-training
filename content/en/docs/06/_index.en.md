@@ -34,7 +34,7 @@ $ cat secretservice.yml
   become: true
   tasks:
     - name: Copy the secrets to the server
-      ansible.biltin.template:
+      ansible.builtin.template:
         src: mi6.j2
         dest: /etc/MI6
         mode: "0644"
@@ -151,6 +151,7 @@ This makes it easier to copy-paste the output later!
 ansible-vault decrypt secret_vars.yml
 echo "---" > secret_vars.yml
 ansible-vault encrypt_string jamesbond -n var_username >> secret_vars.yml
+echo "" >> secret_vars.yml
 ansible-vault encrypt_string miss_moneypenny -n var_password >> secret_vars.yml
 ```
 
@@ -210,14 +211,6 @@ ansible-vault encrypt secret_vars2.yml
 Be sure to use `rekey` with `--new-vault-id`.
 By using `--vault-id`, `ansible-vault` would use the value from `vaultpasswordfile`
 and not the one asked for by using `@prompt`.
-This could be quite misleading...
-You can check the same unexpected behavior when trying to view an encrypted file
-with providing a wrong password at command line.
-Giving a wrong password after `ansible-vault view secret_vars2.yml --vault-id @prompt`
-still results in showing the decrypted content of the file when `ansible.cfg` points to the correct `vaultpasswordfile`.
-
-There is an open [issue](https://github.com/ansible/ansible/issues/33831) about this topic on GitHub.
-<!-- TODO: See if this still applies, since the GH issue has been closed -->,
 
 ```bash
 ansible-vault rekey secret_vars2.yml --new-vault-id @prompt

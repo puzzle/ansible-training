@@ -94,8 +94,7 @@ $ ansible-config dump | grep COLLECTIONS_PATHS
 COLLECTIONS_PATHS(default) = [u'/home/ansible/.ansible/collections', u'/usr/share/ansible/collections']
 
 $ vim ansible.cfg
-$ grep "\[defaults\]" -A1 ansible.cfg
-[defaults]
+$ grep "collections_path" ansible.cfg
 collections_paths = /home/ansible/techlab/collections
 
 $ ansible-galaxy collection install puzzle-ansible_techlab-1.0.0.tar.gz
@@ -155,7 +154,9 @@ collections:
 $ ansible-galaxy collection install -r requirements.yml
 Process install dependency map
 Starting collection install process
-Installing 'cloudscale_ch.cloud:1.0.0' to '/home/ansible/techlab/collections/ansible_collections/cloudscale_ch/cloud'
+Downloading https://galaxy.ansible.com/api/v3/plugin/ansible/content/published/collections/artifacts/cloudscale_ch-cloud-2.4.1.tar.gz to /home/ansible/.ansible/tmp/ansible-local-4576w_3ih5o6/tmpu0wjagrl/cloudscale_ch-cloud-2.4.1-a9fo6tio
+Installing 'cloudscale_ch.cloud:2.4.1' to '/home/ansible/techlab/collections/ansible_collections/cloudscale_ch/cloud'
+cloudscale_ch.cloud:2.4.1 was installed successfully
 ```
 {{% /details %}}
 
@@ -165,9 +166,9 @@ Installing 'cloudscale_ch.cloud:1.0.0' to '/home/ansible/techlab/collections/ans
 * Write a playbook `collection.yml` that runs only on the controller and uses the `podman`
 collection from the namespace `containers`.
 * The playbook should install podman on the controller and pull any podman image.
-Be sure to escalate privileges if needed. (Use the image `quay.io/bitnami/nginx` if unsure).
+Be sure to escalate privileges if needed. (Use the image `public.ecr.aws/bitnami/nginx` if unsure).
 * Use the module `containers.podman.podman_container` to start a container from the previously pulled image.
-* Confirm the container is up and running using `sudo podman ps -l`.
+* Confirm the container is up and running using `sudo podman ps`.
 
 {{% details title="Solution Task 6" %}}
 ```bash
@@ -192,14 +193,14 @@ $ cat collections.yml
     - name: Pull an image using the module from the collection
       containers.podman.podman_image:
         pull: true
-        name: quay.io/bitnami/nginx
+        name: public.ecr.aws/bitnami/nginx
 
     - name: Run nginx container
       containers.podman.podman_container:
         name: my_nginx_container
         image: nginx
-        state: present
-        publish:
+        state: started
+        ports:
           - '8080'
 ```
 OR:
@@ -218,14 +219,14 @@ $ cat collections.yml
     - name: Pull an image using the module from the collection
       containers.podman.podman_image:
         pull: true
-        name: quay.io/bitnami/nginx
+        name: public.ecr.aws/bitnami/nginx
 
     - name: Run nginx container
       containers.podman.podman_container:
         name: my_nginx_container
         image: nginx
-        state: present
-        publish:
+        state: started
+        ports:
           - '8080'
 ```
 This would not work, since the module `podman_container`
@@ -245,17 +246,18 @@ $ cat collections.yml
     - name: Pull an image using the module from the collection
       containers.podman.podman_image:
         pull: true
-        name: quay.io/bitnami/nginx
+        name: public.ecr.aws/bitnami/nginx
 
     - name: Run nginx container
       podman_container: # Intentionally without the FQCN to provoke an error
         name: my_nginx_container
         image: nginx
-        state: present
-        publish:
+        state: started
+        ports:
           - '8080'
 
-$ ansible-playbook -i hosts collections.yml
+
+$ ansible-playbook collections.yml
 ERROR! couldn't resolve module/action 'podman_container'.
 This often indicates a misspelling, missing collection, or incorrect module path.
 
@@ -272,14 +274,14 @@ The offending line appears to be:
 Check the running container:
 
 ```bash
-$ sudo podman ps -l
-CONTAINER ID  IMAGE                         COMMAND               CREATED             STATUS                 PORTS                                  NAMES
-00783ec12950  quay.io/bitnami/nginx:latest  /opt/bitnami/scri...  About a minute ago  Up About a minute ago  8443/tcp, 0.0.0.0:32771->8080/tcp      my_nginx_container
+$ sudo podman ps
+CONTAINER ID  IMAGE                                COMMAND               CREATED         STATUS         PORTS                                        NAMES
+d88870809449  public.ecr.aws/bitnami/nginx:latest  /opt/bitnami/scri...  32 seconds ago  Up 32 seconds  0.0.0.0:44497->8080/tcp, 8080/tcp, 8443/tcp  my_nginx_container
 ```
 You can even connect to your container using a dynamically assigned port
-(32771 in the example above) on your host machine. Make sure to adjust the port in the `curl` command-line accordingly:
+(44497 in the example above) on your host machine. Make sure to adjust the port in the `curl` command-line accordingly:
 ```bash
-$ curl -s http://localhost:32771 | grep title
+$ curl -s http://localhost:44497 | grep title
 <title>Welcome to nginx!</title>
 ```
 {{% /details %}}
@@ -296,4 +298,4 @@ ansible localhost -b -m ansible.builtin.dnf -a "name=podman, state=absent"
 
 ### All done?
 
-* [What led to ansible collections and reorganization of the community?](https://www.ansible.com/blog/thoughts-on-restructuring-the-ansible-project)
+* [Future of the Ansible Community package](https://forum.ansible.com/t/future-of-the-ansible-community-package/4902)

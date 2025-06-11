@@ -16,7 +16,7 @@ In this lab we are going to use roles from galaxy and from other sources.
 ```bash
 ansible-galaxy search nginx
 ansible-galaxy install nginxinc.nginx
-ansible controller -m archive -a "path=/home/ansible/techlab/roles/nginxinc.nginx dest=/home/ansible/techlab/nginx.tar.gz"
+ansible controller -m archive -a "path=/home/ansible/.ansible/roles/nginxinc.nginx dest=/home/ansible/techlab/nginx.tar.gz"
 ```
 {{% /details %}}
 
@@ -101,12 +101,14 @@ $ ansible-playbook selinux.yml
 ```
 Before you can use `rhel-system-roles` you need to add them to the `roles_path` variable in your `ansible.cfg`:
 ```bash
-roles_path    = /home/ansible/techlab/roles:/usr/share/ansible/roles
+roles_path    = /home/ansible/.ansible/roles:/home/ansible/techlab/roles:/usr/share/ansible/roles:/etc/ansible/roles
 ```
 Check that the path `/usr/share/ansible/roles` is part of your `ROLES_PATH`:
 ```bash
 $ ansible-config dump | grep -i roles_path
-DEFAULT_ROLES_PATH(/home/ansible/techlab/ansible.cfg) = ['/home/ansible/techlab/roles', '/usr/share/ansible/roles']
+DEFAULT_ROLES_PATH(/home/ansible/techlab/ansible.cfg) = ['/home/ansible/.ansible/roles',
+  '/home/ansible/techlab/roles', '/usr/share/ansible/roles', '/etc/ansible/roles']
+
 $
 ```
 {{% /details %}}

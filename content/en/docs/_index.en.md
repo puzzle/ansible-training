@@ -23,10 +23,10 @@ configuration management is not a prerequisite.
 ### Techlab Setup
 
 This Ansible techlab assumes that each participant has a
-cluster of three virtual machines available. Namely:
+cluster of virtual machines available. Namely:
 
 * a control host
-* two nodes called `node1` and `node2`
+* two Linux nodes called `node1` and `node2`
 
 {{% alert title="Note" color="primary" %}}
 The cloud-based lab infrastructure is provided if you

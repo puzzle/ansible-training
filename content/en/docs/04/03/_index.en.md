@@ -230,4 +230,4 @@ ansible web -b -m ansible.builtin.systemd_service -a "name=httpd state=restarted
 
 ### All done?
 
-* [Output as YAML instead of JSON](https://docs.ansible.com/ansible/latest/collections/community/general/yaml_callback.html)
+* [Output as YAML instead of JSON](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/default_callback.html)

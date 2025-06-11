@@ -40,11 +40,11 @@ $ cat roles/handlerrole/tasks/main.yml
 
 $ cat roles/handlerrole/handlers/main.yml
 ---
-- name: create readme with timestamp 
+- name: create readme with timestamp
   ansible.builtin.copy:
     dest: /home/ansible/newdir/README.TXT
     content: "This folder was created at {{ ansible_date_time.iso8601 }}"
-    mode: "0644"    
+    mode: "0644"
   listen: timestamp
 
 $ ansible-playbook myhandler.yml #<-- some changes when run the first time
@@ -69,7 +69,7 @@ output a message at the end of the play informing that the download attempt has 
 {{% details title="Solution Task 2" %}}
 
 ```bash
-$ cat download.yml 
+$ cat download.yml
 ---
 - hosts: node2
   become: true
@@ -78,7 +78,7 @@ $ cat download.yml
 
 $ ansible-galaxy init roles/downloader
 
-$ $ cat roles/downloader/tasks/main.yml 
+$ cat roles/downloader/tasks/main.yml
 ---
 # tasks file for roles/downloader
 - block:
@@ -111,6 +111,6 @@ Note the failed download task, but the playbook finished nonetheless.
 
 ### All done?
 
-* [Have a look at Jeff Geerling's roles](https://galaxy.ansible.com/geerlingguy)
+* [Have a look at Jeff Geerling's roles](https://galaxy.ansible.com/ui/standalone/namespaces/2492/)
 * [jeffgeerling.com](https://www.jeffgeerling.com/)
 

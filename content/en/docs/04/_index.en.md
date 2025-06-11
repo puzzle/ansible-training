@@ -79,12 +79,12 @@ Do this using a configuration file in the `/home/ansible/techlab/` directory.
 
 {{% details title="Solution Task 2" %}}
 
-Copy the default ansible.cfg to your directory:
+Create a file `ansible.cfg` in your directory:
 
 ```bash
 mkdir /home/ansible/techlab/inventory
 mv /home/ansible/techlab/hosts /home/ansible/techlab/inventory/
-cp /etc/ansible/ansible.cfg /home/ansible/techlab/
+ansible-config init --disabled > ansible.cfg
 ```
 
 Edit your `ansible.cfg` file. Uncomment and edit the `inventory` entry to use your file:

@@ -44,15 +44,14 @@ You'll find an overview of the most used collections on [Ansible Docs - Collecti
 
 ### Task 3 (Advanced)
 
-* By installing the `ansible-doc` package you get a lot of additional documentation.
-* Use your package-managers functionality to find out what files are installed with `dnf install ansible-doc`.
+* The `ansible-core` package has additional documentation.
+* Use your package-managers functionality to find out what files are installed.
 * Now find documentation about jinja2 on the controller.
 
 {{% details title="Solution Task 3" %}}
 One way to find a list of provided documentation:
 ```bash
-dnf install -y yum-utils # (if needed)
-repoquery ansible-doc -l
+rpm -ql ansible-core
 ```
 
 You can also search for files in `/usr/share/doc`:
@@ -75,5 +74,5 @@ ls -lahr /usr/share/doc/ | grep jinja2
 
 ### All done?
 
-* [Red Hat Ansible Blog](https://www.ansible.com/blog)
+* [Red Hat Automation Blog](https://www.redhat.com/en/blog/channel/management-and-automation)
 * [Red Hat Ansible YouTube](https://www.youtube.com/c/AnsibleAutomation/videos)

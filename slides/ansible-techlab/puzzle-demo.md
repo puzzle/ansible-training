@@ -18,6 +18,10 @@
 
 <!-- #### Florian Studer -->
 
+<!-- #### Lukas Kallies -->
+
+<!-- #### Sebastian Preisner -->
+
 <!-- .slide: class="master-cover" -->
 
 ***
@@ -56,8 +60,8 @@
 
   meisser@puzzle.ch
 </div>
-
 -->
+
 <!--
 <div class="people" style="color: black;">
 <div>
@@ -70,6 +74,7 @@
   preisig@puzzle.ch
 </div>
 -->
+
 <!--
 <div>
     <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2018/08/Test-Remy-Keil-Filter_2Option-400x300.jpg)" />
@@ -105,8 +110,9 @@
 
   kobras@puzzle-itc.de
 </div>
+-->
 
-
+<!--
 <div class="people">
 <div>
 <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2019/06/Proehl-Mark-400x300.jpg)" />
@@ -118,8 +124,8 @@ Principal Architect
 proehl@puzzle-itc.de
 
 </div>
-
 -->
+
 <!--
 <div>
 <div class="img" style="background-image: url(https://www.puzzle.ch/wp-content/uploads/2021/06/Florian_Studer_wp-400x300.jpg)" />
@@ -131,14 +137,38 @@ System Engineer
 studer@puzzle.ch
 
 </div>
+//-->
 
--->
+<!--
+<div class="people" style="color: black;">
+<div>
+    <div class="img" style="background-image: url(https://www.puzzle.ch/img/2024/06/LukasKallies.jpg?w=450&h=450&fit=crop&fm=webp&q=90&sharp=4&blur=0&s=1cd2fb9588a769be13943ff79f924484)" />
+    </div>
+
+  ### Lukas Kallies
+  Solution Architect
+
+  kallies@puzzle-itc.de
+</div>
+
+<div class="people" style="color: black;">
+<div>
+    <div class="img" style="background-image: url(https://www.puzzle.ch/img/2024/06/Preisner_Sebastian.jpg?w=450&h=450&fit=crop&fm=webp&q=90&sharp=4&blur=0&s=6d479e53afe012ad2ae82b32b3f4ee8b)" />
+    </div>
+
+  ### Sebastian Preisner
+  System Engineer
+
+  preisner@puzzle-itc.de
+</div>
+//-->
+
 <!-- .slide: class="master-top-head" -->
 
 ***
 ## Alle Puzzler
 
-![](https://www.puzzle.ch/img/2024/06/2024_Gruppenfoto_Puzzle-16x9-1000px-Breit.jpg?w=1000&h=561&fit=crop&fm=webp&q=90&sharp=4&s=5ec79746d78173920f663ca911d9ce86)"
+![](https://www.puzzle.ch/img/2024/06/2024_Gruppenfoto_Puzzle-16x9-1000px-Breit.jpg?w=1000&h=561&fit=crop&fm=webp&q=90&sharp=4&s=5ec79746d78173920f663ca911d9ce86)
 
   ### Members
   https://www.puzzle.ch/de/team
@@ -171,6 +201,7 @@ studer@puzzle.ch
 - Ad hoc commands
 - Plays
 - Roles
+- Collections
 - Ansible-Vault
 
 <!-- .slide: class="master-agenda" -->
@@ -248,15 +279,12 @@ studer@puzzle.ch
 </div>
 <div>
 
-![ansible-logo](ansible-techlab/img/ansible-logo.png)
+<img src="ansible-techlab/img/ansible-logo.png" alt="ansible-logo" width="450"/>
 </div>
 
 <!-- .slide: class="master-left-right"> -->
 
 Note:
-Automatisierung unserer monatlichen Updates/Restart
-SLOG Cluster Automatisierung
-Migration von RZ in die Cloud mit Wechsel von Puppet auf Ansible
 Eure Lab-VMs werden vollautomatisch mit Ansible deployed und provisioniert
 
 ***
@@ -267,7 +295,7 @@ Eure Lab-VMs werden vollautomatisch mit Ansible deployed und provisioniert
 - 1966 Ursula K.Le Guin «Rocannon's World»
 → instant communication system
 - 2012 Michael DeHaan (Cobbler, Puppet)
-- 2015 RedHat acquires Ansible Inc.
+- 2015 Red Hat acquires Ansible Inc.
 - 2019 Ansible 2.9
 - 2020-08-13 Ansible-Base 2.10
 - 2021-02-18 Ansible 3.0
@@ -350,8 +378,8 @@ Note:
 <!-- .slide: class="master-content" > -->
 
 Note:
-Zentraler Control-node erleichtert das auswerten von Logs im Team
-`pull` (Puppet way) vs `push` (ansible way) --> push braucht weder daemon noch sonst was
+Zentraler Control-node erleichtert das Auswerten von Logs im Team
+`pull` (Puppet way) vs `push` (ansible way) --> push braucht weder Daemon noch sonst was
 
 ***
 
@@ -362,7 +390,7 @@ Zentraler Control-node erleichtert das auswerten von Logs im Team
   - Nice to have: AWX / AAP / CI/CD-Pipeline
 - Client
   - SSH, python
-
+<!--TODO: Execution Environments-->
 
 <!-- .slide: class="master-content" > -->
 
@@ -410,8 +438,8 @@ Zentraler Control-node erleichtert das auswerten von Logs im Team
 ## Why cows?
 
 - Programm "cowsay"
-- Pas default configuration
-- → Ansibull → The Bullhorn, ansibullbot
+- Pass default configuration
+- → Antsibull → The Bullhorn
 - Still can be enabled:
 
 `$ ANSIBLE_NOCOWS=0 ansible-playbook plays/site.yml`
@@ -438,6 +466,7 @@ What do we use on cmdline?
 - `ansible-inventory`
 - `ansible-lint` (syntax check)
 - `ansible-pull`
+- `ansible-navigator`
 <!-- .slide: class="master-content" > -->
 
 ***
@@ -542,7 +571,7 @@ provisioning: local
 
 ## Tooling
 
-- Linux: Help yourself!
+- Linux: Choose your way!
 - Windows:
   - VS Code + Git for Windows
   - WSL
@@ -552,7 +581,7 @@ provisioning: local
 ***
 ## Lab Environment
 
-- Linux: Help yourself!
+- Linux: Choose your way!
 - Theia-IDE: Short Introduction
 
 <!-- .slide: class="master-content" > -->
@@ -576,6 +605,7 @@ provisioning: local
   `ansible-doc <module>`
 
   `ansible-doc -s <module>`
+<!--TODO ansible-navigator doc-->
 
 <!-- .slide: class="master-content"> -->
 ***
@@ -829,13 +859,13 @@ Idempotent: Man sollte es mehrmals ausführen können und das gleiche dabei hera
 
 Wikipedia:
 
-> Idempotence (UK: /ˌɪdɛmˈpoʊtəns/, US: /ˌaɪdəm-/) is the property of certain operations in 
+> Idempotence (UK: /ˌɪdɛmˈpoʊtəns/, US: /ˌaɪdəm-/) is the property of certain operations in
 mathematics and computer science whereby they can be applied multiple times without changing the result
 beyond the initial application.
 The concept of idempotence arises in a number of places in abstract algebra
 (in particular, in the theory of projectors and closure operators) and functional programming
 (in which it is connected to the property of referential transparency).
-The term was introduced by Benjamin Peirce in the context of elements of algebras that remain invariant when raised to 
+The term was introduced by Benjamin Peirce in the context of elements of algebras that remain invariant when raised to
 a positive integer power, and literally means "(the quality of having) the same power", from idem + potence (same + power).
 
 ***
@@ -1043,7 +1073,7 @@ Example:
 Use `register` to save the output of a command into a variable
 ```yaml
 - name: Save ls -lah to variable
-  ansible.builtin.command: 
+  ansible.builtin.command:
     cmd: "ls -lah"
     chdir: /home/ansible
   register: output_var
@@ -1520,7 +1550,7 @@ Define failed from output of command:
 
 ```yaml
 - name: See if my service is running
-  ansible.builtin.command: 
+  ansible.builtin.command:
     cmd: systemctl status my_service
   register: cmd_result
   failed_when: "'FAILED' in cmd_result.stdout"
@@ -1532,7 +1562,7 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html
 
 ```yaml
 - block:
-    # do stuff 
+    # do stuff
   rescue:
     # do this if block failed
   always:
@@ -1546,7 +1576,7 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html
 - name: Demonstrating error handling in blocks
   block:
     - name: i force a failure
-      ansible.builtin.command: 
+      ansible.builtin.command:
         cmd: /bin/false
     - name: Print some text to stdout
       ansible.builtin.debug:
@@ -1575,7 +1605,7 @@ Blocks can come in handy to group `when` clauses:
 
 ```
 
-But: You cannot loop over a `block`. 
+But: You cannot loop over a `block`.
 
 Use loops with `ansible.builtin.include_tasks` instead
 <!-- .slide: class="master-content" > -->
@@ -1699,7 +1729,7 @@ vars:
 - name: Looking up a secret from the hashi vault
   ansible.builtin.debug:
     msg: >
-      {{ 
+      {{
       lookup('community.hashi_vault.hashi_vault',
       'secret=secret/hello:value
        token=c975b7...0f9b688a5
@@ -1923,20 +1953,6 @@ token=    → PRIMARY GALAXY SERVER TOKEN
 ***
 ## Collections
 
-Where to get collections?
-
-Tower:
-
-collections/requirements.yml
-
-→ needed for Tower to download collections
-→ AAP uses execution environments
-
-<!-- .slide: class="master-content" > -->
-
-***
-## Collections
-
 How to use collections?
 
 Use collection in playbook:
@@ -1952,6 +1968,7 @@ Use collection in playbook:
         option: bliblub
 ```
 OR:
+
 ```yaml
 ---
 - hosts: puzzle_nodes
@@ -2014,10 +2031,9 @@ galaxy.yml!
 ***
 ## Automation Hub
 
-- Official location to discover and download supported (by RH) collections 
+- Official location to discover and download supported (by RH) collections
 - Part of the Red Hat Ansible Automation Platform subscription
 - https://cloud.redhat.com/api/automation-hub/ (token required)
-- Red Hat Ansible Automation Platform subscription ≃ Red Hat Ansible Tower subscription
 
 <!-- .slide: class="master-content" > -->
 
@@ -2313,6 +2329,7 @@ Some configs from `ansible.cfg` not taken!
 - Jenkins
 - Gitlab
 - Github
+- semaphore UI
 - ...
 
 <!-- .slide: class="master-content" > -->
@@ -2666,7 +2683,7 @@ Use `name` in all your tasks!
 Booleans:
 - Use `true` / `false` (yaml 1.2 supports only this)
 
-Handlers: 
+Handlers:
 - Use `listen`
 
 <!-- .slide: class="master-content" > -->
@@ -2684,11 +2701,11 @@ Roles:
 ***
 ## Ansible Content:
 Templates:
-- Use `{{ ansible_managed | comment }}` at the beginning of the template to indicate 
+- Use `{{ ansible_managed | comment }}` at the beginning of the template to indicate
   that the file is managed by ansible
 
 Files:
-- Use a comment at the beginning of the file to indicate 
+- Use a comment at the beginning of the file to indicate
   that the file is managed by ansible
 
 <!-- .slide: class="master-content" > -->
@@ -2734,7 +2751,7 @@ When writing Ansible content in a team:
 -  https://www.ansible.com/blog
 -  https://www.meetup.com/Ansible-Bern
 -  https://ansible.puzzle.ch/ (more content to come...)
--  https://www.puzzle.ch/de/blog/categories/technologien/ansible
+-  https://www.puzzle.ch/de/blog/
 -  → Feedback
 
 <!-- .slide: class="master-content" > -->
