@@ -23,10 +23,25 @@ configuration management is not a prerequisite.
 ### Techlab Setup
 
 This Ansible techlab assumes that each participant has a
-cluster of three virtual machines available. Namely:
+cluster of virtual machines available. Namely:
 
-* a control host
-* two nodes called `node1` and `node2`
+* a control host called `control0`
+* two Linux nodes called `node1` and `node2`
+* three Windows nodes called `win1`, `win2` and `win3`
+* a Linux server called `ascender`
+
+Overview:
+
+| Hostname      | IP address        | Operating System    |
+| ------------- | ----------------- | ------------------- |
+| `control0`    | `192.168.200.101` | Rocky Linux 9       |
+| `node1`       | `192.168.200.103` | Rocky Linux 9       |
+| `node2`       | `192.168.200.104` | Rocky Linux 9       |
+| `win1`        | `192.168.200.105` | Windows Server 2022 |
+| `win2`        | `192.168.200.106` | Windows Server 2022 |
+| `win3`        | `192.168.200.107` | Windows Server 2022 |
+| `ascender`    | `192.168.200.108` | Rocky Linux 9       |
+
 
 {{% alert title="Note" color="primary" %}}
 The cloud-based lab infrastructure is provided if you
