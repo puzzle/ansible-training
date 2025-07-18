@@ -10,7 +10,7 @@ the component of AAP Controller / AWX that actually runs Ansible playbooks.
 ### Task 1
 
 * Install all packages needed to use `ansible-runner` command line tool on the controller host.
-(In case of python problems, [have a look at the ansible-builder lab](https://ansible.puzzle.ch/docs/10/01/#task-1)).
+(In case of python problems, [have a look at the ansible-builder lab](../01/#task-1)).
 * Show the help context of the `ansible-runner` command.
 
 {{% details title="Solution Task 1" %}}
@@ -29,7 +29,7 @@ Note that `ansible-runner` is already present when you installed `ansible-naviga
 
 * Set up the folder structure needed by ansible-runner to find your inventory
 and put your playbook in the correct folder as well.
-* Use `ansible-runner` to run the play site.yml from [Lab 10.0 Task 3](https://ansible.puzzle.ch/docs/10/#task-3).
+* Use `ansible-runner` to run the play site.yml from [Lab 10.0 Task 3](../#task-3).
 
 {{% details title="Solution Task 2" %}}
 ```bash
@@ -358,7 +358,7 @@ ANSIBLE-RUNNER:LATEST (INFORMATION ABOUT ANSIBLE AND ANSIBLE COLLECTIONS)
 7│  version:
 8│    details: core 2.12.5.post0
 ```
-See the [ansible-navigator lab](https://ansible.puzzle.ch/docs/10/#task-10) about how to get there!
+See the [ansible-navigator lab](../#task-10) about how to get there!
 
 {{% /details %}}
 
