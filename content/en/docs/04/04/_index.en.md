@@ -14,7 +14,7 @@ In this lab we’ll have a short glimpse at how ansible-pull works.
 
 {{% details title="Solution Task 1" %}}
 [ansible-pull](https://docs.ansible.com/ansible/latest/cli/ansible-pull.html)
-[Ansible-pull](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html#ansible-pull])
+[Ansible-pull](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html#ansible-pull)
 [GitHub ansible-examples](https://github.com/ansible/ansible-examples/blob/master/language_features/ansible_pull.yml)
 {{% /details %}}
 

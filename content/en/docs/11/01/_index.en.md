@@ -15,7 +15,7 @@ For the following tasks, server `node1` and `node2` act as webservers. You can u
 
 {{% details title="Solution Task 1" %}}
 
-[https://ansible-rulebook.readthedocs.io/en/stable/index.html](https://ansible-rulebook.readthedocs.io/en/stable/index.html)
+[https://ansible-rulebook.readthedocs.io/](https://ansible-rulebook.readthedocs.io/)
 
 Fedora 36+:
 ```bash
@@ -293,5 +293,5 @@ Note, that you would have to open port 5000 on the firewall if the curl command 
 
 ### All done?
 
-* [Ansible-rulebook documentation](https://ansible-rulebook.readthedocs.io/en/stable/)
+* [Ansible-rulebook documentation](https://ansible-rulebook.readthedocs.io/)
 * [AnsibleAutomates YouTube channel for more examples](https://www.youtube.com/@AnsibleAutomation/videos)
