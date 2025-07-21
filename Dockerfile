@@ -1,7 +1,8 @@
-FROM registry.hub.docker.com/klakegg/hugo:0.111.3-ext-alpine AS builder
+FROM ghcr.io/hugomods/hugo:0.148.1 AS builder
 
 COPY . /src
 
+RUN npm i -D autoprefixer postcss postcss-cli
 RUN hugo --minify
 
 FROM nginxinc/nginx-unprivileged:1.23-alpine
