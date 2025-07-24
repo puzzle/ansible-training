@@ -8,16 +8,18 @@ Only the latest version of the training materials is actively supported with sec
 
 If you discover a security vulnerability in this project, please report it to security@puzzle.ch.
 
-### What to include in your report:
-- Description of the vulnerability
-- Steps to reproduce the issue
-- Any potential impact
-- Any suggested mitigations or fixes
+### What to include in your report
+
+* Description of the vulnerability
+* Steps to reproduce the issue
+* Any potential impact
+* Any suggested mitigations or fixes
 
 ### Our Commitment
-- We will acknowledge your email within 1 week
-- We will keep you informed of our progress in addressing the issue
-- We will credit you for your discovery (unless you prefer to remain anonymous)
+
+* We will acknowledge your email within 1 week
+* We will keep you informed of our progress in addressing the issue
+* We will credit you for your discovery (unless you prefer to remain anonymous)
 
 ## Security Updates
 

@@ -41,10 +41,11 @@ docker run -i -p 8080:8080 puzzle/ansible-techlab
 ## Maintenance
 
 This project is actively maintained by the Puzzle ITC team. We aim to:
-- Respond to issues and pull requests within one week
-- Make decisions on contributions within one month
-- Keep dependencies up to date
-- Address security vulnerabilities promptly
+
+* Respond to issues and pull requests within one week
+* Make decisions on contributions within one month
+* Keep dependencies up to date
+* Address security vulnerabilities promptly
 
 ## Support
 

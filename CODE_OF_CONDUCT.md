@@ -6,18 +6,20 @@ We pledge to foster an open and welcoming environment where everyone feels safe 
 
 ## Our Standards
 
-### Positive behaviors include:
-- Being respectful and empathetic
-- Welcoming diverse viewpoints
-- Giving constructive feedback
-- Accepting responsibility for mistakes
-- Focusing on community well-being
+### Positive behaviors include
 
-### Unacceptable behaviors include:
-- Harassment or discrimination
-- Harmful or offensive language
-- Publishing private information without consent
-- Any conduct that would be inappropriate in a professional setting
+* Being respectful and empathetic
+* Welcoming diverse viewpoints
+* Giving constructive feedback
+* Accepting responsibility for mistakes
+* Focusing on community well-being
+
+### Unacceptable behaviors include
+
+* Harassment or discrimination
+* Harmful or offensive language
+* Publishing private information without consent
+* Any conduct that would be inappropriate in a professional setting
 
 ## Enforcement
 
