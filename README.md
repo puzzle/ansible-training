@@ -38,6 +38,27 @@ Run it locally:
 docker run -i -p 8080:8080 puzzle/ansible-techlab
 ```
 
+## Maintenance
+
+This project is actively maintained by the Puzzle ITC team. We aim to:
+
+* Respond to issues and pull requests within one week
+* Make decisions on contributions within one month
+* Keep dependencies up to date
+* Address security vulnerabilities promptly
+
+## Support
+
+For questions or support, please [open an issue](https://github.com/puzzle/ansible-training/issues).
+
 ## Contributions
 
 If you find errors, bugs or missing information, please help us improve our training and have a look at the [Contribution Guide](CONTRIBUTING.md).
+
+## Code of Conduct
+
+This project adheres to the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
+
+## Security
+
+For security-related concerns, please see our [Security Policy](SECURITY.md).
