@@ -106,7 +106,7 @@ $ ansible-doc -s hostname
 
 {{% details title="Solution Task 5" %}}
 ```bash
-ansible all -i hosts -b -m hostname -a "name={{ inventory_hostname }}"
+ansible all -i hosts -b -m ansible.builtin.hostname -a "name={{ inventory_hostname }}"
 ansible all -i hosts -a "cat /etc/hostname"
 ```
 {{% /details %}}
@@ -161,5 +161,5 @@ ansible node2 -i hosts -m file -a "path=/home/ansible/testfile.txt state=absent"
 
 ### All done?
 
-* [Puzzle Ansible Blog](https://www.puzzle.ch/de/blog/categories/technologien/ansible)
+* [Puzzle Ansible Blog](https://www.puzzle.ch/blog?terms=eyJ0ZWNobm9sb2d5IjpbMzg3N119)
 * [Ansible Meetup Bern](https://www.meetup.com/Ansible-Bern/)

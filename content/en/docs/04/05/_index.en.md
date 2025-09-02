@@ -59,7 +59,7 @@ $ cat async.yml
 - hosts: node1
   tasks:
     - name: sleeping beauty
-      command: "/usr/bin/sleep 1000"
+      ansible.builtin.command: "/usr/bin/sleep 1000"
       async: 10
 
 $ ansible-playbook async.yml
@@ -100,13 +100,13 @@ $ cat async.yml
 - hosts: node1
   tasks:
     - name: sleeping beauty
-      command: "/usr/bin/sleep 30"
+      ansible.builtin.command: "/usr/bin/sleep 30"
       async: 60
       poll: 0
       register: sleepingbeauty
 
     - name: check back if task in background has finished
-      async_status:
+      ansible.builtin.async_status:
         jid: '{{ sleepingbeauty.ansible_job_id }}'
       register: beauty_status
       until: beauty_status.finished

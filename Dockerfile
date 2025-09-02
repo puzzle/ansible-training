@@ -1,4 +1,4 @@
-FROM klakegg/hugo:0.101.0-ext-alpine AS builder
+FROM registry.hub.docker.com/klakegg/hugo:0.111.3-ext-alpine AS builder
 
 COPY . /src
 

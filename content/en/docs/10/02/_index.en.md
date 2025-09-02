@@ -203,7 +203,7 @@ container_image: default-ee
 process_isolation_executable: podman
 process_isolation: true
 
-$ cat /home/ansible/.ssh/id_rsa > env/ssh_key
+$ cat /home/ansible/.ssh/id_ed25519 > env/ssh_key
 
 $ head env/ssh_key 
 -----BEGIN OPENSSH PRIVATE KEY-----
@@ -271,7 +271,7 @@ $ ansible-runner stop /home/ansible/techlab/ -p site.yml
 ### Task 6
 
 Now we want to run our playbook `site.yml` by starting an execution environment with podman and
-mounting our metadata folder into the correct location inside the ee. Have a look at the [documentation](https://ansible-runner.readthedocs.io/en/stable/container/#using-runner-as-a-container-interface-to-ansible) for help.
+mounting our metadata folder into the correct location inside the ee. Have a look at the [documentation](https://ansible.readthedocs.io/projects/runner/) for help.
 
 {{% alert title="Tip" color="info" %}}
 If you have selinux in enforcing mode, remember to relabel the volumes mounted inside the container with `:Z`.
@@ -444,5 +444,5 @@ You can check this with `$ watch -n1 podman ps -a` while running the script.
 ### All done?
 
 * Have a look at the [ansible-runner GitHub page](https://github.com/ansible/ansible-runner)
-* Have a look at the [docs of the latest version of ansible-runner](https://ansible-runner.readthedocs.io/en/latest/)
+* Have a look at the [docs of ansible-navigator](https://ansible-navigator.readthedocs.io/)
 * Have a look at the [documentation of the python module](https://ansible-runner.readthedocs.io/en/stable/python_interface/) and see what the library is capable of.
