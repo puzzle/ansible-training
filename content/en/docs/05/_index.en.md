@@ -104,7 +104,7 @@ $ ls roles/base/tasks/
 main.yml      motd.yml      packages.yml
 
 $ cat roles/templates/motd.j2
-{{ motd_content }}
+{{ base_motd_content }}
 IP ADDRESS: {{ ansible_default_ipv4.address }}
 OS:         {{ ansible_os_family }}
 

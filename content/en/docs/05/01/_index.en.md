@@ -63,7 +63,7 @@ The playbook must keep on running and shall not exit after this message.
 * Regardless of download success,
 output a message at the end of the play informing that the download attempt has finished.
 * Use a `block:` to do these tasks.
-* Add another `ansible.builtin.debug` task after the block to confirm the run continues even after a download fail.
+* Add another `ansible.builtin.debug` task after the block to confirm the run continues even after a download failed.
 * Run the playbook `download.yml`.
 
 {{% details title="Solution Task 2" %}}

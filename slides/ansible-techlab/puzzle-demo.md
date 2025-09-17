@@ -2,13 +2,13 @@
 
 ### ansible.puzzle.ch
 
-#### Lukas Grimm
+<!-- #### Lukas Grimm -->
 
 <!-- #### Dominik Meisser -->
 
 <!-- #### Lukas Preisig -->
 
-<!-- #### Philippe Schmid -->
+#### Philippe Schmid
 
 <!-- #### Rémy Keil -->
 
@@ -1517,7 +1517,7 @@ handlers:
 <!-- .slide: class="master-content" > -->
 ***
 ## Handlers
-Last slide not entirely true...
+That was not entirely true...
 ```yaml
 - hosts: all
   become: true

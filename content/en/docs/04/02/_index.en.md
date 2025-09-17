@@ -47,7 +47,7 @@ Run the playbook again.
 * Add information about the installed operating system to the `motd` file as well.
 
 {{% alert title="Tip" color="info" %}}
-  Remember using the `ansible.builtin.setup` module to get a list of all facts!
+  Remember using the `ansible.builtin.setup` module to get a list of all facts! Ensure, that gather_facts was set to true.
 {{% /alert %}}
 
 {{% details title="Solution Task 2" %}}
