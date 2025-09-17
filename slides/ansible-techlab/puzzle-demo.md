@@ -28,7 +28,6 @@
 
 ## Nice to meet you
 
-<!--
 <div class="people" style="color: black;">
   <div>
     <div class="img" style="background-image: url(https://www.puzzle.ch/img/2024/06/Schmid_Philippe.jpg?w=900&h=900&fit=crop&fm=webp&q=90&sharp=4&s=f27e83a00061d8aa6266f3092b1b289c)" />
@@ -40,8 +39,8 @@
   pschmid@puzzle.ch
 </div>
 
--->
 
+<!--
 ![](https://www.puzzle.ch/img/2024/06/Grimm_Lukas.jpg?w=300&h=300&fit=crop&fm=webp&q=90&sharp=4&s=d42398d9832aa48066cb50daa8a895d6)
 
   ### Lukas Grimm
@@ -49,6 +48,7 @@
 
   grimm@puzzle.ch
 
+-->
 <!--
 <div class="people">
   <div>
