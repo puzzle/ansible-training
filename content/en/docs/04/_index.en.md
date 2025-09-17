@@ -77,6 +77,10 @@ Check `httpd.service` on group `web`:
 Do this using a configuration file in the `/home/ansible/techlab/` directory.
 * Run the playbook again without using the `-i` flag to see if the configuration works.
 
+{{% alert title="Hint" color="info" %}}
+ You can use the command `ansible-config init --disabled` to show a default configuration with all available settings as comments.
+{{% /alert %}}
+
 {{% details title="Solution Task 2" %}}
 
 Create a file `ansible.cfg` in your directory:
