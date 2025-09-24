@@ -1034,6 +1034,28 @@ Templates sind dazu da, um komplexe Files zu erstellen (Variabeln sowie `if` / `
 {{ vm.ip }}  {{ vm.name }}
 {% endfor %}
 ```
+
+<!-- .slide: class="master-content" > -->
+***
+
+## Playbook Keywords
+
+- "Functionality" / "Behaviour"
+- Different for Play/Task/Role/Block
+- https://docs.ansible.com/ansible/latest/reference_appendices/playbooks_keywords.html
+
+<!-- .slide: class="master-content" > -->
+***
+
+## Keyword examples
+
+- register
+- no_log
+- run_once
+- retry
+- delay
+- until
+
 <!-- .slide: class="master-content" > -->
 ***
 
@@ -1042,6 +1064,8 @@ Templates sind dazu da, um komplexe Files zu erstellen (Variabeln sowie `if` / `
 - https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html
 
 <!-- .slide: class="master-content" > -->
+
+
 ***
 ## Tags
 Example:
@@ -1424,7 +1448,7 @@ The task's value of `notify` must match the handler's value of `name` or `listen
 ## Handlers
 Example Playbook:
 
-```yaml [1|2-8|9-12]
+```yaml [1-14|9|11]
 - hosts: all
   tasks:
     - name: Write configuration file
@@ -1445,7 +1469,7 @@ Example Playbook:
 ## Handlers
 Example Playbook:
 
-```yaml [8|10|13]
+```yaml [1-15|9|11|15]
 - hosts: all
   tasks:
     - name: put configuration file
@@ -1482,11 +1506,10 @@ Caveat:
 
 → best practice: use `listen`
 <!-- .slide: class="master-content" > -->
-***
+
 ## Handlers
 Only the second handler will run when a task notifies `restart web services`
-
-```yaml
+```yaml [1-9|2,6]
 handlers:
   - name: restart web services
     ansible.builtin.systemd_service:
@@ -1498,10 +1521,13 @@ handlers:
       state: restarted
 ```
 <!-- .slide: class="master-content" > -->
+
+***
+
 ***
 ## Handlers
 Both handlers are run when a task notifies `restart web services`
-```yaml [6,11]
+```yaml [1-11|6,11]
 handlers:
   - name: Restart memcached
     ansible.builtin.service:
@@ -1515,6 +1541,7 @@ handlers:
     listen: "restart web services"
 ```
 <!-- .slide: class="master-content" > -->
+
 ***
 ## Handlers
 That was not entirely true...
@@ -1523,13 +1550,15 @@ That was not entirely true...
   become: true
   pre_tasks:
     - name: ...
+  roles:
+    - myrole
   tasks:
     - name: ...
   post_tasks:
     - name: ...
 ```
 
-Handlers are triggered after pre_tasks, tasks, post_tasks...
+Handlers are triggered after pre_tasks, roles, tasks, post_tasks...
 <!-- .slide: class="master-content" > -->
 ***
 ## Error Handling
@@ -1548,7 +1577,7 @@ Continue even when task failed:
 ## Error-Handling
 Define failed from output of command:
 
-```yaml
+```yaml [1-5|5]
 - name: See if my service is running
   ansible.builtin.command:
     cmd: systemctl status my_service
@@ -1568,11 +1597,12 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html
   always:
     # do this always
 ```
+--> kind of rollback mechanism
 <!-- .slide: class="master-content" > -->
 ***
 ## Bonus Level: Blocks!
 
-```yaml
+```yaml [1-16|2-7|8-11|12-16]
 - name: Demonstrating error handling in blocks
   block:
     - name: i force a failure
@@ -1594,21 +1624,44 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html
 ***
 ## Bonus Level: Blocks!
 Blocks can come in handy to group `when` clauses:
-```yaml
+```yaml [1-7|2|2,3] 
 - name: Grouping two debugs together
-  when: 'web' in groups <- 'when'-statement before 'block' for better readability
+  when: 'web' in groups # 'when'-statement before 'block' for better readability
   block:
     - ansible.builtin.debug:
         msg: 'this task...'
     - ansible.builtin.debug:
         msg: '...and this task will run if the host is in the web group'
+```
+<!-- .slide: class="master-content" > -->
 
+***
+## Bonus Level: Blocks!
+```yaml
+- name: loops over blocks don't work...
+  block:
+    - name: ...
+  loop:
+    - gentoo
+    - ubuntu
 ```
 
-But: You cannot loop over a `block`.
+Use loops with `ansible.builtin.include_tasks` instead!
 
-Use loops with `ansible.builtin.include_tasks` instead
 <!-- .slide: class="master-content" > -->
+
+***
+## Bonus Level: Blocks!
+```yaml
+- name: loop over include_tasks
+  ansible.builtin.include_tasks: taskfile.yml
+  loop:
+    - gentoo
+    - ubuntu
+```
+
+<!-- .slide: class="master-content" > -->
+
 ***
 # Lab 5.1: Ansible Roles - Handlers and Blocks
 

@@ -145,17 +145,17 @@ Complete the next steps using ansible ad hoc commands:
 Possible solution 1:
 
 ```bash
-ansible node2 -i hosts -m file -a "path=/home/ansible/testfile.txt state=touch"
-ansible node2 -i hosts -m copy -a "dest=/home/ansible/testfile.txt content='SOME RANDOM TEXT'"
-ansible node2 -i hosts -m file -a "path=/home/ansible/testfile.txt state=absent"
+ansible node2 -i hosts -m ansible.builtin.file -a "path=/home/ansible/testfile.txt state=touch"
+ansible node2 -i hosts -m ansible.builtin.copy -a "dest=/home/ansible/testfile.txt content='SOME RANDOM TEXT'"
+ansible node2 -i hosts -m ansible.builtin.file -a "path=/home/ansible/testfile.txt state=absent"
 ```
 
 Possible solution 2:
 The copy module can create the file directly
 
 ```bash
-ansible node2 -i hosts -m copy -a "dest=/home/ansible/testfile.txt content='SOME RANDOM TEXT'"
-ansible node2 -i hosts -m file -a "path=/home/ansible/testfile.txt state=absent"
+ansible node2 -i hosts -m ansible.builtin.copy -a "dest=/home/ansible/testfile.txt content='SOME RANDOM TEXT'"
+ansible node2 -i hosts -m ansible.builtin.file -a "path=/home/ansible/testfile.txt state=absent"
 ```
 {{% /details %}}
 

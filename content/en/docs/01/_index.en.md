@@ -184,7 +184,7 @@ ansible all -i hosts -m ansible.builtin.ping
 
 * Configure the `ansible` user to have root privilege on all hosts in your inventory file.
 Also enable login without a password for this user.
-* Test the functionality by running `sudo -v` as user `ansible` on all nodes.
+* Test the functionality by running `sudo -v` as user `ansible` on all nodes. No output after `sudo -v` indicates that the sudoers configuration is set up correctly.
 
 {{% details title="Solution Task 4" %}}
 
