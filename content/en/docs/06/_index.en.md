@@ -188,6 +188,12 @@ ansible-playbook secretservice.yml
 ansible node1,node2 -i hosts -b -m ansible.builtin.file -a "path=/etc/MI6 state=absent"
 ```
 
+If you moved the inventory file `hosts` in the labs before, then ensure to use the correct location:
+
+```bash
+ansible node1,node2 -i inventory/hosts -b -m ansible.builtin.file -a "path=/etc/MI6 state=absent"
+```
+
 {{% /details %}}
 
 ### Task 7

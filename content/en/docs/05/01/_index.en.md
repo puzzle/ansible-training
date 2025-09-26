@@ -16,6 +16,10 @@ then do create a file `README.TXT` in this folder containing the text "This fold
 * The value of `<timestamp>` should contain a quite accurate timestamp of when `ansible-playbook` was run.
 * Run the playbook several times to see if it is really idempotent.
 
+{{% alert title="Hint" color="primary" %}}
+There is an ansible fact for when ansible was run.
+{{% /alert %}}
+
 {{% details title="Solution Task 1" %}}
 Below is a possible solution:
 
