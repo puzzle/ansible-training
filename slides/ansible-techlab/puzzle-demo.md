@@ -1872,7 +1872,7 @@ puzzle
 ```
 
 Details about structure in
-https://docs.ansible.com/ansible/latest/dev_guide/developing_collections.html#collection-structure
+https://docs.ansible.com/projects/ansible/latest/dev_guide/developing_collections_structure.html
 
 <!-- .slide: class="master-content" > -->
 
@@ -2116,7 +2116,7 @@ Goal:
   - Python module parameters
   - Commandline arguments (like ansible-playbook)
   - Can be a directory structure
-    - [ansible runner introduction](https://ansible-runner.readthedocs.io/en/stable/intro/)
+    - [ansible runner introduction](https://docs.ansible.com/projects/runner/en/stable/)
     - [ansible runner demonstration](https://github.com/ansible/ansible-runner/tree/devel/demo)
 
 <!-- .slide: class="master-content" > -->
@@ -2371,7 +2371,7 @@ Some configs from `ansible.cfg` not taken!
 
 - https://ansible-rulebook.readthedocs.io
 - https://www.redhat.com/en/interactive-labs/
-- https://www.ansible.com/blog
+- https://forum.ansible.com/c/news/blog
 - https://ansible.puzzle.ch
 
 <!-- .slide: class="master-content" > -->
@@ -2411,16 +2411,6 @@ Some configs from `ansible.cfg` not taken!
 - run_playbook
 - run_job_template
 - debug, set_fact, run_module,...
-
-<!-- .slide: class="master-content" > -->
-
-***
-## Getting Info
-
-- https://ansible-rulebook.readthedocs.io
-- https://www.redhat.com/en/interactive-labs/
-- https://www.ansible.com/blog
-- https://ansible.puzzle.ch
 
 <!-- .slide: class="master-content" > -->
 
@@ -2643,7 +2633,7 @@ rocky-9: ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=
 ## Ansible Docs:
 - Have a look at the EXAMPLE section in the module documentation
 - Very interesting tips:
-https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
+https://docs.ansible.com/projects/ansible/latest/tips_tricks/ansible_tips_tricks.html
 
 <!-- .slide: class="master-content" > -->
 
@@ -2748,7 +2738,7 @@ When writing Ansible content in a team:
 
 ----
 # And now?
--  https://www.ansible.com/blog
+-  https://forum.ansible.com/c/news/blog
 -  https://www.meetup.com/Ansible-Bern
 -  https://ansible.puzzle.ch/ (more content to come...)
 -  https://www.puzzle.ch/de/blog/
