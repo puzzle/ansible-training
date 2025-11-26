@@ -34,7 +34,10 @@
   </div> -->
 
   ### Simon Schweizer
+  schweizer@puzzle.ch
+
   ### Reto Kupferschmid
+  kupferschmid@puzzle.ch
 
   <!-- pschmid@puzzle.ch -->
 </div>
