@@ -8,7 +8,7 @@
 
 <!-- #### Lukas Preisig -->
 
-#### Philippe Schmid
+<!-- #### Philippe Schmid -->
 
 <!-- #### Rémy Keil -->
 
@@ -28,15 +28,15 @@
 
 ## Nice to meet you
 
-<div class="people" style="color: black;">
+<!-- <div class="people" style="color: black;">
   <div>
     <div class="img" style="background-image: url(https://www.puzzle.ch/img/2024/06/Schmid_Philippe.jpg?w=900&h=900&fit=crop&fm=webp&q=90&sharp=4&s=f27e83a00061d8aa6266f3092b1b289c)" />
-  </div>
+  </div> -->
 
-  ### Philippe Schmid
-  System Engineer
+  ### Simon Schweizer
+  ### Reto Kupferschmid
 
-  pschmid@puzzle.ch
+  <!-- pschmid@puzzle.ch -->
 </div>
 
 
@@ -332,9 +332,9 @@ Without it I can do nothing.
 - Ansible 3.0   -->   Ansible-Core 2.10 + Collections v3
 - Ansible 4.0   -->   Ansible-Core 2.11 + Collections v4
 - [..]
-- Ansible 10.0  -->   Ansible-Core 2.17 + Collections v10
-- Ansible 11.0  -->   Ansible-Core 2.18 + Collections v11 (Current, not working with EL8)
-- Ansible 12.0  -->   Ansible-Core 2.19 + Collections v12 (In development, unreleased)
+- Ansible 12.0  -->   Ansible-Core 2.19 + Collections v12
+- Ansible 13.0  -->   Ansible-Core 2.20 + Collections v13 (Current)
+- Ansible 14.0  -->   Ansible-Core 2.21 + Collections v14 (In development, unreleased)
 
 <!-- .slide: class="master-content" > -->
 <!-- .slide: class="master-content" > -->
