@@ -794,7 +794,7 @@ Very simple example:
 ---
 - hosts: web
   tasks:
-  - name: install webserver
+  - name: Install webserver
     ansible.builtin.dnf:
       name: httpd
       state: installed
@@ -815,7 +815,7 @@ same as before:
 ---
 - hosts: web
   tasks:
-  - name: install webserver
+  - name: Install webserver
     dnf: name=httpd state=installed
 ```
 
@@ -834,11 +834,11 @@ A bit more complex:
 - hosts: database
   become: true
   tasks:
-    - name: install mariadb
+    - name: Install mariadb
       ansible.builtin.dnf:
         name: mariadb
         state: installed
-    - name: start mariadb
+    - name: Start mariadb
       ansible.builtin.systemd_service:
         name: mariadb
         state: started
@@ -893,7 +893,7 @@ Defined in playbook:
   vars:
     my_package: nginx
   tasks:
-  - name: install package(s)
+  - name: Install package(s)
     ansible.builtin.dnf:
       name: "{{ my_package }}"
       state: installed
@@ -975,7 +975,7 @@ Don't name your Variables after magic variables
 
 ## Bonus Level: Loops!
 ```yaml
-- name: start and enable two services
+- name: Start and enable two services
   ansible.builtin.systemd_service:
     name: "{{ item }}"
     state: started
@@ -1097,7 +1097,7 @@ values `stdout`, `stderr` and more when processing the output
 - Use `when` to run a task only in certain conditions
 
 ```yaml
-- name: run command only on 'servername1'
+- name: Run command only on 'servername1'
   ansible.builtin.command: "uptime"
   when: ansible_hostname == "servername1" <-- No jinja-braces in 'when' conditionals!
 ```
@@ -1105,7 +1105,7 @@ values `stdout`, `stderr` and more when processing the output
 - Use `failed_when` to mark a task as «failed»
 
 ```yaml
-- name: fails when 'error' in stdout
+- name: Fails when 'error' in stdout
   ansible.builtin.command: "grep -i error /var/log/mylog"
   register: output
   failed_when: "'error' in output.stdout"
@@ -1181,7 +1181,7 @@ ansible node1 -i hosts -B 10 -P 2 -m ansible.builtin.dnf -a "name=my_package sta
 Task:
 
 ```yaml
-- name: fire and forget
+- name: Fire and forget
   ansible.builtin.dnf:
     name: my_package
     state: installed
@@ -1424,7 +1424,7 @@ The task's value of `notify` must match the handler's value of `name` or `listen
 ## Handlers
 Example Playbook:
 
-```yaml [1|2-8|9-12]
+```yaml [1|2-9|10-14]
 - hosts: all
   tasks:
     - name: Write configuration file
@@ -1445,10 +1445,10 @@ Example Playbook:
 ## Handlers
 Example Playbook:
 
-```yaml [8|10|13]
+```yaml [9|10|11|15]
 - hosts: all
   tasks:
-    - name: put configuration file
+    - name: Put configuration file
       ansible.builtin.template:
         src: templates/sshd_config.j2
         path: /etc/ssh/sshd_config
@@ -1575,7 +1575,7 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html
 ```yaml
 - name: Demonstrating error handling in blocks
   block:
-    - name: i force a failure
+    - name: I force a failure
       ansible.builtin.command:
         cmd: /bin/false
     - name: Print some text to stdout
@@ -1963,7 +1963,7 @@ Use collection in playbook:
   collections:
     - puzzle.puzzle_collection
   tasks:
-    - name: use my module
+    - name: Use my module
       my_module:
         option: bliblub
 ```
@@ -1973,7 +1973,7 @@ OR:
 ---
 - hosts: puzzle_nodes
   tasks:
-    - name: use my module
+    - name: Use my module
       puzzle.puzzle_collection.my_module:
         option: bliblub
 ```
@@ -2433,7 +2433,7 @@ ansible-rulebook --rulebook my_rb.yml -i hosts
 ***
 ## Sample Rulebook
 
-- name: rebuild webservers if site down
+- name: Rebuild webservers if site down
   hosts: web
   sources:
     - ansible.eda.url_check:
