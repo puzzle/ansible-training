@@ -8,7 +8,7 @@
 
 <!-- #### Lukas Preisig -->
 
-#### Philippe Schmid
+<!-- #### Philippe Schmid -->
 
 <!-- #### Rémy Keil -->
 
@@ -28,15 +28,18 @@
 
 ## Nice to meet you
 
-<div class="people" style="color: black;">
+<!-- <div class="people" style="color: black;">
   <div>
     <div class="img" style="background-image: url(https://www.puzzle.ch/img/2024/06/Schmid_Philippe.jpg?w=900&h=900&fit=crop&fm=webp&q=90&sharp=4&s=f27e83a00061d8aa6266f3092b1b289c)" />
-  </div>
+  </div> -->
 
-  ### Philippe Schmid
-  System Engineer
+  ### Simon Schweizer
+  schweizer@puzzle.ch
 
-  pschmid@puzzle.ch
+  ### Reto Kupferschmid
+  kupferschmid@puzzle.ch
+
+  <!-- pschmid@puzzle.ch -->
 </div>
 
 
@@ -332,9 +335,9 @@ Without it I can do nothing.
 - Ansible 3.0   -->   Ansible-Core 2.10 + Collections v3
 - Ansible 4.0   -->   Ansible-Core 2.11 + Collections v4
 - [..]
-- Ansible 10.0  -->   Ansible-Core 2.17 + Collections v10
-- Ansible 11.0  -->   Ansible-Core 2.18 + Collections v11 (Current, not working with EL8)
-- Ansible 12.0  -->   Ansible-Core 2.19 + Collections v12 (In development, unreleased)
+- Ansible 12.0  -->   Ansible-Core 2.19 + Collections v12
+- Ansible 13.0  -->   Ansible-Core 2.20 + Collections v13 (Current)
+- Ansible 14.0  -->   Ansible-Core 2.21 + Collections v14 (In development, unreleased)
 
 <!-- .slide: class="master-content" > -->
 <!-- .slide: class="master-content" > -->
@@ -794,7 +797,7 @@ Very simple example:
 ---
 - hosts: web
   tasks:
-  - name: install webserver
+  - name: Install webserver
     ansible.builtin.dnf:
       name: httpd
       state: installed
@@ -815,7 +818,7 @@ same as before:
 ---
 - hosts: web
   tasks:
-  - name: install webserver
+  - name: Install webserver
     dnf: name=httpd state=installed
 ```
 
@@ -834,11 +837,11 @@ A bit more complex:
 - hosts: database
   become: true
   tasks:
-    - name: install mariadb
+    - name: Install mariadb
       ansible.builtin.dnf:
         name: mariadb
         state: installed
-    - name: start mariadb
+    - name: Start mariadb
       ansible.builtin.systemd_service:
         name: mariadb
         state: started
@@ -893,7 +896,7 @@ Defined in playbook:
   vars:
     my_package: nginx
   tasks:
-  - name: install package(s)
+  - name: Install package(s)
     ansible.builtin.dnf:
       name: "{{ my_package }}"
       state: installed
@@ -975,7 +978,7 @@ Don't name your Variables after magic variables
 
 ## Bonus Level: Loops!
 ```yaml
-- name: start and enable two services
+- name: Start and enable two services
   ansible.builtin.systemd_service:
     name: "{{ item }}"
     state: started
@@ -1121,7 +1124,7 @@ values `stdout`, `stderr` and more when processing the output
 - Use `when` to run a task only in certain conditions
 
 ```yaml
-- name: run command only on 'servername1'
+- name: Run command only on 'servername1'
   ansible.builtin.command: "uptime"
   when: ansible_hostname == "servername1" <-- No jinja-braces in 'when' conditionals!
 ```
@@ -1129,7 +1132,7 @@ values `stdout`, `stderr` and more when processing the output
 - Use `failed_when` to mark a task as «failed»
 
 ```yaml
-- name: fails when 'error' in stdout
+- name: Fails when 'error' in stdout
   ansible.builtin.command: "grep -i error /var/log/mylog"
   register: output
   failed_when: "'error' in output.stdout"
@@ -1205,7 +1208,7 @@ ansible node1 -i hosts -B 10 -P 2 -m ansible.builtin.dnf -a "name=my_package sta
 Task:
 
 ```yaml
-- name: fire and forget
+- name: Fire and forget
   ansible.builtin.dnf:
     name: my_package
     state: installed
@@ -1448,7 +1451,7 @@ The task's value of `notify` must match the handler's value of `name` or `listen
 ## Handlers
 Example Playbook:
 
-```yaml [1-14|9|11]
+```yaml [9|11]
 - hosts: all
   tasks:
     - name: Write configuration file
@@ -1469,10 +1472,10 @@ Example Playbook:
 ## Handlers
 Example Playbook:
 
-```yaml [1-15|9|11|15]
+```yaml [9|11|15]
 - hosts: all
   tasks:
-    - name: put configuration file
+    - name: Put configuration file
       ansible.builtin.template:
         src: templates/sshd_config.j2
         path: /etc/ssh/sshd_config
@@ -1605,7 +1608,7 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html
 ```yaml [1-16|2-7|8-11|12-16]
 - name: Demonstrating error handling in blocks
   block:
-    - name: i force a failure
+    - name: I force a failure
       ansible.builtin.command:
         cmd: /bin/false
     - name: Print some text to stdout
@@ -1925,7 +1928,7 @@ puzzle
 ```
 
 Details about structure in
-https://docs.ansible.com/ansible/latest/dev_guide/developing_collections.html#collection-structure
+https://docs.ansible.com/projects/ansible/latest/dev_guide/developing_collections_structure.html
 
 <!-- .slide: class="master-content" > -->
 
@@ -2016,7 +2019,7 @@ Use collection in playbook:
   collections:
     - puzzle.puzzle_collection
   tasks:
-    - name: use my module
+    - name: Use my module
       my_module:
         option: bliblub
 ```
@@ -2026,7 +2029,7 @@ OR:
 ---
 - hosts: puzzle_nodes
   tasks:
-    - name: use my module
+    - name: Use my module
       puzzle.puzzle_collection.my_module:
         option: bliblub
 ```
@@ -2169,7 +2172,7 @@ Goal:
   - Python module parameters
   - Commandline arguments (like ansible-playbook)
   - Can be a directory structure
-    - [ansible runner introduction](https://ansible-runner.readthedocs.io/en/stable/intro/)
+    - [ansible runner introduction](https://docs.ansible.com/projects/runner/en/stable/)
     - [ansible runner demonstration](https://github.com/ansible/ansible-runner/tree/devel/demo)
 
 <!-- .slide: class="master-content" > -->
@@ -2424,7 +2427,7 @@ Some configs from `ansible.cfg` not taken!
 
 - https://ansible-rulebook.readthedocs.io
 - https://www.redhat.com/en/interactive-labs/
-- https://www.ansible.com/blog
+- https://forum.ansible.com/c/news/blog
 - https://ansible.puzzle.ch
 
 <!-- .slide: class="master-content" > -->
@@ -2468,16 +2471,6 @@ Some configs from `ansible.cfg` not taken!
 <!-- .slide: class="master-content" > -->
 
 ***
-## Getting Info
-
-- https://ansible-rulebook.readthedocs.io
-- https://www.redhat.com/en/interactive-labs/
-- https://www.ansible.com/blog
-- https://ansible.puzzle.ch
-
-<!-- .slide: class="master-content" > -->
-
-***
 ## Installation
 
 - ansible-rulebook (python package)
@@ -2496,7 +2489,7 @@ ansible-rulebook --rulebook my_rb.yml -i hosts
 ***
 ## Sample Rulebook
 
-- name: rebuild webservers if site down
+- name: Rebuild webservers if site down
   hosts: web
   sources:
     - ansible.eda.url_check:
@@ -2696,7 +2689,7 @@ rocky-9: ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=
 ## Ansible Docs:
 - Have a look at the EXAMPLE section in the module documentation
 - Very interesting tips:
-https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
+https://docs.ansible.com/projects/ansible/latest/tips_tricks/ansible_tips_tricks.html
 
 <!-- .slide: class="master-content" > -->
 
@@ -2801,7 +2794,7 @@ When writing Ansible content in a team:
 
 ----
 # And now?
--  https://www.ansible.com/blog
+-  https://forum.ansible.com/c/news/blog
 -  https://www.meetup.com/Ansible-Bern
 -  https://ansible.puzzle.ch/ (more content to come...)
 -  https://www.puzzle.ch/de/blog/
