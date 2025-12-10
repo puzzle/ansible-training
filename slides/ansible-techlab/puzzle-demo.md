@@ -28,18 +28,12 @@
 
 ## Nice to meet you
 
-<!-- <div class="people" style="color: black;">
-  <div>
-    <div class="img" style="background-image: url(https://www.puzzle.ch/img/2024/06/Schmid_Philippe.jpg?w=900&h=900&fit=crop&fm=webp&q=90&sharp=4&s=f27e83a00061d8aa6266f3092b1b289c)" />
-  </div> -->
+<div class="people">
+![](https://www.puzzle.ch/img/2024/06/Schmid_Philippe.jpg?w=540&h=540&fit=crop&fm=webp&q=90&sharp=4&blur=0&s=0dba932bfbf51f204090244a70472110)
 
-  ### Simon Schweizer
-  schweizer@puzzle.ch
+  ### Philippe Schmid
+  pschmid@puzzle.ch
 
-  ### Reto Kupferschmid
-  kupferschmid@puzzle.ch
-
-  <!-- pschmid@puzzle.ch -->
 </div>
 
 
@@ -339,7 +333,38 @@ Without it I can do nothing.
 - Ansible 13.0  -->   Ansible-Core 2.20 + Collections v13 (Current)
 - Ansible 14.0  -->   Ansible-Core 2.21 + Collections v14 (In development, unreleased)
 
+***
+
+## FQDN
+
+- Fully Qualified Collection Name
+- from Ansible 2.10 on
+- copy -> ansible.builtin.copy
+
 <!-- .slide: class="master-content" > -->
+***
+
+### FQDN Example
+
+old:
+```yaml [2]
+- name: copy a file
+  file:
+    path: /home/ansible/myfile
+```
+
+<!-- .slide: class="master-content" > -->
+***
+
+### FQDN Example
+
+new:
+```yaml [2]
+- name: copy a file
+  ansible.builtin.file:
+    path: /home/ansible/myfile
+```
+
 <!-- .slide: class="master-content" > -->
 ----
 
@@ -459,6 +484,7 @@ What do we use on cmdline?
 - `ansible-doc`
 - `ansible-vault` (secrets management)
 - `ansible-config`
+
 <!-- .slide: class="master-content" > -->
 
 ***
@@ -470,6 +496,7 @@ What do we use on cmdline?
 - `ansible-lint` (syntax check)
 - `ansible-pull`
 - `ansible-navigator`
+
 <!-- .slide: class="master-content" > -->
 
 ***
