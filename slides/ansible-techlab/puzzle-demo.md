@@ -335,7 +335,7 @@ Without it I can do nothing.
 
 ***
 
-## FQDN
+## FQCN
 
 - Fully Qualified Collection Name
 - from Ansible 2.10 on
@@ -344,7 +344,7 @@ Without it I can do nothing.
 <!-- .slide: class="master-content" > -->
 ***
 
-### FQDN Example
+### FQCN Example
 
 old:
 ```yaml [2]
@@ -356,7 +356,7 @@ old:
 <!-- .slide: class="master-content" > -->
 ***
 
-### FQDN Example
+### FQCN Example
 
 new:
 ```yaml [2]
