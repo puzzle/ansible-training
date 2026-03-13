@@ -92,7 +92,7 @@ jobs:
           kubectl rollout restart deployment/$TRAINING_HELM_RELEASE-ansible-puzzle --server=$KUBE_URL --token=$KUBE_TOKEN --namespace $TRAINING_NAMESPACE
       -
         name: Comment on PR
-        uses: marocchino/sticky-pull-request-comment@v2
+        uses: marocchino/sticky-pull-request-comment@v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           message: |
