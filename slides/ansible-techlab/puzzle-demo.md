@@ -29,6 +29,7 @@
 ## Nice to meet you
 
 <div class="people">
+
 ![](https://www.puzzle.ch/img/2024/06/Schmid_Philippe.jpg?w=540&h=540&fit=crop&fm=webp&q=90&sharp=4&blur=0&s=0dba932bfbf51f204090244a70472110)
 
   ### Philippe Schmid
