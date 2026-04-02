@@ -6,7 +6,11 @@ github.com/google/docsy/dependencies v0.7.2 h1:+t5ufoADQAj4XneFphz4A+UU0ICAxmNaR
 github.com/google/docsy/dependencies v0.7.2/go.mod h1:gihhs5gmgeO+wuoay4FwOzob+jYJVyQbNaQOh788lD4=
 github.com/kreativmonkey/docsy-plus v0.0.0-20260401151544-e0ec927c355b h1:m5oaYUKwPjGtk564Br8dqOUPVIU/MRr1aWNvEkcRH1Y=
 github.com/kreativmonkey/docsy-plus v0.0.0-20260401151544-e0ec927c355b/go.mod h1:m4q48Mat9bV8SNZY5KfZg2GBBGJ0F93iLZ81lQKASB0=
-github.com/kreativmonkey/docsy-puzzle v0.0.0-20260402055953-8e9c1fdeaa5c h1:BWLbXuo0o0lraqrK5Y8Ltealilm0yJ4mu8CU6qhXdzg=
-github.com/kreativmonkey/docsy-puzzle v0.0.0-20260402055953-8e9c1fdeaa5c/go.mod h1:01SsRzbhshMqxBM0ZJ0nxmwbZo3xlmadzj9Cjl1mILQ=
+github.com/kreativmonkey/docsy-plus v0.1.0 h1:KejCM7K3xqMvMJtsBYfGuv3bwv2opn/KIL/x23nVqgo=
+github.com/kreativmonkey/docsy-plus v0.1.0/go.mod h1:m4q48Mat9bV8SNZY5KfZg2GBBGJ0F93iLZ81lQKASB0=
+github.com/kreativmonkey/docsy-puzzle v0.0.0-20260401154337-031cd95a8734 h1:Q3dQ3rDr6w1hB/ffls2gZKUqZ57NaTitR7rQgPnZJFY=
+github.com/kreativmonkey/docsy-puzzle v0.0.0-20260401154337-031cd95a8734/go.mod h1:01SsRzbhshMqxBM0ZJ0nxmwbZo3xlmadzj9Cjl1mILQ=
+github.com/puzzle/docsy-puzzle v0.0.0-20250822081608-44bcd465abfa h1:4amMzQUQSvdVACV2GbnD2TlYEgVwu6igAynW1KWwqZ8=
+github.com/puzzle/docsy-puzzle v0.0.0-20250822081608-44bcd465abfa/go.mod h1:q4bPnnpLaz5IDdFmQFxCHr85uwAsK9ayut5NNmC4w3I=
 github.com/twbs/bootstrap v5.2.3+incompatible/go.mod h1:fZTSrkpSf0/HkL0IIJzvVspTt1r9zuf7XlZau8kpcY0=
 github.com/twbs/bootstrap v5.3.8+incompatible/go.mod h1:fZTSrkpSf0/HkL0IIJzvVspTt1r9zuf7XlZau8kpcY0=
