@@ -1,7 +1,7 @@
-FROM registry.hub.docker.com/klakegg/hugo:0.111.3-ext-alpine AS builder
+FROM ghcr.io/hugomods/hugo:0.154.5 AS builder
 
 COPY . /src
-
+RUN npm ci
 RUN hugo --minify
 
 FROM nginxinc/nginx-unprivileged:1.29-alpine
