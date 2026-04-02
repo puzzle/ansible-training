@@ -1,3 +1,26 @@
+---
+index:
+  title: Ansible Training
+slides:
+  separator_notes: "^Notes?:"
+  separator_vertical: "^\\*\\*\\*"
+  separator: "^----"
+  theme: https://puzzle.github.io/pitc-revealjs-theme/2/puzzle.css
+  favicon: img/favicon.png
+
+revealjs:
+  transition: slide
+  width: 1280 # adjust if needed, e.g. for 4:3 screens
+  height: 720 # adjust if needed, e.g. for 4:3 screens
+  center: false
+  markdown:
+    breaks: true
+  controls: true
+  progress: true
+  help: true
+  autoPlayMedia: true
+
+---
 # Ansible Techlab
 
 ### ansible.puzzle.ch
@@ -28,14 +51,10 @@
 
 ## Nice to meet you
 
-<div class="people">
 ![](https://www.puzzle.ch/img/2024/06/Schmid_Philippe.jpg?w=540&h=540&fit=crop&fm=webp&q=90&sharp=4&blur=0&s=0dba932bfbf51f204090244a70472110)
 
   ### Philippe Schmid
   pschmid@puzzle.ch
-
-</div>
-
 
 <!--
 ![](https://www.puzzle.ch/img/2024/06/Grimm_Lukas.jpg?w=300&h=300&fit=crop&fm=webp&q=90&sharp=4&s=d42398d9832aa48066cb50daa8a895d6)
