@@ -1,27 +1,3 @@
----
-index:
-  title: Ansible-Schulung
-slides:
-  separator_notes: "^Notes?:"
-  separator_vertical: ^#----*$$  # nach unten
-  separator: ^#====*$            # rechts/links
-  theme: https://puzzle.github.io/pitc-revealjs-theme/2/puzzle.css
-  favicon: img/favicon.png
-
-revealjs:
-  transition: slide
-  width: 1280 # adjust if needed, e.g. for 4:3 screens
-  height: 720 # adjust if needed, e.g. for 4:3 screens
-  center: false
-  markdown:
-    breaks: true
-  controls: true
-  progress: true
-  help: true
-  autoPlayMedia: true
-
----
-
 <!-- .slide: class="l-cover" -->
 
 # Ansible
@@ -31,7 +7,7 @@ revealjs:
 > Schulungsleiter
 > training@puzzle.ch
 
-#------------------------------------------------------------------------------
+***
 
 <!-- .slide: class="l-team l-icons--big" -->
 
@@ -45,7 +21,7 @@ revealjs:
 
 <!-- .slide: class="l-team l-icons--big" -->
 
-#------------------------------------------------------------------------------
+***
 # Vorstellungsrunde
 
 Job?
@@ -54,7 +30,7 @@ Hobbys?
 
 <!-- .slide: class="l-team l-icons--big" -->
 
-#------------------------------------------------------------------------------
+***
 
 <!-- .slide: class="l-team l-icons--big" -->
 
@@ -62,7 +38,7 @@ Hobbys?
 
 Fragen jederzeit stellen!
 
-#==============================================================================
+----
 
 <!-- .slide: class="l-agenda" -->
 # Agenda
@@ -75,7 +51,7 @@ Fragen jederzeit stellen!
 - <a href="#rollen" src="rollen">Rollen</a>
 - <a href="#ansible-vault" src="ansible-vault">Ansible-Vault</a>
 
-#------------------------------------------------------------------------------
+***
 
 # Agenda
 
@@ -90,7 +66,7 @@ Fragen jederzeit stellen!
 
 <!-- .slide: class="l-agenda" -->
 
-#==============================================================================
+----
 
 <!-- .slide: class="l-agenda" -->
 
@@ -106,7 +82,7 @@ Fragen jederzeit stellen!
   - Ihr müsst nicht alle Übungen machen, um den Inhalt zu verstehen
   - Lest „All done?“ für weitere Inhalte
 
-#------------------------------------------------------------------------------
+***
 
 <!-- .slide: class="l-agenda" -->
 
@@ -118,13 +94,13 @@ Fragen jederzeit stellen!
   2. Alternativ: Theia-IDE auf Controller: `https://<dns-name>`
 
 - Zugangsdaten zu Lab-Umgebung erhaltet ihr separat
-#==============================================================================
+----
 
 <!-- .slide: class="l-agenda" -->
 
 # Einführung
 
-#------------------------------------------------------------------------------
+***
 
 ## Ansible @Puzzle ITC
 - Techlab-Setup
@@ -145,7 +121,7 @@ Fragen jederzeit stellen!
 Note: Eure Lab-VMs werden vollautomatisch mit Ansible erstellt und verwaltet
 
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Ansible history
@@ -157,7 +133,7 @@ Note: Eure Lab-VMs werden vollautomatisch mit Ansible erstellt und verwaltet
 - 2020-08-13 Ansible-Base 2.10
 - 2021-02-18 Ansible 3.0
 
-#------------------------------------------------------------------------------
+***
 
 ## Rocannon's World
 
@@ -171,7 +147,7 @@ Without it I can do nothing.
 
 ![rocannons world](img/rocannonsworld.jpg)
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Ansible-Versionen
@@ -186,19 +162,19 @@ Without it I can do nothing.
 - Ansible 11.0  -->   Ansible-Core 2.18 + Collections v11 **(Current, not working with EL8)**
 - Ansible 12.0  -->   Ansible-Core 2.19 + Collections v12 **(In development, unreleased)**
 
-#==============================================================================
+----
 
 <!-- .slide: class="l-agenda" -->
 
 # Grundlegendes
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 ## Wie funktioniert das?
 
 <img alt='workflow1' src="img/ansible_workflow_1.png" width="600"/>
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 ## Wie funktioniert das?
 
@@ -211,7 +187,7 @@ Note:
 > Delete python script
 > python2 or python3
 
-#------------------------------------------------------------------------------
+***
 
 ## Wie funktioniert das?
 
@@ -236,7 +212,7 @@ Note:
 > Push braucht weder Daemon noch sonst was.
 > Für reproduzierbare Ergebnisse: Execution Environments (EEs) (später...)
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 ## Wie verbindet sich Ansible auf die Managed Nodes?
 
@@ -252,7 +228,7 @@ Note:
 > - Über Connection Plugins erweiterbar
 > - Nutze `ansible-doc -t connection -l` für komplette Übersicht`
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 ## Wie arbeitet Ansible auf den Managed Nodes mit erhöhten Rechten?
 
@@ -267,7 +243,7 @@ Note:
 > - Über Become Plugins erweiterbar
 > - Nutze `ansible-doc -t become -l` für eine komplette Übersicht`
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 ## Wie arbeitet Ansible auf den Managed Nodes
 
@@ -288,7 +264,7 @@ Note:
 > - Nutze `ansible-doc -l` für eine komplette Übersicht`
 
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 ## Woher kennt Ansible seine Managed Nodes
 
@@ -319,7 +295,7 @@ Note:
 <img alt='cloudscale' src="img/cloudscale.png" width="90"/> <img alt='vmware' src="img/vmware.png" width="90"/>
 <img alt='foreman' src="img/foreman.png" width="90"/>
 
-#------------------------------------------------------------------------------
+***
 
 <!-- .slide: class="l-agenda" -->
 ## Warum Ansible?
@@ -331,7 +307,7 @@ Note:
 - Viele Module (~~2834~~, ~~3387~~, ~~4573~~, ∞ )
 - Viele Zielsysteme (Linux, Windows, Netzwerkgeräte, REST-APIs)
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Warum Kühe?
@@ -355,7 +331,7 @@ __________________
 $ ANSIBLE_NOCOWS=0 ansible-playbook plays/site.yml
 ```
 
-#------------------------------------------------------------------------------
+***
 
 <!-- .slide: class="l-agenda" -->
 ## Was verwenden wir auf der Kommandozeile?
@@ -371,7 +347,7 @@ $ ANSIBLE_NOCOWS=0 ansible-playbook plays/site.yml
 - `ansible-pull`
 - `ansible-navigator`
 
-#------------------------------------------------------------------------------
+***
 
 <!-- .slide: class="l-agenda" -->
 ## Wichtige Teile
@@ -381,7 +357,7 @@ $ ANSIBLE_NOCOWS=0 ansible-playbook plays/site.yml
 3. SSH-Keys
 4. Bewährtes Verfahren: user `ansible` + `sudo`
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 ## Datenstrukturen mit *YAML* und *JSON*
 
@@ -412,7 +388,7 @@ settings:
 provisioning: local
 ```
 
-#------------------------------------------------------------------------------
+***
 
 <!-- .slide: class="l-agenda" -->
 ## Datenstrukturen mit *YAML* und *JSON*
@@ -453,7 +429,7 @@ provisioning: local
 }
 ```
 
-#------------------------------------------------------------------------------
+***
 
 <!-- .slide: class="l-agenda" -->
 
@@ -474,7 +450,7 @@ Note:
 > `StrictHostKeyChecking`?
 
 
-#------------------------------------------------------------------------------
+***
 
 <!-- .slide: class="l-agenda" -->
 ## Tooling
@@ -489,7 +465,7 @@ Note:
 
 <img alt="vscode" src="img/vscode.png" width="90"/> <img alt="gitforwin" src="img/gitforwin.png" width="90"/>
 
-#------------------------------------------------------------------------------
+***
 
 <!-- .slide: class="l-agenda" -->
 
@@ -498,18 +474,18 @@ Note:
 - Linux: Wählt euren eigenen Weg!
 - Theia-IDE: Kurzeinführung
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-cover" -->
 
 # <a href="https://ansible.puzzle.ch/docs/01/">Lab 1: Setting up Ansible</a>
 
-#==============================================================================
+----
 
 <!-- .slide: class="l-cover" -->
 
 # Hilfe erhalten
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 ## Dokumentation
 
@@ -517,7 +493,7 @@ Note:
 
 - https://docs.ansible.com/
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 ## Dokumentation
 
@@ -534,7 +510,7 @@ Note:
   + `module` (Default)
   + …
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 ## Dokumentation
 
@@ -543,7 +519,7 @@ Note:
 - `/usr/share/doc`
 
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 ## Tipps zur Fehlersuche
 
@@ -557,7 +533,7 @@ Note:
 * Für Fortgeschrittene: `export ANSIBLE_ENABLE_TASK_DEBUGGER=true`
 
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 ## Häufige Fehler
 
@@ -580,7 +556,7 @@ Richtig:
     state: installed
 ```
 
-#------------------------------------------------------------------------------
+***
 
 <!-- .slide: class="l-agenda" -->
 ## Häufige Fehler
@@ -606,7 +582,7 @@ Richtig:
   loop: "{{ my_services }}"
 ```
 
-#------------------------------------------------------------------------------
+***
 
 ## Häufige Fehler
 #### Fehlende `root`-Privilegien
@@ -618,7 +594,7 @@ become: true
 um Pakete zu installieren, Benutzer anzulegen, usw.
 
 
-#------------------------------------------------------------------------------
+***
 
 <!-- .slide: class="l-agenda" -->
 
@@ -629,18 +605,18 @@ https://docs.ansible.com/ansible/devel/ → Lerne mehr über die Zukunft von Ans
 
 ![nerd](img/nerd.png)
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-cover" -->
 
 # <a href="https://ansible.puzzle.ch/docs/02/">Lab 2: Documentation</a>
 
-#==============================================================================
+----
 <!-- .slide: class="l-cover" -->
 
 # Ad-hoc-Befehle
 ### (+ inventory)
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Ad-hoc-Befehle
@@ -663,7 +639,7 @@ https://docs.ansible.com/ansible/devel/ → Lerne mehr über die Zukunft von Ans
 Note:
 > `ansible.builtin.setup` erstellt Facts (Variablenstruktur, die den managed node beschreibt)
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Ad-hoc-Befehle
@@ -679,7 +655,7 @@ Note:
 
 (Siehe auch `man ansible` oder `ansible --help`)
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Ad-hoc-Befehle
@@ -698,7 +674,7 @@ Note:
  $ ansible -i hosts 'all:!node1' ...
  ```
 
-#------------------------------------------------------------------------------
+***
 
 <!-- .slide: class="l-agenda" -->
 
@@ -721,7 +697,7 @@ $ ansible -i hosts all -a "uptime"`  # (using the default module ansible.builtin
 $ ansible -i hosts all -m ansible.builtin.shell -a "hostname; whoami"`
 ```
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Inventories
@@ -736,11 +712,11 @@ node2
 [db]
 node[3:99]
 ```
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-cover" -->
 # <a href="https://ansible.puzzle.ch/docs/03/">Lab 3: Setup and Ad Hoc Commands</a>
 
-#==============================================================================
+----
 <!-- .slide: class="l-cover" -->
 
 # Playbooks
@@ -751,7 +727,7 @@ Note:
 >Kommt aus dem Eishockey: Spielablauf
 >Das gleiche bei Ansible
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 ## Tasks/Plays/Playbooks
 
@@ -765,7 +741,7 @@ Note:
   + YAML-Datei
   + Liste von Plays
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Plays
@@ -795,7 +771,7 @@ Note:
 > - `ansible-lint` Möchte Großschreibung nach `name:`
 > - Im Beispiel hat `name:` verschiedene Bedeutungen!
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Plays
@@ -815,7 +791,7 @@ Task-Parameter analog zu Ad-hoc ebenfalls möglich:
 - Veraltete Syntax
 - Keine gute Praxis!
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 ## Plays
 
@@ -837,7 +813,7 @@ Ein wenig komplexer:
         name: mariadb
         state: started
 ```
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Idempotenz
@@ -850,12 +826,12 @@ Ein wenig komplexer:
   - Bei den meisten Modulen kein Problem
   - Bei Modulen wie `ansible.builtin.command` zusätzliche Maßnahmen nötig
 - Auch Plays/Playbooks sollen idempotent sein
-#------------------------------------------------------------------------------
+***
 
 <!-- .slide: class="l-cover" -->
 # <a href="https://ansible.puzzle.ch/docs/04/">Lab 4. Ansible Playbooks – Basics</a>
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Variablen
@@ -875,7 +851,7 @@ Ein wenig komplexer:
 Note:
 > https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable"
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Wohin mit den Variablen?
@@ -896,7 +872,7 @@ Definiert im Play:
       state: installed
 ```
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Wohin mit den Variablen?
@@ -917,7 +893,7 @@ Definiert im Task:
       my_package: nginx
 ```
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ##  Wohin mit den Variablen?
@@ -928,7 +904,7 @@ Definiert auf der Kommandozeile
 $ ansible-playbook myplay.yml --extra-vars my_package="nginx"
 ```
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ##  Wohin mit den Variablen?
@@ -952,7 +928,7 @@ Note:
 > - Das sind nur einige Beispiele, Ansible bietet weitere Möglichkeiten.
 > - Man sollte nicht alle angebotenen Möglichkeiten nutzen, sonst verliert man schnell den Überblick
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Variablen
@@ -977,14 +953,14 @@ vm:
         size: 100G
 ```
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Spezielle Variablen
 
 Google nach „ansible special variables“
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Spezielle Variablen: Magische Variablen
@@ -997,7 +973,7 @@ Ein paar Beispiele:
 - `hostvars`: Alle Hosts eines Play mit ihren aktuellen Variablen
 - …
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Spezielle Variablen: Facts
@@ -1007,7 +983,7 @@ Ein paar Beispiele:
 - `gather_facts`: Boolean, regelt die Bereitstellung von Facts pro Play
 
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Bonus Level: Loops!
@@ -1030,12 +1006,12 @@ Note:
 > - Die Default-Loopvariable ist `item`.
 > - Kann per `loop_control` und `loop_var` anders definiert werden
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-cover" -->
 
 # <a href="https://ansible.puzzle.ch/docs/04/01/">Lab 4.1: Ansible Playbooks – Variables and Loops</a>
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Templates
@@ -1050,7 +1026,7 @@ Note:
 Note:
 Templates sind dazu da, um komplexe Dateien zu erstellen (Variabeln sowie `if` / `else` / `for` sind möglich)
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Templates
@@ -1074,7 +1050,7 @@ Templates sind dazu da, um komplexe Dateien zu erstellen (Variabeln sowie `if` /
 {% endfor %}
 ```
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Tags
@@ -1108,12 +1084,12 @@ $ ansible-playbook -t ntp myplaybook.yml
 ```
 
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-cover" -->
 
 # <a href=https://ansible.puzzle.ch/docs/04/02/>Lab 4.2 Ansible Playbooks – Templates</a>
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Rückgabewerte von Tasks speichern
@@ -1143,7 +1119,7 @@ Den Inhalt der Variablen mit `ansible.builtin.debug` anzeigen:
 
 Beachte: Der Rückgabewert von `ansible.builtin.command` enthält `stdout`, `stderr` u.v.m.
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Conditionals
@@ -1167,13 +1143,13 @@ Beachte: Der Rückgabewert von `ansible.builtin.command` enthält `stdout`, `std
 
 - „`changed_when:`“ steuert, wann ein Task den Status „changed“ liefern soll
 
-#------------------------------------------------------------------------------
+***
 
 <!-- .slide: class="l-cover" -->
 
 # <a href="https://ansible.puzzle.ch/docs/04/03/">Lab 4.3 Ansible Playbooks – Output</a>
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Ansible-pull
@@ -1196,11 +1172,11 @@ $ ansible-pull \
 Default playbook: `local.yml`
 
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-cover" -->
 # <a href="https://ansible.puzzle.ch/docs/04/04/">Lab 4.4 Ansible-Pull</a>
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Task control (asynchrone Ausführung)
@@ -1217,7 +1193,7 @@ Default playbook: `local.yml`
 Note:
 Mit Task Kontrolle kann man definieren, wie Ansible auf die Nodes zugreift.
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Task control
@@ -1247,7 +1223,7 @@ Zusätzliche Rückgabewerte:
 - `finished`
 - `ansible_job_id`
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Task control
@@ -1263,7 +1239,7 @@ Beispiel Playbook-Task:
   poll: 0
 ```
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Task control
@@ -1306,7 +1282,7 @@ $
 
 ```
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Task control
@@ -1336,7 +1312,7 @@ Beispiel 2:
     …
 ```
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Task control
@@ -1355,7 +1331,7 @@ Beispiel 2:
 * Abbruch, wenn fünf Nodes ausfallen
 * Bei einem Wert von 50 würde das Play bei einem Ausfall von sechs Nodes abbrechen
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Task control
@@ -1380,7 +1356,7 @@ Note:
 Mit Forks könnt ihr den Control Node in die Knie zwingen
 
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Task control
@@ -1403,12 +1379,12 @@ gathering = implicit   ## implicit (Standard), explicit oder smart
 
 Im Play deaktivieren: `gather_facts: false`
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-cover" -->
 # <a href="https://ansible.puzzle.ch/docs/04/05/">Lab 4.5: Task control</a>
 
 
-#------------------------------------------------------------------------------
+***
 
 #### Bonus Level: Ansible on Windows
 Kein Windows als Ansible-Steuerungshost! cygwin etc. nicht unterstützt...
@@ -1427,13 +1403,13 @@ Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
 Start-Service sshd
 Set-Service -Name sshd -StartupType 'Automatic'
 ```
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 ## Bonus Level: Ansible on Network Devices
 - Viele Anbieter werden unterstützt (> 490 „ios“-Module)
 - SSH-Verbindung weiterhin erforderlich
 
-#==============================================================================
+----
 <!-- .slide: class="l-cover" -->
 
 
@@ -1442,7 +1418,7 @@ Set-Service -Name sshd -StartupType 'Automatic'
 
 ### (+ galaxy + handlers + errorhandling)
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 ## Rollen
 
@@ -1456,7 +1432,7 @@ Set-Service -Name sshd -StartupType 'Automatic'
     + httpd
     + mariadb
 
-#------------------------------------------------------------------------------
+***
 
 ## Rollen
 Beispiel (noch keine Rollen):
@@ -1486,7 +1462,7 @@ Beispiel:
     - httpd
 ```
 
-#------------------------------------------------------------------------------
+***
 
 ## Rollen
 - `roles_path` in `ansible.cfg` (default `/etc/ansible/roles`)
@@ -1505,7 +1481,7 @@ ansible-galaxy role init <rolename>
 
 → Erzeugt eine Standard-Ordner-Struktur
 
-#------------------------------------------------------------------------------
+***
 
 ### Rollen
 
@@ -1535,11 +1511,11 @@ Base/
 - `test`: Tests der Rollen-Funktionalitäten
 - `vars`: Variablen (Vorrang vor `group_vars`/`host_vars`)
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-cover" -->
 # Lab 5: Ansible-Rollen - Grundlagen
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Handler
@@ -1555,7 +1531,7 @@ Beispiele:
 Der Wert von `notify:` im Task  muss mit dem Wert von `name:` oder `listen:` im Handlers übereinstimmen
 
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Handler
@@ -1581,7 +1557,7 @@ Beispiel Playbook:
 ```
 
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Handler
@@ -1606,7 +1582,7 @@ Beispiel Playbook:
       listen: restart sshd
 ```
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Handlers
@@ -1625,7 +1601,7 @@ Achtung:
 - Aber: Jeder Handler, der einen passenden `listen` hat, wird ausgelöst
 - *bewährte Praxis*: `listen:` verwenden
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Handlers
@@ -1646,7 +1622,7 @@ handlers:
 
 Nur der zweite  Handler wird ausgeführt, wenn ein Task über `notify:` `restart web services` meldet
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Handlers
@@ -1669,7 +1645,7 @@ handlers:
 
 Beide Handler werden ausgeführt, wenn ein Task über `notify:` `restart web services` meldet
 
-#------------------------------------------------------------------------------
+***
 
 <!-- .slide: class="l-agenda" -->
 
@@ -1692,7 +1668,7 @@ Die letzten Folien waren nicht ganz richtig…
 Handler werden nach `pre_tasks`, `tasks` und `post_tasks`  ausgelöst.
 
 
-#------------------------------------------------------------------------------
+***
 ## Error Handling
 
 Task-Parameter:
@@ -1705,7 +1681,7 @@ Task-Parameter:
   * Status des Tasks wird nie `failed` sein
 
 
-#------------------------------------------------------------------------------
+***
 ## Error Handling
 Beispiel: `failed`-Status aus dem Rückgabewert des Moduls ermitteln:
 
@@ -1720,7 +1696,7 @@ Beispiel: `failed`-Status aus dem Rückgabewert des Moduls ermitteln:
 Siehe auch:
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html
 
-#------------------------------------------------------------------------------
+***
 
 ## Bonus Level: Blocks!
 
@@ -1752,7 +1728,7 @@ https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html
         msg: I will always run
 ```
 
-#------------------------------------------------------------------------------
+***
 ## Bonus Level: Blocks!
 
 Blöcke können sich als nützlich erweisen, um „`when:`“-Klauseln zu gruppieren:
@@ -1772,16 +1748,16 @@ Blöcke können sich als nützlich erweisen, um „`when:`“-Klauseln zu gruppi
 
 **Verwendet stattdessen Schleifen mit `ansible.builtin.include_tasks`.**
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-cover" -->
 # Lab 5.1: Ansible Roles - Handlers and Blocks
 
-#==============================================================================
+----
 <!-- .slide: class="l-cover" -->
 
 # Ansible-Vault
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Ansible Vault
@@ -1793,7 +1769,7 @@ Blöcke können sich als nützlich erweisen, um „`when:`“-Klauseln zu gruppi
 
 → **Ansible Vault!**
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Ansible Vault
@@ -1808,7 +1784,7 @@ Blöcke können sich als nützlich erweisen, um „`when:`“-Klauseln zu gruppi
   - `rekey` (Dateien neu verschlüsseln)
 - Auch Tasks, Handler und sogar Files können verschlüsselt werden.
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Ansible Vault
@@ -1818,7 +1794,7 @@ Passwort für die Verschlüsselung
 - Verwendung einer Passwortdatei möglich
 - Speicherort der Passwortdatei in `ansible.cfg`
 
-#------------------------------------------------------------------------------
+***
 ##### Ansible Vault
 Mehrere Passwörter möglich:
 ```
@@ -1843,12 +1819,12 @@ mysecret: !vault |
 no_log: true!
 ```
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-cover" -->
 
 # Lab 6: Geheimnisse mit Ansible Vault verwalten
 
-#------------------------------------------------------------------------------
+***
 
 ## Hashicorp Vault
 
@@ -1873,7 +1849,7 @@ vs
     msg: "{{ my_encrypted_var }}"
 ```
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Lookup Plugins
@@ -1892,7 +1868,7 @@ vars:
 
 ```
 
-#------------------------------------------------------------------------------
+***
 ## Hashicorp Vault
 
 ```yaml
@@ -1922,16 +1898,16 @@ base_root_pw: >
   ) }}
 ```
 
-#==============================================================================
+----
 <!-- .slide: class="l-cover" -->
 # CI/CD Pipelines Demo
 
-#==============================================================================
+----
 <!-- .slide: class="l-cover" -->
 
 # Collections
 
-#------------------------------------------------------------------------------
+***
 
 **Was sind Collections?**
 - Verschiedene Arten von Ansible-Inhalten (Playbooks, Rollen, Module, Plugins...)
@@ -1940,7 +1916,7 @@ base_root_pw: >
 Note:
 Ist ein Zusammenschluss von verschiedenen Ansible-Komponenten
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Collections
@@ -1953,7 +1929,7 @@ Problem:
 Lösung:
 - Mit Collections können Plugins (Module) ihren eigenen Release-Zyklus haben
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Collections
@@ -1967,7 +1943,7 @@ Lösung:
 Note:
 Bei 2.9 nur Techpreview dann ab 2.10 Bestandteil
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Collections
@@ -1986,7 +1962,7 @@ Beispiele:
 
 -> FQCN
 
-#------------------------------------------------------------------------------
+***
 #### Collections
 - Erstellung eines Namespace:
   - Erstes Einloggen in Galaxy mit GitHub-Zugangsdaten →.
@@ -2010,7 +1986,7 @@ Details über die Struktur in
 https://docs.ansible.com/ansible/latest/dev_guide/developing_collections.html#collection-structure
 
 
-#------------------------------------------------------------------------------
+***
 ## Collections
 **Woher bekommt man collections?**
 
@@ -2035,7 +2011,7 @@ Note:
 Man zieht sich in der Regel Collection von einem Hub/Github
 Red Hat Automation Hub Beispiel
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Collections
@@ -2057,7 +2033,7 @@ Token abrufen von:
 
 https://cloud.redhat.com/ansible/automation-hub/token/
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 ## Collections
 
@@ -2074,7 +2050,7 @@ auth_url= → PRIMARY GALAXY AUTHENTICATION URL
 token=    → PRIMARY GALAXY SERVER TOKEN
 ```
 
-#------------------------------------------------------------------------------
+***
 ## Collections
 Wie verwendet man collections?
 
@@ -2101,7 +2077,7 @@ ODER:
         option: bliblub
 ```
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 ## Collections
 
@@ -2118,7 +2094,7 @@ Initialize collection:
 ansible-galaxy collection init puzzle.puzzle_collection
 ```
 
-#------------------------------------------------------------------------------
+***
 ## Collections
 
 Wie verwendet man collections?
@@ -2139,7 +2115,7 @@ ansible-galaxy collection publish puzzle.puzzle_collection
 
 Nota Bene: Die Collection wird mit dem in `galaxy.yml` definierten Namespace und Namen veröffentlicht!
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Automation Hub
@@ -2149,20 +2125,20 @@ Nota Bene: Die Collection wird mit dem in `galaxy.yml` definierten Namespace und
 - https://cloud.redhat.com/api/automation-hub/ (Token erforderlich)
 
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-cover" -->
 
 # Lab 8. Ansible Collections
 
 
-#==============================================================================
+----
 <!-- .slide: class="l-cover" -->
 
 # Ansible-Navigator
 
 ### (+ Ansible-Builder)
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Neue Begriffe
@@ -2172,7 +2148,7 @@ Nota Bene: Die Collection wird mit dem in `galaxy.yml` definierten Namespace und
 - `ansible-navigator`
 - `ansible-builder`
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Ansible-Runner
@@ -2197,7 +2173,7 @@ Note:
 2. Container
 3. Python library
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Execution-Environments (EEs)
@@ -2211,7 +2187,7 @@ Note:
     * Python-Module (Pip-Pakete)
     * Linux-Distributionspakete
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Execution-Environments (EEs)
@@ -2247,7 +2223,7 @@ $ ansible-builder build --tag my_custom_ee
 ```
 
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Ansible Navigator
@@ -2259,7 +2235,7 @@ $ ansible-builder build --tag my_custom_ee
 - Erhältlich durch Red Hat Subscription oder pip
 - Benötigt `podman` (Standard) oder `docker`
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Ansible Navigator Sub-Kommandos
@@ -2276,7 +2252,7 @@ $ ansible-builder build --tag my_custom_ee
 - `replay`
 - `log`
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Ansible Navigator
@@ -2287,7 +2263,7 @@ $ ansible-builder build --tag my_custom_ee
 - `ansible-navigator --help`
 
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Ansible Navigator
@@ -2320,31 +2296,31 @@ ansible-navigator:
 
 ```
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-cover" -->
 
 # <a href=https://ansible.puzzle.ch/docs/10/>Lab 10. Ansible-Navigator</a>
 
-#------------------------------------------------------------------------------
+***
 
 <!-- .slide: class="l-cover" -->
 
 # <a href=https://ansible.puzzle.ch/docs/10/01/>Lab 10.1 Ansible-Builder</a>
 
-#------------------------------------------------------------------------------
+***
 
 <!-- .slide: class="l-cover" -->
 
 # <a href=https://ansible.puzzle.ch/docs/10/02/>10.2 Ansible-Runner</a>
 
 
-#==============================================================================
+----
 <!-- .slide: class="l-cover" -->
 
 # Ansible Automation Platform
 
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Red Hat Ansible Automation Platform
@@ -2364,14 +2340,14 @@ ansible-navigator:
 - Ansible Analytics
 - Ansible Lightspeed
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Red Hat Ansible Automation Platform
 
 <img alt='AAP Gateway Überblick' src="img/aap_gateway_overview.png"/>
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Red Hat Ansible Automation Platform
@@ -2384,7 +2360,7 @@ ansible-navigator:
 - *Execution Environments (EEs)*
 - *Decision Environments (DEs)*
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Automation Execution/Ansible Controller
@@ -2394,7 +2370,7 @@ ansible-navigator:
 - Gleiches Ergebnis wie bei der Ausführung auf der Kommandozeile
 - Upstream-/Community-Projekt: AWX
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Automation Execution/Ansible Controller
@@ -2410,7 +2386,7 @@ ansible-navigator:
   - Preis?
 
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## AAP
@@ -2432,7 +2408,7 @@ ansible-navigator:
     - AAP-Operator
   - Subscription ist nötig
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Controller-Alternative AWX
@@ -2448,7 +2424,7 @@ Note:
 
 AAP-Installation ab 2.5 anders, mehr AWXisch (setup.sh abgekündigt)
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Alternativen zu AAP/AWX?
@@ -2465,11 +2441,11 @@ Note:
 
 Generell: CI-Tools
 
-#==============================================================================
+----
 <!-- .slide: class="l-cover" -->
 
 # Event-Driven Ansible
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Geschichte
@@ -2478,7 +2454,7 @@ Generell: CI-Tools
 - Dez 2022: Entwicklervorschau vom Red Hat
 - Mai 2023: Teil von AWX/AAP 2.4
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 # Grundlagen
@@ -2492,7 +2468,7 @@ Generell: CI-Tools
 - `ansible-rulebook` - Daemon, wartet auf Ereignis
 
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 # Informationen erhalten
@@ -2502,7 +2478,7 @@ Generell: CI-Tools
 - https://www.ansible.com/blog
 - https://ansible.puzzle.ch/
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 # Glossar
@@ -2518,7 +2494,7 @@ Generell: CI-Tools
 - Azure, GCP, AWS
 - viele weitere werden folgen...
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 # Bedingungen
 
@@ -2533,7 +2509,7 @@ Generell: CI-Tools
 - run_job_template
 - debug, set_fact, run_module,...
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 # Informationen erhalten
@@ -2543,7 +2519,7 @@ Generell: CI-Tools
 - https://www.ansible.com/blog
 - https://ansible.puzzle.ch
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 # Einrichtung
@@ -2558,7 +2534,7 @@ Generell: CI-Tools
 ansible-rulebook --rulebook my_rb.yml -i hosts
 ```
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Muster-Regelwerk
@@ -2575,7 +2551,7 @@ ansible-rulebook --rulebook my_rb.yml -i hosts
       action:
         run_playbook:
 ```
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 # Ereignis-Quelle Informationen
@@ -2592,13 +2568,13 @@ ansible-rulebook --rulebook my_rb.yml -i hosts
 
 
 
-#==============================================================================
+----
 <!-- .slide: class="l-cover" -->
 # Automatisiertes Testen
 
 ### Mit `molecule`
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Überblick:
@@ -2613,7 +2589,7 @@ Gründe für automatisierte Tests:
   - Sicherstellen, dass Rollen mit unterschiedlichen Distros oder neuen Versionen funktionieren
   - Idempotenz prüfen
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Terminologie:
@@ -2629,7 +2605,7 @@ Note:
 - Szenarien sind Test-Setups für Ansible-Automatisierungen. Szenarien testen Ansible-Rollen automatisiert, indem sie Testumgebungen erstellen, die Rolle anwenden und die Ergebnisse überprüfen.
 - Fürs Testen einer Rolle wird meist nur ein einziges Scenario verwendet, da meiste alles innerhalb einer Rolle zusammengehört.
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ##  Der Einstieg:
@@ -2641,7 +2617,7 @@ Die Container-Treiber (podman oder docker) funktionieren für viele Anwendungsf�
 Note:
 Systemd Befehle wie `systemctl restart` funktionieren in Containern nicht out of the box. Wenn man solche tasks testen möchte, sollte man eher zu VMs greifen.
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## molecule.yml:
@@ -2658,7 +2634,7 @@ provisioner:
 verifier:
   name: ansible
 ```
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## converge.yml:
@@ -2685,7 +2661,7 @@ Diese Rolle beinhaltet den folgenden Task:
 Note:
 Der relative include der Rolle ist nötig, weil der Molecule Befehl zum Testen später im Verzeichnis der Rolle ausgeführt wird und nicht wie `ansible-playbook` im "Hauptverzeichnis"
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## verify.yml:
@@ -2710,7 +2686,7 @@ Die Tasks im `verify.yml` sollten so gewählt werden, dass möglichst alle Funkt
 - Wurde das config file erstellt
 - Es können auch "End-to-End" tests gebauten werden (z.B. in einer Apache Rolle antwortet der Webserver etc.)
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Den Test ausführen:
@@ -2739,7 +2715,7 @@ PLAY RECAP *********************************************************************
 rocky-9: ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Gut zu wissen:
@@ -2747,11 +2723,11 @@ rocky-9: ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=
 - Standardmäßig führen nicht idempotente Tasks dazu, dass die Tests fehlschlagen.
 - Zusätzliche Schritte können hinzugefügt werden (z.B. Linting).
 
-#==============================================================================
+----
 <!-- .slide: class="l-cover" -->
 
 # Bewährte Praktiken
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 
@@ -2760,7 +2736,7 @@ rocky-9: ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=
 - [Ansible Tipps & Tricks](https://docs.ansible.com/ansible/latest/tips_tricks/ansible_tips_tricks.html)
 
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Infrastruktur:
@@ -2772,7 +2748,7 @@ rocky-9: ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=
 - Verwendet Controller, um Ansible in eurer Infrastruktur auszuführen, nicht vom Laptop aus.
 - Verwendet ein Tool wie Ansible Controller, AWX, Jenkins, GitLab, GitHub, ...
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Umstellung auf Ansible (von Puppet?):
@@ -2782,7 +2758,7 @@ rocky-9: ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=
 
 **Ihr müsst NICHT ALLE Inhalte von Anfang an bereit haben (das ist wahrscheinlich nicht realistisch)**
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Ansible Inhalt:
@@ -2796,7 +2772,7 @@ Benutzt `name:` in allen Tasks!
 *Handler:*
 - Verwendet `listen`
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 *Rollen:*
@@ -2805,7 +2781,7 @@ Benutzt `name:` in allen Tasks!
 - Verwendet `ansible.builtin.meta: flush_handler` am Ende einer Rolle, um sicherzustellen, dass alle rollenbezogenen Dinge ausgeführt werden, auch wenn eine nachfolgende Rolle fehlschlägt.
 - Wenn ihr viele `ansible.builtin.import_tasks` verwendet: Stellt dem Namen einen Dateinamen voran.
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 *Templates:*
@@ -2824,7 +2800,7 @@ Note:
 Gegenargument zu Ansible-Vault in Strings: ein Rekey von einzelnen Strings ist sehr aufwändig, ganze Dateien mit einem neuen Schlüssel zu versehen ist deutlich einfacher (Austritt eines Teammitglieds)
 
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## Ansible Inhalte:
@@ -2837,7 +2813,7 @@ Beim Schreiben von Ansible-Inhalten in einem Team:
 - Verwender `file`/`template` anstelle von `lineinfile`/`blockinfile`
 
 
-#------------------------------------------------------------------------------
+***
 <!-- .slide: class="l-agenda" -->
 
 ## KI und Ansible
@@ -2846,12 +2822,12 @@ Beim Schreiben von Ansible-Inhalten in einem Team:
 - Ansible-Lightspeed -> 60 Tage Testperiode, danach wird eine AAP und IBM watsonx Subscription benötigt
 
 
-#==============================================================================
+----
 <!-- .slide: class="l-cover" -->
 # Do it yourself!
 
 
-#==============================================================================
+----
 <!-- .slide: class="l-cover" -->
 
 # Und jetzt?
@@ -2860,7 +2836,7 @@ Beim Schreiben von Ansible-Inhalten in einem Team:
 -  https://www.puzzle.ch/de/blog/
 -  → Rückmeldung!
 
-#==============================================================================
+----
 <!-- .slide: class="l-cover" -->
 
 # Merci!

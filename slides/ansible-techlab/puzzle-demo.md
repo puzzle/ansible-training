@@ -1,26 +1,3 @@
----
-index:
-  title: Ansible Training
-slides:
-  separator_notes: "^Notes?:"
-  separator_vertical: "^\\*\\*\\*"
-  separator: "^----"
-  theme: https://puzzle.github.io/pitc-revealjs-theme/2/puzzle.css
-  favicon: img/favicon.png
-
-revealjs:
-  transition: slide
-  width: 1280 # adjust if needed, e.g. for 4:3 screens
-  height: 720 # adjust if needed, e.g. for 4:3 screens
-  center: false
-  markdown:
-    breaks: true
-  controls: true
-  progress: true
-  help: true
-  autoPlayMedia: true
-
----
 # Ansible Techlab
 
 ### ansible.puzzle.ch

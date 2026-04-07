@@ -7,11 +7,9 @@ podman run -ti --rm -p 1948:8000 ansible-slides
 
 <http://localhost:1948>
 
-## DE Slides
-
-for `ansible-schulung.md`
+## Rendering using mkslides
 
 ```
 pipx install mkslides
-mkslides serve slides/ansible-techlab/
+mkslides serve -f metadata.yaml ansible-techlab/
 ```
