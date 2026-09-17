@@ -16,7 +16,7 @@ In this lab we are going to use roles from galaxy and from other sources.
 ```bash
 ansible-galaxy search nginx
 ansible-galaxy install nginxinc.nginx
-ansible controller -m archive -a "path=/home/ansible/.ansible/roles/nginxinc.nginx dest=/home/ansible/techlab/nginx.tar.gz"
+ansible controller -m archive -a "path=/home/ansible/techlab/roles/nginxinc.nginx dest=/home/ansible/techlab/nginx.tar.gz"
 ```
 {{% /details %}}
 
@@ -46,9 +46,6 @@ Note as well, that the order of the roles to be installed in the `requirements.y
 
 ```bash
 $ ansible-galaxy install -r roles/requirements.yml
----
-- src: nginx.tar.gz
-  name: mynginx
 
 $ ansible-galaxy remove mynginx
 $ ansible localhost -m file -a "dest=/home/ansible/techlab/nginx.tar.gz state=absent"

@@ -76,7 +76,7 @@ Can you add it to the collection such that you can use it with the `ansible-doc`
 
 We must place the module inside the `plugins/modules` folder of the collection:
 ```bash
-cp ~/techlab/ansible-module-development/library/schroedingers_cat.py ./training.labs/plugins/modules/schroedingers_cat.py
+cp ~/techlab/library/schroedingers_cat.py ~/techlab/ansible-module-development/training.labs/plugins/modules/
 ```
 
 Now we can proceed to verify it:

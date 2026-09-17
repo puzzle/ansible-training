@@ -26,7 +26,7 @@ Example `output.yml`:
 - hosts: node1
   become: true
   tasks:
-    - name:
+    - name: Find the files
       ansible.builtin.command: 
         cmd: "find /etc/postfix -type f -name *.cf"
       register: output
@@ -195,7 +195,7 @@ Use the `ansible.builtin.copy` module to do this in ad hoc command.
 
 {{% details title="Solution Task 5" %}}
 Example `servicehandler.yml`:
-```bash
+```yaml
 ---
 - hosts: web
   become: true

@@ -223,7 +223,7 @@ def test_schroedingers_cat_returns_alive_or_dead_when_force_box_open_is_true(moc
 Now we can run the unit tests using tox just like we did for the sanity tests:
 
 ```bash
-$ tox -e unit-py3.13-2.18  --ansible -c tox-ansible.ini 
+$ tox -e unit-py3.12-2.18  --ansible -c tox-ansible.ini 
 ...
 ============================================== test session starts ================================================
 ...
@@ -236,7 +236,7 @@ tests/unit/plugins/modules/test_schroedingers_cat.py::test_schroedingers_cat_ret
 [gw0] [100%] PASSED tests/unit/plugins/modules/test_schroedingers_cat.py::test_schroedingers_cat_returns_alive_or_dead_when_force_box_open_is_true 
 
 ================================================ 3 passed in 0.44s ================================================
-  unit-py3.13-2.18: OK (4.81=setup[0.04]+cmd[0.00,0.23,3.78,0.01,0.74] seconds)
+  unit-py3.12-2.18: OK (4.81=setup[0.04]+cmd[0.00,0.23,3.78,0.01,0.74] seconds)
   congratulations :) (4.88 seconds)
 ```
 

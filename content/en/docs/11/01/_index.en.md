@@ -42,6 +42,16 @@ sudo dnf install systemd-devel gcc python3-devel
 pip install -r  ~/.ansible/collections/ansible_collections/ansible/eda/requirements.txt
 ```
 
+Enterprise Linux 10
+```bash
+sudo dnf install java-21-openjdk
+export JAVA_HOME=/usr/lib/jvm/jre-21-openjdk/
+
+pip install ansible-rulebook
+
+ansible-galaxy collection install ansible.eda
+```
+
 ```bash
 ansible-rulebook --version
 ```
