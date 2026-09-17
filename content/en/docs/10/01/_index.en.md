@@ -47,9 +47,8 @@ $ pip3 install ansible-builder --user
 
 * Create a playbook `container.yml` that installs `podman` and pulls the image
 `docker.io/bitnami/mariadb` on all `db` servers.
-* Run this playbook and observe how it fails because the collection `containers.podman`
-is not available in the demo EE `ansible-navigator-demo-ee`.
-* For the remainder of this lab, we build our own execution environment containing the collection `containers.podman`.
+* Run this playbook and observe it.
+* For the remainder of this lab, we build our own execution environment.
 
 {{% details title="Solution Task 2" %}}
 ```bash
@@ -69,15 +68,6 @@ $ cat container.yml
 
 $ ansible-navigator run container.yml
 
-            WARNING
-            ──────────────────────────────────────────────────────────────────────────────────
-            Errors were encountered while running the playbook:
-            ERROR! couldn't resolve module/action 'containers.podman.podman_image'. This often
-            indicates a misspelling, missing collection, or incorrect module path....
-            [HINT] To see the full error message try ':stdout'
-            [HINT] After it's fixed, try to ':rerun' the playbook
-            ──────────────────────────────────────────────────────────────────────────────────
-                                                                                         Ok 
 ```
 {{% /details %}}
 
@@ -129,8 +119,8 @@ If you are interested in the details about how the execution environment is buil
 
 {{% alert title="Tip" color="info" %}}
 If the creation fails due to "no space left on device", remove unneeded images.
-For example, you could remove the demo EE `ansible-navigator-demo-ee` installed by `ansible-navigator`
-(`podman rmi quay.io/ansible/.ansible-navigator-demo-ee:0.6.0`).
+For example, you could remove the demo EE `community-ansible-dev-tools` installed by `ansible-navigator`
+(`podman rmi ghcr.io/ansible/community-ansible-dev-tools:latest`).
 {{% /alert %}}
 
 {{% details title="Solution Task 4" %}}

@@ -64,7 +64,7 @@ If you didn't do the preceding labs , create a config file with `ansible-config 
 * Use 20 forks.
 * Enable colorful output.
 * Log to a file `log.txt` in a subfolder `log` with a loglevel of `INFO`.
-* Use the demo execution environment previously downloaded when running a playbook.
+* Use the `quay.io/ansible/creator-ee:latest` execution environment when running a playbook.
 * Create artifacts when running a playbook with `ansible-navigator` and put them in a subfolder `artifacts`.
 Prefix the name of the artifact-file with the name of the actual playbook.
 
@@ -88,7 +88,7 @@ ansible-navigator:
   execution-environment:
     container-engine: podman
     enabled: True
-    image: quay.io/ansible/ansible-navigator-demo-ee:0.6.0
+    image: quay.io/ansible/creator-ee:latest
   logging:
     level: info
     file: logs/log.txt
@@ -171,11 +171,12 @@ See the running container:
 ```bash
 $ watch -n1 podman container list
 
-Every 2.0s: podman container list                                       phippu-controller: Sun Apr  3 08:12:20 2022
-CONTAINER ID  IMAGE                                        COMMAND               CREATED        STATUS
-   PORTS       NAMES
-ae762caaa21  quay.io/ansible/ansible-navigator-demo-ee:0.6.0  ansible-playbook ...  9 seconds ago  Up 9 seconds ag
-o              ansible_runner_afb92a4e-3281-4928-986a-cbb84c999be7
+Every 1.0s: podman container list                       control0: Tue Sep 15 16:29:04 2026
+
+CONTAINER ID  IMAGE	                         COMMAND               CREATED        STAT
+US	  PORTS       NAMES
+77554aedb8f4  quay.io/ansible/creator-ee:latest  ansible-playbook ...  9	seconds	ago  Up 8
+ seconds              ansible_runner_1d0a7283-a051-4689-b773-7012c65bf762
 ```
 {{% /details %}}
 
@@ -203,22 +204,22 @@ Note that `-m interactive` is not needed unless you configured the mode to `stdo
 Choose `0` to inspect the tasks that run on the hostgroup `web`
 
 ```bash
-  RESULT HOST  NUMBER CHANGED  TASK                         TASK ACTION   DURATION
-0│OK     node1      0   False  Gathering Facts              gather_facts  2s
-1│OK     node1      1   False  install httpd                dnf           2s
-2│OK     node1      2   False  start and enable httpd       service       1s
-3│OK     node1      3   False  start and enable firewalld   service       0s
-4│OK     node1      4   False  open firewall for http       firewalld     1s
+  Result Host  Number Changed Task                     Task action              Duration
+0│Ok     node1      0 False   Gathering Facts          gather_facts                   2s
+1│Ok     node1      1 False   install httpd            ansible.builtin.dnf            2s
+2│Ok     node1      2 False   start and enable httpd   ansible.builtin.systemd_s      1s
+3│Ok     node1      3 False   start and enable firewallansible.builtin.systemd_s      1s
+4│Ok     node1      4 False   open firewall for http   ansible.posix.firewalld        1s
 ```
 Choose `4` to inspect the task for setting firewall rules
 
 ```bash
-PLAY [Run tasks on webservers:4] *************************************************************************
-TASK [open firewall for http] ****************************************************************************
-OK: [node1] Permanent and Non-Permanent(immediate) operation
+Play name: Run tasks on webservers:4
+Task name: open firewall for http
+Ok: node1 Permanent and Non-Permanent(immediate) operation
  0│---
- 1│duration: 1.350668
- 2│end: '2022-04-03T09:37:20.155703'
+ 1│duration: 0.72592
+ 2│end: '2026-09-15T14:31:49.105882+00:00'
  3│event_loop: null
  4│host: node1
  5│play: Run tasks on webservers
@@ -230,28 +231,30 @@ OK: [node1] Permanent and Non-Permanent(immediate) operation
 11│  changed: false
 12│  invocation:
 13│    module_args:
-14│  icmp_block: null
-15│  icmp_block_inversion: null
-16│  immediate: true
-17│  interface: null
-18│  masquerade: null
-19│  offline: null
-20│  permanent: true
-21│  port: null
-22│  port_forward: null
-23│  rich_rule: null
-24│  service: http
-25│  source: null
-26│  state: enabled
-27│  target: null
-28│  timeout: 0
-29│  zone: null
-30│  msg: Permanent and Non-Permanent(immediate) operation
-31│start: '2022-04-03T09:37:18.805035'
-32│task: open firewall for http
-33│task_action: firewalld
-34│task_args: ''
-35│task_path: /home/ansible/techlab/site.yml:20
+14│	 icmp_block: null
+15│	 icmp_block_inversion: null
+16│	 immediate: true
+17│	 interface: null
+18│	 masquerade: null
+19│	 offline: null
+20│	 permanent: true
+21│	 port: null
+22│	 port_forward: null
+23│	 protocol: null
+24│	 rich_rule: null
+25│	 service: http
+26│	 source: null
+27│	 state: enabled
+28│	 target: null
+29│	 timeout: 0
+30│	 zone: null
+31│  msg: Permanent and Non-Permanent(immediate) operation
+32│resolved_action: ansible.posix.firewalld
+33│start: '2026-09-15T14:31:48.379962+00:00'
+34│task: open firewall for http
+35│task_action: ansible.posix.firewalld
+36│task_args: ''
+37│task_path: /home/ansible/techlab/site.yml:20
 ```
 Here you can find a lot of details about the task.
 Note that you can switch between tasks when pressing the number equal to the indicated line number from the play summary.
@@ -392,42 +395,39 @@ $ ansible-navigator collections
 ...
 ```
 ```bash
-   NAME                    VERSION SHADOWED TYPE      PATH
- 0│amazon.aws              1.5.0      False contained /usr/share/ansible/collections/ansible_collections/
- 1│ansible.posix           1.2.0      False contained /usr/share/ansible/collections/ansible_collections/
- 2│ansible.windows         1.7.1      False contained /usr/share/ansible/collections/ansible_collections/
- 3│awx.awx                 19.2.2     False contained /usr/share/ansible/collections/ansible_collections/
- 4│azure.azcollection      1.8.0      False contained /usr/share/ansible/collections/ansible_collections/
- 5│community.vmware        1.12.0     False contained /usr/share/ansible/collections/ansible_collections/
- 6│google.cloud            1.0.2      False contained /usr/share/ansible/collections/ansible_collections/
- 7│kubernetes.core         2.1.1      False contained /usr/share/ansible/collections/ansible_collections/
- 8│openstack.cloud         1.5.0      False contained /usr/share/ansible/collections/ansible_collections/
- 9│ovirt.ovirt             1.5.4      False contained /usr/share/ansible/collections/ansible_collections/
-10│redhatinsights.insights 1.0.5      False contained /usr/share/ansible/collections/ansible_collections/
-11│theforeman.foreman      2.1.2      False contained /usr/share/ansible/collections/ansible_collections/
+  Name                         Version  Shadowed   Type        Path
+0│ansible.builtin              2.16.3   False      contained   /usr/local/lib/python3.12/site-packages/ansible
+1│ansible.posix                1.5.4    False      contained   /usr/share/ansible/collections/ansible_collections/ansible/posix
+2│ansible.windows              2.2.0    False      contained   /usr/share/ansible/collections/ansible_collections/ansible/windows
+3│awx.awx                      23.7.0   False      contained   /usr/share/ansible/collections/ansible_collections/awx/awx
+4│containers.podman            1.12.0   False      contained   /usr/share/ansible/collections/ansible_collections/containers/podman
+5│kubernetes.core              3.0.0    False      contained   /usr/share/ansible/collections/ansible_collections/kubernetes/core
+6│redhatinsights.insights      1.2.2    False      contained   /usr/share/ansible/collections/ansible_collections/redhatinsights/insights
+7│theforeman.foreman           4.0.0    False      contained   /usr/share/ansible/collections/ansible_collections/theforeman/foreman
 ```
 Choose `3`:
 ```bash
-   AWX.AWX                TYPE      ADDED DEPRECATED DESCRIPTION
- 0│ad_hoc_command         module    4.0.0      False create, update, or dest
- 1│ad_hoc_command_cancel  module    None       False Cancel an Ad Hoc Comman
- 2│ad_hoc_command_wait    module    None       False Wait for Automation Pla
- 3│application            module    None       False create, update, or dest
- 4│controller             inventory None       False Ansible dynamic invento
- 5│controller_api         lookup    None       False Search the API for obje
- 6│controller_meta        module    None       False Returns metadata about
- 7│credential             module    None       False create, update, or dest
+   Awx.awx                      Type       Added Deprecated  Description
+ 0│ad_hoc_command               module     4.0.0 False       create, update, or destroy Automation Platform Controller ad hoc commands.
+ 1│ad_hoc_command_cancel        module     None  False       Cancel an Ad Hoc Command.
+ 2│ad_hoc_command_wait          module     None  False       Wait for Automation Platform Controller Ad Hoc Command to finish.
+ 3│application                  module     None  False       create, update, or destroy Automation Platform Controller applications
+ 4│bulk_host_create             module     None  False       Bulk host create in Automation Platform Controller
+ 5│bulk_host_delete             module     None  False       Bulk host delete in Automation Platform Controller
+ 6│bulk_job_launch              module     None  False       Bulk job launch in Automation Platform Controller
+ 7│controller                   inventory  None  False       Ansible dynamic inventory plugin for the Automation Platform Controller.
  ...
 ```
 Choose `7`:
 ```bash
-AWX.AWX.CREDENTIAL: create, update, or destroy Automation Platform Controller
-  0│---
-  1│additional_information: {}
-  2│collection_info:
-  3│  authors:
-  4│  - AWX Project Contributors <awx-project@googlegroups.com>
-  5│  dependencies: {}
+Image: awx.awx.controller
+Description: Ansible dynamic inventory plugin for the Automation Platform Controller.
+ 0│---                                                                                                                                                  
+ 1│additional_information: {}                                                                                                                           
+ 2│collection_info:                                                                                                                                     
+ 3│  authors:                                                                                                                                           
+ 4│  - AWX Project Contributors <awx-project@googlegroups.com>                                                                                          
+ 5│  dependencies: {}             
   ...
 ```
 
