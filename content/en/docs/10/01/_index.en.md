@@ -15,29 +15,15 @@ a python version that's not rather new.
 
 {{% details title="Solution Task 1" %}}
 Since we have no Red Hat Subscription available, we install ansible-builder with pip.
-We install podman as well to be able to use containers.
 
-Update python if needed: <!-- TODO: Maybe we should install something newer than python 3.9? -->
 ```bash
-$ sudo dnf module install -y python39
-$ sudo dnf module enable python39
-$ sudo alternatives --config python3
 
-There are 2 programs which provide 'python3'.
-
-  Selection    Command
------------------------------------------------
-*+ 1           /usr/bin/python3.6
-   2           /usr/bin/python3.9
-
-Enter to keep the current selection[+], or type selection number: 2
-$ python3 --version
-Python 3.9.13
+$ python --version
+Python 3.12.14
 ```
 
 Install `ansible-builder` AFTER you ensured the newer python version to be present.
 ```bash
-$ sudo dnf install -y podman python3-pip
 $ pip3 install ansible-builder --user
 ...
 ```
