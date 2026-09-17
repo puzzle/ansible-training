@@ -16,7 +16,7 @@ In this lab we are going to use roles from galaxy and from other sources.
 ```bash
 ansible-galaxy search nginx
 ansible-galaxy install nginxinc.nginx
-ansible controller -m archive -a "path=/home/ansible/.ansible/roles/nginxinc.nginx dest=/home/ansible/techlab/nginx.tar.gz"
+ansible controller -m archive -a "path=/home/ansible/techlab/roles/nginxinc.nginx dest=/home/ansible/techlab/nginx.tar.gz"
 ```
 {{% /details %}}
 
