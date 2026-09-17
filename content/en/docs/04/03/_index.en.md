@@ -195,7 +195,7 @@ Use the `ansible.builtin.copy` module to do this in ad hoc command.
 
 {{% details title="Solution Task 5" %}}
 Example `servicehandler.yml`:
-```bash
+```yaml
 ---
 - hosts: web
   become: true
