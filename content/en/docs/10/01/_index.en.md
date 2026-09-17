@@ -65,7 +65,10 @@ If you have a Red Hat account, you have access to their [ansible-builder guide](
 
 The new EE should:
 
-* be based on the latest stable version of the `ansible-runner` image from `https://quay.io`
+* be based on the latest stable version of the `docker.io/redhat/ubi10:latest` image
+* make sure the `openssh-client` gets installed
+* make sure `ansible-runner` package gets installed
+* make sure that `ansible-core` package is installed
 * use the `ansible.cfg` in the `techlab` folder
 * contain the `pyfiglet` python3 module
 * contain the collection `containers.podman` and `ansible.posix`
@@ -73,14 +76,25 @@ The new EE should:
 {{% details title="Solution Task 3" %}}
 ```bash
 $ cat default-ee.yml 
-version: 1
-build_arg_defaults:
-  EE_BASE_IMAGE: "quay.io/ansible/ansible-runner:latest"
-  ANSIBLE_GALAXY_CLI_COLLECTION_OPTS: "-c"
-ansible_config: 'ansible.cfg'
+version: 3
+images:
+  base_image:
+    name: docker.io/redhat/ubi10:latest
 dependencies:
-    python: requirements.txt
-    galaxy: requirements.yml
+  ansible_core:
+    package_pip: ansible-core>=2.21,<2.22
+  ansible_runner:
+    package_pip: ansible-runner
+  galaxy: requirements.yml
+  python: requirements.txt
+
+additional_build_steps:
+  append_final:
+    - RUN dnf install -y openssh-clients && dnf clean all
+
+additional_build_files:
+    - src:  ansible.cfg
+      dest: configs
 
 $ cat requirements.txt 
 pyfiglet
@@ -120,44 +134,114 @@ localhost/default-ee             latest      04a2ff8e9e37  About an hour ago  83
 $ tree context/
 context/
 ├── _build
-│   ├── ansible.cfg
-│   ├── requirements.txt
-│   └── requirements.yml
+│   ├── configs
+│   │   └── ansible.cfg
+│   ├── requirements.txt
+│   ├── requirements.yml
+│   └── scripts
+│       ├── assemble
+│       ├── check_ansible
+│       ├── check_galaxy
+│       ├── entrypoint
+│       ├── install-from-bindep
+│       ├── introspect.py
+│       └── pip_install
 └── Containerfile
 
-1 directory, 4 files
+4 directories, 11 files
 
 $ cat context/Containerfile 
-ARG EE_BASE_IMAGE=quay.io/ansible/ansible-runner:latest
-ARG EE_BUILDER_IMAGE=quay.io/ansible/ansible-builder:latest
+ARG EE_BASE_IMAGE="docker.io/redhat/ubi10:latest"
+ARG PYCMD="/usr/bin/python3"
+ARG PKGMGR_PRESERVE_CACHE=""
+ARG ANSIBLE_GALAXY_CLI_COLLECTION_OPTS=""
+ARG ANSIBLE_GALAXY_CLI_ROLE_OPTS=""
+ARG ANSIBLE_INSTALL_REFS="ansible-core>=2.21,<2.22 ansible-runner"
+ARG PKGMGR="/usr/bin/dnf"
 
-FROM $EE_BASE_IMAGE as galaxy
-ARG ANSIBLE_GALAXY_CLI_COLLECTION_OPTS=-c
+# Base build stage
+FROM $EE_BASE_IMAGE AS base
 USER root
+ENV PIP_BREAK_SYSTEM_PACKAGES=1
+ARG EE_BASE_IMAGE
+ARG PYCMD
+ARG PKGMGR_PRESERVE_CACHE
+ARG ANSIBLE_GALAXY_CLI_COLLECTION_OPTS
+ARG ANSIBLE_GALAXY_CLI_ROLE_OPTS
+ARG ANSIBLE_INSTALL_REFS
+ARG PKGMGR
 
-ADD _build/ansible.cfg ~/.ansible.cfg
+COPY _build/scripts/ /output/scripts/
+COPY _build/scripts/entrypoint /opt/builder/bin/entrypoint
+RUN /output/scripts/pip_install $PYCMD
+RUN $PYCMD -m pip install --no-cache-dir $ANSIBLE_INSTALL_REFS
 
-ADD _build /build
+# Galaxy build stage
+FROM base AS galaxy
+ARG EE_BASE_IMAGE
+ARG PYCMD
+ARG PKGMGR_PRESERVE_CACHE
+ARG ANSIBLE_GALAXY_CLI_COLLECTION_OPTS
+ARG ANSIBLE_GALAXY_CLI_ROLE_OPTS
+ARG ANSIBLE_INSTALL_REFS
+ARG PKGMGR
+
+RUN /output/scripts/check_galaxy
+COPY _build /build
 WORKDIR /build
 
-RUN ansible-galaxy role install -r requirements.yml --roles-path /usr/share/ansible/roles
-RUN ansible-galaxy collection install $ANSIBLE_GALAXY_CLI_COLLECTION_OPTS -r requirements.yml --collections-path /usr/share/ansible/collections
+RUN mkdir -p /usr/share/ansible
+RUN ansible-galaxy role install $ANSIBLE_GALAXY_CLI_ROLE_OPTS -r requirements.yml --roles-path "/usr/share/ansible/roles"
+RUN ANSIBLE_GALAXY_DISABLE_GPG_VERIFY=1 ansible-galaxy collection install $ANSIBLE_GALAXY_CLI_COLLECTION_OPTS -r requirements.yml --collections-path "/usr/share/ansible/collections"
 
-FROM $EE_BUILDER_IMAGE as builder
+# Builder build stage
+FROM base AS builder
+ENV PIP_BREAK_SYSTEM_PACKAGES=1
+WORKDIR /build
+ARG EE_BASE_IMAGE
+ARG PYCMD
+ARG PKGMGR_PRESERVE_CACHE
+ARG ANSIBLE_GALAXY_CLI_COLLECTION_OPTS
+ARG ANSIBLE_GALAXY_CLI_ROLE_OPTS
+ARG ANSIBLE_INSTALL_REFS
+ARG PKGMGR
+
+RUN $PYCMD -m pip install --no-cache-dir bindep pyyaml packaging
 
 COPY --from=galaxy /usr/share/ansible /usr/share/ansible
 
-ADD _build/requirements.txt requirements.txt
-RUN ansible-builder introspect --sanitize --user-pip=requirements.txt --write-bindep=/tmp/src/bindep.txt --write-pip=/tmp/src/requirements.txt
-RUN assemble
+COPY _build/requirements.txt requirements.txt
+RUN $PYCMD /output/scripts/introspect.py introspect --user-pip=requirements.txt --write-bindep=/tmp/src/bindep.txt --write-pip=/tmp/src/requirements.txt
+RUN /output/scripts/assemble
 
-FROM $EE_BASE_IMAGE
-USER root
+# Final build stage
+FROM base AS final
+ENV PIP_BREAK_SYSTEM_PACKAGES=1
+ARG EE_BASE_IMAGE
+ARG PYCMD
+ARG PKGMGR_PRESERVE_CACHE
+ARG ANSIBLE_GALAXY_CLI_COLLECTION_OPTS
+ARG ANSIBLE_GALAXY_CLI_ROLE_OPTS
+ARG ANSIBLE_INSTALL_REFS
+ARG PKGMGR
+
+RUN /output/scripts/check_ansible $PYCMD
 
 COPY --from=galaxy /usr/share/ansible /usr/share/ansible
 
 COPY --from=builder /output/ /output/
-RUN /output/install-from-bindep && rm -rf /output/wheels
+RUN /output/scripts/install-from-bindep && rm -rf /output/wheels
+RUN chmod ug+rw /etc/passwd
+RUN mkdir -p /runner && chgrp 0 /runner && chmod -R ug+rwx /runner
+WORKDIR /runner
+RUN $PYCMD -m pip install --no-cache-dir 'dumb-init==1.2.5'
+RUN dnf install -y openssh-clients && dnf clean all
+RUN rm -rf /output
+LABEL ansible-execution-environment=true
+USER 1000
+ENTRYPOINT ["/opt/builder/bin/entrypoint", "dumb-init"]
+CMD ["bash"]
+
 ```
 {{% /details %}}
 
