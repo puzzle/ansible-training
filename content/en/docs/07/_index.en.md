@@ -46,9 +46,6 @@ Note as well, that the order of the roles to be installed in the `requirements.y
 
 ```bash
 $ ansible-galaxy install -r roles/requirements.yml
----
-- src: nginx.tar.gz
-  name: mynginx
 
 $ ansible-galaxy remove mynginx
 $ ansible localhost -m file -a "dest=/home/ansible/techlab/nginx.tar.gz state=absent"
