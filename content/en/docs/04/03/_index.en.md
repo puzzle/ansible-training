@@ -26,7 +26,7 @@ Example `output.yml`:
 - hosts: node1
   become: true
   tasks:
-    - name:
+    - name: Find the files
       ansible.builtin.command: 
         cmd: "find /etc/postfix -type f -name *.cf"
       register: output
