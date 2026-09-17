@@ -76,13 +76,14 @@ Here's a breakdown of the key packages included:
 First of all, lets make sure we have a more recent python version installed with pip on our lab controller node:
 
 ```bash
-sudo dnf install python3.12 python3.12-pip
+$ python --version
+Python 3.12.14
 ```
 
-Now let's proceed and install pipenv globally as a python3.12 package (While at it let's also upgrade pip):
+Now let's proceed and install pipenv globally (While at it let's also upgrade pip):
 
 ```bash
-python3.12 -m pip install -U pip pipenv
+pip install -U pip pipenv
 ```
 
 Can you tell what pipenv version has been installed on your system?
