@@ -291,9 +291,8 @@ Since we didn't set up a proper registry at localhost we want to avoid this beha
 by a setting in the config file `ansible-navigator.yml`.
 
 {{% alert title="Tip" color="info" %}}
-The stable version of ansible-navigator doesn't support the same options as the latest version.
-Be sure to look into the [documentation of the stable version](https://ansible-navigator.readthedocs.io/en/stable/settings/#the-ansible-navigator-settings-file) since that is what we have installed.
-There's also a [documentation of the latest version](https://ansible-navigator.readthedocs.io/en/latest/) where you can have a glimpse at the upcoming features.
+The stable version of ansible-navigator doesn't support the same options as the latest version
+Be sure to look into the [navigator](https://docs.ansible.com/projects/navigator/) documentation
 {{% /alert %}}
 
 * Run the playbook `container.yml` and verify that the image `podman pull public.ecr.aws/bitnami/mariadb`
@@ -302,12 +301,11 @@ was pulled on the db servers. Provide a cmdline option to run it in stdout mode.
 
 {{% details title="Solution Task 6" %}}
 ```bash
-$ cat ansible-navigator.yml 
+$ cat ansible-navigator.yml
 ---
 ansible-navigator:
   ansible:
     config:
-      help: False
       path: /home/ansible/techlab/ansible.cfg
     cmdline: "--forks 20"
   color:
@@ -315,8 +313,15 @@ ansible-navigator:
   execution-environment:
     container-engine: podman
     enabled: True
-    image: default-ee:latest   #<---
-    pull-policy: never         #<---
+    image: default-ee:latest  #<---
+    pull:
+      policy: never           #<---
+  logging:
+    level: info
+    file: logs/log.txt
+  playbook-artifact:
+    enable: True
+    save-as: artifacts/{playbook_name}-artifact.json
 ```
 
 ```bash
