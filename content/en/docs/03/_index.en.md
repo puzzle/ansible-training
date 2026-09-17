@@ -128,7 +128,7 @@ ansible web -i hosts -b -m ansible.builtin.systemd_service -a "name=httpd state=
 Reverting the changes made on the remote hosts:
 
 ```bash
-ansible web -i hosts -b -m systemd_service -a "name=httpd state=stopped enabled=false"
+ansible web -i hosts -b -m ansible.builtin.systemd_service -a "name=httpd state=stopped enabled=false"
 ansible web -i hosts -b -m ansible.builtin.dnf -a "name=httpd state=absent"
 ```
 {{% /details %}}
