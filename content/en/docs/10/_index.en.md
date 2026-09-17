@@ -60,7 +60,7 @@ Configure ansible-navigator and ensure the following:
 If you didn't do the preceding labs , create a config file with `ansible-config init --disabled -t all > ansible.cfg`.
 * Set `remote_user` in `ansible.cfg` to `ansible`.
 * Move the inventory file `hosts` in a folder `inventory/`.
-* Set the inventory file in your `ansible.cfg` to `inventroy/hosts`.
+* Set the inventory file in your `ansible.cfg` to `inventory/hosts`.
 * Use 20 forks.
 * Enable colorful output.
 * Log to a file `log.txt` in a subfolder `log` with a loglevel of `INFO`.
