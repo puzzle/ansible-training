@@ -97,10 +97,10 @@ $ vim ansible.cfg
 $ grep "collections_path" ansible.cfg
 collections_paths = /home/ansible/techlab/collections
 
-$ ansible-galaxy collection install puzzle-ansible_techlab-1.0.0.tar.gz
+$ ansible-galaxy collection install newpuzzle-ansible_techlab2-1.0.0.tar.gz 
 Process install dependency map
 Starting collection install process
-Installing 'puzzle.ansible_techlab:1.0.0' to '/home/ansible/techlab/collections/ansible_collections/puzzle/ansible_techlab'
+Installing 'newpuzzle.ansible_techlab2:1.0.0' to '/home/ansible/.ansible/collections/ansible_collections/newpuzzle/ansible_techlab2'
 ```
 {{% /details %}}
 
