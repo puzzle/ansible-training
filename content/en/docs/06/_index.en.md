@@ -211,6 +211,8 @@ ansible node1,node2 -i inventory/hosts -b -m ansible.builtin.file -a "path=/etc/
 {{% details title="Solution Task 7" %}}
 
 ```bash
+echo "var_username: jamesbond" > secret_vars2.yml
+echo "var_password: miss_moneypenny" >> secret_vars2.yml
 ansible-vault encrypt secret_vars2.yml
 ```
 

@@ -45,7 +45,7 @@ No local configuration is used!
 
 {{% details title="Solution Task 2" %}}
 ```bash
-sudo dnf install -y ansible
+sudo dnf install -y ansible-core
 /usr/bin/ansible-pull -U https://github.com/puzzle/ansible-techlab -i resources/ansible-pull/hosts resources/ansible-pull/local.yml
 cat /etc/motd
 ll #no file here...
@@ -90,7 +90,7 @@ $ cat revert_motd.yml
   tasks:
     - name: uninstall ansible
       ansible.builtin.dnf:
-        name: ansible
+        name: ansible-core
         state: absent
     - name: ensure cronjob not present
       ansible.builtin.file:

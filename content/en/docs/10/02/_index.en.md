@@ -200,8 +200,10 @@ $ tree
 $ cat env/settings
 ---
 container_image: default-ee
-process_isolation_executable: podman
 process_isolation: true
+process_isolation_executable: podman
+container_options:
+  - "--userns=keep-id"
 
 $ cat /home/ansible/.ssh/id_ed25519 > env/ssh_key
 

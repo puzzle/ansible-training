@@ -64,14 +64,12 @@ Use your favourite SSH client to connect to the IP address of your controller ho
 * Make sure python is installed on your nodes before continuing with the lab.
 
 {{% details title="Solution Task 1" %}}
-Installing Ansible with root privileges (on controller host):
+Installing Ansible Core and its dependencies with root privileges (on controller host):
 
 ```bash
-sudo dnf -y install ansible
+sudo dnf -y install ansible-core
+ansible-galaxy collection install community.general ansible.posix
 ```
-
-* If `dnf` does not find the `ansible` package you might need to
-  install `epel-release.noarch` to enable the EPEL repository.
 
 Opening an SSH connection:
 ```bash

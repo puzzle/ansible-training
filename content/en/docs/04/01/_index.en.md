@@ -54,7 +54,7 @@ tasks:
 ```
 
 {{% alert title="Tip" color="info" %}}
-See [Ansible Docs - Dnf Module](https://docs.ansible.com/ansible/latest/modules/dnf_module.html)
+See [Ansible Docs - Dnf Module](https://docs.ansible.com/projects/ansible/latest/collections/ansible/builtin/dnf_module.html#ansible-collections-ansible-builtin-dnf-module)
 {{% /alert %}}
 
 {{% /details %}}
