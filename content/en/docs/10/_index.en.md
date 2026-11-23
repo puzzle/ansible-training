@@ -173,10 +173,10 @@ $ watch -n1 podman container list
 
 Every 1.0s: podman container list                       control0: Tue Sep 15 16:29:04 2026
 
-CONTAINER ID  IMAGE	                         COMMAND               CREATED        STAT
-US	  PORTS       NAMES
-77554aedb8f4  quay.io/ansible/creator-ee:latest  ansible-playbook ...  9	seconds	ago  Up 8
- seconds              ansible_runner_1d0a7283-a051-4689-b773-7012c65bf762
+CONTAINER ID  IMAGE COMMAND                                            \
+CREATED           STAT  US  PORTS    NAMES
+77554aedb8f4  quay.io/ansible/creator-ee:latest  ansible-playbook ...  \
+9 seconds     ago   Up    8   seconds  ansible_runner_1d0a7283-a051-4689-b773-7012c65bf762
 ```
 {{% /details %}}
 
@@ -231,23 +231,23 @@ Ok: node1 Permanent and Non-Permanent(immediate) operation
 11│  changed: false
 12│  invocation:
 13│    module_args:
-14│	 icmp_block: null
-15│	 icmp_block_inversion: null
-16│	 immediate: true
-17│	 interface: null
-18│	 masquerade: null
-19│	 offline: null
-20│	 permanent: true
-21│	 port: null
-22│	 port_forward: null
-23│	 protocol: null
-24│	 rich_rule: null
-25│	 service: http
-26│	 source: null
-27│	 state: enabled
-28│	 target: null
-29│	 timeout: 0
-30│	 zone: null
+14│  icmp_block: null
+15│  icmp_block_inversion: null
+16│  immediate: true
+17│  interface: null
+18│  masquerade: null
+19│  offline: null
+20│  permanent: true
+21│  port: null
+22│  port_forward: null
+23│  protocol: null
+24│  rich_rule: null
+25│  service: http
+26│  source: null
+27│  state: enabled
+28│  target: null
+29│  timeout: 0
+30│  zone: null
 31│  msg: Permanent and Non-Permanent(immediate) operation
 32│resolved_action: ansible.posix.firewalld
 33│start: '2026-09-15T14:31:48.379962+00:00'

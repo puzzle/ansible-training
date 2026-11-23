@@ -45,11 +45,11 @@ Note as well, that the order of the roles to be installed in the `requirements.y
 {{% /alert %}}
 
 ```bash
-$ ansible-galaxy install -r roles/requirements.yml
+ansible-galaxy install -r roles/requirements.yml
 
-$ ansible-galaxy remove mynginx
-$ ansible localhost -m file -a "dest=/home/ansible/techlab/nginx.tar.gz state=absent"
-$ ansible localhost -m file -a "dest=/home/ansible/techlab/roles/requirements.yml state=absent"
+ansible-galaxy remove mynginx
+ansible localhost -m file -a "dest=/home/ansible/techlab/nginx.tar.gz state=absent"
+ansible localhost -m file -a "dest=/home/ansible/techlab/roles/requirements.yml state=absent"
 ```
 {{% /details %}}
 
